@@ -55,90 +55,251 @@ def check_telegram():
         print("ERROR: TELEGRAM_BOT_TOKEN تنظیم نشده است.")
         return None
 
-    print("Checking Telegram...")
+    print("")
+    print("==============================")
+    print("TELEGRAM CHECK")
+    print("==============================")
 
-    # بررسی Webhook
+    # -------------------------
+    # تست خود Token و شناسایی Bot
+    # -------------------------
+
     try:
-        webhook = telegram_request("getWebhookInfo")
 
-        result = webhook.get("result", {})
+        bot_info = telegram_request("getMe")
 
-        webhook_url = result.get("url", "")
-        pending = result.get("pending_update_count", 0)
+        print("BOT INFO:")
 
+        if bot_info.get("ok"):
+
+            bot = bot_info.get("result", {})
+
+            print(
+                "Bot name:",
+                bot.get("first_name")
+            )
+
+            print(
+                "Bot username:",
+                bot.get("username")
+            )
+
+            print(
+                "Bot ID:",
+                bot.get("id")
+            )
+
+        else:
+
+            print("Telegram token error:")
+            print(bot_info)
+
+            return None
+
+    except Exception as e:
+
+        print("خطا در getMe:")
+        print(e)
+
+        return None
+
+    # -------------------------
+    # Webhook
+    # -------------------------
+
+    try:
+
+        webhook = telegram_request(
+            "getWebhookInfo"
+        )
+
+        result = webhook.get(
+            "result",
+            {}
+        )
+
+        webhook_url = result.get(
+            "url",
+            ""
+        )
+
+        pending = result.get(
+            "pending_update_count",
+            0
+        )
+
+        print("")
         print("Webhook URL:", webhook_url)
-        print("Pending updates:", pending)
+        print(
+            "Pending updates:",
+            pending
+        )
 
-        # اگر webhook فعال باشد، حذفش می‌کنیم
+        # اگر Webhook فعال باشد
         if webhook_url:
-            print("Webhook فعال است. در حال حذف...")
 
-            deleted = telegram_request("deleteWebhook")
+            print(
+                "Webhook فعال است."
+            )
 
-            print("deleteWebhook:", deleted)
+            print(
+                "در حال حذف Webhook..."
+            )
+
+            deleted = telegram_request(
+                "deleteWebhook"
+            )
+
+            print(
+                "deleteWebhook:",
+                deleted
+            )
 
             time.sleep(2)
 
     except Exception as e:
-        print("خطا در بررسی Webhook:", e)
 
-    # دریافت پیام‌های ورودی
+        print(
+            "خطا در بررسی Webhook:",
+            e
+        )
+
+    # -------------------------
+    # دریافت پیام‌ها
+    # -------------------------
+
     try:
 
-        updates = telegram_request("getUpdates")
+        updates = telegram_request(
+            "getUpdates"
+        )
 
-        print("Telegram response:", updates)
+        print("")
+        print(
+            "Telegram response:",
+            updates
+        )
 
         if not updates.get("ok"):
-            print("Telegram error:", updates)
+
+            print(
+                "Telegram error:",
+                updates
+            )
+
             return None
 
-        results = updates.get("result", [])
+        results = updates.get(
+            "result",
+            []
+        )
 
+        if not results:
+
+            print(
+                "هیچ پیام جدیدی از تلگرام پیدا نشد."
+            )
+
+            return None
+
+        # بررسی پیام‌ها
         for update in results:
 
-            message = update.get("message")
+            message = update.get(
+                "message"
+            )
 
-            if message:
+            if not message:
+                continue
 
-                chat = message.get("chat")
+            chat = message.get(
+                "chat"
+            )
 
-                if chat:
+            if not chat:
+                continue
 
-                    chat_id = chat.get("id")
+            chat_id = chat.get(
+                "id"
+            )
 
-                    print("")
-                    print("==============================")
-                    print("TELEGRAM_CHAT_ID:", chat_id)
-                    print("==============================")
-                    print("")
+            username = chat.get(
+                "username"
+            )
 
-                    return str(chat_id)
+            first_name = chat.get(
+                "first_name"
+            )
 
-        print("هیچ پیام جدیدی از تلگرام پیدا نشد.")
+            print("")
+            print(
+                "=============================="
+            )
+
+            print(
+                "TELEGRAM_CHAT_ID:",
+                chat_id
+            )
+
+            print(
+                "Telegram username:",
+                username
+            )
+
+            print(
+                "First name:",
+                first_name
+            )
+
+            print(
+                "=============================="
+            )
+
+            return str(chat_id)
 
     except Exception as e:
 
-        print("خطا در دریافت Chat ID:", e)
+        print(
+            "خطا در دریافت Chat ID:",
+            e
+        )
 
     return None
 
 
+# =========================
+# SEND TELEGRAM
+# =========================
+
 def send_telegram(message):
 
     if not BOT_TOKEN:
-        print("BOT TOKEN وجود ندارد.")
+
+        print(
+            "BOT TOKEN وجود ندارد."
+        )
+
         return
 
     if not CHAT_ID:
-        print("TELEGRAM_CHAT_ID هنوز تنظیم نشده است.")
+
+        print(
+            "TELEGRAM_CHAT_ID هنوز تنظیم نشده است."
+        )
+
         return
 
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    url = (
+        f"https://api.telegram.org/"
+        f"bot{BOT_TOKEN}/sendMessage"
+    )
 
     data = urllib.parse.urlencode({
+
         "chat_id": CHAT_ID,
+
         "text": message
+
     }).encode()
 
     request = urllib.request.Request(
@@ -148,49 +309,73 @@ def send_telegram(message):
 
     try:
 
-        with urllib.request.urlopen(request, timeout=20) as response:
+        with urllib.request.urlopen(
+            request,
+            timeout=20
+        ) as response:
 
             result = response.read().decode()
 
-            print("Telegram send result:")
+            print(
+                "Telegram send result:"
+            )
+
             print(result)
 
     except Exception as e:
 
-        print("خطا در ارسال تلگرام:", e)
+        print(
+            "خطا در ارسال تلگرام:",
+            e
+        )
 
 
 # =========================
-# COINBASE DATA
+# COINBASE
 # =========================
 
 def get_candles(product):
 
-    now = int(time.time())
+    now = int(
+        time.time()
+    )
 
-    start = now - (30 * 3600)
+    start = now - (
+        30 * 3600
+    )
 
     params = urllib.parse.urlencode({
+
         "start": start,
+
         "end": now,
+
         "granularity": "ONE_HOUR",
+
         "limit": 30
+
     })
 
     url = (
-        "https://api.coinbase.com/api/v3/brokerage/"
-        "market/products/"
+
+        "https://api.coinbase.com/"
+        "api/v3/brokerage/market/products/"
         + product
         + "/candles?"
         + params
+
     )
 
     data = get_json(url)
 
-    candles = data.get("candles", [])
+    candles = data.get(
+        "candles",
+        []
+    )
 
     candles.sort(
-        key=lambda x: int(x["start"])
+        key=lambda x:
+        int(x["start"])
     )
 
     return candles
@@ -204,7 +389,9 @@ def analyze(product, name):
 
     try:
 
-        candles = get_candles(product)
+        candles = get_candles(
+            product
+        )
 
         if len(candles) < 22:
 
@@ -215,7 +402,6 @@ def analyze(product, name):
 
             return None
 
-        # آخرین کندل کامل
         last = candles[-2]
 
         previous = candles[-3]
@@ -232,19 +418,24 @@ def analyze(product, name):
             last["volume"]
         )
 
-        # تغییر قیمت یک ساعت
         change_1h = (
-            (close - old_close)
+
+            (
+                close
+                - old_close
+            )
             / old_close
+
         ) * 100
 
-        # حجم 20 ساعت قبل
         volumes = []
 
         for candle in candles[-22:-2]:
 
             volumes.append(
-                float(candle["volume"])
+                float(
+                    candle["volume"]
+                )
             )
 
         avg_volume = (
@@ -263,13 +454,12 @@ def analyze(product, name):
 
             volume_ratio = 0
 
-        # =====================
+        # -------------------------
         # SCORE
-        # =====================
+        # -------------------------
 
         score = 0
 
-        # رشد قیمت
         if change_1h >= 2:
 
             score += 25
@@ -282,7 +472,6 @@ def analyze(product, name):
 
             score += 10
 
-        # افزایش حجم
         if volume_ratio >= 3:
 
             score += 30
@@ -295,7 +484,6 @@ def analyze(product, name):
 
             score += 15
 
-        # ترکیب رشد + حجم
         if (
             change_1h > 0
             and volume_ratio >= 1.5
@@ -303,7 +491,6 @@ def analyze(product, name):
 
             score += 20
 
-        # حرکت قوی
         if change_1h >= 2:
 
             score += 15
@@ -320,7 +507,8 @@ def analyze(product, name):
 
             "change": change_1h,
 
-            "volume_ratio": volume_ratio,
+            "volume_ratio":
+                volume_ratio,
 
             "score": score
 
@@ -358,36 +546,48 @@ def main():
 
     if found_chat_id:
 
+        print("")
         print(
-            "Chat ID پیدا شد:",
-            found_chat_id
+            "Chat ID پیدا شد:"
         )
 
         print(
-            "این عدد را در GitHub Secret "
+            found_chat_id
+        )
+
+        print("")
+        print(
+            "این عدد را در GitHub Secret"
+        )
+
+        print(
             "با نام TELEGRAM_CHAT_ID قرار بده."
         )
 
     elif CHAT_ID:
 
+        print("")
         print(
             "TELEGRAM_CHAT_ID از قبل تنظیم شده."
         )
 
     else:
 
+        print("")
         print(
             "TELEGRAM_CHAT_ID هنوز تنظیم نشده."
         )
 
     # -------------------------
-    # Market scan
+    # Market Scan
     # -------------------------
 
     results = []
 
     print("")
-    print("شروع بررسی بازار...")
+    print(
+        "شروع بررسی بازار..."
+    )
     print("")
 
     for product, name in COINS.items():
@@ -399,7 +599,9 @@ def main():
 
         if result:
 
-            results.append(result)
+            results.append(
+                result
+            )
 
     # -------------------------
     # Results
@@ -413,21 +615,31 @@ def main():
     for result in results:
 
         print(
+
             result["name"],
+
             "| Score:",
+
             result["score"],
+
             "| 1H:",
+
             round(
                 result["change"],
                 2
             ),
+
             "%",
+
             "| Volume:",
+
             round(
                 result["volume_ratio"],
                 2
             ),
+
             "x"
+
         )
 
     # -------------------------
@@ -438,51 +650,69 @@ def main():
 
     for result in results:
 
-        if result["score"] >= 65:
+        if result["score"] < 65:
 
-            if result["score"] >= 80:
+            continue
 
-                level = "🔴 حرکت بسیار قوی"
+        if result["score"] >= 80:
 
-            else:
-
-                level = "🟠 هشدار جدی"
-
-            message = (
-
-                "🚨 CRYPTO EARLY ALERT\n\n"
-
-                f"🪙 ارز: {result['name']}\n"
-
-                f"⭐ امتیاز: "
-                f"{result['score']}/100\n"
-
-                f"📈 تغییر 1H: "
-                f"{result['change']:.2f}%\n"
-
-                f"📊 حجم: "
-                f"{result['volume_ratio']:.2f} برابر میانگین\n"
-
-                f"⚠️ وضعیت: {level}\n\n"
-
-                "⚠️ این هشدار تضمین رشد نیست."
+            level = (
+                "🔴 حرکت بسیار قوی"
             )
 
-            print("")
-            print("ارسال هشدار برای:")
-            print(result["name"])
+        else:
 
-            send_telegram(message)
+            level = (
+                "🟠 هشدار جدی"
+            )
 
-            alerts_sent += 1
+        message = (
+
+            "🚨 CRYPTO EARLY ALERT\n\n"
+
+            f"🪙 ارز: "
+            f"{result['name']}\n"
+
+            f"⭐ امتیاز: "
+            f"{result['score']}/100\n"
+
+            f"📈 تغییر 1H: "
+            f"{result['change']:.2f}%\n"
+
+            f"📊 حجم: "
+            f"{result['volume_ratio']:.2f} "
+            f"برابر میانگین\n"
+
+            f"⚠️ وضعیت: "
+            f"{level}\n\n"
+
+            "⚠️ این هشدار تضمین رشد نیست."
+        )
+
+        print("")
+        print(
+            "ارسال هشدار برای:",
+            result["name"]
+        )
+
+        send_telegram(
+            message
+        )
+
+        alerts_sent += 1
 
     print("")
     print("==============================")
+
     print(
         "تعداد هشدارها:",
         alerts_sent
     )
-    print("==============================")
+
+    print(
+        "=============================="
+    )
+
     print("")
 
 
