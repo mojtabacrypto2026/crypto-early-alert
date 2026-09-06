@@ -3,7 +3,8 @@ import json
 import urllib.request
 import urllib.parse
 import time
-
+    delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook"
+    get_json(delete_url)
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
