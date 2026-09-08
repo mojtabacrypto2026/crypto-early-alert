@@ -28,6 +28,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install requests
 
+      - name: Fix Nobitex DNS
+        run: |
+          echo "185.143.232.201 api.nobitex.ir" | sudo tee -a /etc/hosts
+          echo "185.143.234.120 api.nobitex.ir" | sudo tee -a /etc/hosts
+          getent hosts api.nobitex.ir
+
+      - name: Fix Nobitex symbol format
+        run: |
+          sed -i 's/"symbol": market,/"symbol": market.replace("-", "").upper(),/' backtest.py
+
       - name: Run backtest
         run: python backtest.py
 
