@@ -3,6 +3,13 @@ name: Nobitex Backtest
 on:
   workflow_dispatch:
 
+  push:
+    branches:
+      - main
+    paths:
+      - "backtest.py"
+      - ".github/workflows/backtest.yml"
+
 jobs:
   backtest:
     runs-on: ubuntu-latest
