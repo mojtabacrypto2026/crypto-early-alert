@@ -3,15 +3,16 @@ import json
 import urllib.request
 import urllib.parse
 import time
+import math
 
-
-# =========================
-# SETTINGS
-# =========================
+# ============================================================
+# CRYPTO EARLY ALERT - VERSION 2
+# ============================================================
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
+# ارزهای قابل بررسی
 COINS = {
     "BTC-USD": "BTC",
     "ETH-USD": "ETH",
@@ -19,275 +20,74 @@ COINS = {
     "XRP-USD": "XRP",
     "ADA-USD": "ADA",
     "DOGE-USD": "DOGE",
+    "AVAX-USD": "AVAX",
+    "LINK-USD": "LINK",
+    "UNI-USD": "UNI",
+    "SUSHI-USD": "SUSHI",
+    "AAVE-USD": "AAVE",
+    "DOT-USD": "DOT",
+    "ATOM-USD": "ATOM",
+    "LTC-USD": "LTC",
+    "BCH-USD": "BCH",
+    "ETC-USD": "ETC",
+    "NEAR-USD": "NEAR",
+    "ALGO-USD": "ALGO",
+    "FIL-USD": "FIL",
+    "APT-USD": "APT",
+    "ARB-USD": "ARB",
+    "OP-USD": "OP",
+    "INJ-USD": "INJ",
+    "PEPE-USD": "PEPE",
+    "SHIB-USD": "SHIB",
 }
 
+# حداقل امتیاز برای هشدار
+ALERT_SCORE = 65
 
-# =========================
+# برای جلوگیری از هشدار پشت سر هم
+ALERT_COOLDOWN = 4 * 60 * 60
+
+# ذخیره زمان آخرین هشدار
+last_alerts = {}
+
+
+# ============================================================
 # HTTP
-# =========================
+# ============================================================
 
 def get_json(url):
+
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "Crypto-Early-Alert"
+            "User-Agent": "Crypto-Early-Alert/2.0",
+            "Accept": "application/json"
         }
     )
 
-    with urllib.request.urlopen(request, timeout=20) as response:
+    with urllib.request.urlopen(
+        request,
+        timeout=25
+    ) as response:
+
         text = response.read().decode()
 
     return json.loads(text)
 
 
-# =========================
+# ============================================================
 # TELEGRAM
-# =========================
-
-def telegram_request(method):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/{method}"
-    return get_json(url)
-
-
-def check_telegram():
-
-    if not BOT_TOKEN:
-        print("ERROR: TELEGRAM_BOT_TOKEN تنظیم نشده است.")
-        return None
-
-    print("")
-    print("==============================")
-    print("TELEGRAM CHECK")
-    print("==============================")
-
-    # -------------------------
-    # تست خود Token و شناسایی Bot
-    # -------------------------
-
-    try:
-
-        bot_info = telegram_request("getMe")
-
-        print("BOT INFO:")
-
-        if bot_info.get("ok"):
-
-            bot = bot_info.get("result", {})
-
-            print(
-                "Bot name:",
-                bot.get("first_name")
-            )
-
-            print(
-                "Bot username:",
-                bot.get("username")
-            )
-
-            print(
-                "Bot ID:",
-                bot.get("id")
-            )
-
-        else:
-
-            print("Telegram token error:")
-            print(bot_info)
-
-            return None
-
-    except Exception as e:
-
-        print("خطا در getMe:")
-        print(e)
-
-        return None
-
-    # -------------------------
-    # Webhook
-    # -------------------------
-
-    try:
-
-        webhook = telegram_request(
-            "getWebhookInfo"
-        )
-
-        result = webhook.get(
-            "result",
-            {}
-        )
-
-        webhook_url = result.get(
-            "url",
-            ""
-        )
-
-        pending = result.get(
-            "pending_update_count",
-            0
-        )
-
-        print("")
-        print("Webhook URL:", webhook_url)
-        print(
-            "Pending updates:",
-            pending
-        )
-
-        # اگر Webhook فعال باشد
-        if webhook_url:
-
-            print(
-                "Webhook فعال است."
-            )
-
-            print(
-                "در حال حذف Webhook..."
-            )
-
-            deleted = telegram_request(
-                "deleteWebhook"
-            )
-
-            print(
-                "deleteWebhook:",
-                deleted
-            )
-
-            time.sleep(2)
-
-    except Exception as e:
-
-        print(
-            "خطا در بررسی Webhook:",
-            e
-        )
-
-    # -------------------------
-    # دریافت پیام‌ها
-    # -------------------------
-
-    try:
-
-        updates = telegram_request(
-            "getUpdates"
-        )
-
-        print("")
-        print(
-            "Telegram response:",
-            updates
-        )
-
-        if not updates.get("ok"):
-
-            print(
-                "Telegram error:",
-                updates
-            )
-
-            return None
-
-        results = updates.get(
-            "result",
-            []
-        )
-
-        if not results:
-
-            print(
-                "هیچ پیام جدیدی از تلگرام پیدا نشد."
-            )
-
-            return None
-
-        # بررسی پیام‌ها
-        for update in results:
-
-            message = update.get(
-                "message"
-            )
-
-            if not message:
-                continue
-
-            chat = message.get(
-                "chat"
-            )
-
-            if not chat:
-                continue
-
-            chat_id = chat.get(
-                "id"
-            )
-
-            username = chat.get(
-                "username"
-            )
-
-            first_name = chat.get(
-                "first_name"
-            )
-
-            print("")
-            print(
-                "=============================="
-            )
-
-            print(
-                "TELEGRAM_CHAT_ID:",
-                chat_id
-            )
-
-            print(
-                "Telegram username:",
-                username
-            )
-
-            print(
-                "First name:",
-                first_name
-            )
-
-            print(
-                "=============================="
-            )
-
-            return str(chat_id)
-
-    except Exception as e:
-
-        print(
-            "خطا در دریافت Chat ID:",
-            e
-        )
-
-    return None
-
-
-# =========================
-# SEND TELEGRAM
-# =========================
+# ============================================================
 
 def send_telegram(message):
 
     if not BOT_TOKEN:
-
-        print(
-            "BOT TOKEN وجود ندارد."
-        )
-
-        return
+        print("ERROR: TELEGRAM_BOT_TOKEN تنظیم نشده.")
+        return False
 
     if not CHAT_ID:
-
-        print(
-            "TELEGRAM_CHAT_ID هنوز تنظیم نشده است."
-        )
-
-        return
+        print("ERROR: TELEGRAM_CHAT_ID تنظیم نشده.")
+        return False
 
     url = (
         f"https://api.telegram.org/"
@@ -295,16 +95,16 @@ def send_telegram(message):
     )
 
     data = urllib.parse.urlencode({
-
         "chat_id": CHAT_ID,
-
         "text": message
-
     }).encode()
 
     request = urllib.request.Request(
         url,
-        data=data
+        data=data,
+        headers={
+            "User-Agent": "Crypto-Early-Alert/2.0"
+        }
     )
 
     try:
@@ -314,56 +114,43 @@ def send_telegram(message):
             timeout=20
         ) as response:
 
-            result = response.read().decode()
-
-            print(
-                "Telegram send result:"
+            result = json.loads(
+                response.read().decode()
             )
 
-            print(result)
+        print("Telegram:", result)
+
+        return bool(result.get("ok"))
 
     except Exception as e:
 
-        print(
-            "خطا در ارسال تلگرام:",
-            e
-        )
+        print("خطا در Telegram:", e)
+
+        return False
 
 
-# =========================
-# COINBASE
-# =========================
+# ============================================================
+# COINBASE CANDLES
+# ============================================================
 
 def get_candles(product):
 
-    now = int(
-        time.time()
-    )
+    now = int(time.time())
 
-    start = now - (
-        30 * 3600
-    )
+    # حدود 7 روز داده
+    start = now - (7 * 24 * 3600)
 
     params = urllib.parse.urlencode({
-
-        "start": start,
-
-        "end": now,
-
-        "granularity": "ONE_HOUR",
-
-        "limit": 30
-
+        "start": str(start),
+        "end": str(now),
+        "granularity": "ONE_HOUR"
     })
 
     url = (
-
         "https://api.coinbase.com/"
         "api/v3/brokerage/market/products/"
-        + product
-        + "/candles?"
-        + params
-
+        f"{product}/candles?"
+        f"{params}"
     )
 
     data = get_json(url)
@@ -374,130 +161,495 @@ def get_candles(product):
     )
 
     candles.sort(
-        key=lambda x:
-        int(x["start"])
+        key=lambda x: int(x["start"])
     )
 
     return candles
 
 
-# =========================
+# ============================================================
+# SAFE HELPERS
+# ============================================================
+
+def pct_change(new, old):
+
+    if old == 0:
+        return 0
+
+    return (
+        (new - old) / old
+    ) * 100
+
+
+def average(values):
+
+    if not values:
+        return 0
+
+    return sum(values) / len(values)
+
+
+def stdev(values):
+
+    if len(values) < 2:
+        return 0
+
+    avg = average(values)
+
+    variance = average([
+        (x - avg) ** 2
+        for x in values
+    ])
+
+    return math.sqrt(variance)
+
+
+# ============================================================
 # ANALYSIS
-# =========================
+# ============================================================
 
 def analyze(product, name):
 
     try:
 
-        candles = get_candles(
-            product
-        )
+        candles = get_candles(product)
 
-        if len(candles) < 22:
+        if len(candles) < 50:
 
             print(
                 name,
-                "داده کافی نیست."
+                "- داده کافی نیست:",
+                len(candles)
             )
 
             return None
 
-        last = candles[-2]
+        # ----------------------------------------------------
+        # آخرین کندل کامل
+        # ----------------------------------------------------
 
-        previous = candles[-3]
+        last = candles[-2]
 
         close = float(
             last["close"]
         )
 
-        old_close = float(
-            previous["close"]
+        high = float(
+            last["high"]
+        )
+
+        low = float(
+            last["low"]
         )
 
         volume = float(
             last["volume"]
         )
 
-        change_1h = (
+        # ----------------------------------------------------
+        # قیمت‌های قبلی
+        # ----------------------------------------------------
 
-            (
-                close
-                - old_close
+        close_2h = float(
+            candles[-4]["close"]
+        )
+
+        close_4h = float(
+            candles[-6]["close"]
+        )
+
+        close_6h = float(
+            candles[-8]["close"]
+        )
+
+        close_12h = float(
+            candles[-14]["close"]
+        )
+
+        close_24h = float(
+            candles[-26]["close"]
+        )
+
+        # ----------------------------------------------------
+        # تغییرات قیمت
+        # ----------------------------------------------------
+
+        change_1h = pct_change(
+            close,
+            float(candles[-3]["close"])
+        )
+
+        change_2h = pct_change(
+            close,
+            close_2h
+        )
+
+        change_4h = pct_change(
+            close,
+            close_4h
+        )
+
+        change_6h = pct_change(
+            close,
+            close_6h
+        )
+
+        change_12h = pct_change(
+            close,
+            close_12h
+        )
+
+        change_24h = pct_change(
+            close,
+            close_24h
+        )
+
+        # ----------------------------------------------------
+        # حجم
+        # ----------------------------------------------------
+
+        volume_history = []
+
+        for candle in candles[-26:-2]:
+
+            volume_history.append(
+                float(candle["volume"])
             )
-            / old_close
 
-        ) * 100
-
-        volumes = []
-
-        for candle in candles[-22:-2]:
-
-            volumes.append(
-                float(
-                    candle["volume"]
-                )
-            )
-
-        avg_volume = (
-            sum(volumes)
-            / len(volumes)
+        avg_volume = average(
+            volume_history
         )
 
         if avg_volume > 0:
 
             volume_ratio = (
-                volume
-                / avg_volume
+                volume / avg_volume
             )
 
         else:
 
             volume_ratio = 0
 
-        # -------------------------
-        # SCORE
-        # -------------------------
+        # ----------------------------------------------------
+        # شتاب حجم
+        # ----------------------------------------------------
+
+        recent_volumes = [
+            float(x["volume"])
+            for x in candles[-6:-2]
+        ]
+
+        recent_avg_volume = average(
+            recent_volumes
+        )
+
+        older_volumes = [
+            float(x["volume"])
+            for x in candles[-14:-6]
+        ]
+
+        older_avg_volume = average(
+            older_volumes
+        )
+
+        if older_avg_volume > 0:
+
+            volume_acceleration = (
+                recent_avg_volume
+                / older_avg_volume
+            )
+
+        else:
+
+            volume_acceleration = 1
+
+        # ----------------------------------------------------
+        # مقاومت 20 ساعته
+        # ----------------------------------------------------
+
+        previous_highs = []
+
+        for candle in candles[-22:-2]:
+
+            previous_highs.append(
+                float(candle["high"])
+            )
+
+        resistance = max(
+            previous_highs
+        )
+
+        if resistance > 0:
+
+            breakout_percent = (
+                (close - resistance)
+                / resistance
+            ) * 100
+
+        else:
+
+            breakout_percent = 0
+
+        # ----------------------------------------------------
+        # فاصله از میانگین 20 ساعته
+        # ----------------------------------------------------
+
+        moving_prices = [
+
+            float(x["close"])
+            for x in candles[-22:-2]
+
+        ]
+
+        moving_average = average(
+            moving_prices
+        )
+
+        if moving_average > 0:
+
+            distance_ma = (
+                (close - moving_average)
+                / moving_average
+            ) * 100
+
+        else:
+
+            distance_ma = 0
+
+        # ----------------------------------------------------
+        # قدرت کندل آخر
+        # ----------------------------------------------------
+
+        candle_range = high - low
+
+        if candle_range > 0:
+
+            candle_position = (
+                (close - low)
+                / candle_range
+            )
+
+        else:
+
+            candle_position = 0.5
+
+        # ----------------------------------------------------
+        # امتیاز
+        # ----------------------------------------------------
 
         score = 0
+        reasons = []
 
-        if change_1h >= 2:
+        # ----------------------------------------------------
+        # 1. حرکت اولیه
+        # ----------------------------------------------------
 
-            score += 25
+        if 0.20 <= change_1h < 0.60:
 
-        elif change_1h >= 1:
+            score += 8
+            reasons.append(
+                "شتاب اولیه 1H"
+            )
 
-            score += 20
+        elif 0.60 <= change_1h < 1.20:
 
-        elif change_1h >= 0.5:
+            score += 12
+            reasons.append(
+                "حرکت مثبت 1H"
+            )
 
-            score += 10
+        elif change_1h >= 1.20:
 
-        if volume_ratio >= 3:
+            score += 8
+            reasons.append(
+                "حرکت قوی 1H"
+            )
 
-            score += 30
+        # ----------------------------------------------------
+        # 2. روند 4 ساعت
+        # ----------------------------------------------------
 
-        elif volume_ratio >= 2:
+        if change_4h >= 1:
 
-            score += 25
+            score += 8
+            reasons.append(
+                "روند 4H مثبت"
+            )
 
-        elif volume_ratio >= 1.5:
+        if change_4h >= 2:
 
-            score += 15
+            score += 5
+
+        # ----------------------------------------------------
+        # 3. روند 12 ساعت
+        # ----------------------------------------------------
+
+        if change_12h >= 1:
+
+            score += 7
+            reasons.append(
+                "روند 12H مثبت"
+            )
+
+        # ----------------------------------------------------
+        # 4. شتاب
+        # ----------------------------------------------------
 
         if (
             change_1h > 0
-            and volume_ratio >= 1.5
+            and change_4h > 0
+            and change_12h > 0
         ):
 
-            score += 20
+            score += 8
 
-        if change_1h >= 2:
+            reasons.append(
+                "هم‌جهتی روندها"
+            )
 
-            score += 15
+        # ----------------------------------------------------
+        # 5. حجم
+        # ----------------------------------------------------
 
-        elif change_1h >= 1:
+        if volume_ratio >= 1.3:
+
+            score += 7
+
+            reasons.append(
+                "افزایش حجم"
+            )
+
+        if volume_ratio >= 1.7:
+
+            score += 5
+
+        if volume_ratio >= 2.5:
+
+            score += 5
+
+        # ----------------------------------------------------
+        # 6. شتاب حجم
+        # ----------------------------------------------------
+
+        if volume_acceleration >= 1.20:
+
+            score += 7
+
+            reasons.append(
+                "شتاب حجم"
+            )
+
+        if volume_acceleration >= 1.50:
+
+            score += 4
+
+        # ----------------------------------------------------
+        # 7. نزدیک شدن به شکست مقاومت
+        # ----------------------------------------------------
+
+        if -1.0 <= breakout_percent < 0:
+
+            score += 8
+
+            reasons.append(
+                "نزدیک مقاومت"
+            )
+
+        elif 0 <= breakout_percent <= 1.5:
 
             score += 10
+
+            reasons.append(
+                "شروع شکست مقاومت"
+            )
+
+        elif breakout_percent > 1.5:
+
+            score += 5
+
+        # ----------------------------------------------------
+        # 8. قیمت بالای میانگین
+        # ----------------------------------------------------
+
+        if 0 < distance_ma <= 2:
+
+            score += 7
+
+            reasons.append(
+                "بالای میانگین"
+            )
+
+        elif distance_ma > 2:
+
+            score += 3
+
+        # ----------------------------------------------------
+        # 9. قدرت کندل
+        # ----------------------------------------------------
+
+        if candle_position >= 0.70:
+
+            score += 6
+
+            reasons.append(
+                "قدرت خرید"
+            )
+
+        # ----------------------------------------------------
+        # 10. جلوگیری از ورود بعد از پامپ شدید
+        # ----------------------------------------------------
+
+        if change_24h > 12:
+
+            score -= 15
+
+            reasons.append(
+                "رشد 24H زیاد"
+            )
+
+        elif change_24h > 8:
+
+            score -= 8
+
+        # ----------------------------------------------------
+        # محدود کردن امتیاز
+        # ----------------------------------------------------
+
+        score = max(
+            0,
+            min(
+                100,
+                score
+            )
+        )
+
+        # ----------------------------------------------------
+        # سطح هشدار
+        # ----------------------------------------------------
+
+        if score >= 85:
+
+            level = (
+                "🔴 بسیار قوی"
+            )
+
+        elif score >= 75:
+
+            level = (
+                "🟠 قوی"
+            )
+
+        elif score >= 65:
+
+            level = (
+                "🟡 اولیه"
+            )
+
+        else:
+
+            level = (
+                "⚪ عادی"
+            )
 
         return {
 
@@ -505,12 +657,33 @@ def analyze(product, name):
 
             "price": close,
 
-            "change": change_1h,
+            "score": score,
 
-            "volume_ratio":
-                volume_ratio,
+            "level": level,
 
-            "score": score
+            "change_1h": change_1h,
+
+            "change_4h": change_4h,
+
+            "change_12h": change_12h,
+
+            "change_24h": change_24h,
+
+            "volume_ratio": volume_ratio,
+
+            "volume_acceleration":
+                volume_acceleration,
+
+            "breakout_percent":
+                breakout_percent,
+
+            "distance_ma":
+                distance_ma,
+
+            "candle_position":
+                candle_position,
+
+            "reasons": reasons
 
         }
 
@@ -526,71 +699,142 @@ def analyze(product, name):
         return None
 
 
-# =========================
-# MAIN
-# =========================
+# ============================================================
+# ALERT CONTROL
+# ============================================================
 
-def main():
+def can_send_alert(name, score):
 
-    print("")
-    print("==============================")
-    print("CRYPTO EARLY ALERT")
-    print("==============================")
-    print("")
+    now = time.time()
 
-    # -------------------------
-    # Telegram
-    # -------------------------
+    previous = last_alerts.get(
+        name,
+        0
+    )
 
-    found_chat_id = check_telegram()
+    # هشدار خیلی قوی اجازه عبور سریع‌تر دارد
+    if score >= 85:
 
-    if found_chat_id:
+        cooldown = 60 * 60
 
-        print("")
-        print(
-            "Chat ID پیدا شد:"
-        )
+    else:
 
-        print(
-            found_chat_id
-        )
+        cooldown = ALERT_COOLDOWN
 
-        print("")
-        print(
-            "این عدد را در GitHub Secret"
-        )
+    if now - previous < cooldown:
 
-        print(
-            "با نام TELEGRAM_CHAT_ID قرار بده."
-        )
+        return False
 
-    elif CHAT_ID:
+    last_alerts[name] = now
 
-        print("")
-        print(
-            "TELEGRAM_CHAT_ID از قبل تنظیم شده."
+    return True
+
+
+# ============================================================
+# FORMAT ALERT
+# ============================================================
+
+def make_message(result):
+
+    reasons = result["reasons"]
+
+    if reasons:
+
+        reason_text = "\n".join(
+            "• " + r
+            for r in reasons[:7]
         )
 
     else:
 
-        print("")
+        reason_text = "• چند نشانه هم‌زمان"
+
+    return (
+
+        "🚨 CRYPTO EARLY ALERT V2\n\n"
+
+        f"🪙 ارز: {result['name']}\n"
+
+        f"⭐ امتیاز: "
+        f"{result['score']}/100\n"
+
+        f"⚠️ سطح: "
+        f"{result['level']}\n\n"
+
+        f"📈 1H: "
+        f"{result['change_1h']:.2f}%\n"
+
+        f"📈 4H: "
+        f"{result['change_4h']:.2f}%\n"
+
+        f"📈 12H: "
+        f"{result['change_12h']:.2f}%\n"
+
+        f"📊 حجم: "
+        f"{result['volume_ratio']:.2f}x\n"
+
+        f"⚡ شتاب حجم: "
+        f"{result['volume_acceleration']:.2f}x\n"
+
+        f"🚧 فاصله مقاومت: "
+        f"{result['breakout_percent']:.2f}%\n\n"
+
+        "🔎 دلایل:\n"
+        f"{reason_text}\n\n"
+
+        "⚠️ هشدار زودهنگام است، "
+        "نه تضمین رشد."
+    )
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+def main():
+
+    print("")
+    print("=" * 55)
+    print("CRYPTO EARLY ALERT V2")
+    print("=" * 55)
+    print("")
+
+    if not BOT_TOKEN:
+
         print(
-            "TELEGRAM_CHAT_ID هنوز تنظیم نشده."
+            "WARNING: "
+            "TELEGRAM_BOT_TOKEN تنظیم نشده."
         )
 
-    # -------------------------
-    # Market Scan
-    # -------------------------
+    if not CHAT_ID:
+
+        print(
+            "WARNING: "
+            "TELEGRAM_CHAT_ID تنظیم نشده."
+        )
 
     results = []
 
+    print(
+        "تعداد ارزها:",
+        len(COINS)
+    )
+
     print("")
     print(
-        "شروع بررسی بازار..."
+        "شروع اسکن..."
     )
-    print("")
+
+    # --------------------------------------------------------
+    # Scan
+    # --------------------------------------------------------
 
     for product, name in COINS.items():
+
+        print(
+            "بررسی:",
+            name
+        )
 
         result = analyze(
             product,
@@ -603,122 +847,112 @@ def main():
                 result
             )
 
-    # -------------------------
-    # Results
-    # -------------------------
+        # جلوگیری از فشار زیاد به API
+        time.sleep(0.25)
+
+    # --------------------------------------------------------
+    # Sort
+    # --------------------------------------------------------
+
+    results.sort(
+        key=lambda x:
+        x["score"],
+        reverse=True
+    )
+
+    # --------------------------------------------------------
+    # Print results
+    # --------------------------------------------------------
 
     print("")
-    print("==============================")
-    print("MARKET SCAN")
-    print("==============================")
+    print("=" * 55)
+    print("TOP EARLY SIGNALS")
+    print("=" * 55)
 
     for result in results:
 
         print(
 
-            result["name"],
+            f"{result['name']:6} | "
 
-            "| Score:",
+            f"Score "
+            f"{result['score']:3} | "
 
-            result["score"],
+            f"1H "
+            f"{result['change_1h']:6.2f}% | "
 
-            "| 1H:",
+            f"4H "
+            f"{result['change_4h']:6.2f}% | "
 
-            round(
-                result["change"],
-                2
-            ),
-
-            "%",
-
-            "| Volume:",
-
-            round(
-                result["volume_ratio"],
-                2
-            ),
-
-            "x"
+            f"Vol "
+            f"{result['volume_ratio']:4.2f}x"
 
         )
 
-    # -------------------------
+    # --------------------------------------------------------
     # Alerts
-    # -------------------------
+    # --------------------------------------------------------
 
-    alerts_sent = 0
+    alerts = []
 
     for result in results:
 
-        if result["score"] < 65:
+        if result["score"] < ALERT_SCORE:
 
             continue
 
-        if result["score"] >= 80:
+        if not can_send_alert(
+            result["name"],
+            result["score"]
+        ):
 
-            level = (
-                "🔴 حرکت بسیار قوی"
+            print(
+                "Cooldown:",
+                result["name"]
             )
 
-        else:
+            continue
 
-            level = (
-                "🟠 هشدار جدی"
-            )
+        alerts.append(
+            result
+        )
 
-        message = (
+    print("")
+    print(
+        "تعداد سیگنال‌های واجد شرایط:",
+        len(alerts)
+    )
 
-            "🚨 CRYPTO EARLY ALERT\n\n"
+    # --------------------------------------------------------
+    # Send Telegram
+    # --------------------------------------------------------
 
-            f"🪙 ارز: "
-            f"{result['name']}\n"
+    for result in alerts:
 
-            f"⭐ امتیاز: "
-            f"{result['score']}/100\n"
-
-            f"📈 تغییر 1H: "
-            f"{result['change']:.2f}%\n"
-
-            f"📊 حجم: "
-            f"{result['volume_ratio']:.2f} "
-            f"برابر میانگین\n"
-
-            f"⚠️ وضعیت: "
-            f"{level}\n\n"
-
-            "⚠️ این هشدار تضمین رشد نیست."
+        message = make_message(
+            result
         )
 
         print("")
         print(
-            "ارسال هشدار برای:",
-            result["name"]
+            "ارسال هشدار:",
+            result["name"],
+            result["score"]
         )
 
         send_telegram(
             message
         )
 
-        alerts_sent += 1
-
     print("")
-    print("==============================")
-
-    print(
-        "تعداد هشدارها:",
-        alerts_sent
-    )
-
-    print(
-        "=============================="
-    )
-
-    print("")
+    print("=" * 55)
+    print("SCAN FINISHED")
+    print("=" * 55)
 
 
-# =========================
+# ============================================================
 # START
-# =========================
+# ============================================================
 
 if __name__ == "__main__":
 
