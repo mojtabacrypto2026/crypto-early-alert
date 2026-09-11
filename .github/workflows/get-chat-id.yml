@@ -1,0 +1,48 @@
+name: Get Telegram Chat ID
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-chat-id:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Chat ID
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import json
+          import urllib.request
+
+          token = os.environ["TELEGRAM_BOT_TOKEN"]
+          url = f"https://api.telegram.org/bot{token}/getUpdates"
+
+          with urllib.request.urlopen(url, timeout=20) as r:
+              data = json.load(r)
+
+          if not data.get("ok"):
+              raise SystemExit("Telegram API error")
+
+          results = data.get("result", [])
+
+          if not results:
+              print("NO_MESSAGES")
+          else:
+              seen = set()
+
+              for u in results:
+                  m = u.get("message") or u.get("edited_message")
+
+                  if not m:
+                      continue
+
+                  chat = m.get("chat") or {}
+                  chat_id = chat.get("id")
+
+                  if chat_id is not None and chat_id not in seen:
+                      seen.add(chat_id)
+                      print(f"CHAT_ID={chat_id}")
+          PY
