@@ -1,76 +1,705 @@
-import os,json,urllib.request,urllib.parse,time
-BOT_TOKEN=os.getenv('TELEGRAM_BOT_TOKEN'); CHAT_ID=os.getenv('TELEGRAM_CHAT_ID')
-COINS={'BTC-USD':'BTC','ETH-USD':'ETH','SOL-USD':'SOL','XRP-USD':'XRP','ADA-USD':'ADA','DOGE-USD':'DOGE','AVAX-USD':'AVAX','LINK-USD':'LINK','UNI-USD':'UNI','SUSHI-USD':'SUSHI','AAVE-USD':'AAVE','DOT-USD':'DOT','ATOM-USD':'ATOM','LTC-USD':'LTC','BCH-USD':'BCH','ETC-USD':'ETC','NEAR-USD':'NEAR','ALGO-USD':'ALGO','FIL-USD':'FIL','APT-USD':'APT','ARB-USD':'ARB','OP-USD':'OP','INJ-USD':'INJ','PEPE-USD':'PEPE','SHIB-USD':'SHIB'}
-WATCH=68; TRADE=80
+import os
+import json
+import time
+import urllib.request
+import urllib.parse
 
-def get(u):
-    r=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Crypto-Early-Alert/3.1'}),timeout=20)
-    return json.loads(r.read().decode())
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-def candles(p,g,h):
-    # Coinbase max is 350 buckets per request.
-    n=int(time.time())
-    q=urllib.parse.urlencode({'start':n-h*3600,'end':n,'granularity':g})
-    a=get(f'https://api.coinbase.com/api/v3/brokerage/market/products/{p}/candles?{q}').get('candles',[])
-    a.sort(key=lambda x:int(x['start']))
-    return a[:-1]
+# ارزهایی که در نوبیتکس بررسی می‌شوند
+COINS = [
+    "btc", "eth", "sol", "xrp", "ada", "doge",
+    "avax", "link", "uni", "sushi", "aave",
+    "dot", "atom", "ltc", "bch", "etc",
+    "near", "algo", "fil", "apt", "arb",
+    "op", "inj", "pepe", "shib",
+    "cvc", "api3", "gmt", "t"
+]
 
-def avg(a): return sum(a)/len(a) if a else 0
-def pct(a,b): return (a-b)/b*100 if b else 0
+WATCH = 68
+TRADE = 80
 
-def scan(p):
-    c5=candles(p,'FIVE_MINUTE',24)       # 288 buckets
-    c15=candles(p,'FIFTEEN_MINUTE',72)   # 288 buckets
-    c1=candles(p,'ONE_HOUR',180)         # 180 buckets
-    if len(c5)<25 or len(c15)<10 or len(c1)<4:return None
-    a=c5[-1]; close=float(a['close']); high=float(a['high']); low=float(a['low']); vol=float(a['volume'])
-    x5=pct(close,float(c5[-2]['close'])); x15=pct(close,float(c15[-2]['close'])); x1=pct(close,float(c1[-2]['close'])); x30=pct(close,float(c5[-7]['close']))
-    vr=vol/avg([float(x['volume']) for x in c5[-13:-1]])
-    va=avg([float(x['volume']) for x in c5[-4:]])/avg([float(x['volume']) for x in c5[-12:-4]])
-    pressure=(close-low)/(high-low) if high>low else .5
-    res=max(float(x['high']) for x in c5[-37:-1]); dist=(close-res)/res*100
-    s=0;r=[]
-    if .10<=x5<.80:s+=16;r+=['شتاب تازه 5m']
-    elif .80<=x5<1.50:s+=9;r+=['حرکت 5m']
-    if .25<=x15<2:s+=13;r+=['روند 15m مثبت']
-    elif x15>=2:s+=6
-    if .30<=x1<3.5:s+=8;r+=['روند 1H مثبت']
-    elif x1>=3.5:s-=8;r+=['رشد 1H زیاد']
-    if x5>0 and x15>0 and x1>0:s+=9;r+=['هم‌جهتی تایم‌فریم‌ها']
-    if vr>=1.5:s+=10;r+=['حجم غیرعادی']
-    elif vr>=1.25:s+=6;r+=['افزایش حجم']
-    if va>=1.35:s+=9;r+=['شتاب حجم']
-    elif va>=1.15:s+=4
-    if pressure>=.70:s+=7;r+=['فشار خرید']
-    if -.40<=dist<=.25:s+=12;r+=['فشار روی مقاومت']
-    elif .25<dist<=1:s+=6;r+=['شکست تازه مقاومت']
-    if x30>4.5:s-=12;r+=['حرکت 30m زیاد؛ دیر شده']
-    if x1>6:s-=15
-    return max(0,min(100,s)),x5,x15,x1,x30,vr,va,dist,pressure,r
 
-def send(t):
-    if not BOT_TOKEN or not CHAT_ID:return False
-    u=f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
-    d=urllib.parse.urlencode({'chat_id':CHAT_ID,'text':t}).encode()
-    return json.loads(urllib.request.urlopen(urllib.request.Request(u,data=d),timeout=20).read().decode()).get('ok',False)
+# -----------------------------
+# دریافت اطلاعات از نوبیتکس
+# -----------------------------
+
+def get_json(url, retries=3):
+    last_error = None
+
+    for attempt in range(retries):
+        try:
+            request = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "Nobitex-Early-Alert/4.0"
+                }
+            )
+
+            with urllib.request.urlopen(
+                request,
+                timeout=20
+            ) as response:
+
+                return json.loads(
+                    response.read().decode()
+                )
+
+        except Exception as e:
+            last_error = e
+
+            if attempt < retries - 1:
+                time.sleep(2 * (attempt + 1))
+
+    raise last_error
+
+
+# -----------------------------
+# دریافت کندل
+# -----------------------------
+
+def candles(symbol, resolution, count=120):
+
+    now = int(time.time())
+
+    params = urllib.parse.urlencode({
+        "symbol": symbol,
+        "resolution": str(resolution),
+        "countback": count,
+        "to": now
+    })
+
+    url = (
+        "https://api.nobitex.ir/"
+        "market/udf/history?"
+        + params
+    )
+
+    data = get_json(url)
+
+    if data.get("s") != "ok":
+        return []
+
+    keys = ["t", "o", "h", "l", "c", "v"]
+
+    try:
+        n = min(
+            len(data.get(k, []))
+            for k in keys
+        )
+    except Exception:
+        return []
+
+    rows = []
+
+    for i in range(n):
+
+        try:
+
+            rows.append({
+                "t": int(data["t"][i]),
+                "o": float(data["o"][i]),
+                "h": float(data["h"][i]),
+                "l": float(data["l"][i]),
+                "c": float(data["c"][i]),
+                "v": float(data["v"][i])
+            })
+
+        except Exception:
+            continue
+
+    rows.sort(
+        key=lambda x: x["t"]
+    )
+
+    # حذف کندل در حال تشکیل
+    if len(rows) > 2:
+        rows = rows[:-1]
+
+    return rows
+
+
+# -----------------------------
+# محاسبات
+# -----------------------------
+
+def average(values):
+
+    if not values:
+        return 0
+
+    return sum(values) / len(values)
+
+
+def percent(a, b):
+
+    if not b:
+        return 0
+
+    return ((a - b) / b) * 100
+
+
+# -----------------------------
+# تحلیل یک ارز
+# -----------------------------
+
+def scan_market(symbol):
+
+    # 1 دقیقه
+    c1 = candles(
+        symbol,
+        1,
+        120
+    )
+
+    # 5 دقیقه
+    c5 = candles(
+        symbol,
+        5,
+        120
+    )
+
+    # 15 دقیقه
+    c15 = candles(
+        symbol,
+        15,
+        120
+    )
+
+    if (
+        len(c1) < 30
+        or len(c5) < 30
+        or len(c15) < 20
+    ):
+        return None
+
+    last = c5[-1]
+
+    price = last["c"]
+
+    # -------------------------
+    # حرکت قیمت
+    # -------------------------
+
+    m1 = percent(
+        price,
+        c1[-2]["c"]
+    )
+
+    m5 = percent(
+        price,
+        c5[-2]["c"]
+    )
+
+    m15 = percent(
+        price,
+        c15[-2]["c"]
+    )
+
+    m30 = percent(
+        price,
+        c5[-7]["c"]
+    )
+
+    m60 = percent(
+        price,
+        c5[-13]["c"]
+    )
+
+    # -------------------------
+    # حجم
+    # -------------------------
+
+    old_volume = average([
+        x["v"]
+        for x in c5[-13:-1]
+    ])
+
+    if old_volume > 0:
+        volume_ratio = (
+            last["v"] /
+            old_volume
+        )
+    else:
+        volume_ratio = 0
+
+    recent_volume = average([
+        x["v"]
+        for x in c5[-4:]
+    ])
+
+    previous_volume = average([
+        x["v"]
+        for x in c5[-12:-4]
+    ])
+
+    if previous_volume > 0:
+        volume_acceleration = (
+            recent_volume /
+            previous_volume
+        )
+    else:
+        volume_acceleration = 0
+
+    # -------------------------
+    # فشار خرید
+    # -------------------------
+
+    candle_range = (
+        last["h"] -
+        last["l"]
+    )
+
+    if candle_range > 0:
+
+        pressure = (
+            last["c"] -
+            last["l"]
+        ) / candle_range
+
+    else:
+
+        pressure = 0.5
+
+    # -------------------------
+    # مقاومت
+    # -------------------------
+
+    resistance = max(
+        x["h"]
+        for x in c5[-37:-1]
+    )
+
+    resistance_distance = percent(
+        price,
+        resistance
+    )
+
+    # -------------------------
+    # امتیاز
+    # -------------------------
+
+    score = 0
+
+    reasons = []
+
+    # حرکت 1 دقیقه
+    if 0.08 <= m1 < 0.50:
+
+        score += 12
+
+        reasons.append(
+            "شتاب تازه 1m"
+        )
+
+    # حرکت 5 دقیقه
+    elif 0.10 <= m5 < 0.80:
+
+        score += 14
+
+        reasons.append(
+            "شتاب تازه 5m"
+        )
+
+    elif 0.80 <= m5 < 1.50:
+
+        score += 7
+
+    # روند 15 دقیقه
+    if 0.15 <= m15 < 2:
+
+        score += 13
+
+        reasons.append(
+            "روند 15m مثبت"
+        )
+
+    elif m15 >= 2:
+
+        score += 4
+
+    # روند 1 ساعت
+    if 0.20 <= m60 < 3.5:
+
+        score += 8
+
+        reasons.append(
+            "روند 1h مثبت"
+        )
+
+    elif m60 >= 3.5:
+
+        score -= 6
+
+        reasons.append(
+            "رشد 1h زیاد"
+        )
+
+    # هم‌جهتی
+    if (
+        m5 > 0
+        and m15 > 0
+        and m60 > 0
+    ):
+
+        score += 10
+
+        reasons.append(
+            "هم‌جهتی تایم‌فریم‌ها"
+        )
+
+    # حجم
+    if volume_ratio >= 2:
+
+        score += 13
+
+        reasons.append(
+            "حجم بسیار غیرعادی"
+        )
+
+    elif volume_ratio >= 1.5:
+
+        score += 9
+
+        reasons.append(
+            "حجم غیرعادی"
+        )
+
+    elif volume_ratio >= 1.25:
+
+        score += 5
+
+        reasons.append(
+            "افزایش حجم"
+        )
+
+    # شتاب حجم
+    if volume_acceleration >= 1.5:
+
+        score += 10
+
+        reasons.append(
+            "شتاب حجم"
+        )
+
+    elif volume_acceleration >= 1.2:
+
+        score += 5
+
+    # فشار خرید
+    if pressure >= 0.72:
+
+        score += 7
+
+        reasons.append(
+            "فشار خرید"
+        )
+
+    # مقاومت
+    if (
+        -0.35
+        <= resistance_distance
+        <= 0.25
+    ):
+
+        score += 12
+
+        reasons.append(
+            "فشار روی مقاومت"
+        )
+
+    elif (
+        0.25
+        < resistance_distance
+        <= 1
+    ):
+
+        score += 6
+
+        reasons.append(
+            "شکست تازه مقاومت"
+        )
+
+    # -------------------------
+    # جلوگیری از خرید دیرهنگام
+    # -------------------------
+
+    if m30 > 4.5:
+
+        score -= 14
+
+        reasons.append(
+            "حرکت 30m زیاد؛ احتمالاً دیر شده"
+        )
+
+    if m60 > 7:
+
+        score -= 12
+
+    score = max(
+        0,
+        min(100, score)
+    )
+
+    return {
+        "score": score,
+        "price": price,
+
+        "m1": m1,
+        "m5": m5,
+        "m15": m15,
+        "m30": m30,
+        "m60": m60,
+
+        "volume_ratio": volume_ratio,
+        "volume_acceleration": volume_acceleration,
+
+        "resistance_distance":
+            resistance_distance,
+
+        "pressure": pressure,
+
+        "reasons": reasons
+    }
+
+
+# -----------------------------
+# وضعیت بیت‌کوین
+# -----------------------------
+
+def bitcoin_regime():
+
+    try:
+
+        btc = scan_market("btc")
+
+        if not btc:
+            return True
+
+        return (
+            btc["m15"] > -0.8
+            and
+            btc["m60"] > -1.5
+        )
+
+    except Exception as e:
+
+        print(
+            "BTC regime error:",
+            e
+        )
+
+        return True
+
+
+# -----------------------------
+# ارسال تلگرام
+# -----------------------------
+
+def send_telegram(message):
+
+    if (
+        not BOT_TOKEN
+        or not CHAT_ID
+    ):
+
+        print(
+            "Telegram secrets are not set."
+        )
+
+        return False
+
+    url = (
+        "https://api.telegram.org/"
+        f"bot{BOT_TOKEN}/sendMessage"
+    )
+
+    data = urllib.parse.urlencode({
+        "chat_id": CHAT_ID,
+        "text": message
+    }).encode()
+
+    try:
+
+        request = urllib.request.Request(
+            url,
+            data=data
+        )
+
+        with urllib.request.urlopen(
+            request,
+            timeout=20
+        ) as response:
+
+            result = json.loads(
+                response.read().decode()
+            )
+
+            return result.get(
+                "ok",
+                False
+            )
+
+    except Exception as e:
+
+        print(
+            "Telegram error:",
+            e
+        )
+
+        return False
+
+
+# -----------------------------
+# اجرای اصلی
+# -----------------------------
 
 def main():
-    b=scan('BTC-USD'); regime=(not b) or (b[2]>-.8 and b[3]>-1.5); out=[]
-    for p,n in COINS.items():
-        if n=='BTC':continue
-        try:
-            x=scan(p)
-            if x: out.append((n,x)); print(n,x[0],f'5m={x[1]:+.2f}%',f'15m={x[2]:+.2f}%',f'1h={x[3]:+.2f}%',f'vol={x[5]:.2f}x')
-        except Exception as e:print('ERROR',n,e)
-    for n,x in sorted(out,key=lambda z:z[1][0],reverse=True)[:5]:
-        if x[0]<WATCH or x[1]<.10 or x[2]<=0 or x[4]>=4.5:continue
-        if x[0]<TRADE and not regime:continue
-        tag='🚨 هشدار معامله' if x[0]>=TRADE and regime else '👀 هشدار دیده‌بانی'
-        reasons='، '.join(x[9])
-        msg=(f'{tag}\n{n}\nامتیاز: {x[0]}/100\n5m {x[1]:+.2f}% | 15m {x[2]:+.2f}% | 1H {x[3]:+.2f}%\n'
-             f'30m {x[4]:+.2f}% | حجم {x[5]:.2f}x | شتاب حجم {x[6]:.2f}x\n'
-             f'فاصله مقاومت {x[7]:+.2f}% | فشار خرید {x[8]:.0%}\nدلایل: {reasons}\n\n'
-             'هشدار برای فشار قبل/آغاز حرکت است؛ تضمین رشد نیست.')
-        send(msg)
 
-if __name__=='__main__':main()
+    print(
+        "===== NOBITEX EARLY ALERT V4 ====="
+    )
+
+    regime = bitcoin_regime()
+
+    print(
+        "BTC regime:",
+        "FAVORABLE"
+        if regime
+        else "WEAK"
+    )
+
+    results = []
+
+    for coin in COINS:
+
+        if coin == "btc":
+            continue
+
+        try:
+
+            result = scan_market(
+                coin
+            )
+
+            if result:
+
+                results.append(
+                    (
+                        coin.upper(),
+                        result
+                    )
+                )
+
+                print(
+                    coin.upper(),
+                    f"score={result['score']}",
+                    f"1m={result['m1']:+.2f}%",
+                    f"5m={result['m5']:+.2f}%",
+                    f"15m={result['m15']:+.2f}%",
+                    f"1h={result['m60']:+.2f}%",
+                    f"vol={result['volume_ratio']:.2f}x"
+                )
+
+        except Exception as e:
+
+            print(
+                "ERROR",
+                coin.upper(),
+                e
+            )
+
+    # -------------------------
+    # بهترین فرصت‌ها
+    # -------------------------
+
+    results.sort(
+        key=lambda x:
+        x[1]["score"],
+        reverse=True
+    )
+
+    for coin, x in results[:8]:
+
+        score = x["score"]
+
+        if score < WATCH:
+            continue
+
+        if x["m5"] < 0:
+            continue
+
+        if x["m15"] <= 0:
+            continue
+
+        # جلوگیری از هشدار بعد از پامپ
+        if x["m30"] >= 4.5:
+            continue
+
+        # هشدار معامله فقط وقتی BTC مناسب است
+        if (
+            score < TRADE
+            and not regime
+        ):
+            continue
+
+        if (
+            score >= TRADE
+            and regime
+        ):
+
+            tag = (
+                "🚨 هشدار معامله"
+            )
+
+        else:
+
+            tag = (
+                "👀 هشدار دیده‌بانی"
+            )
+
+        reasons = ", ".join(
+            x["reasons"]
+        )
+
+        message = (
+            f"{tag}\n"
+            f"{coin} — بازار نوبیتکس\n\n"
+
+            f"امتیاز: {score}/100\n"
+
+            f"1m: {x['m1']:+.2f}%\n"
+            f"5m: {x['m5']:+.2f}%\n"
+            f"15m: {x['m15']:+.2f}%\n"
+            f"1h: {x['m60']:+.2f}%\n\n"
+
+            f"30m: {x['m30']:+.2f}%\n"
+
+            f"حجم: "
+            f"{x['volume_ratio']:.2f}x\n"
+
+            f"شتاب حجم: "
+            f"{x['volume_acceleration']:.2f}x\n"
+
+            f"فاصله مقاومت: "
+            f"{x['resistance_distance']:+.2f}%\n"
+
+            f"فشار خرید: "
+            f"{x['pressure']:.0%}\n\n"
+
+            f"دلایل:\n"
+            f"{reasons}\n\n"
+
+            "⚠️ هشدار برای شناسایی "
+            "فشار/شروع حرکت است؛ "
+            "تضمین رشد نیست."
+        )
+
+        send_telegram(
+            message
+        )
+
+
+if __name__ == "__main__":
+    main()
