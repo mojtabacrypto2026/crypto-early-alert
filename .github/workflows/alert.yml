@@ -2,17 +2,25 @@ name: Crypto Early Alert
 
 on:
   workflow_dispatch:
+
   schedule:
-    - cron: "*/15 * * * *"
-  push:
-    branches:
-      - main
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crypto-early-alert
+  cancel-in-progress: false
 
 jobs:
+
   scan:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -21,8 +29,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run crypto scanner
+      - name: Run Nobitex Early Move Radar
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scanner.py
+        run: |
+          python scanner.py
+
+      - name: Save radar state
+        run: |
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add nobitex_early_radar_state.json
+          git add nobitex_telegram_alert_state.json
+
+          git diff --cached --quiet || git commit -m "Update radar state"
+
+          git push
