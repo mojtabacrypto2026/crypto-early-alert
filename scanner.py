@@ -1189,12 +1189,9 @@ def run_scan():
     # MARKET SNAPSHOT
     # --------------------------------------------------------
 
-    try:    
-
+    try:
         books = get_market_snapshot()
-
     except Exception as e:
-
         print("MARKET SNAPSHOT FAILED:", e)
         return
 
@@ -1213,10 +1210,7 @@ def run_scan():
         if symbol not in EXCLUDED_SYMBOLS
     )
 
-    print(
-        "USDT markets:",
-        len(symbols)
-    )
+    print("USDT markets:", len(symbols))
 
     # --------------------------------------------------------
     # ANALYZE
