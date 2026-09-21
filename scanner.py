@@ -44,7 +44,7 @@ COUNTBACK_15M = 90
 
 TOP_N = 5
 
-TELEGRAM_BOT_TOKEN = os.environ.get("8867287373:AAHKVZlyO3bOnC9yRNVBFMWG-I1mwVWwCfc", "").strip()
+TELEGRAM_BOT_TOKEN = os.environ.get("8867287373:AAEkEzReFVTFWvYIftrgOnvGFm-MAP-WU94", "").strip()
 TELEGRAM_CHAT_ID = os.environ.get("82330991", "").strip()
 
 # GitHub runner uses repository directory.
