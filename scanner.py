@@ -491,7 +491,7 @@ def ema(values, period):
     return result
 
 
-def rsi(values, period=14):
+
 
 def rsi(values, period=14):
 
