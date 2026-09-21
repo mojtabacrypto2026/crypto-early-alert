@@ -44,8 +44,8 @@ COUNTBACK_15M = 90
 
 TOP_N = 5
 
-TELEGRAM_BOT_TOKEN = os.environ.get("8867287373:AAE-3scWEHsWAN8MV4L1fGXlFtR9WGLJqJQ", "").strip()
-TELEGRAM_CHAT_ID = os.environ.get("82330991", "").strip()
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
 
 # GitHub runner uses repository directory.
 WORKSPACE = os.environ.get("GITHUB_WORKSPACE", ".")
