@@ -512,8 +512,11 @@ def rsi(values, period=14):
             gains.append(0.0)
             losses.append(abs(diff))
 
-    avg_gain = average(gains[:period])
-    avg_loss = average(losses[:period])
+    # RSI must include zero gains/losses.
+# Do not use average() here because that helper intentionally
+# filters zero values for volume calculations.
+avg_gain = sum(gains[:period]) / period
+avg_loss = sum(losses[:period]) / period
 
     for i in range(period, len(gains)):
 
