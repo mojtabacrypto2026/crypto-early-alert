@@ -1189,7 +1189,7 @@ def run_scan():
     # MARKET SNAPSHOT
     # --------------------------------------------------------
 
-    try:
+        try:
 
         books = get_market_snapshot()
 
@@ -1197,7 +1197,8 @@ def run_scan():
 
         print("MARKET SNAPSHOT FAILED:", e)
         return
-            EXCLUDED_SYMBOLS = {
+
+    EXCLUDED_SYMBOLS = {
         "USDCUSDT",
         "USDEUSDT",
         "DAIUSDT",
@@ -1211,7 +1212,6 @@ def run_scan():
         for symbol in books.keys()
         if symbol not in EXCLUDED_SYMBOLS
     )
-
     print(
         "USDT markets:",
         len(symbols)
