@@ -493,6 +493,8 @@ def ema(values, period):
 
 def rsi(values, period=14):
 
+def rsi(values, period=14):
+
     values = [safe_float(x) for x in values]
 
     if len(values) <= period:
@@ -513,10 +515,10 @@ def rsi(values, period=14):
             losses.append(abs(diff))
 
     # RSI must include zero gains/losses.
-# Do not use average() here because that helper intentionally
-# filters zero values for volume calculations.
-avg_gain = sum(gains[:period]) / period
-avg_loss = sum(losses[:period]) / period
+    # Do not use average() here because that helper intentionally
+    # filters zero values for volume calculations.
+    avg_gain = sum(gains[:period]) / period
+    avg_loss = sum(losses[:period]) / period
 
     for i in range(period, len(gains)):
 
