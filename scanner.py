@@ -3,12 +3,14 @@
 """
 NOBITEX EARLY MOVE RADAR
 GitHub Actions / Pydroid compatible
-FINAL PRACTICAL VERSION
 
+FEATURES
 - Whole Nobitex USDT market scan
 - 1H + 15M candles
 - Volume expansion
 - Volume acceleration
+- FAST 15M volume expansion
+- FAST 15M volume acceleration
 - RSI
 - MACD
 - EMA structure
@@ -18,7 +20,9 @@ FINAL PRACTICAL VERSION
 - Order-book flow
 - Persistence / streak
 - Confirmed PRE-MOVE alerts
-- Telegram
+- FAST PRE-MOVE alerts
+- High-risk jump filter
+- Telegram alerts
 """
 
 import os
@@ -44,11 +48,20 @@ COUNTBACK_15M = 90
 
 TOP_N = 5
 
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
-TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+TELEGRAM_BOT_TOKEN = os.environ.get(
+    "TELEGRAM_BOT_TOKEN",
+    ""
+).strip()
 
-# GitHub runner uses repository directory.
-WORKSPACE = os.environ.get("GITHUB_WORKSPACE", ".")
+TELEGRAM_CHAT_ID = os.environ.get(
+    "TELEGRAM_CHAT_ID",
+    ""
+).strip()
+
+WORKSPACE = os.environ.get(
+    "GITHUB_WORKSPACE",
+    "."
+)
 
 STATE_PATH = os.path.join(
     WORKSPACE,
@@ -60,7 +73,6 @@ ALERT_STATE_PATH = os.path.join(
     "nobitex_telegram_alert_state.json"
 )
 
-# Do NOT send startup test on every scheduled run.
 TELEGRAM_TEST_ON_START = False
 
 HTTP_TIMEOUT = 20
@@ -74,7 +86,12 @@ HTTP_RETRIES = 3
 def http_get_json(url, params=None):
 
     if params:
-        url = url + "?" + urllib.parse.urlencode(params)
+
+        url = (
+            url
+            + "?"
+            + urllib.parse.urlencode(params)
+        )
 
     headers = {
         "User-Agent": "Nobitex-Early-Radar/1.0",
@@ -98,7 +115,9 @@ def http_get_json(url, params=None):
                 timeout=HTTP_TIMEOUT
             ) as response:
 
-                raw = response.read().decode("utf-8")
+                raw = response.read().decode(
+                    "utf-8"
+                )
 
             return json.loads(raw)
 
@@ -107,7 +126,10 @@ def http_get_json(url, params=None):
             last_error = e
 
             if attempt < HTTP_RETRIES - 1:
-                time.sleep(1.5 * (attempt + 1))
+
+                time.sleep(
+                    1.5 * (attempt + 1)
+                )
 
     raise last_error
 
@@ -119,7 +141,9 @@ def http_post_json(url, data):
         "Content-Type": "application/json",
     }
 
-    payload = json.dumps(data).encode("utf-8")
+    payload = json.dumps(
+        data
+    ).encode("utf-8")
 
     last_error = None
 
@@ -139,7 +163,9 @@ def http_post_json(url, data):
                 timeout=HTTP_TIMEOUT
             ) as response:
 
-                raw = response.read().decode("utf-8")
+                raw = response.read().decode(
+                    "utf-8"
+                )
 
             return json.loads(raw)
 
@@ -148,7 +174,10 @@ def http_post_json(url, data):
             last_error = e
 
             if attempt < HTTP_RETRIES - 1:
-                time.sleep(1.5 * (attempt + 1))
+
+                time.sleep(
+                    1.5 * (attempt + 1)
+                )
 
     raise last_error
 
@@ -159,8 +188,16 @@ def http_post_json(url, data):
 
 def telegram_send(message):
 
-    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("Telegram disabled: secrets are not configured.")
+    if (
+        not TELEGRAM_BOT_TOKEN
+        or not TELEGRAM_CHAT_ID
+    ):
+
+        print(
+            "Telegram disabled: "
+            "secrets are not configured."
+        )
+
         return False
 
     url = (
@@ -177,18 +214,33 @@ def telegram_send(message):
 
     try:
 
-        result = http_post_json(url, data)
+        result = http_post_json(
+            url,
+            data
+        )
 
         if result.get("ok"):
-            print("Telegram message sent.")
+
+            print(
+                "Telegram message sent."
+            )
+
             return True
 
-        print("Telegram error:", result)
+        print(
+            "Telegram error:",
+            result
+        )
+
         return False
 
     except Exception as e:
 
-        print("Telegram exception:", e)
+        print(
+            "Telegram exception:",
+            e
+        )
+
         return False
 
 
@@ -207,12 +259,15 @@ def telegram_test():
 def safe_float(x, default=0.0):
 
     try:
+
         value = float(x)
 
         if math.isfinite(value):
+
             return value
 
     except Exception:
+
         pass
 
     return default
@@ -220,7 +275,10 @@ def safe_float(x, default=0.0):
 
 def clamp(x, low, high):
 
-    return max(low, min(high, x))
+    return max(
+        low,
+        min(high, x)
+    )
 
 
 def median(values):
@@ -232,9 +290,12 @@ def median(values):
     ]
 
     if not values:
+
         return 0.0
 
-    return statistics.median(values)
+    return statistics.median(
+        values
+    )
 
 
 def average(values):
@@ -246,9 +307,13 @@ def average(values):
     ]
 
     if not values:
+
         return 0.0
 
-    return sum(values) / len(values)
+    return (
+        sum(values)
+        / len(values)
+    )
 
 
 # ============================================================
@@ -260,6 +325,7 @@ def load_json(path, default):
     try:
 
         if not os.path.exists(path):
+
             return default
 
         with open(
@@ -274,7 +340,12 @@ def load_json(path, default):
 
     except Exception as e:
 
-        print("State load error:", path, e)
+        print(
+            "State load error:",
+            path,
+            e
+        )
+
         return default
 
 
@@ -282,12 +353,21 @@ def save_json(path, data):
 
     try:
 
-        directory = os.path.dirname(path)
+        directory = os.path.dirname(
+            path
+        )
 
         if directory:
-            os.makedirs(directory, exist_ok=True)
 
-        temp_path = path + ".tmp"
+            os.makedirs(
+                directory,
+                exist_ok=True
+            )
+
+        temp_path = (
+            path
+            + ".tmp"
+        )
 
         with open(
             temp_path,
@@ -302,13 +382,21 @@ def save_json(path, data):
                 indent=2
             )
 
-        os.replace(temp_path, path)
+        os.replace(
+            temp_path,
+            path
+        )
 
         return True
 
     except Exception as e:
 
-        print("State save error:", path, e)
+        print(
+            "State save error:",
+            path,
+            e
+        )
+
         return False
 
 
@@ -319,26 +407,47 @@ def save_json(path, data):
 def get_market_snapshot():
 
     data = http_get_json(
-        BASE_URL + "/v3/orderbook/all"
+        BASE_URL
+        + "/v3/orderbook/all"
     )
 
     result = {}
 
-    if not isinstance(data, dict):
+    if not isinstance(
+        data,
+        dict
+    ):
+
         return result
 
     for symbol, book in data.items():
 
-        symbol = str(symbol).upper()
+        symbol = str(
+            symbol
+        ).upper()
 
-        if not symbol.endswith("USDT"):
+        if not symbol.endswith(
+            "USDT"
+        ):
+
             continue
 
-        if not isinstance(book, dict):
+        if not isinstance(
+            book,
+            dict
+        ):
+
             continue
 
-        bids = book.get("bids", [])
-        asks = book.get("asks", [])
+        bids = book.get(
+            "bids",
+            []
+        )
+
+        asks = book.get(
+            "asks",
+            []
+        )
 
         bid_value = 0.0
         ask_value = 0.0
@@ -349,26 +458,44 @@ def get_market_snapshot():
 
                 if len(row) >= 2:
 
-                    price = safe_float(row[0])
-                    amount = safe_float(row[1])
+                    price = safe_float(
+                        row[0]
+                    )
 
-                    bid_value += price * amount
+                    amount = safe_float(
+                        row[1]
+                    )
+
+                    bid_value += (
+                        price * amount
+                    )
 
             for row in asks[:20]:
 
                 if len(row) >= 2:
 
-                    price = safe_float(row[0])
-                    amount = safe_float(row[1])
+                    price = safe_float(
+                        row[0]
+                    )
 
-                    ask_value += price * amount
+                    amount = safe_float(
+                        row[1]
+                    )
+
+                    ask_value += (
+                        price * amount
+                    )
 
         except Exception:
+
             pass
 
         if ask_value > 0:
 
-            flow = bid_value / ask_value
+            flow = (
+                bid_value
+                / ask_value
+            )
 
         else:
 
@@ -387,7 +514,11 @@ def get_market_snapshot():
 # CANDLES
 # ============================================================
 
-def get_candles(symbol, resolution, countback):
+def get_candles(
+    symbol,
+    resolution,
+    countback
+):
 
     params = {
         "symbol": symbol,
@@ -397,30 +528,52 @@ def get_candles(symbol, resolution, countback):
     }
 
     data = http_get_json(
-        BASE_URL + "/market/udf/history",
+        BASE_URL
+        + "/market/udf/history",
         params
     )
 
-    if not isinstance(data, dict):
-        raise ValueError("Invalid candle response")
-
-    if data.get("s") not in ("ok", "no_data"):
+    if not isinstance(
+        data,
+        dict
+    ):
 
         raise ValueError(
-            "CANDLE_STATUS_" + str(data.get("s"))
+            "Invalid candle response"
+        )
+
+    if data.get("s") not in (
+        "ok",
+        "no_data"
+    ):
+
+        raise ValueError(
+            "CANDLE_STATUS_"
+            + str(
+                data.get("s")
+            )
         )
 
     closes = [
         safe_float(x)
-        for x in data.get("c", [])
+        for x in data.get(
+            "c",
+            []
+        )
     ]
 
     volumes = [
         safe_float(x)
-        for x in data.get("v", [])
+        for x in data.get(
+            "v",
+            []
+        )
     ]
 
-    timestamps = data.get("t", [])
+    timestamps = data.get(
+        "t",
+        []
+    )
 
     n = min(
         len(closes),
@@ -431,36 +584,55 @@ def get_candles(symbol, resolution, countback):
     volumes = volumes[:n]
 
     if len(closes) < 25:
-        raise ValueError("CANDLES_TOO_SHORT")
 
-    # Remove current open candle if it is still forming.
+        raise ValueError(
+            "CANDLES_TOO_SHORT"
+        )
+
+    # Remove current open candle.
     if timestamps:
 
         try:
 
-            last_timestamp = int(timestamps[-1])
+            last_timestamp = int(
+                timestamps[-1]
+            )
 
             if resolution == "60":
+
                 candle_seconds = 3600
+
             elif resolution == "15":
+
                 candle_seconds = 900
+
             else:
+
                 candle_seconds = 3600
 
             if (
-                int(time.time()) - last_timestamp
+                int(time.time())
+                - last_timestamp
                 < candle_seconds
             ):
+
                 closes = closes[:-1]
                 volumes = volumes[:-1]
 
         except Exception:
+
             pass
 
     if len(closes) < 25:
-        raise ValueError("CANDLES_TOO_SHORT_AFTER_REMOVE")
 
-    return closes, volumes
+        raise ValueError(
+            "CANDLES_TOO_SHORT_AFTER_REMOVE"
+        )
+
+    return (
+        closes,
+        volumes
+    )
 
 
 # ============================================================
@@ -469,101 +641,175 @@ def get_candles(symbol, resolution, countback):
 
 def ema(values, period):
 
-    values = [safe_float(x) for x in values]
+    values = [
+        safe_float(x)
+        for x in values
+    ]
 
     if not values:
+
         return []
 
     if len(values) < period:
-        return [values[-1]] * len(values)
 
-    alpha = 2.0 / (period + 1)
+        return [
+            values[-1]
+        ] * len(values)
 
-    result = [values[0]]
+    alpha = (
+        2.0
+        / (period + 1)
+    )
+
+    result = [
+        values[0]
+    ]
 
     for value in values[1:]:
 
         result.append(
             alpha * value
-            + (1 - alpha) * result[-1]
+            + (
+                1 - alpha
+            ) * result[-1]
         )
 
     return result
 
 
+def rsi(
+    values,
+    period=14
+):
 
-
-def rsi(values, period=14):
-
-    values = [safe_float(x) for x in values]
+    values = [
+        safe_float(x)
+        for x in values
+    ]
 
     if len(values) <= period:
+
         return 50.0
 
     gains = []
     losses = []
 
-    for i in range(1, len(values)):
+    for i in range(
+        1,
+        len(values)
+    ):
 
-        diff = values[i] - values[i - 1]
+        diff = (
+            values[i]
+            - values[i - 1]
+        )
 
         if diff >= 0:
+
             gains.append(diff)
             losses.append(0.0)
+
         else:
+
             gains.append(0.0)
-            losses.append(abs(diff))
+            losses.append(
+                abs(diff)
+            )
 
+    # IMPORTANT:
     # RSI must include zero gains/losses.
-    # Do not use average() here because that helper intentionally
-    # filters zero values for volume calculations.
-    avg_gain = sum(gains[:period]) / period
-    avg_loss = sum(losses[:period]) / period
+    # Do NOT use average() here because
+    # average() intentionally filters zeros.
 
-    for i in range(period, len(gains)):
+    avg_gain = (
+        sum(gains[:period])
+        / period
+    )
+
+    avg_loss = (
+        sum(losses[:period])
+        / period
+    )
+
+    for i in range(
+        period,
+        len(gains)
+    ):
 
         avg_gain = (
-            (avg_gain * (period - 1))
+            (
+                avg_gain
+                * (period - 1)
+            )
             + gains[i]
         ) / period
 
         avg_loss = (
-            (avg_loss * (period - 1))
+            (
+                avg_loss
+                * (period - 1)
+            )
             + losses[i]
         ) / period
 
     if avg_loss == 0:
 
         if avg_gain == 0:
+
             return 50.0
 
         return 100.0
 
-    rs = avg_gain / avg_loss
+    rs = (
+        avg_gain
+        / avg_loss
+    )
 
     return 100.0 - (
-        100.0 / (1.0 + rs)
+        100.0
+        / (1.0 + rs)
     )
 
 
 def macd(values):
 
-    fast = ema(values, 12)
-    slow = ema(values, 26)
+    fast = ema(
+        values,
+        12
+    )
 
-    n = min(len(fast), len(slow))
+    slow = ema(
+        values,
+        26
+    )
+
+    n = min(
+        len(fast),
+        len(slow)
+    )
 
     if n == 0:
-        return 0.0, 0.0
+
+        return (
+            0.0,
+            0.0
+        )
 
     line = [
-        fast[i] - slow[i]
+        fast[i]
+        - slow[i]
         for i in range(n)
     ]
 
-    signal_values = ema(line, 9)
+    signal_values = ema(
+        line,
+        9
+    )
 
-    return line[-1], signal_values[-1]
+    return (
+        line[-1],
+        signal_values[-1]
+    )
 
 
 # ============================================================
@@ -573,37 +819,61 @@ def macd(values):
 def structure_score(closes):
 
     if len(closes) < 30:
+
         return 0
 
-    e9 = ema(closes, 9)[-1]
-    e21 = ema(closes, 21)[-1]
-    e50 = ema(closes, 50)[-1]
+    e9 = ema(
+        closes,
+        9
+    )[-1]
+
+    e21 = ema(
+        closes,
+        21
+    )[-1]
+
+    e50 = ema(
+        closes,
+        50
+    )[-1]
 
     price = closes[-1]
 
     score = 0
 
     if price > e9:
+
         score += 2
 
     if e9 > e21:
+
         score += 2
 
     if e21 > e50:
+
         score += 2
 
-    # Recent higher lows / higher closes
     recent = closes[-12:]
 
     if len(recent) >= 8:
 
-        first_half = average(recent[:6])
-        second_half = average(recent[-6:])
+        first_half = average(
+            recent[:6]
+        )
+
+        second_half = average(
+            recent[-6:]
+        )
 
         if second_half > first_half:
+
             score += 2
 
-    return clamp(score, 0, 8)
+    return clamp(
+        score,
+        0,
+        8
+    )
 
 
 # ============================================================
@@ -613,6 +883,7 @@ def structure_score(closes):
 def resistance_distance(closes):
 
     if len(closes) < 20:
+
         return 99.0
 
     price = closes[-1]
@@ -620,19 +891,29 @@ def resistance_distance(closes):
     lookback = closes[-25:-1]
 
     if not lookback:
+
         return 99.0
 
-    resistance = max(lookback)
+    resistance = max(
+        lookback
+    )
 
     if resistance <= 0:
+
         return 99.0
 
     distance = (
-        (resistance - price)
+        (
+            resistance
+            - price
+        )
         / price
     ) * 100
 
-    return max(0.0, distance)
+    return max(
+        0.0,
+        distance
+    )
 
 
 # ============================================================
@@ -642,38 +923,52 @@ def resistance_distance(closes):
 def calm_score(closes):
 
     if len(closes) < 20:
+
         return 0
 
     recent = closes[-20:]
 
     returns = []
 
-    for i in range(1, len(recent)):
+    for i in range(
+        1,
+        len(recent)
+    ):
 
         if recent[i - 1] != 0:
 
             returns.append(
                 abs(
-                    (recent[i] - recent[i - 1])
+                    (
+                        recent[i]
+                        - recent[i - 1]
+                    )
                     / recent[i - 1]
                 ) * 100
             )
 
     if not returns:
+
         return 0
 
-    avg_move = average(returns)
+    avg_move = average(
+        returns
+    )
 
     if avg_move <= 0.35:
+
         return 10
 
     if avg_move <= 0.60:
+
         return 8
 
     if avg_move <= 0.90:
+
         return 5
 
     if avg_move <= 1.30:
+
         return 2
 
     return 0
@@ -683,19 +978,30 @@ def calm_score(closes):
 # MOMENTUM
 # ============================================================
 
-def momentum_percent(closes, candles_back):
+def momentum_percent(
+    closes,
+    candles_back
+):
 
     if len(closes) <= candles_back:
+
         return 0.0
 
-    old = closes[-1 - candles_back]
+    old = closes[
+        -1 - candles_back
+    ]
+
     new = closes[-1]
 
     if old == 0:
+
         return 0.0
 
     return (
-        (new - old) / old
+        (
+            new - old
+        )
+        / old
     ) * 100
 
 
@@ -703,7 +1009,10 @@ def momentum_percent(closes, candles_back):
 # ANALYSIS
 # ============================================================
 
-def analyze_symbol(symbol, book):
+def analyze_symbol(
+    symbol,
+    book
+):
 
     try:
 
@@ -746,12 +1055,14 @@ def analyze_symbol(symbol, book):
         )
 
         # ----------------------------------------------------
-        # VOLUME
+        # 1H VOLUME
         # ----------------------------------------------------
 
         current_volume = volumes_1h[-1]
 
-        previous_volumes = volumes_1h[-11:-1]
+        previous_volumes = (
+            volumes_1h[-11:-1]
+        )
 
         med_volume = median(
             previous_volumes
@@ -772,8 +1083,13 @@ def analyze_symbol(symbol, book):
 
         prev8 = volumes_1h[-11:-3]
 
-        avg_last3 = average(last3)
-        avg_prev8 = average(prev8)
+        avg_last3 = average(
+            last3
+        )
+
+        avg_prev8 = average(
+            prev8
+        )
 
         if avg_prev8 > 0:
 
@@ -785,6 +1101,60 @@ def analyze_symbol(symbol, book):
         else:
 
             volume_acceleration = 0.0
+
+        # ----------------------------------------------------
+        # FAST 15M VOLUME
+        # ----------------------------------------------------
+
+        current_volume_15m = (
+            volumes_15m[-1]
+        )
+
+        previous_volumes_15m = (
+            volumes_15m[-13:-1]
+        )
+
+        med_volume_15m = median(
+            previous_volumes_15m
+        )
+
+        if med_volume_15m > 0:
+
+            volume_ratio_15m = (
+                current_volume_15m
+                / med_volume_15m
+            )
+
+        else:
+
+            volume_ratio_15m = 0.0
+
+        last3_15m = (
+            volumes_15m[-3:]
+        )
+
+        prev8_15m = (
+            volumes_15m[-11:-3]
+        )
+
+        avg_last3_15m = average(
+            last3_15m
+        )
+
+        avg_prev8_15m = average(
+            prev8_15m
+        )
+
+        if avg_prev8_15m > 0:
+
+            volume_acceleration_15m = (
+                avg_last3_15m
+                / avg_prev8_15m
+            )
+
+        else:
+
+            volume_acceleration_15m = 0.0
 
         # ----------------------------------------------------
         # RSI / MACD
@@ -799,7 +1169,10 @@ def analyze_symbol(symbol, book):
             closes_1h
         )
 
-        macd_positive = macd_line >= macd_signal
+        macd_positive = (
+            macd_line
+            >= macd_signal
+        )
 
         # ----------------------------------------------------
         # STRUCTURE
@@ -834,47 +1207,80 @@ def analyze_symbol(symbol, book):
 
         # Volume ratio
         if 1.25 <= volume_ratio <= 4:
+
             score += 18
+
         elif 1.05 <= volume_ratio < 1.25:
+
             score += 10
+
         elif 4 < volume_ratio <= 6:
+
             score += 8
+
         elif 6 < volume_ratio <= 10:
+
             score += 2
+
         elif volume_ratio > 10:
+
             score -= 8
 
         # Volume acceleration
         if volume_acceleration >= 1.20:
+
             score += 10
+
         elif volume_acceleration >= 1.05:
+
             score += 7
+
         elif volume_acceleration >= 1.00:
+
             score += 3
 
         # RSI
         if 45 <= rsi_value <= 60:
+
             score += 15
+
         elif 60 < rsi_value <= 68:
+
             score += 10
+
         elif 40 <= rsi_value < 45:
+
             score += 7
+
         elif 35 <= rsi_value < 40:
+
             score += 3
+
         elif rsi_value > 72:
+
             score -= 10
 
         # Structure
-        score += structure * 2.5
+        score += (
+            structure
+            * 2.5
+        )
 
         # Resistance
         if 0 <= resistance <= 1:
+
             score += 15
+
         elif 1 < resistance <= 2:
+
             score += 12
+
         elif 2 < resistance <= 3:
+
             score += 8
+
         elif 3 < resistance <= 5:
+
             score += 4
 
         # Calm
@@ -882,36 +1288,50 @@ def analyze_symbol(symbol, book):
 
         # Timeframes
         if 0 <= m1h <= 2.5:
+
             score += 4
 
         if 0 <= m4h <= 6:
+
             score += 4
 
         # Avoid already moving coins
         if m1h > 4:
+
             score -= 8
 
         if m4h > 10:
+
             score -= 10
 
         if m8h > 15:
+
             score -= 8
 
         if m15 > 2:
+
             score -= 5
 
         # MACD
         if macd_positive:
+
             score += 2
 
         # Order flow
         if flow >= 1.20:
+
             score += 5
+
         elif flow >= 1.05:
+
             score += 3
+
         elif flow >= 0.95:
+
             score += 1
+
         elif 0 < flow < 0.80:
+
             score -= 5
 
         score = int(
@@ -937,21 +1357,60 @@ def analyze_symbol(symbol, book):
         )
 
         # ----------------------------------------------------
+        # FAST PRE-MOVE
+        #
+        # This is deliberately separate from the old
+        # CONFIRMED PRE-MOVE system.
+        # ----------------------------------------------------
+
+        fast_pre_move = (
+            volume_ratio_15m >= 1.80
+            and volume_acceleration_15m >= 1.25
+            and structure >= 5
+            and 45 <= rsi_value <= 68
+            and 0 <= resistance <= 3.5
+            and m1h <= 2.8
+            and m4h <= 7
+            and m15 <= 2
+            and flow >= 0.95
+            and score >= 55
+        )
+
+        # ----------------------------------------------------
+        # HIGH-RISK JUMP
+        #
+        # Prevent FAST alert when the move is already too
+        # aggressive or overheated.
+        # ----------------------------------------------------
+
+        high_risk_jump = (
+            m15 > 3
+            or m1h > 4
+            or rsi_value > 72
+            or volume_ratio_15m > 6
+            or volume_acceleration_15m > 3
+        )
+
+        # ----------------------------------------------------
         # QUALITY
         # ----------------------------------------------------
 
         quality = True
 
         if rsi_value > 72:
+
             quality = False
 
         if m1h > 4:
+
             quality = False
 
         if m4h > 10:
+
             quality = False
 
         if volume_ratio > 10:
+
             quality = False
 
         # ----------------------------------------------------
@@ -966,11 +1425,17 @@ def analyze_symbol(symbol, book):
 
             label = "EARLY RADAR"
 
-        elif quality and score >= 55:
+        elif (
+            quality
+            and score >= 55
+        ):
 
             label = "WATCH"
 
-        elif m1h > 4 or m4h > 10:
+        elif (
+            m1h > 4
+            or m4h > 10
+        ):
 
             label = "ALREADY MOVING"
 
@@ -985,16 +1450,28 @@ def analyze_symbol(symbol, book):
             "label": label,
             "pre_move_gate": pre_move_gate,
             "quality": quality,
+
             "volume_ratio": volume_ratio,
             "volume_acceleration": volume_acceleration,
+
+            "volume_ratio_15m": volume_ratio_15m,
+            "volume_acceleration_15m": (
+                volume_acceleration_15m
+            ),
+
+            "fast_pre_move": fast_pre_move,
+            "high_risk_jump": high_risk_jump,
+
             "rsi": rsi_value,
             "structure": structure,
             "resistance": resistance,
             "calm": calm,
+
             "momentum_15m": m15,
             "momentum_1h": m1h,
             "momentum_4h": m4h,
             "momentum_8h": m8h,
+
             "order_flow": flow,
             "macd_positive": macd_positive,
         }
@@ -1011,7 +1488,10 @@ def analyze_symbol(symbol, book):
 # PERSISTENCE
 # ============================================================
 
-def apply_persistence(result, previous_state):
+def apply_persistence(
+    result,
+    previous_state
+):
 
     symbol = result["symbol"]
 
@@ -1042,7 +1522,10 @@ def apply_persistence(result, previous_state):
         and old_score >= 65
     ):
 
-        streak = old_streak + 1
+        streak = (
+            old_streak
+            + 1
+        )
 
     elif current_score >= 65:
 
@@ -1053,25 +1536,37 @@ def apply_persistence(result, previous_state):
         streak = 0
 
     strengthening = (
-        current_score >= old_score + 5
+        current_score
+        >= old_score + 5
     )
 
     confirmed = (
-        result.get("pre_move_gate")
+        result.get(
+            "pre_move_gate"
+        )
         and current_score >= 75
         and streak >= 2
     )
 
-    result["previous_score"] = old_score
+    result["previous_score"] = (
+        old_score
+    )
+
     result["streak"] = streak
-    result["strengthening"] = strengthening
-    result["confirmed"] = confirmed
+
+    result["strengthening"] = (
+        strengthening
+    )
+
+    result["confirmed"] = (
+        confirmed
+    )
 
     return result
 
 
 # ============================================================
-# TELEGRAM ALERT
+# CONFIRMED TELEGRAM ALERT
 # ============================================================
 
 def build_alert(result):
@@ -1080,30 +1575,103 @@ def build_alert(result):
 
     return (
         "🚨 CONFIRMED PRE-MOVE\n\n"
+
         f"🪙 {symbol}\n"
-        f"💰 Price: {result['price']:.8g}\n"
-        f"⭐ Score: {result['score']}/100\n"
-        f"🔥 Streak: {result['streak']}\n\n"
-        f"📊 Volume: {result['volume_ratio']:.2f}x\n"
+
+        f"💰 Price: "
+        f"{result['price']:.8g}\n"
+
+        f"⭐ Score: "
+        f"{result['score']}/100\n"
+
+        f"🔥 Streak: "
+        f"{result['streak']}\n\n"
+
+        f"📊 Volume: "
+        f"{result['volume_ratio']:.2f}x\n"
+
         f"⚡ Volume acceleration: "
         f"{result['volume_acceleration']:.2f}x\n"
-        f"📈 RSI: {result['rsi']:.1f}\n"
+
+        f"📈 RSI: "
+        f"{result['rsi']:.1f}\n"
+
         f"🏗 Structure: "
         f"{result['structure']}/8\n"
+
         f"🎯 Resistance: "
         f"{result['resistance']:.2f}%\n"
+
         f"🌊 Order flow: "
         f"{result['order_flow']:.2f}\n\n"
-        f"15m: {result['momentum_15m']:+.2f}%\n"
-        f"1H: {result['momentum_1h']:+.2f}%\n"
-        f"4H: {result['momentum_4h']:+.2f}%\n"
-        f"8H: {result['momentum_8h']:+.2f}%\n\n"
+
+        f"15m: "
+        f"{result['momentum_15m']:+.2f}%\n"
+
+        f"1H: "
+        f"{result['momentum_1h']:+.2f}%\n"
+
+        f"4H: "
+        f"{result['momentum_4h']:+.2f}%\n"
+
+        f"8H: "
+        f"{result['momentum_8h']:+.2f}%\n\n"
+
         "🟢 شرایط قبل از حرکت صعودی تأیید شده."
     )
 
 
 # ============================================================
-# SMART ALERT
+# FAST TELEGRAM ALERT
+# ============================================================
+
+def build_fast_alert(result):
+
+    return (
+        "⚡ FAST PRE-MOVE\n\n"
+
+        f"🪙 {result['symbol']}\n"
+
+        f"💰 Price: "
+        f"{result['price']:.8g}\n"
+
+        f"⭐ Score: "
+        f"{result['score']}/100\n"
+
+        f"⚡ 15m Volume: "
+        f"{result['volume_ratio_15m']:.2f}x\n"
+
+        f"🚀 15m Volume acceleration: "
+        f"{result['volume_acceleration_15m']:.2f}x\n"
+
+        f"📈 RSI: "
+        f"{result['rsi']:.1f}\n"
+
+        f"🏗 Structure: "
+        f"{result['structure']}/8\n"
+
+        f"🎯 Resistance: "
+        f"{result['resistance']:.2f}%\n"
+
+        f"🌊 Order flow: "
+        f"{result['order_flow']:.2f}\n\n"
+
+        f"15m: "
+        f"{result['momentum_15m']:+.2f}%\n"
+
+        f"1H: "
+        f"{result['momentum_1h']:+.2f}%\n"
+
+        f"4H: "
+        f"{result['momentum_4h']:+.2f}%\n\n"
+
+        "🟡 هشدار زودهنگام است؛ "
+        "هنوز تأیید کامل PRE-MOVE نیست."
+    )
+
+
+# ============================================================
+# SMART CONFIRMED ALERT
 # ============================================================
 
 def smart_alert(
@@ -1111,16 +1679,31 @@ def smart_alert(
     alert_state
 ):
 
-    if not result.get("confirmed"):
+    if not result.get(
+        "confirmed"
+    ):
+
         return False
 
-    if result.get("score", 0) < 80:
+    if result.get(
+        "score",
+        0
+    ) < 80:
+
         return False
 
-    if result.get("streak", 0) < 2:
+    if result.get(
+        "streak",
+        0
+    ) < 2:
+
         return False
 
-    if result.get("order_flow", 0) < 1.05:
+    if result.get(
+        "order_flow",
+        0
+    ) < 1.05:
+
         return False
 
     symbol = result["symbol"]
@@ -1142,25 +1725,157 @@ def smart_alert(
         )
     )
 
-    # Prevent repeated identical alerts.
+    # Prevent repeated identical confirmed alerts.
     if (
         old_score >= 80
         and old_streak >= 2
-        and result["score"] <= old_score + 2
+        and result["score"]
+        <= old_score + 2
     ):
+
         return False
 
-    message = build_alert(result)
+    message = build_alert(
+        result
+    )
 
-    sent = telegram_send(message)
+    sent = telegram_send(
+        message
+    )
 
     if sent:
 
-        alert_state[symbol] = {
+        # Preserve FAST state.
+        entry = {
             "score": result["score"],
             "streak": result["streak"],
-            "timestamp": int(time.time()),
+            "timestamp": int(
+                time.time()
+            ),
         }
+
+        if (
+            "fast_score"
+            in old
+        ):
+
+            entry["fast_score"] = (
+                old["fast_score"]
+            )
+
+        if (
+            "fast_timestamp"
+            in old
+        ):
+
+            entry["fast_timestamp"] = (
+                old["fast_timestamp"]
+            )
+
+        alert_state[symbol] = (
+            entry
+        )
+
+    return sent
+
+
+# ============================================================
+# FAST ALERT
+# ============================================================
+
+def fast_alert(
+    result,
+    alert_state
+):
+
+    # Must pass FAST conditions.
+    if not result.get(
+        "fast_pre_move"
+    ):
+
+        return False
+
+    # Reject already aggressive jumps.
+    if result.get(
+        "high_risk_jump"
+    ):
+
+        return False
+
+    symbol = result["symbol"]
+
+    old = alert_state.get(
+        symbol,
+        {}
+    )
+
+    old_fast_score = safe_float(
+        old.get(
+            "fast_score"
+        ),
+        0
+    )
+
+    old_fast_timestamp = int(
+        safe_float(
+            old.get(
+                "fast_timestamp"
+            ),
+            0
+        )
+    )
+
+    now = int(
+        time.time()
+    )
+
+    # --------------------------------------------------------
+    # Anti-spam:
+    # Same FAST signal is not repeated for 2 hours.
+    #
+    # If score becomes at least 5 points stronger,
+    # another FAST alert is allowed.
+    # --------------------------------------------------------
+
+    if (
+        old_fast_timestamp > 0
+        and (
+            now
+            - old_fast_timestamp
+            < 7200
+        )
+        and result["score"]
+        < old_fast_score + 5
+    ):
+
+        return False
+
+    message = build_fast_alert(
+        result
+    )
+
+    sent = telegram_send(
+        message
+    )
+
+    if sent:
+
+        current = alert_state.get(
+            symbol,
+            {}
+        )
+
+        current["fast_score"] = (
+            result["score"]
+        )
+
+        current["fast_timestamp"] = (
+            now
+        )
+
+        alert_state[symbol] = (
+            current
+        )
 
     return sent
 
@@ -1171,10 +1886,23 @@ def smart_alert(
 
 def run_scan():
 
-    print("=" * 70)
-    print("NOBITEX EARLY MOVE RADAR")
-    print(time.strftime("%Y-%m-%d %H:%M:%S"))
-    print("=" * 70)
+    print(
+        "=" * 70
+    )
+
+    print(
+        "NOBITEX EARLY MOVE RADAR"
+    )
+
+    print(
+        time.strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
+    )
+
+    print(
+        "=" * 70
+    )
 
     # --------------------------------------------------------
     # LOAD STATES
@@ -1195,10 +1923,21 @@ def run_scan():
     # --------------------------------------------------------
 
     try:
+
         books = get_market_snapshot()
+
     except Exception as e:
-        print("MARKET SNAPSHOT FAILED:", e)
+
+        print(
+            "MARKET SNAPSHOT FAILED:",
+            e
+        )
+
         return
+
+    # --------------------------------------------------------
+    # EXCLUDED SYMBOLS
+    # --------------------------------------------------------
 
     EXCLUDED_SYMBOLS = {
         "USDCUSDT",
@@ -1212,10 +1951,14 @@ def run_scan():
     symbols = sorted(
         symbol
         for symbol in books.keys()
-        if symbol not in EXCLUDED_SYMBOLS
+        if symbol
+        not in EXCLUDED_SYMBOLS
     )
 
-    print("USDT markets:", len(symbols))
+    print(
+        "USDT markets:",
+        len(symbols)
+    )
 
     # --------------------------------------------------------
     # ANALYZE
@@ -1238,9 +1981,13 @@ def run_scan():
             for symbol in symbols
         }
 
-        for future in as_completed(futures):
+        for future in as_completed(
+            futures
+        ):
 
-            symbol = futures[future]
+            symbol = futures[
+                future
+            ]
 
             try:
 
@@ -1263,7 +2010,9 @@ def run_scan():
                     previous_state
                 )
 
-                results.append(result)
+                results.append(
+                    result
+                )
 
             except Exception as e:
 
@@ -1283,12 +2032,22 @@ def run_scan():
 
     for result in results:
 
-        symbol = result["symbol"]
+        symbol = result[
+            "symbol"
+        ]
 
         new_state[symbol] = {
-            "score": result["score"],
-            "streak": result["streak"],
-            "timestamp": int(time.time()),
+            "score": result[
+                "score"
+            ],
+
+            "streak": result[
+                "streak"
+            ],
+
+            "timestamp": int(
+                time.time()
+            ),
         }
 
     save_json(
@@ -1302,51 +2061,100 @@ def run_scan():
 
     candidates = [
 
-        r for r in results
+        r
+        for r in results
 
         if (
-            r.get("pre_move_gate")
-            and r.get("quality")
-            and r.get("score", 0) >= 65
+            r.get(
+                "pre_move_gate"
+            )
+            and r.get(
+                "quality"
+            )
+            and r.get(
+                "score",
+                0
+            ) >= 65
         )
 
     ]
 
     candidates.sort(
         key=lambda r: (
-            r.get("score", 0),
-            1 if r.get("strengthening") else 0,
-            r.get("streak", 0),
-            r.get("order_flow", 0),
-            r.get("structure", 0),
-            r.get("volume_ratio", 0),
+            r.get(
+                "score",
+                0
+            ),
+
+            1
+            if r.get(
+                "strengthening"
+            )
+            else 0,
+
+            r.get(
+                "streak",
+                0
+            ),
+
+            r.get(
+                "order_flow",
+                0
+            ),
+
+            r.get(
+                "structure",
+                0
+            ),
+
+            r.get(
+                "volume_ratio",
+                0
+            ),
         ),
+
         reverse=True
     )
 
-    top = candidates[:TOP_N]
+    top = candidates[
+        :TOP_N
+    ]
 
     # --------------------------------------------------------
     # PRINT
     # --------------------------------------------------------
 
     print()
+
     print(
-        f"Valid: {len(results)} | Failed: {failed}"
+        f"Valid: {len(results)} | "
+        f"Failed: {failed}"
     )
 
     print()
-    print("TOP PRE-MOVE CANDIDATES")
-    print("-" * 70)
+
+    print(
+        "TOP PRE-MOVE CANDIDATES"
+    )
+
+    print(
+        "-" * 70
+    )
 
     if not top:
 
-        print("No valid pre-move candidates.")
+        print(
+            "No valid pre-move candidates."
+        )
 
-    for i, r in enumerate(top, 1):
+    for i, r in enumerate(
+        top,
+        1
+    ):
 
         print(
-            f"{i}. {r['symbol']} | "
+            f"{i}. "
+            f"{r['symbol']} | "
             f"{r['label']} | "
             f"Score {r['score']} | "
             f"Streak {r['streak']} | "
@@ -1360,16 +2168,26 @@ def run_scan():
     # SMART ALERTS
     # --------------------------------------------------------
 
-    alert_count = 0
+    confirmed_alert_count = 0
 
+    fast_alert_count = 0
+
+    # FAST is intentionally checked first.
     for result in results:
+
+        if fast_alert(
+            result,
+            alert_state
+        ):
+
+            fast_alert_count += 1
 
         if smart_alert(
             result,
             alert_state
         ):
 
-            alert_count += 1
+            confirmed_alert_count += 1
 
     save_json(
         ALERT_STATE_PATH,
@@ -1382,9 +2200,14 @@ def run_scan():
 
     watchlist = [
 
-        r for r in results
+        r
+        for r in results
 
-        if r.get("score", 0) >= 55
+        if r.get(
+            "score",
+            0
+        ) >= 55
+
     ]
 
     watchlist.sort(
@@ -1392,14 +2215,34 @@ def run_scan():
             "score",
             0
         ),
+
         reverse=True
     )
 
     print()
-    print("WATCHLIST")
-    print("-" * 70)
+
+    print(
+        "WATCHLIST"
+    )
+
+    print(
+        "-" * 70
+    )
 
     for r in watchlist[:15]:
+
+        fast_mark = ""
+
+        if (
+            r.get(
+                "fast_pre_move"
+            )
+            and not r.get(
+                "high_risk_jump"
+            )
+        ):
+
+            fast_mark = " ⚡FAST"
 
         print(
             f"{r['symbol']:12} "
@@ -1407,17 +2250,28 @@ def run_scan():
             f"{r['score']:3}/100 "
             f"streak={r['streak']} "
             f"vol={r['volume_ratio']:.2f}x "
+            f"15mVol={r['volume_ratio_15m']:.2f}x "
             f"flow={r['order_flow']:.2f}"
+            f"{fast_mark}"
         )
 
     print()
+
     print(
-        "Telegram alerts sent:",
-        alert_count
+        "Confirmed Telegram alerts sent:",
+        confirmed_alert_count
+    )
+
+    print(
+        "FAST Telegram alerts sent:",
+        fast_alert_count
     )
 
     print()
-    print("SCAN FINISHED.")
+
+    print(
+        "SCAN FINISHED."
+    )
 
 
 # ============================================================
@@ -1434,4 +2288,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
