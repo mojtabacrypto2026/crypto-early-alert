@@ -1197,7 +1197,7 @@ def run_scan():
 
         print("MARKET SNAPSHOT FAILED:", e)
         return
-        EXCLUDED_SYMBOLS = {
+            EXCLUDED_SYMBOLS = {
         "USDCUSDT",
         "USDEUSDT",
         "DAIUSDT",
@@ -1211,12 +1211,6 @@ def run_scan():
         for symbol in books.keys()
         if symbol not in EXCLUDED_SYMBOLS
     )
-
-symbols = sorted(
-    symbol
-    for symbol in books.keys()
-    if symbol not in EXCLUDED_SYMBOLS
-))
 
     print(
         "USDT markets:",
