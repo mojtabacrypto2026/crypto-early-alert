@@ -5,10 +5,15 @@ import json
 import time
 import urllib.request
 import urllib.parse
+import statistics
+
 
 BASE_URL = "https://apiv2.nobitex.ir"
 
-WORKSPACE = os.environ.get("GITHUB_WORKSPACE", ".")
+WORKSPACE = os.environ.get(
+    "GITHUB_WORKSPACE",
+    "."
+)
 
 ALERT_STATE_PATH = os.path.join(
     WORKSPACE,
@@ -20,6 +25,11 @@ PERFORMANCE_STATE_PATH = os.path.join(
     "nobitex_signal_performance_state.json"
 )
 
+
+# ============================================================
+# CHECKPOINTS
+# ============================================================
+
 CHECKPOINTS = {
     "15m": 15 * 60,
     "30m": 30 * 60,
@@ -29,27 +39,54 @@ CHECKPOINTS = {
 }
 
 
-def http_get_json(url):
-    req = urllib.request.Request(
+MIN_RELIABLE_4H_SAMPLES = 100
+
+
+# ============================================================
+# HTTP
+# ============================================================
+
+def http_get_json(url, params=None):
+
+    if params:
+
+        url = (
+            url
+            + "?"
+            + urllib.parse.urlencode(params)
+        )
+
+    request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "Nobitex-Performance-Tracker/1.0",
-            "Accept": "application/json",
+            "User-Agent":
+                "Nobitex-Performance-Tracker/2.0",
+            "Accept":
+                "application/json",
         },
         method="GET"
     )
 
     with urllib.request.urlopen(
-        req,
+        request,
         timeout=20
     ) as response:
+
         return json.loads(
-            response.read().decode("utf-8")
+            response.read().decode(
+                "utf-8"
+            )
         )
 
 
+# ============================================================
+# JSON
+# ============================================================
+
 def load_json(path, default):
+
     try:
+
         if not os.path.exists(path):
             return default
 
@@ -58,14 +95,22 @@ def load_json(path, default):
             "r",
             encoding="utf-8"
         ) as f:
+
             return json.load(f)
 
     except Exception as e:
-        print("LOAD ERROR:", e)
+
+        print(
+            "LOAD ERROR:",
+            path,
+            e
+        )
+
         return default
 
 
 def save_json(path, data):
+
     temp = path + ".tmp"
 
     with open(
@@ -73,6 +118,7 @@ def save_json(path, data):
         "w",
         encoding="utf-8"
     ) as f:
+
         json.dump(
             data,
             f,
@@ -86,68 +132,334 @@ def save_json(path, data):
     )
 
 
+# ============================================================
+# FLOAT
+# ============================================================
+
+def safe_float(
+    value,
+    default=0.0
+):
+
+    try:
+
+        result = float(value)
+
+        if result == result:
+
+            return result
+
+    except Exception:
+
+        pass
+
+    return default
+
+
+# ============================================================
+# CURRENT PRICE
+# ============================================================
+
 def get_prices():
+
     data = http_get_json(
-        BASE_URL + "/v3/orderbook/all"
+        BASE_URL
+        + "/v3/orderbook/all"
     )
 
     prices = {}
 
-    if not isinstance(data, dict):
+    if not isinstance(
+        data,
+        dict
+    ):
+
         return prices
 
     for symbol, book in data.items():
 
-        symbol = str(symbol).upper()
+        symbol = str(
+            symbol
+        ).upper()
 
-        if not symbol.endswith("USDT"):
+        if not symbol.endswith(
+            "USDT"
+        ):
+
             continue
 
-        if not isinstance(book, dict):
+        if not isinstance(
+            book,
+            dict
+        ):
+
             continue
 
-        bids = book.get("bids", [])
-        asks = book.get("asks", [])
+        bids = book.get(
+            "bids",
+            []
+        )
+
+        asks = book.get(
+            "asks",
+            []
+        )
 
         bid = 0.0
         ask = 0.0
 
         try:
+
             if bids:
-                bid = float(bids[0][0])
+
+                bid = safe_float(
+                    bids[0][0]
+                )
 
             if asks:
-                ask = float(asks[0][0])
+
+                ask = safe_float(
+                    asks[0][0]
+                )
 
         except Exception:
+
             continue
 
         if bid > 0 and ask > 0:
-            prices[symbol] = (bid + ask) / 2
+
+            prices[symbol] = (
+                bid + ask
+            ) / 2
 
         elif bid > 0:
+
             prices[symbol] = bid
 
         elif ask > 0:
+
             prices[symbol] = ask
 
     return prices
 
 
-def return_percent(start, current):
+# ============================================================
+# HISTORICAL PRICE
+#
+# Finds the latest closed 15m candle at or before
+# the alert timestamp.
+# ============================================================
+
+def get_alert_price(
+    symbol,
+    alert_timestamp
+):
+
+    try:
+
+        start_time = (
+            int(alert_timestamp)
+            - 60 * 60
+        )
+
+        end_time = (
+            int(alert_timestamp)
+            + 15 * 60
+        )
+
+        params = {
+            "symbol": symbol,
+            "resolution": "15",
+            "from": start_time,
+            "to": end_time,
+        }
+
+        data = http_get_json(
+            BASE_URL
+            + "/market/udf/history",
+            params
+        )
+
+        if not isinstance(
+            data,
+            dict
+        ):
+
+            return 0.0
+
+        if data.get("s") not in (
+            "ok",
+            "no_data"
+        ):
+
+            return 0.0
+
+        timestamps = data.get(
+            "t",
+            []
+        )
+
+        closes = data.get(
+            "c",
+            []
+        )
+
+        if not timestamps or not closes:
+
+            return 0.0
+
+        candidates = []
+
+        for ts, close in zip(
+            timestamps,
+            closes
+        ):
+
+            ts = int(
+                safe_float(ts)
+            )
+
+            close = safe_float(
+                close
+            )
+
+            if (
+                ts <= alert_timestamp
+                and close > 0
+            ):
+
+                candidates.append(
+                    (
+                        ts,
+                        close
+                    )
+                )
+
+        if not candidates:
+
+            return 0.0
+
+        candidates.sort(
+            key=lambda x: x[0],
+            reverse=True
+        )
+
+        return candidates[0][1]
+
+    except Exception as e:
+
+        print(
+            "HISTORICAL PRICE ERROR:",
+            symbol,
+            e
+        )
+
+        return 0.0
+
+
+# ============================================================
+# RETURN
+# ============================================================
+
+def return_percent(
+    start,
+    current
+):
 
     if start <= 0:
+
         return 0.0
 
     return (
-        (current - start)
+        (
+            current - start
+        )
         / start
     ) * 100.0
 
 
+# ============================================================
+# EMPTY STATISTICS
+# ============================================================
+
+def build_stats(
+    values
+):
+
+    if not values:
+
+        return {
+            "count": 0,
+            "positive": 0,
+            "positive_rate": 0.0,
+            "average_return": 0.0,
+            "best_return": 0.0,
+            "worst_return": 0.0,
+            "hit_2pct": 0,
+            "hit_5pct": 0,
+        }
+
+    return {
+        "count": len(values),
+
+        "positive": sum(
+            1
+            for x in values
+            if x > 0
+        ),
+
+        "positive_rate": (
+            sum(
+                1
+                for x in values
+                if x > 0
+            )
+            / len(values)
+        ) * 100.0,
+
+        "average_return": (
+            sum(values)
+            / len(values)
+        ),
+
+        "best_return": max(
+            values
+        ),
+
+        "worst_return": min(
+            values
+        ),
+
+        "hit_2pct": sum(
+            1
+            for x in values
+            if x >= 2
+        ),
+
+        "hit_5pct": sum(
+            1
+            for x in values
+            if x >= 5
+        ),
+    }
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
 def main():
 
-    now = int(time.time())
+    now = int(
+        time.time()
+    )
+
+    print("=" * 70)
+    print("NOBITEX SIGNAL PERFORMANCE TRACKER")
+    print(time.strftime(
+        "%Y-%m-%d %H:%M:%S"
+    ))
+    print("=" * 70)
 
     alert_state = load_json(
         ALERT_STATE_PATH,
@@ -157,7 +469,8 @@ def main():
     performance = load_json(
         PERFORMANCE_STATE_PATH,
         {
-            "events": {}
+            "events": {},
+            "milestones": {},
         }
     )
 
@@ -165,98 +478,202 @@ def main():
         performance,
         dict
     ):
-        performance = {
-            "events": {}
-        }
+
+        performance = {}
 
     if not isinstance(
         performance.get("events"),
         dict
     ):
+
         performance["events"] = {}
 
+    if not isinstance(
+        performance.get("milestones"),
+        dict
+    ):
+
+        performance["milestones"] = {}
+
+    # --------------------------------------------------------
+    # CURRENT PRICES
+    # --------------------------------------------------------
+
     try:
-        prices = get_prices()
+
+        current_prices = get_prices()
 
     except Exception as e:
+
         print(
-            "PRICE FETCH FAILED:",
+            "CURRENT PRICE FETCH FAILED:",
             e
         )
+
         return
 
-    # ---------------------------------------------------------
+    print(
+        "Current prices:",
+        len(current_prices)
+    )
+
+    # ========================================================
     # REGISTER NEW ALERTS
-    # ---------------------------------------------------------
+    # ========================================================
 
     for symbol, alert in alert_state.items():
 
-        if not isinstance(alert, dict):
+        if not isinstance(
+            alert,
+            dict
+        ):
+
             continue
 
         candidates = []
 
-        if alert.get("fast_timestamp"):
+        # FAST
+        if alert.get(
+            "fast_timestamp"
+        ):
+
             candidates.append(
                 (
                     "FAST",
                     int(
-                        float(
-                            alert["fast_timestamp"]
+                        safe_float(
+                            alert[
+                                "fast_timestamp"
+                            ]
                         )
                     )
                 )
             )
 
-        if alert.get("timestamp"):
+        # CONFIRMED
+        if alert.get(
+            "timestamp"
+        ):
+
             candidates.append(
                 (
                     "CONFIRMED",
                     int(
-                        float(
-                            alert["timestamp"]
+                        safe_float(
+                            alert[
+                                "timestamp"
+                            ]
                         )
                     )
                 )
             )
 
-        if symbol not in prices:
-            continue
+        for alert_type, alert_time in candidates:
 
-        current_price = prices[symbol]
+            if alert_time <= 0:
 
-        for alert_type, timestamp in candidates:
+                continue
 
             event_id = (
                 symbol
                 + "_"
                 + alert_type
                 + "_"
-                + str(timestamp)
+                + str(alert_time)
             )
 
-            if event_id in performance["events"]:
+            if event_id in performance[
+                "events"
+            ]:
+
                 continue
 
-            performance["events"][event_id] = {
-                "symbol": symbol,
-                "type": alert_type,
-                "alert_time": timestamp,
-                "alert_price": current_price,
-                "checkpoints": {},
-                "max_return": 0.0,
-                "max_price": current_price,
+            # ------------------------------------------------
+            # IMPORTANT:
+            # Get price from the actual historical candle,
+            # not today's/current price.
+            # ------------------------------------------------
+
+            alert_price = get_alert_price(
+                symbol,
+                alert_time
+            )
+
+            # Fallback only if historical data unavailable.
+            if alert_price <= 0:
+
+                alert_price = safe_float(
+                    current_prices.get(
+                        symbol
+                    ),
+                    0.0
+                )
+
+            if alert_price <= 0:
+
+                print(
+                    "SKIP EVENT - NO PRICE:",
+                    event_id
+                )
+
+                continue
+
+            score = None
+
+            if alert_type == "FAST":
+
+                score = alert.get(
+                    "fast_score"
+                )
+
+            else:
+
+                score = alert.get(
+                    "score"
+                )
+
+            performance[
+                "events"
+            ][event_id] = {
+
+                "symbol":
+                    symbol,
+
+                "type":
+                    alert_type,
+
+                "alert_time":
+                    alert_time,
+
+                "alert_price":
+                    alert_price,
+
+                "score":
+                    score,
+
+                "checkpoints":
+                    {},
+
+                "max_return":
+                    0.0,
+
+                "max_price":
+                    alert_price,
+
+                "registered_at":
+                    now,
             }
 
             print(
-                "NEW PERFORMANCE EVENT:",
+                "NEW EVENT:",
                 event_id,
-                current_price
+                "PRICE:",
+                alert_price
             )
 
-    # ---------------------------------------------------------
-    # UPDATE EVENTS
-    # ---------------------------------------------------------
+    # ========================================================
+    # UPDATE ALL EVENTS
+    # ========================================================
 
     for event_id, event in list(
         performance["events"].items()
@@ -267,13 +684,15 @@ def main():
         )
 
         alert_time = int(
-            event.get(
-                "alert_time",
-                0
+            safe_float(
+                event.get(
+                    "alert_time",
+                    0
+                )
             )
         )
 
-        alert_price = float(
+        alert_price = safe_float(
             event.get(
                 "alert_price",
                 0
@@ -285,155 +704,302 @@ def main():
             or alert_time <= 0
             or alert_price <= 0
         ):
+
             continue
 
-        if symbol not in prices:
-            continue
-
-        current_price = prices[symbol]
-
-        current_return = return_percent(
-            alert_price,
-            current_price
+        current_price = safe_float(
+            current_prices.get(
+                symbol
+            ),
+            0.0
         )
 
-        if current_return > float(
+        if current_price <= 0:
+
+            continue
+
+        current_return = (
+            return_percent(
+                alert_price,
+                current_price
+            )
+        )
+
+        # ----------------------------------------------------
+        # MAX FAVORABLE EXCURSION
+        # ----------------------------------------------------
+
+        old_max = safe_float(
             event.get(
                 "max_return",
                 0
             )
-        ):
-            event["max_return"] = (
-                current_return
-            )
-            event["max_price"] = (
-                current_price
-            )
-
-        elapsed = now - alert_time
-
-        for name, seconds in CHECKPOINTS.items():
-
-            if elapsed >= seconds:
-
-                if name not in event["checkpoints"]:
-
-                    event["checkpoints"][name] = {
-                        "price": current_price,
-                        "return_percent": current_return,
-                        "timestamp": now,
-                    }
-
-        performance["events"][event_id] = event
-
-    # ---------------------------------------------------------
-    # LIMIT OLD EVENTS
-    # ---------------------------------------------------------
-
-    events = performance["events"]
-
-    if len(events) > 1000:
-
-        ordered = sorted(
-            events.items(),
-            key=lambda x:
-            int(
-                x[1].get(
-                    "alert_time",
-                    0
-                )
-            ),
-            reverse=True
         )
 
-        performance["events"] = dict(
-            ordered[:1000]
+        if current_return > old_max:
+
+            event[
+                "max_return"
+            ] = current_return
+
+            event[
+                "max_price"
+            ] = current_price
+
+        # ----------------------------------------------------
+        # CHECKPOINTS
+        # ----------------------------------------------------
+
+        elapsed = (
+            now - alert_time
         )
-
-    # ---------------------------------------------------------
-    # STATISTICS
-    # ---------------------------------------------------------
-
-    completed_1h = []
-    completed_4h = []
-
-    for event in performance["events"].values():
 
         checkpoints = event.get(
             "checkpoints",
             {}
         )
 
-        if "1h" in checkpoints:
-            completed_1h.append(
-                checkpoints["1h"]["return_percent"]
-            )
+        if not isinstance(
+            checkpoints,
+            dict
+        ):
 
-        if "4h" in checkpoints:
-            completed_4h.append(
-                checkpoints["4h"]["return_percent"]
-            )
+            checkpoints = {}
 
-    performance["statistics"] = {
-        "total_events": len(
-            performance["events"]
-        ),
-        "completed_1h": len(
-            completed_1h
-        ),
-        "completed_4h": len(
-            completed_4h
-        ),
-        "average_1h_return": (
-            sum(completed_1h)
-            / len(completed_1h)
-            if completed_1h
-            else 0.0
-        ),
-        "average_4h_return": (
-            sum(completed_4h)
-            / len(completed_4h)
-            if completed_4h
-            else 0.0
-        ),
-        "positive_1h": sum(
-            1
-            for x in completed_1h
-            if x > 0
-        ),
-        "positive_4h": sum(
-            1
-            for x in completed_4h
-            if x > 0
-        ),
+        for name, seconds in CHECKPOINTS.items():
+
+            if elapsed < seconds:
+
+                continue
+
+            if name in checkpoints:
+
+                continue
+
+            checkpoints[name] = {
+
+                "price":
+                    current_price,
+
+                "return_percent":
+                    current_return,
+
+                "timestamp":
+                    now,
+            }
+
+        event[
+            "checkpoints"
+        ] = checkpoints
+
+        performance[
+            "events"
+        ][event_id] = event
+
+    # ========================================================
+    # KEEP LAST 1000 EVENTS
+    # ========================================================
+
+    events = performance[
+        "events"
+    ]
+
+    if len(events) > 1000:
+
+        ordered = sorted(
+            events.items(),
+            key=lambda item:
+                int(
+                    safe_float(
+                        item[1].get(
+                            "alert_time",
+                            0
+                        )
+                    )
+                ),
+            reverse=True
+        )
+
+        performance[
+            "events"
+        ] = dict(
+            ordered[:1000]
+        )
+
+    # ========================================================
+    # STATISTICS
+    # ========================================================
+
+    checkpoint_values = {
+        name: []
+        for name in CHECKPOINTS
     }
 
-    performance["updated_at"] = now
+    for event in performance[
+        "events"
+    ].values():
+
+        checkpoints = event.get(
+            "checkpoints",
+            {}
+        )
+
+        for name in CHECKPOINTS:
+
+            checkpoint = checkpoints.get(
+                name
+            )
+
+            if not checkpoint:
+
+                continue
+
+            value = safe_float(
+                checkpoint.get(
+                    "return_percent"
+                )
+            )
+
+            checkpoint_values[
+                name
+            ].append(
+                value
+            )
+
+    statistics_data = {}
+
+    for name in CHECKPOINTS:
+
+        statistics_data[name] = (
+            build_stats(
+                checkpoint_values[name]
+            )
+        )
+
+    performance[
+        "statistics"
+    ] = statistics_data
+
+    # ========================================================
+    # RELIABILITY
+    # ========================================================
+
+    completed_4h = len(
+        checkpoint_values["4h"]
+    )
+
+    performance[
+        "reliability"
+    ] = {
+
+        "minimum_required_4h":
+            MIN_RELIABLE_4H_SAMPLES,
+
+        "completed_4h":
+            completed_4h,
+
+        "reliable":
+            completed_4h
+            >= MIN_RELIABLE_4H_SAMPLES,
+    }
+
+    # ========================================================
+    # MILESTONE
+    # ========================================================
+
+    milestone_already_sent = (
+        performance[
+            "milestones"
+        ].get(
+            "100_4h",
+            False
+        )
+    )
+
+    if (
+        completed_4h
+        >= MIN_RELIABLE_4H_SAMPLES
+        and not milestone_already_sent
+    ):
+
+        performance[
+            "milestones"
+        ][
+            "100_4h"
+        ] = True
+
+        print(
+            "MILESTONE: 100 COMPLETED 4H SAMPLES"
+        )
+
+    # ========================================================
+    # SAVE
+    # ========================================================
+
+    performance[
+        "updated_at"
+    ] = now
 
     save_json(
         PERFORMANCE_STATE_PATH,
         performance
     )
 
+    # ========================================================
+    # CONSOLE REPORT
+    # ========================================================
+
+    print()
+    print(
+        "PERFORMANCE SUMMARY"
+    )
+    print(
+        "-" * 50
+    )
+
+    for name in CHECKPOINTS:
+
+        stats = statistics_data[
+            name
+        ]
+
+        print(
+            name,
+            "| samples:",
+            stats["count"],
+            "| positive:",
+            f"{stats['positive_rate']:.1f}%",
+            "| avg:",
+            f"{stats['average_return']:+.2f}%",
+            "| +2%:",
+            stats["hit_2pct"],
+            "| +5%:",
+            stats["hit_5pct"],
+        )
+
+    print()
+    print(
+        "Completed 4H:",
+        completed_4h,
+        "/",
+        MIN_RELIABLE_4H_SAMPLES
+    )
+
+    print(
+        "Reliable:",
+        performance[
+            "reliability"
+        ][
+            "reliable"
+        ]
+    )
+
+    print()
     print(
         "PERFORMANCE TRACKER FINISHED"
     )
 
-    print(
-        "Events:",
-        len(performance["events"])
-    )
-
-    print(
-        "Completed 1H:",
-        len(completed_1h)
-    )
-
-    print(
-        "Completed 4H:",
-        len(completed_4h)
-    )
-
 
 if __name__ == "__main__":
+
     main()
