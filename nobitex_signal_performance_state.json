@@ -2202,8 +2202,8 @@
           "timestamp": 1790138970
         }
       },
-      "max_return": 1.2421067240302448,
-      "max_price": 0.07295
+      "max_return": 2.0748039691901967,
+      "max_price": 0.07355
     },
     "DOODUSDT_FAST_1790025799": {
       "symbol": "DOODUSDT",
@@ -5597,8 +5597,8 @@
           "timestamp": 1790138970
         }
       },
-      "max_return": 2.291895856252304,
-      "max_price": 0.27895000000000003
+      "max_return": 2.7319398606527363,
+      "max_price": 0.28015
     },
     "FLOWUSDT_CONFIRMED_1790110996": {
       "symbol": "FLOWUSDT",
@@ -6325,6 +6325,11 @@
           "price": 1.8399999999999999,
           "return_percent": -1.2875536480686824,
           "timestamp": 1790150862
+        },
+        "4h": {
+          "price": 1.8415,
+          "return_percent": -1.2070815450643877,
+          "timestamp": 1790157104
         }
       },
       "max_return": 0.5901287553648015,
@@ -6355,6 +6360,11 @@
           "price": 7.9075,
           "return_percent": -1.7762871871312318,
           "timestamp": 1790150862
+        },
+        "4h": {
+          "price": 7.977,
+          "return_percent": -0.9129867710080024,
+          "timestamp": 1790157104
         }
       },
       "max_return": 0.9005651822868339,
@@ -6787,8 +6797,8 @@
           "timestamp": 1790155661
         }
       },
-      "max_return": 0.06970055231070243,
-      "max_price": 567.105
+      "max_return": 0.5778969843482517,
+      "max_price": 569.985
     },
     "RENDERUSDT_FAST_1790152049": {
       "symbol": "RENDERUSDT",
@@ -6905,6 +6915,11 @@
           "price": 0.34419,
           "return_percent": -0.13781497976295917,
           "timestamp": 1790155661
+        },
+        "1h": {
+          "price": 0.342985,
+          "return_percent": -0.487429823161625,
+          "timestamp": 1790157104
         }
       },
       "max_return": 0.0,
@@ -6925,6 +6940,11 @@
           "price": 9.4972,
           "return_percent": 1.3559014530183675,
           "timestamp": 1790155661
+        },
+        "1h": {
+          "price": 9.4723,
+          "return_percent": 1.0901639781647225,
+          "timestamp": 1790157104
         }
       },
       "max_return": 1.3559014530183675,
@@ -6945,6 +6965,11 @@
           "price": 4.6129999999999995,
           "return_percent": 1.518485915492937,
           "timestamp": 1790155661
+        },
+        "1h": {
+          "price": 4.5555,
+          "return_percent": 0.2530809859154895,
+          "timestamp": 1790157104
         }
       },
       "max_return": 1.518485915492937,
@@ -6965,6 +6990,11 @@
           "price": 0.0996,
           "return_percent": 1.6845329249617138,
           "timestamp": 1790155661
+        },
+        "1h": {
+          "price": 0.09925,
+          "return_percent": 1.3272077590607552,
+          "timestamp": 1790157104
         }
       },
       "max_return": 1.6845329249617138,
@@ -6985,10 +7015,15 @@
           "price": 0.23495,
           "return_percent": 1.643954142331806,
           "timestamp": 1790155661
+        },
+        "1h": {
+          "price": 0.23604999999999998,
+          "return_percent": 2.119835604585749,
+          "timestamp": 1790157104
         }
       },
-      "max_return": 1.643954142331806,
-      "max_price": 0.23495
+      "max_return": 2.119835604585749,
+      "max_price": 0.23604999999999998
     },
     "ZECUSDT_FAST_1790154434": {
       "symbol": "ZECUSDT",
@@ -7000,10 +7035,15 @@
           "price": 1610.54,
           "return_percent": 0.12775997289373764,
           "timestamp": 1790155661
+        },
+        "30m": {
+          "price": 1615.01,
+          "return_percent": 0.40566122780130764,
+          "timestamp": 1790157104
         }
       },
-      "max_return": 0.12775997289373764,
-      "max_price": 1610.54
+      "max_return": 0.40566122780130764,
+      "max_price": 1615.01
     },
     "BASEDUSDT_FAST_1790154433": {
       "symbol": "BASEDUSDT",
@@ -7015,10 +7055,15 @@
           "price": 0.068885,
           "return_percent": 0.635500365230102,
           "timestamp": 1790155661
+        },
+        "30m": {
+          "price": 0.069095,
+          "return_percent": 0.9422936449963575,
+          "timestamp": 1790157104
         }
       },
-      "max_return": 0.635500365230102,
-      "max_price": 0.068885
+      "max_return": 0.9422936449963575,
+      "max_price": 0.069095
     },
     "OPUSDT_CONFIRMED_1790154434": {
       "symbol": "OPUSDT",
@@ -7030,29 +7075,76 @@
           "price": 0.13901999999999998,
           "return_percent": 0.15850144092218876,
           "timestamp": 1790155661
+        },
+        "30m": {
+          "price": 0.139065,
+          "return_percent": 0.19092219020174012,
+          "timestamp": 1790157104
         }
       },
-      "max_return": 0.15850144092218876,
-      "max_price": 0.13901999999999998
+      "max_return": 0.19092219020174012,
+      "max_price": 0.139065
     },
     "BTCUSDT_FAST_1790155661": {
       "symbol": "BTCUSDT",
       "type": "FAST",
       "alert_time": 1790155661,
       "alert_price": 85776.15,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 85707.495,
+          "return_percent": -0.0800397313239156,
+          "timestamp": 1790157104
+        }
+      },
       "max_return": 0.0,
       "max_price": 85776.15
+    },
+    "NOTUSDT_CONFIRMED_1790157104": {
+      "symbol": "NOTUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790157104,
+      "alert_price": 0.0005055,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.0005055
+    },
+    "FETUSDT_FAST_1790157103": {
+      "symbol": "FETUSDT",
+      "type": "FAST",
+      "alert_time": 1790157103,
+      "alert_price": 0.2079,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.2079
+    },
+    "GRAMUSDT_FAST_1790157103": {
+      "symbol": "GRAMUSDT",
+      "type": "FAST",
+      "alert_time": 1790157103,
+      "alert_price": 1.45,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 1.45
+    },
+    "BNBUSDT_FAST_1790157102": {
+      "symbol": "BNBUSDT",
+      "type": "FAST",
+      "alert_time": 1790157102,
+      "alert_price": 784.2171000000001,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 784.2171000000001
     }
   },
   "statistics": {
-    "total_events": 210,
-    "completed_1h": 201,
-    "completed_4h": 180,
-    "average_1h_return": -0.03425966419686825,
-    "average_4h_return": -0.14160213003034225,
-    "positive_1h": 17,
+    "total_events": 214,
+    "completed_1h": 206,
+    "completed_4h": 182,
+    "average_1h_return": -0.012540456305851589,
+    "average_4h_return": -0.15169478967875819,
+    "positive_1h": 21,
     "positive_4h": 6
   },
-  "updated_at": 1790155661
+  "updated_at": 1790157104
 }
