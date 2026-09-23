@@ -57,20 +57,4 @@ jobs:
 
           git diff --cached --quiet || git commit -m "Update radar and performance state"
 
-          git push      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-    run: python performance_tracker.py
-
-  - name: Save radar and performance state
-    run: |
-      git config user.name "github-actions[bot]"
-      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      git add nobitex_early_radar_state.json
-      git add nobitex_telegram_alert_state.json
-      git add nobitex_signal_performance_state.json
-      git add nobitex_performance_tracking_start.json
-
-      git diff --cached --quiet || git commit -m "Update radar and performance state"
-
-      git push
- 
+          git push
