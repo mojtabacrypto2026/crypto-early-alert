@@ -22,6 +22,11 @@
           "price": 1.5179999999999998,
           "return_percent": -1.2682926829268484,
           "timestamp": 1790197285
+        },
+        "2h": {
+          "price": 1.5065,
+          "return_percent": -2.0162601626016348,
+          "timestamp": 1790199440
         }
       },
       "max_return": 0.0,
@@ -81,12 +86,12 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 0,
+      "count": 1,
       "positive": 0,
       "positive_rate": 0.0,
-      "average_return": 0.0,
-      "best_return": 0.0,
-      "worst_return": 0.0,
+      "average_return": -2.0162601626016348,
+      "best_return": -2.0162601626016348,
+      "worst_return": -2.0162601626016348,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
@@ -128,5 +133,5 @@
     "completed_4h": 0,
     "reliable": false
   },
-  "updated_at": 1790198674
+  "updated_at": 1790199440
 }
