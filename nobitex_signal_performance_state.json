@@ -732,8 +732,8 @@
           "timestamp": 1790138970
         }
       },
-      "max_return": 1.4861460957178882,
-      "max_price": 2.0145
+      "max_return": 1.5113350125944487,
+      "max_price": 2.0149999999999997
     },
     "DEXEUSDT_CONFIRMED_1790116454": {
       "symbol": "DEXEUSDT",
@@ -767,8 +767,8 @@
           "timestamp": 1790138970
         }
       },
-      "max_return": 1.4861460957178882,
-      "max_price": 2.0145
+      "max_return": 1.5113350125944487,
+      "max_price": 2.0149999999999997
     },
     "ENAUSDT_CONFIRMED_1789996119": {
       "symbol": "ENAUSDT",
@@ -2097,8 +2097,8 @@
           "timestamp": 1790138970
         }
       },
-      "max_return": 0.7867820613690029,
-      "max_price": 0.0006405
+      "max_return": 0.9441384736427898,
+      "max_price": 0.0006414999999999999
     },
     "WOOUSDT_FAST_1790018638": {
       "symbol": "WOOUSDT",
@@ -3217,8 +3217,8 @@
           "timestamp": 1790138970
         }
       },
-      "max_return": 0.0,
-      "max_price": 0.0247005
+      "max_return": 0.17408554482703334,
+      "max_price": 0.0247435
     },
     "BASEDUSDT_CONFIRMED_1790052532": {
       "symbol": "BASEDUSDT",
@@ -4960,6 +4960,11 @@
           "price": 2753.5,
           "return_percent": -0.9553750638475571,
           "timestamp": 1790146425
+        },
+        "4h": {
+          "price": 2732.42,
+          "return_percent": -1.7136320798831797,
+          "timestamp": 1790153497
         }
       },
       "max_return": 0.015826996539628633,
@@ -6470,6 +6475,11 @@
           "price": 0.2542,
           "return_percent": -1.491958922689409,
           "timestamp": 1790150862
+        },
+        "2h": {
+          "price": 0.25195,
+          "return_percent": -2.3638829684169713,
+          "timestamp": 1790153497
         }
       },
       "max_return": 0.3681457081960885,
@@ -6495,6 +6505,11 @@
           "price": 11.0735,
           "return_percent": -1.2881083972187621,
           "timestamp": 1790150862
+        },
+        "2h": {
+          "price": 11.023,
+          "return_percent": -1.7382777678730637,
+          "timestamp": 1790153497
         }
       },
       "max_return": 0.0,
@@ -6635,6 +6650,11 @@
           "price": 0.209,
           "return_percent": 1.259689922480616,
           "timestamp": 1790152050
+        },
+        "30m": {
+          "price": 0.20665,
+          "return_percent": 0.12112403100775204,
+          "timestamp": 1790153497
         }
       },
       "max_return": 1.259689922480616,
@@ -6650,6 +6670,11 @@
           "price": 0.43405000000000005,
           "return_percent": 0.883207437536322,
           "timestamp": 1790152050
+        },
+        "30m": {
+          "price": 0.42495,
+          "return_percent": -1.231841952353289,
+          "timestamp": 1790153497
         }
       },
       "max_return": 0.883207437536322,
@@ -6660,7 +6685,13 @@
       "type": "CONFIRMED",
       "alert_time": 1790152049,
       "alert_price": 0.01312,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 0.012979999999999998,
+          "return_percent": -1.0670731707317167,
+          "timestamp": 1790153497
+        }
+      },
       "max_return": 0.0,
       "max_price": 0.01312
     },
@@ -6669,7 +6700,13 @@
       "type": "FAST",
       "alert_time": 1790152049,
       "alert_price": 566.71,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 564.37,
+          "return_percent": -0.41290960103051505,
+          "timestamp": 1790153497
+        }
+      },
       "max_return": 0.0,
       "max_price": 566.71
     },
@@ -6678,7 +6715,13 @@
       "type": "FAST",
       "alert_time": 1790152049,
       "alert_price": 1.862,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 1.83,
+          "return_percent": -1.7185821697099906,
+          "timestamp": 1790153497
+        }
+      },
       "max_return": 0.0,
       "max_price": 1.862
     },
@@ -6687,7 +6730,13 @@
       "type": "FAST",
       "alert_time": 1790152048,
       "alert_price": 9.8125e-05,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 9.670999999999999e-05,
+          "return_percent": -1.4420382165605226,
+          "timestamp": 1790153497
+        }
+      },
       "max_return": 0.0,
       "max_price": 9.8125e-05
     },
@@ -6696,7 +6745,13 @@
       "type": "FAST",
       "alert_time": 1790152048,
       "alert_price": 2.6562,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 2.6158,
+          "return_percent": -1.5209698064904746,
+          "timestamp": 1790153497
+        }
+      },
       "max_return": 0.0,
       "max_price": 2.6562
     },
@@ -6705,19 +6760,70 @@
       "type": "FAST",
       "alert_time": 1790152050,
       "alert_price": 0.009225,
+      "checkpoints": {
+        "15m": {
+          "price": 0.009285,
+          "return_percent": 0.650406504065033,
+          "timestamp": 1790153497
+        }
+      },
+      "max_return": 0.650406504065033,
+      "max_price": 0.009285
+    },
+    "TRXUSDT_FAST_1790153497": {
+      "symbol": "TRXUSDT",
+      "type": "FAST",
+      "alert_time": 1790153497,
+      "alert_price": 0.344665,
       "checkpoints": {},
       "max_return": 0.0,
-      "max_price": 0.009225
+      "max_price": 0.344665
+    },
+    "ETCUSDT_FAST_1790153496": {
+      "symbol": "ETCUSDT",
+      "type": "FAST",
+      "alert_time": 1790153496,
+      "alert_price": 9.370149999999999,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 9.370149999999999
+    },
+    "NEARUSDT_FAST_1790153496": {
+      "symbol": "NEARUSDT",
+      "type": "FAST",
+      "alert_time": 1790153496,
+      "alert_price": 4.5440000000000005,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 4.5440000000000005
+    },
+    "AUSDT_FAST_1790153496": {
+      "symbol": "AUSDT",
+      "type": "FAST",
+      "alert_time": 1790153496,
+      "alert_price": 0.09795,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.09795
+    },
+    "PROVEUSDT_FAST_1790153497": {
+      "symbol": "PROVEUSDT",
+      "type": "FAST",
+      "alert_time": 1790153497,
+      "alert_price": 0.23115000000000002,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.23115000000000002
     }
   },
   "statistics": {
-    "total_events": 201,
+    "total_events": 206,
     "completed_1h": 193,
-    "completed_4h": 174,
+    "completed_4h": 175,
     "average_1h_return": -0.05796570932088303,
-    "average_4h_return": -0.10608911405339244,
+    "average_4h_return": -0.11527507385813408,
     "positive_1h": 12,
     "positive_4h": 5
   },
-  "updated_at": 1790152050
+  "updated_at": 1790153497
 }
