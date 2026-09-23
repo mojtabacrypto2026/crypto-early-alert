@@ -1,6 +1,22 @@
 {
   "schema_version": 4,
-  "events": {},
+  "events": {
+    "ZROUSDT_FAST_1790192232": {
+      "symbol": "ZROUSDT",
+      "type": "FAST",
+      "alert_time": 1790192232,
+      "alert_price": 1.5375,
+      "score": 66,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 1.5375,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790192591
+    }
+  },
   "milestones": {},
   "statistics": {
     "15m": {
@@ -54,7 +70,7 @@
       "hit_5pct": 0
     },
     "MFE": {
-      "count": 0,
+      "count": 1,
       "positive": 0,
       "positive_rate": 0.0,
       "average_return": 0.0,
@@ -81,5 +97,5 @@
     "completed_4h": 0,
     "reliable": false
   },
-  "updated_at": 1790191813
+  "updated_at": 1790192591
 }
