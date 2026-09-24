@@ -297,7 +297,11 @@
     "streak": 7,
     "timestamp": 1790285851,
     "price": 0.0063535,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "micro_timestamp": 1790290052,
+    "micro_score": 59,
+    "micro_price": 0.0063205,
+    "micro_alert_type": "MICRO"
   },
   "COTIUSDT": {
     "score": 85,
@@ -334,6 +338,12 @@
     "fast_score": 66,
     "fast_timestamp": 1790289445,
     "fast_price": 0.00929,
+    "fast_alert_type": "FAST"
+  },
+  "KAITOUSDT": {
+    "fast_score": 60,
+    "fast_timestamp": 1790290053,
+    "fast_price": 0.35105,
     "fast_alert_type": "FAST"
   }
 }
