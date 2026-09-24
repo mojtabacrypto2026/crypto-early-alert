@@ -14,12 +14,6 @@
     "micro_price": 1.4805000000000001,
     "micro_alert_type": "MICRO"
   },
-  "TSLAUSDT": {
-    "fast_score": 60,
-    "fast_timestamp": 1790198673,
-    "fast_price": 380.2,
-    "fast_alert_type": "FAST"
-  },
   "CELRUSDT": {
     "fast_score": 70,
     "fast_timestamp": 1790208075,
@@ -91,9 +85,9 @@
     "timestamp": 1790282643,
     "price": 1.4300000000000002,
     "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790232092,
-    "micro_score": 80,
-    "micro_price": 1.432,
+    "micro_timestamp": 1790285851,
+    "micro_score": 52,
+    "micro_price": 1.4255,
     "micro_alert_type": "MICRO"
   },
   "CAKEUSDT": {
@@ -288,5 +282,12 @@
     "micro_score": 60,
     "micro_price": 1552.37,
     "micro_alert_type": "MICRO"
+  },
+  "HOMEUSDT": {
+    "score": 82,
+    "streak": 7,
+    "timestamp": 1790285851,
+    "price": 0.0063535,
+    "alert_type": "CONFIRMED"
   }
 }
