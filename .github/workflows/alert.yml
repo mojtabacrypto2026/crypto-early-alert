@@ -1,53 +1,60 @@
 name: Crypto Early Alert
 
-on: workflow_dispatch: schedule: - cron: "*/5 * * * *"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
 
-permissions: contents: write
+permissions:
+  contents: write
 
-concurrency: group: crypto-early-alert cancel-in-progress: false
+concurrency:
+  group: crypto-early-alert
+  cancel-in-progress: false
 
-jobs: scan: runs-on: ubuntu-latest timeout-minutes: 15
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
 
- 
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-    with:
-      fetch-depth: 1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-  - name: Setup Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: "3.12"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-  - name: Syntax check
-    run: |
-      python -m py_compile scanner.py
-      python -m py_compile performance_tracker.py
+      - name: Syntax check
+        run: |
+          python -m py_compile scanner.py
+          python -m py_compile performance_tracker.py
 
-  - name: Run Nobitex Early Move Radar
-    env:
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-    run: python scanner.py
+      - name: Run Nobitex Early Move Radar
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scanner.py
 
-  - name: Track alert performance
-    env:
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-    run: python performance_tracker.py
+      - name: Track alert performance
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python performance_tracker.py
 
-  - name: Save radar and performance state
-    run: |
-      git config user.name "github-actions[bot]"
-      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Save radar and performance state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      git add nobitex_early_radar_state.json
-      git add nobitex_telegram_alert_state.json
-      git add nobitex_signal_performance_state.json
-      git add nobitex_performance_tracking_start.json
+          git add nobitex_early_radar_state.json
+          git add nobitex_telegram_alert_state.json
+          git add nobitex_signal_performance_state.json
+          git add nobitex_performance_tracking_start.json
 
-      git diff --cached --quiet || git commit -m "Update radar and performance state"
+          git diff --cached --quiet || git commit -m "Update radar and performance state"
 
-      git push
- 
+          git push
