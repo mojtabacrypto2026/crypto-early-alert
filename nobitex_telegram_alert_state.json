@@ -51,9 +51,9 @@
     "fast_alert_type": "FAST"
   },
   "DOTUSDT": {
-    "micro_timestamp": 1790226926,
-    "micro_score": 66,
-    "micro_price": 1.147,
+    "micro_timestamp": 1790236901,
+    "micro_score": 69,
+    "micro_price": 1.1385,
     "micro_alert_type": "MICRO"
   },
   "ADAUSDT": {
@@ -102,7 +102,11 @@
     "micro_timestamp": 1790235504,
     "micro_score": 78,
     "micro_price": 5.17,
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 81,
+    "fast_timestamp": 1790236902,
+    "fast_price": 5.2085,
+    "fast_alert_type": "FAST"
   },
   "BICOUSDT": {
     "score": 82,
@@ -140,5 +144,17 @@
     "fast_timestamp": 1790235505,
     "fast_price": 0.009635000000000001,
     "fast_alert_type": "FAST"
+  },
+  "FETUSDT": {
+    "micro_timestamp": 1790236902,
+    "micro_score": 39,
+    "micro_price": 0.20095000000000002,
+    "micro_alert_type": "MICRO"
+  },
+  "SUPERUSDT": {
+    "micro_timestamp": 1790236903,
+    "micro_score": 61,
+    "micro_price": 0.17415,
+    "micro_alert_type": "MICRO"
   }
 }
