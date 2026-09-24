@@ -259,10 +259,14 @@
           "timestamp": 1790242238
         }
       },
-      "max_return": 1.9470404984423677,
-      "max_price": 19.634999999999998,
+      "max_return": 3.3489096573208887,
+      "max_price": 19.905,
       "thresholds": {
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790255292,
+          "minutes_to_hit": 486.3,
+          "price": 19.905
+        },
         "5pct": null
       },
       "registered_at": 1790226114
@@ -763,10 +767,14 @@
           "timestamp": 1790249334
         }
       },
-      "max_return": 1.7884914463452508,
-      "max_price": 19.634999999999998,
+      "max_return": 3.1881804043545987,
+      "max_price": 19.905,
       "thresholds": {
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790255292,
+          "minutes_to_hit": 342.6,
+          "price": 19.905
+        },
         "5pct": null
       },
       "registered_at": 1790234738
@@ -1234,8 +1242,8 @@
           "timestamp": 1790251361
         }
       },
-      "max_return": 0.2736999253545633,
-      "max_price": 0.2015,
+      "max_return": 1.4929086837521646,
+      "max_price": 0.20395,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -1414,6 +1422,11 @@
           "price": 0.09435,
           "return_percent": -0.6789831043739069,
           "timestamp": 1790253740
+        },
+        "1h": {
+          "price": 0.09461,
+          "return_percent": -0.405284488657294,
+          "timestamp": 1790255292
         }
       },
       "max_return": 0.0,
@@ -1440,6 +1453,11 @@
           "price": 2.4625000000000004,
           "return_percent": 1.903579557210853,
           "timestamp": 1790253740
+        },
+        "1h": {
+          "price": 2.474,
+          "return_percent": 2.379474446513557,
+          "timestamp": 1790255292
         }
       },
       "max_return": 3.9519966894268537,
@@ -1500,6 +1518,21 @@
         "5pct": null
       },
       "registered_at": 1790253740
+    },
+    "SUPERUSDT_MICRO_1790255292": {
+      "symbol": "SUPERUSDT",
+      "type": "MICRO",
+      "alert_time": 1790255292,
+      "alert_price": 0.17225,
+      "score": 40,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.17225,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790255292
     }
   },
   "milestones": {},
@@ -1525,13 +1558,13 @@
       "hit_5pct": 1
     },
     "1h": {
-      "count": 33,
-      "positive": 12,
-      "positive_rate": 36.36363636363637,
-      "average_return": -0.5403798533509595,
+      "count": 35,
+      "positive": 13,
+      "positive_rate": 37.142857142857146,
+      "average_return": -0.4530955772207257,
       "best_return": 2.971968929415725,
       "worst_return": -4.44480102695763,
-      "hit_2pct": 2,
+      "hit_2pct": 3,
       "hit_5pct": 0
     },
     "2h": {
@@ -1555,20 +1588,20 @@
       "hit_5pct": 2
     },
     "MFE": {
-      "count": 37,
+      "count": 38,
       "positive": 30,
-      "positive_rate": 81.08108108108108,
-      "average_return": 2.0379474342630672,
+      "positive_rate": 78.94736842105263,
+      "average_return": 2.090126893237341,
       "best_return": 11.168164313222087,
       "worst_return": 0.0,
-      "hit_2pct": 11,
+      "hit_2pct": 13,
       "hit_5pct": 6
     },
     "time_to_2pct": {
-      "count": 11,
-      "average_minutes": 123.51818181818182,
+      "count": 13,
+      "average_minutes": 168.27692307692308,
       "best_minutes": 15.2,
-      "worst_minutes": 407.5
+      "worst_minutes": 486.3
     },
     "time_to_5pct": {
       "count": 6,
@@ -1582,5 +1615,5 @@
     "completed_4h": 30,
     "reliable": false
   },
-  "updated_at": 1790254662
+  "updated_at": 1790255292
 }
