@@ -124,8 +124,8 @@
           "timestamp": 1790222579
         }
       },
-      "max_return": 2.455070603337618,
-      "max_price": 0.0031925,
+      "max_return": 2.5192554557124525,
+      "max_price": 0.0031945,
       "thresholds": {
         "2pct": {
           "timestamp": 1790228534,
@@ -193,10 +193,15 @@
           "price": 1.5670000000000002,
           "return_percent": 2.1512385919165817,
           "timestamp": 1790228534
+        },
+        "2h": {
+          "price": 1.5705,
+          "return_percent": 2.379400260756206,
+          "timestamp": 1790232092
         }
       },
-      "max_return": 2.2816166883963587,
-      "max_price": 1.569,
+      "max_return": 2.379400260756206,
+      "max_price": 1.5705,
       "thresholds": {
         "2pct": {
           "timestamp": 1790228534,
@@ -316,6 +321,11 @@
           "price": 0.34467499999999995,
           "return_percent": -0.037702469511774625,
           "timestamp": 1790229740
+        },
+        "1h": {
+          "price": 0.34414,
+          "return_percent": -0.19286263250243663,
+          "timestamp": 1790232092
         }
       },
       "max_return": 0.0,
@@ -344,8 +354,8 @@
           "timestamp": 1790230846
         }
       },
-      "max_return": 0.6735086593970606,
-      "max_price": 1.5695000000000001,
+      "max_return": 0.8338678640154024,
+      "max_price": 1.572,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -363,6 +373,11 @@
           "price": 0.2406,
           "return_percent": -0.2900953170327419,
           "timestamp": 1790230846
+        },
+        "30m": {
+          "price": 0.24145,
+          "return_percent": 0.062163282221294434,
+          "timestamp": 1790232092
         }
       },
       "max_return": 0.08288437629505925,
@@ -384,6 +399,11 @@
           "price": 9.2577,
           "return_percent": -0.42378806294436483,
           "timestamp": 1790230846
+        },
+        "30m": {
+          "price": 9.2606,
+          "return_percent": -0.3925955405449032,
+          "timestamp": 1790232092
         }
       },
       "max_return": 0.0,
@@ -405,6 +425,11 @@
           "price": 0.7201,
           "return_percent": -0.5386740331491733,
           "timestamp": 1790230846
+        },
+        "30m": {
+          "price": 0.7171,
+          "return_percent": -0.9530386740331517,
+          "timestamp": 1790232092
         }
       },
       "max_return": 0.0,
@@ -421,7 +446,13 @@
       "alert_time": 1790230845,
       "alert_price": 4.785e-05,
       "score": 54,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 4.7835000000000005e-05,
+          "return_percent": -0.031347962382428915,
+          "timestamp": 1790232092
+        }
+      },
       "max_return": 0.020898641588314264,
       "max_price": 4.7860000000000006e-05,
       "thresholds": {
@@ -429,48 +460,63 @@
         "5pct": null
       },
       "registered_at": 1790230846
+    },
+    "GRAMUSDT_MICRO_1790232092": {
+      "symbol": "GRAMUSDT",
+      "type": "MICRO",
+      "alert_time": 1790232092,
+      "alert_price": 1.432,
+      "score": 80,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 1.432,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790232092
     }
   },
   "milestones": {},
   "statistics": {
     "15m": {
-      "count": 13,
+      "count": 14,
       "positive": 4,
-      "positive_rate": 30.76923076923077,
-      "average_return": -0.4858791722909897,
+      "positive_rate": 28.57142857142857,
+      "average_return": -0.453412657297521,
       "best_return": 1.5997490589711327,
       "worst_return": -2.6341463414634276,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
     "30m": {
-      "count": 10,
-      "positive": 3,
-      "positive_rate": 30.0,
-      "average_return": -0.8811700812879485,
+      "count": 13,
+      "positive": 4,
+      "positive_rate": 30.76923076923077,
+      "average_return": -0.7765516727104804,
       "best_return": 1.1734028683181381,
       "worst_return": -4.015056461731496,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
     "1h": {
-      "count": 8,
+      "count": 9,
       "positive": 3,
-      "positive_rate": 37.5,
-      "average_return": -1.1011859473981014,
+      "positive_rate": 33.33333333333333,
+      "average_return": -1.0002611346319163,
       "best_return": 2.1512385919165817,
       "worst_return": -4.44480102695763,
       "hit_2pct": 1,
       "hit_5pct": 0
     },
     "2h": {
-      "count": 4,
-      "positive": 0,
-      "positive_rate": 0.0,
-      "average_return": -1.6909037482739884,
-      "best_return": -0.010520778537617166,
+      "count": 5,
+      "positive": 1,
+      "positive_rate": 20.0,
+      "average_return": -0.8768429464679495,
+      "best_return": 2.379400260756206,
       "worst_return": -2.7920410783055147,
-      "hit_2pct": 0,
+      "hit_2pct": 1,
       "hit_5pct": 0
     },
     "4h": {
@@ -484,10 +530,10 @@
       "hit_5pct": 0
     },
     "MFE": {
-      "count": 14,
+      "count": 15,
       "positive": 10,
-      "positive_rate": 71.42857142857143,
-      "average_return": 0.9381254962985109,
+      "positive_rate": 66.66666666666666,
+      "average_return": 0.8970723051688118,
       "best_return": 5.333333333333323,
       "worst_return": 0.0,
       "hit_2pct": 3,
@@ -511,5 +557,5 @@
     "completed_4h": 3,
     "reliable": false
   },
-  "updated_at": 1790230846
+  "updated_at": 1790232092
 }
