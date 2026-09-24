@@ -566,8 +566,8 @@
           "timestamp": 1790243813
         }
       },
-      "max_return": 2.3066298342541502,
-      "max_price": 0.7407,
+      "max_return": 2.4516574585635422,
+      "max_price": 0.74175,
       "thresholds": {
         "2pct": {
           "timestamp": 1790260698,
@@ -1758,6 +1758,21 @@
         "5pct": null
       },
       "registered_at": 1790260698
+    },
+    "JASMYUSDT_FAST_1790262281": {
+      "symbol": "JASMYUSDT",
+      "type": "FAST",
+      "alert_time": 1790262281,
+      "alert_price": 0.0046225,
+      "score": 88,
+      "checkpoints": {},
+      "max_return": 0.010816657652796107,
+      "max_price": 0.004623,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790262282
     }
   },
   "milestones": {},
@@ -1813,10 +1828,10 @@
       "hit_5pct": 3
     },
     "MFE": {
-      "count": 41,
-      "positive": 38,
-      "positive_rate": 92.6829268292683,
-      "average_return": 3.8245238569511617,
+      "count": 42,
+      "positive": 39,
+      "positive_rate": 92.85714285714286,
+      "average_return": 3.7371743432609477,
       "best_return": 20.089443332941034,
       "worst_return": 0.0,
       "hit_2pct": 29,
@@ -1840,5 +1855,5 @@
     "completed_4h": 32,
     "reliable": false
   },
-  "updated_at": 1790261617
+  "updated_at": 1790262282
 }
