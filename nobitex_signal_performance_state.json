@@ -169,23 +169,59 @@
       "alert_time": 1790224799,
       "alert_price": 1.5339999999999998,
       "score": 81,
-      "checkpoints": {},
-      "max_return": 0.0,
-      "max_price": 1.5339999999999998,
+      "checkpoints": {
+        "15m": {
+          "price": 1.5415,
+          "return_percent": 0.4889178617992363,
+          "timestamp": 1790226114
+        }
+      },
+      "max_return": 0.4889178617992363,
+      "max_price": 1.5415,
       "thresholds": {
         "2pct": null,
         "5pct": null
       },
       "registered_at": 1790224799
+    },
+    "TRBUSDT_MICRO_1790226113": {
+      "symbol": "TRBUSDT",
+      "type": "MICRO",
+      "alert_time": 1790226113,
+      "alert_price": 19.259999999999998,
+      "score": 57,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 19.259999999999998,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790226114
+    },
+    "TRXUSDT_CONFIRMED_1790226114": {
+      "symbol": "TRXUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790226114,
+      "alert_price": 0.34458500000000003,
+      "score": 80,
+      "checkpoints": {},
+      "max_return": 0.05804083172511222,
+      "max_price": 0.344785,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790226114
     }
   },
   "milestones": {},
   "statistics": {
     "15m": {
-      "count": 4,
-      "positive": 1,
-      "positive_rate": 25.0,
-      "average_return": -0.7672765150461133,
+      "count": 5,
+      "positive": 2,
+      "positive_rate": 40.0,
+      "average_return": -0.5160376396770434,
       "best_return": 1.5997490589711327,
       "worst_return": -2.6341463414634276,
       "hit_2pct": 0,
@@ -232,10 +268,10 @@
       "hit_5pct": 0
     },
     "MFE": {
-      "count": 5,
-      "positive": 4,
-      "positive_rate": 80.0,
-      "average_return": 1.3961381882022008,
+      "count": 7,
+      "positive": 6,
+      "positive_rate": 85.71428571428571,
+      "average_return": 1.0753785192193361,
       "best_return": 5.333333333333323,
       "worst_return": 0.0,
       "hit_2pct": 1,
@@ -259,5 +295,5 @@
     "completed_4h": 3,
     "reliable": false
   },
-  "updated_at": 1790224799
+  "updated_at": 1790226114
 }
