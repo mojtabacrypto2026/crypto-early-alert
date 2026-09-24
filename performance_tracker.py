@@ -6,6 +6,7 @@ Tracks:
 - FAST
 - CONFIRMED
 - NEWS
+- MICRO
 
 Checkpoints:
 15m, 30m, 1h, 2h, 4h
@@ -520,7 +521,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # REGISTER FAST / CONFIRMED / NEWS
+    # REGISTER MICRO / FAST / CONFIRMED / NEWS
     # --------------------------------------------------------
 
     for symbol, alert in (
@@ -533,6 +534,27 @@ def main():
             continue
 
         candidates = []
+
+        micro_timestamp = int(
+            safe_float(
+                alert.get(
+                    "micro_timestamp",
+                    0,
+                ),
+                0,
+            )
+        )
+
+        if (
+            micro_timestamp
+            >= tracking_start
+        ):
+            candidates.append(
+                (
+                    "MICRO",
+                    micro_timestamp,
+                )
+            )
 
         fast_timestamp = int(
             safe_float(
@@ -618,7 +640,19 @@ def main():
             ):
                 continue
 
-            if alert_type == "FAST":
+            if alert_type == "MICRO":
+                alert_price = safe_float(
+                    alert.get(
+                        "micro_price",
+                        0,
+                    ),
+                    0.0,
+                )
+                score = alert.get(
+                    "micro_score"
+                )
+
+            elif alert_type == "FAST":
                 alert_price = safe_float(
                     alert.get(
                         "fast_price",
