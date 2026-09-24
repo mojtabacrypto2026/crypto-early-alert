@@ -625,6 +625,11 @@
           "price": 1.4125,
           "return_percent": -1.3617318435754087,
           "timestamp": 1790239760
+        },
+        "4h": {
+          "price": 1.411,
+          "return_percent": -1.4664804469273678,
+          "timestamp": 1790247078
         }
       },
       "max_return": 0.0,
@@ -1219,6 +1224,11 @@
           "price": 0.41885,
           "return_percent": -1.4122631517006015,
           "timestamp": 1790245393
+        },
+        "1h": {
+          "price": 0.42315,
+          "return_percent": -0.4001412263151652,
+          "timestamp": 1790247078
         }
       },
       "max_return": 0.0,
@@ -1247,8 +1257,8 @@
           "timestamp": 1790246274
         }
       },
-      "max_return": 0.0,
-      "max_price": 1.4805000000000001,
+      "max_return": 1.0131712259371766,
+      "max_price": 1.4955,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -1279,10 +1289,10 @@
       "hit_5pct": 1
     },
     "1h": {
-      "count": 30,
+      "count": 31,
       "positive": 11,
-      "positive_rate": 36.666666666666664,
-      "average_return": -0.6011989784143856,
+      "positive_rate": 35.483870967741936,
+      "average_return": -0.5947132444757011,
       "best_return": 2.1512385919165817,
       "worst_return": -4.44480102695763,
       "hit_2pct": 1,
@@ -1299,10 +1309,10 @@
       "hit_5pct": 0
     },
     "4h": {
-      "count": 14,
+      "count": 15,
       "positive": 1,
-      "positive_rate": 7.142857142857142,
-      "average_return": -2.348316869575584,
+      "positive_rate": 6.666666666666667,
+      "average_return": -2.28952777473237,
       "best_return": 0.8474576271186666,
       "worst_return": -4.971135343168691,
       "hit_2pct": 0,
@@ -1310,9 +1320,9 @@
     },
     "MFE": {
       "count": 32,
-      "positive": 24,
-      "positive_rate": 75.0,
-      "average_return": 1.7466810794319017,
+      "positive": 25,
+      "positive_rate": 78.125,
+      "average_return": 1.7783426802424385,
       "best_return": 11.168164313222087,
       "worst_return": 0.0,
       "hit_2pct": 8,
@@ -1333,8 +1343,8 @@
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 14,
+    "completed_4h": 15,
     "reliable": false
   },
-  "updated_at": 1790246274
+  "updated_at": 1790247078
 }
