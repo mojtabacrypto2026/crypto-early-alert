@@ -124,8 +124,8 @@
           "timestamp": 1790222579
         }
       },
-      "max_return": 0.016046213093712014,
-      "max_price": 0.0031165,
+      "max_return": 0.8183568677792152,
+      "max_price": 0.0031415,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -153,6 +153,11 @@
           "price": 1.5419999999999998,
           "return_percent": -3.2622333751568546,
           "timestamp": 1790222579
+        },
+        "2h": {
+          "price": 1.5630000000000002,
+          "return_percent": -1.9447929736511864,
+          "timestamp": 1790226927
         }
       },
       "max_return": 1.5997490589711327,
@@ -174,10 +179,15 @@
           "price": 1.5415,
           "return_percent": 0.4889178617992363,
           "timestamp": 1790226114
+        },
+        "30m": {
+          "price": 1.552,
+          "return_percent": 1.1734028683181381,
+          "timestamp": 1790226927
         }
       },
-      "max_return": 0.4889178617992363,
-      "max_price": 1.5415,
+      "max_return": 1.1734028683181381,
+      "max_price": 1.552,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -191,8 +201,8 @@
       "alert_price": 19.259999999999998,
       "score": 57,
       "checkpoints": {},
-      "max_return": 0.0,
-      "max_price": 19.259999999999998,
+      "max_return": 0.5970924195223364,
+      "max_price": 19.375,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -213,6 +223,21 @@
         "5pct": null
       },
       "registered_at": 1790226114
+    },
+    "DOTUSDT_MICRO_1790226926": {
+      "symbol": "DOTUSDT",
+      "type": "MICRO",
+      "alert_time": 1790226926,
+      "alert_price": 1.147,
+      "score": 66,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 1.147,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790226927
     }
   },
   "milestones": {},
@@ -228,11 +253,11 @@
       "hit_5pct": 0
     },
     "30m": {
-      "count": 4,
-      "positive": 0,
-      "positive_rate": 0.0,
-      "average_return": -2.1693340235752703,
-      "best_return": -0.02235665439241966,
+      "count": 5,
+      "positive": 1,
+      "positive_rate": 20.0,
+      "average_return": -1.5007866451965886,
+      "best_return": 1.1734028683181381,
       "worst_return": -4.015056461731496,
       "hit_2pct": 0,
       "hit_5pct": 0
@@ -248,10 +273,10 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 3,
+      "count": 4,
       "positive": 0,
       "positive_rate": 0.0,
-      "average_return": -1.6062740064815888,
+      "average_return": -1.6909037482739884,
       "best_return": -0.010520778537617166,
       "worst_return": -2.7920410783055147,
       "hit_2pct": 0,
@@ -268,10 +293,10 @@
       "hit_5pct": 0
     },
     "MFE": {
-      "count": 7,
-      "positive": 6,
-      "positive_rate": 85.71428571428571,
-      "average_return": 1.0753785192193361,
+      "count": 8,
+      "positive": 7,
+      "positive_rate": 87.5,
+      "average_return": 1.2014422144077619,
       "best_return": 5.333333333333323,
       "worst_return": 0.0,
       "hit_2pct": 1,
@@ -295,5 +320,5 @@
     "completed_4h": 3,
     "reliable": false
   },
-  "updated_at": 1790226114
+  "updated_at": 1790226927
 }
