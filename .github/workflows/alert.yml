@@ -55,6 +55,12 @@ jobs:
           git add nobitex_signal_performance_state.json
           git add nobitex_performance_tracking_start.json
 
-          git diff --cached --quiet || git commit -m "Fix alert workflow"
+          if ! git diff --cached --quiet; then
+            git commit -m "Update radar and performance state"
+          fi
 
-          git push
+          git push origin HEAD:main || (
+            echo "Push rejected; rebasing once against latest main..."
+            git pull --rebase origin main
+            git push origin HEAD:main
+          )
