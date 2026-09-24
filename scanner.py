@@ -75,6 +75,14 @@ NEWS_FRESH_SECONDS = 90 * 60
 NEWS_ALERT_COOLDOWN_SECONDS = 2 * 60 * 60
 NEWS_MIN_SCORE = 8
 
+# Intrabar early-warning layer. This does not replace the main PRE-MOVE score.
+MICRO_MIN_PRICE_CHANGE = 0.18
+MICRO_MAX_PRICE_CHANGE = 1.20
+MICRO_MIN_FLOW = 1.08
+MICRO_MIN_FLOW_DELTA = 0.05
+MICRO_MAX_SPREAD_BPS = 35.0
+MICRO_ALERT_COOLDOWN_SECONDS = 90 * 60
+
 NEWS_POSITIVE_STRONG = (
     "etf approval",
     "etf approved",
@@ -604,18 +612,28 @@ def get_market_snapshot():
             live_price = (
                 best_bid + best_ask
             ) / 2.0
+            spread_bps = (
+                (best_ask - best_bid)
+                / live_price
+                * 10000.0
+                if live_price > 0
+                else 999.0
+            )
 
         elif best_bid > 0:
             live_price = best_bid
+            spread_bps = 999.0
 
         else:
             live_price = best_ask
+            spread_bps = 999.0
 
         result[symbol] = {
             "bid_value": bid_value,
             "ask_value": ask_value,
             "flow": flow,
             "price": live_price,
+            "spread_bps": spread_bps,
         }
 
     return result
@@ -1842,6 +1860,14 @@ def analyze_symbol(
             0.0,
         )
 
+        spread_bps = safe_float(
+            book.get(
+                "spread_bps",
+                999.0,
+            ),
+            999.0,
+        )
+
         score = calculate_score(
             volume_ratio,
             volume_acceleration,
@@ -1962,6 +1988,7 @@ def analyze_symbol(
             "momentum_4h": m4h,
             "momentum_8h": m8h,
             "order_flow": flow,
+            "spread_bps": spread_bps,
             "macd_positive": macd_positive,
             "news_score": 0,
             "news_sentiment": "none",
@@ -2053,6 +2080,57 @@ def apply_persistence(
     else:
         streak = 0
 
+    current_price = safe_float(
+        result.get("price", 0),
+        0.0,
+    )
+    old_price = safe_float(
+        previous.get("price", 0),
+        0.0,
+    )
+
+    price_change_since_scan = 0.0
+    if old_price > 0 and current_price > 0:
+        price_change_since_scan = (
+            (current_price - old_price)
+            / old_price
+        ) * 100.0
+
+    current_flow = safe_float(
+        result.get("order_flow", 0),
+        0.0,
+    )
+    old_flow = safe_float(
+        previous.get("order_flow", 0),
+        0.0,
+    )
+    flow_delta = (
+        current_flow - old_flow
+        if old_flow > 0
+        else 0.0
+    )
+
+    spread_bps = safe_float(
+        result.get("spread_bps", 999),
+        999.0,
+    )
+
+    micro_early = (
+        state_is_fresh
+        and MICRO_MIN_PRICE_CHANGE
+        <= price_change_since_scan
+        <= MICRO_MAX_PRICE_CHANGE
+        and current_flow >= MICRO_MIN_FLOW
+        and flow_delta >= MICRO_MIN_FLOW_DELTA
+        and spread_bps <= MICRO_MAX_SPREAD_BPS
+        and result.get("structure", 0) >= 4
+        and 45 <= result.get("rsi", 50) <= 68
+        and result.get("momentum_1h", 99) <= 2.8
+        and result.get("momentum_4h", 99) <= 7.0
+        and result.get("momentum_15m", 99) <= 2.0
+        and not result.get("high_risk_jump")
+    )
+
     strengthening = (
         current_score
         >= old_score + 5
@@ -2071,6 +2149,10 @@ def apply_persistence(
     result["previous_score"] = (
         old_score
     )
+
+    result["price_change_since_scan"] = price_change_since_scan
+    result["flow_delta"] = flow_delta
+    result["micro_early"] = micro_early
 
     result["streak"] = streak
     result["strengthening"] = (
@@ -2238,6 +2320,15 @@ def prune_alert_state(
                     0,
                 )
             ),
+            int(
+                safe_float(
+                    entry.get(
+                        "micro_timestamp",
+                        0,
+                    ),
+                    0,
+                )
+            ),
         ]
 
         latest = max(
@@ -2391,6 +2482,10 @@ def smart_alert(
         "news_source",
         "news_title",
         "news_link",
+        "micro_timestamp",
+        "micro_score",
+        "micro_price",
+        "micro_alert_type",
     ):
         if key in old:
             entry[key] = old[key]
@@ -2497,6 +2592,55 @@ def fast_alert(
         "FAST"
     )
 
+    alert_state[symbol] = current
+    return True
+
+
+def build_micro_alert(result):
+    return (
+        "⚡ MICRO EARLY WARNING\n\n"
+        f"🪙 {result['symbol']}\n"
+        f"💰 Price: {result['price']:.8g}\n"
+        f"📈 Since last scan: {result['price_change_since_scan']:+.2f}%\n"
+        f"🌊 Order flow: {result['order_flow']:.2f} "
+        f"(Δ {result['flow_delta']:+.2f})\n"
+        f"📏 Spread: {result['spread_bps']:.1f} bps\n"
+        f"⭐ Technical score: {result['score']}/100\n"
+        f"📈 RSI: {result['rsi']:.1f}\n"
+        f"🏗 Structure: {result['structure']}/8\n"
+        f"15m: {result['momentum_15m']:+.2f}% | "
+        f"1H: {result['momentum_1h']:+.2f}% | "
+        f"4H: {result['momentum_4h']:+.2f}%\n\n"
+        "🟠 حرکت اولیه قیمت و بهبود فشار خرید دیده شده؛ "
+        "این پیش‌هشدار است و تأیید جهش نیست."
+    )
+
+
+def micro_alert(result, alert_state, alerts_enabled):
+    if not alerts_enabled or not result.get("micro_early"):
+        return False
+
+    symbol = result["symbol"]
+    old = alert_state.get(symbol, {})
+    old_timestamp = int(safe_float(old.get("micro_timestamp"), 0))
+    old_score = safe_float(old.get("micro_score"), 0)
+    now = int(time.time())
+
+    if (
+        old_timestamp > 0
+        and now - old_timestamp < MICRO_ALERT_COOLDOWN_SECONDS
+        and result["score"] < old_score + 5
+    ):
+        return False
+
+    if not telegram_send(build_micro_alert(result)):
+        return False
+
+    current = alert_state.get(symbol, {})
+    current["micro_timestamp"] = now
+    current["micro_score"] = result["score"]
+    current["micro_price"] = safe_float(result.get("price"), 0.0)
+    current["micro_alert_type"] = "MICRO"
     alert_state[symbol] = current
     return True
 
@@ -2795,6 +2939,9 @@ def run_scan():
                 "streak"
             ],
             "timestamp": now,
+            "price": result.get("price", 0.0),
+            "order_flow": result.get("order_flow", 0.0),
+            "spread_bps": result.get("spread_bps", 999.0),
         }
 
     # Failed markets keep prior state.
@@ -2932,12 +3079,16 @@ def run_scan():
             f"{news_mark}"
         )
 
+    micro_alert_count = 0
     news_alert_count = 0
     fast_alert_count = 0
     confirmed_alert_count = 0
 
-    # NEWS first because it can arrive before technical confirmation.
+    # MICRO first: current price/orderbook changes can precede a closed 15m candle.
     for result in results:
+        if micro_alert(result, alert_state, coverage_ok):
+            micro_alert_count += 1
+
         if news_alert(
             result,
             alert_state,
@@ -3032,6 +3183,11 @@ def run_scan():
         )
 
     print()
+    print(
+        "MICRO Telegram alerts sent:",
+        micro_alert_count,
+    )
+
     print(
         "News Telegram alerts sent:",
         news_alert_count,
