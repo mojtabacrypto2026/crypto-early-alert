@@ -166,6 +166,11 @@
           "price": 1.5630000000000002,
           "return_percent": -1.9447929736511864,
           "timestamp": 1790226927
+        },
+        "4h": {
+          "price": 1.549,
+          "return_percent": -2.8230865746549654,
+          "timestamp": 1790233627
         }
       },
       "max_return": 1.5997490589711327,
@@ -237,6 +242,11 @@
           "price": 19.155,
           "return_percent": -0.5451713395638468,
           "timestamp": 1790229740
+        },
+        "2h": {
+          "price": 19.189999999999998,
+          "return_percent": -0.3634475597092435,
+          "timestamp": 1790233627
         }
       },
       "max_return": 0.5970924195223364,
@@ -268,6 +278,11 @@
           "price": 0.34467499999999995,
           "return_percent": 0.02611837427628117,
           "timestamp": 1790229740
+        },
+        "2h": {
+          "price": 0.34458999999999995,
+          "return_percent": 0.0014510207931052522,
+          "timestamp": 1790233627
         }
       },
       "max_return": 0.05804083172511222,
@@ -575,20 +590,20 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 5,
-      "positive": 1,
-      "positive_rate": 20.0,
-      "average_return": -0.8768429464679495,
+      "count": 7,
+      "positive": 2,
+      "positive_rate": 28.57142857142857,
+      "average_return": -0.6780301816079836,
       "best_return": 2.379400260756206,
       "worst_return": -2.7920410783055147,
       "hit_2pct": 1,
       "hit_5pct": 0
     },
     "4h": {
-      "count": 3,
+      "count": 4,
       "positive": 0,
       "positive_rate": 0.0,
-      "average_return": -2.0905025926418617,
+      "average_return": -2.2736485881451376,
       "best_return": -0.009205681220416888,
       "worst_return": -3.4980744544287465,
       "hit_2pct": 0,
@@ -619,8 +634,8 @@
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 3,
+    "completed_4h": 4,
     "reliable": false
   },
-  "updated_at": 1790233016
+  "updated_at": 1790233627
 }
