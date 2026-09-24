@@ -70,13 +70,28 @@
           "timestamp": 1790206385
         }
       },
-      "max_return": 0.023671751709619937,
-      "max_price": 380.28999999999996,
+      "max_return": 0.03156233561283655,
+      "max_price": 380.32,
       "thresholds": {
         "2pct": null,
         "5pct": null
       },
       "registered_at": 1790198674
+    },
+    "CELRUSDT_FAST_1790208075": {
+      "symbol": "CELRUSDT",
+      "type": "FAST",
+      "alert_time": 1790208075,
+      "alert_price": 0.003116,
+      "score": 70,
+      "checkpoints": {},
+      "max_return": 0.016046213093712014,
+      "max_price": 0.0031165,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790208075
     }
   },
   "milestones": {},
@@ -132,11 +147,11 @@
       "hit_5pct": 0
     },
     "MFE": {
-      "count": 2,
-      "positive": 1,
-      "positive_rate": 50.0,
-      "average_return": 0.011835875854809969,
-      "best_return": 0.023671751709619937,
+      "count": 3,
+      "positive": 2,
+      "positive_rate": 66.66666666666666,
+      "average_return": 0.015869516235516187,
+      "best_return": 0.03156233561283655,
       "worst_return": 0.0,
       "hit_2pct": 0,
       "hit_5pct": 0
@@ -159,5 +174,5 @@
     "completed_4h": 1,
     "reliable": false
   },
-  "updated_at": 1790207300
+  "updated_at": 1790208075
 }
