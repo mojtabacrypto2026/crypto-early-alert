@@ -1311,8 +1311,8 @@
           "timestamp": 1790250815
         }
       },
-      "max_return": 6.519948217017771,
-      "max_price": 0.45255,
+      "max_return": 9.944686359891728,
+      "max_price": 0.4671,
       "thresholds": {
         "2pct": {
           "timestamp": 1790251361,
@@ -1383,6 +1383,11 @@
           "price": 9.3583,
           "return_percent": -2.058608058608057,
           "timestamp": 1790252474
+        },
+        "1h": {
+          "price": 9.3287,
+          "return_percent": -2.368393511250656,
+          "timestamp": 1790253740
         }
       },
       "max_return": 0.27472527472528513,
@@ -1404,6 +1409,11 @@
           "price": 0.094995,
           "return_percent": 0.0,
           "timestamp": 1790252474
+        },
+        "30m": {
+          "price": 0.09435,
+          "return_percent": -0.6789831043739069,
+          "timestamp": 1790253740
         }
       },
       "max_return": 0.0,
@@ -1425,10 +1435,15 @@
           "price": 2.4465000000000003,
           "return_percent": 1.2414649286157768,
           "timestamp": 1790252474
+        },
+        "30m": {
+          "price": 2.4625000000000004,
+          "return_percent": 1.903579557210853,
+          "timestamp": 1790253740
         }
       },
-      "max_return": 1.2414649286157768,
-      "max_price": 2.4465000000000003,
+      "max_return": 1.903579557210853,
+      "max_price": 2.4625000000000004,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -1441,7 +1456,13 @@
       "alert_time": 1790252473,
       "alert_price": 0.0044605,
       "score": 91,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 0.004387,
+          "return_percent": -1.6477973321376478,
+          "timestamp": 1790253740
+        }
+      },
       "max_return": 0.05604752830399951,
       "max_price": 0.004463,
       "thresholds": {
@@ -1449,35 +1470,50 @@
         "5pct": null
       },
       "registered_at": 1790252474
+    },
+    "CAKEUSDT_FAST_1790253739": {
+      "symbol": "CAKEUSDT",
+      "type": "FAST",
+      "alert_time": 1790253739,
+      "alert_price": 2.6620999999999997,
+      "score": 86,
+      "checkpoints": {},
+      "max_return": 0.10142368806582656,
+      "max_price": 2.6648,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790253740
     }
   },
   "milestones": {},
   "statistics": {
     "15m": {
-      "count": 35,
+      "count": 36,
       "positive": 14,
-      "positive_rate": 40.0,
-      "average_return": 0.07997739296120684,
+      "positive_rate": 38.88888888888889,
+      "average_return": 0.03198365059734976,
       "best_return": 5.329335525679486,
       "worst_return": -2.6341463414634276,
       "hit_2pct": 2,
       "hit_5pct": 1
     },
     "30m": {
-      "count": 33,
-      "positive": 13,
-      "positive_rate": 39.39393939393939,
-      "average_return": -0.18228677383505648,
+      "count": 35,
+      "positive": 14,
+      "positive_rate": 40.0,
+      "average_return": -0.13688191667771193,
       "best_return": 5.31914893617022,
       "worst_return": -4.015056461731496,
       "hit_2pct": 2,
       "hit_5pct": 1
     },
     "1h": {
-      "count": 32,
+      "count": 33,
       "positive": 12,
-      "positive_rate": 37.5,
-      "average_return": -0.48325442654159395,
+      "positive_rate": 36.36363636363637,
+      "average_return": -0.5403798533509595,
       "best_return": 2.971968929415725,
       "worst_return": -4.44480102695763,
       "hit_2pct": 2,
@@ -1504,10 +1540,10 @@
       "hit_5pct": 2
     },
     "MFE": {
-      "count": 36,
-      "positive": 29,
-      "positive_rate": 80.55555555555556,
-      "average_return": 1.921315596555073,
+      "count": 37,
+      "positive": 30,
+      "positive_rate": 81.08108108108108,
+      "average_return": 1.9825848090680402,
       "best_return": 11.168164313222087,
       "worst_return": 0.0,
       "hit_2pct": 10,
@@ -1531,5 +1567,5 @@
     "completed_4h": 30,
     "reliable": false
   },
-  "updated_at": 1790252474
+  "updated_at": 1790253740
 }
