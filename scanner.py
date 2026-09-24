@@ -2017,10 +2017,15 @@ def apply_persistence(
     now,
 ):
     symbol = result["symbol"]
+
     previous = previous_state.get(
         symbol,
         {},
     )
+
+    # ========================================================
+    # PREVIOUS TECHNICAL STATE
+    # ========================================================
 
     old_score = safe_float(
         previous.get(
@@ -2058,21 +2063,32 @@ def apply_persistence(
         )
     )
 
+    # ========================================================
+    # STATE FRESHNESS
+    # ========================================================
+
+    state_age_seconds = (
+        now - old_timestamp
+        if old_timestamp > 0
+        else 999999
+    )
+
     state_is_fresh = (
         old_timestamp > 0
-        and now
-        - old_timestamp
+        and 0 <= state_age_seconds
         <= MAX_STREAK_GAP_SECONDS
     )
+
+    # ========================================================
+    # STREAK
+    # ========================================================
 
     if (
         current_score >= 65
         and old_score >= 65
         and state_is_fresh
     ):
-        streak = (
-            old_streak + 1
-        )
+        streak = old_streak + 1
 
     elif current_score >= 65:
         streak = 1
@@ -2080,61 +2096,246 @@ def apply_persistence(
     else:
         streak = 0
 
+    # ========================================================
+    # LIVE PRICE MOVEMENT
+    # ========================================================
+
     current_price = safe_float(
-        result.get("price", 0),
+        result.get(
+            "price",
+            0,
+        ),
         0.0,
     )
+
     old_price = safe_float(
-        previous.get("price", 0),
+        previous.get(
+            "price",
+            0,
+        ),
         0.0,
     )
 
     price_change_since_scan = 0.0
-    if old_price > 0 and current_price > 0:
+
+    if (
+        state_is_fresh
+        and old_price > 0
+        and current_price > 0
+    ):
         price_change_since_scan = (
-            (current_price - old_price)
+            (
+                current_price
+                - old_price
+            )
             / old_price
         ) * 100.0
 
-    current_flow = safe_float(
-        result.get("order_flow", 0),
-        0.0,
+    # ========================================================
+    # PRICE SPEED
+    #
+    # Instead of looking only at raw % change,
+    # normalize the move by elapsed time.
+    # ========================================================
+
+    minutes_since_scan = (
+        max(
+            state_age_seconds,
+            1,
+        )
+        / 60.0
     )
-    old_flow = safe_float(
-        previous.get("order_flow", 0),
-        0.0,
-    )
-    flow_delta = (
-        current_flow - old_flow
-        if old_flow > 0
+
+    price_change_per_minute = (
+        price_change_since_scan
+        / minutes_since_scan
+        if minutes_since_scan > 0
         else 0.0
     )
 
+    # ========================================================
+    # ORDER FLOW
+    # ========================================================
+
+    current_flow = safe_float(
+        result.get(
+            "order_flow",
+            0,
+        ),
+        0.0,
+    )
+
+    old_flow = safe_float(
+        previous.get(
+            "order_flow",
+            0,
+        ),
+        0.0,
+    )
+
+    flow_delta = (
+        current_flow
+        - old_flow
+        if (
+            state_is_fresh
+            and old_flow > 0
+        )
+        else 0.0
+    )
+
+    # ========================================================
+    # FLOW ACCELERATION
+    #
+    # Compare the latest flow delta with the previous
+    # scan's stored flow delta.
+    # ========================================================
+
+    old_flow_delta = safe_float(
+        previous.get(
+            "micro_flow_delta",
+            0,
+        ),
+        0.0,
+    )
+
+    flow_acceleration = (
+        flow_delta
+        - old_flow_delta
+        if state_is_fresh
+        else 0.0
+    )
+
+    # ========================================================
+    # PRICE ACCELERATION
+    #
+    # Previous MICRO price change is stored in the state.
+    # This allows the next scan to detect strengthening
+    # movement rather than a single isolated tick.
+    # ========================================================
+
+    old_micro_price_change = safe_float(
+        previous.get(
+            "micro_price_change",
+            0,
+        ),
+        0.0,
+    )
+
+    price_acceleration = (
+        price_change_since_scan
+        - old_micro_price_change
+        if state_is_fresh
+        else 0.0
+    )
+
+    # ========================================================
+    # SPREAD
+    # ========================================================
+
     spread_bps = safe_float(
-        result.get("spread_bps", 999),
+        result.get(
+            "spread_bps",
+            999,
+        ),
         999.0,
     )
 
-    micro_early = (
+    # ========================================================
+    # MICRO EARLY WARNING
+    #
+    # IMPORTANT:
+    # This is an additional early-warning layer.
+    # It does NOT replace the original PRE-MOVE score.
+    # ========================================================
+
+    base_micro_signal = (
         state_is_fresh
         and MICRO_MIN_PRICE_CHANGE
         <= price_change_since_scan
         <= MICRO_MAX_PRICE_CHANGE
-        and current_flow >= MICRO_MIN_FLOW
-        and flow_delta >= MICRO_MIN_FLOW_DELTA
-        and spread_bps <= MICRO_MAX_SPREAD_BPS
-        and result.get("structure", 0) >= 4
-        and 45 <= result.get("rsi", 50) <= 68
-        and result.get("momentum_1h", 99) <= 2.8
-        and result.get("momentum_4h", 99) <= 7.0
-        and result.get("momentum_15m", 99) <= 2.0
-        and not result.get("high_risk_jump")
+        and current_flow
+        >= MICRO_MIN_FLOW
+        and flow_delta
+        >= MICRO_MIN_FLOW_DELTA
+        and spread_bps
+        <= MICRO_MAX_SPREAD_BPS
+        and result.get(
+            "structure",
+            0,
+        ) >= 4
+        and 45
+        <= result.get(
+            "rsi",
+            50,
+        )
+        <= 68
+        and result.get(
+            "momentum_1h",
+            99,
+        ) <= 2.8
+        and result.get(
+            "momentum_4h",
+            99,
+        ) <= 7.0
+        and result.get(
+            "momentum_15m",
+            99,
+        ) <= 2.0
+        and not result.get(
+            "high_risk_jump"
+        )
     )
+
+    # ========================================================
+    # MICRO STRENGTHENING
+    #
+    # A stronger warning requires evidence that buying
+    # pressure is strengthening, not merely appearing once.
+    # ========================================================
+
+    micro_strengthening = (
+        (
+            price_acceleration
+            >= 0.03
+            and flow_acceleration
+            >= 0.02
+        )
+        or (
+            flow_delta
+            >= 0.10
+            and price_change_per_minute
+            >= 0.03
+        )
+    )
+
+    # ========================================================
+    # FINAL MICRO SIGNAL
+    #
+    # Base signal remains possible even without acceleration.
+    # Strengthening signal is marked separately so that we
+    # can later measure which type performs better.
+    # ========================================================
+
+    micro_early = base_micro_signal
+
+    micro_strength = (
+        base_micro_signal
+        and micro_strengthening
+    )
+
+    # ========================================================
+    # SCORE STRENGTHENING
+    # ========================================================
 
     strengthening = (
         current_score
         >= old_score + 5
     )
+
+    # ========================================================
+    # CONFIRMED PRE-MOVE
+    # Original logic preserved.
+    # ========================================================
 
     confirmed = (
         bool(
@@ -2146,15 +2347,54 @@ def apply_persistence(
         and streak >= 2
     )
 
+    # ========================================================
+    # OUTPUT STATE
+    # ========================================================
+
     result["previous_score"] = (
         old_score
     )
 
-    result["price_change_since_scan"] = price_change_since_scan
-    result["flow_delta"] = flow_delta
-    result["micro_early"] = micro_early
+    result["state_age_seconds"] = (
+        state_age_seconds
+    )
 
-    result["streak"] = streak
+    result["price_change_since_scan"] = (
+        price_change_since_scan
+    )
+
+    result["price_change_per_minute"] = (
+        price_change_per_minute
+    )
+
+    result["flow_delta"] = (
+        flow_delta
+    )
+
+    result["flow_acceleration"] = (
+        flow_acceleration
+    )
+
+    result["price_acceleration"] = (
+        price_acceleration
+    )
+
+    result["micro_strengthening"] = (
+        micro_strengthening
+    )
+
+    result["micro_early"] = (
+        micro_early
+    )
+
+    result["micro_strength"] = (
+        micro_strength
+    )
+
+    result["streak"] = (
+        streak
+    )
+
     result["strengthening"] = (
         strengthening
     )
