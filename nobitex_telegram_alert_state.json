@@ -326,9 +326,9 @@
     "buildup_flow_delta": 0.08655922108155134,
     "buildup_spread_bps": 10.147442956220303,
     "buildup_pressure_change": -0.1036124869355372,
-    "fast_score": 63,
-    "fast_timestamp": 1790369483,
-    "fast_price": 0.09808164999999999,
+    "fast_score": 78,
+    "fast_timestamp": 1790377815,
+    "fast_price": 0.09899630000000001,
     "fast_alert_type": "FAST"
   },
   "ENAUSDT": {
@@ -1412,10 +1412,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "DOTUSDT": {
-    "score": 89,
-    "streak": 10,
-    "timestamp": 1790346585,
-    "price": 1.178,
+    "score": 91,
+    "streak": 5,
+    "timestamp": 1790377815,
+    "price": 1.2115,
     "alert_type": "CONFIRMED",
     "micro_timestamp": 1790356808,
     "micro_score": 64.0,
@@ -1607,6 +1607,17 @@
     "micro_momentum_4h": 3.079999999999994,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 66,
+    "fast_timestamp": 1790377816,
+    "fast_price": 0.2626,
+    "fast_alert_type": "FAST"
+  },
+  "EGALAUSDT": {
+    "score": 88,
+    "streak": 14,
+    "timestamp": 1790377816,
+    "price": 0.002175,
+    "alert_type": "CONFIRMED"
   }
 }
