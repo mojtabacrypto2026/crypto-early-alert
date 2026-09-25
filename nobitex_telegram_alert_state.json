@@ -378,7 +378,11 @@
     "streak": 2,
     "timestamp": 1790296769,
     "price": 0.41390000000000005,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 80,
+    "fast_timestamp": 1790325286,
+    "fast_price": 0.4155,
+    "fast_alert_type": "FAST"
   },
   "ETHUSDT": {
     "micro_timestamp": 1790298942,
@@ -403,9 +407,9 @@
     "fast_alert_type": "FAST"
   },
   "XRPUSDT": {
-    "micro_timestamp": 1790300837,
-    "micro_score": 75,
-    "micro_price": 1.541825,
+    "micro_timestamp": 1790325287,
+    "micro_score": 73,
+    "micro_price": 1.544125,
     "micro_alert_type": "MICRO",
     "fast_score": 64,
     "fast_timestamp": 1790322393,
@@ -460,5 +464,12 @@
     "fast_timestamp": 1790324356,
     "fast_price": 0.1149,
     "fast_alert_type": "FAST"
+  },
+  "SLPUSDT": {
+    "score": 90,
+    "streak": 3,
+    "timestamp": 1790325286,
+    "price": 0.0006957,
+    "alert_type": "CONFIRMED"
   }
 }
