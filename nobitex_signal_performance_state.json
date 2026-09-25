@@ -3502,6 +3502,11 @@
           "price": 0.22749999999999998,
           "return_percent": 2.2471910112359446,
           "timestamp": 1790300220
+        },
+        "4h": {
+          "price": 0.224,
+          "return_percent": 0.6741573033707872,
+          "timestamp": 1790307230
         }
       },
       "max_return": 6.044943820224715,
@@ -4053,6 +4058,11 @@
           "price": 0.10935,
           "return_percent": -0.2281021897810221,
           "timestamp": 1790303912
+        },
+        "2h": {
+          "price": 0.10855,
+          "return_percent": -0.9580291970803003,
+          "timestamp": 1790307230
         }
       },
       "max_return": 0.8667883211678764,
@@ -4084,6 +4094,11 @@
           "price": 84495.845,
           "return_percent": 0.03638780556849466,
           "timestamp": 1790303912
+        },
+        "2h": {
+          "price": 84173.225,
+          "return_percent": -0.345568720623202,
+          "timestamp": 1790307230
         }
       },
       "max_return": 0.33132615348516153,
@@ -4115,6 +4130,11 @@
           "price": 0.038255,
           "return_percent": -0.5588770470496668,
           "timestamp": 1790303912
+        },
+        "2h": {
+          "price": 0.03794,
+          "return_percent": -1.3776969066805371,
+          "timestamp": 1790307230
         }
       },
       "max_return": 0.948791265921472,
@@ -4386,8 +4406,8 @@
           "timestamp": 1790306469
         }
       },
-      "max_return": 0.33313345326136934,
-      "max_price": 0.75295,
+      "max_return": 0.6529415683922851,
+      "max_price": 0.75535,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -4414,6 +4434,21 @@
         "5pct": null
       },
       "registered_at": 1790305565
+    },
+    "CVCUSDT_MICRO_1790307229": {
+      "symbol": "CVCUSDT",
+      "type": "MICRO",
+      "alert_time": 1790307229,
+      "alert_price": 0.03049,
+      "score": 52,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.03049,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790307230
     }
   },
   "milestones": {},
@@ -4449,30 +4484,30 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 94,
+      "count": 97,
       "positive": 40,
-      "positive_rate": 42.5531914893617,
-      "average_return": -0.1260542183446898,
+      "positive_rate": 41.23711340206185,
+      "average_return": -0.14979784895654516,
       "best_return": 4.730983302411889,
       "worst_return": -3.1332217172925136,
       "hit_2pct": 11,
       "hit_5pct": 0
     },
     "4h": {
-      "count": 79,
-      "positive": 32,
-      "positive_rate": 40.50632911392405,
-      "average_return": 0.004394227971114625,
+      "count": 80,
+      "positive": 33,
+      "positive_rate": 41.25,
+      "average_return": 0.012766266413610533,
       "best_return": 15.534894668706603,
       "worst_return": -4.971135343168691,
       "hit_2pct": 15,
       "hit_5pct": 4
     },
     "MFE": {
-      "count": 107,
+      "count": 108,
       "positive": 98,
-      "positive_rate": 91.58878504672897,
-      "average_return": 2.6772212232653723,
+      "positive_rate": 90.74074074074075,
+      "average_return": 2.655393324115979,
       "best_return": 26.009179710486052,
       "worst_return": 0.0,
       "hit_2pct": 45,
@@ -4493,8 +4528,8 @@
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 79,
+    "completed_4h": 80,
     "reliable": false
   },
-  "updated_at": 1790306469
+  "updated_at": 1790307230
 }
