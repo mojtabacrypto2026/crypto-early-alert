@@ -1,9 +1,9 @@
 {
   "ZROUSDT": {
-    "score": 82,
-    "streak": 5,
-    "timestamp": 1790218958,
-    "price": 1.594,
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1790335480,
+    "price": 1.528,
     "alert_type": "CONFIRMED",
     "fast_score": 66,
     "fast_timestamp": 1790192232,
@@ -461,6 +461,11 @@
     "fast_alert_type": "FAST"
   },
   "AUSDT": {
+    "score": 87,
+    "streak": 2,
+    "timestamp": 1790335478,
+    "price": 0.1003,
+    "alert_type": "CONFIRMED",
     "fast_score": 60,
     "fast_timestamp": 1790300220,
     "fast_price": 0.0991,
@@ -519,10 +524,22 @@
     "fast_timestamp": 1790329830,
     "fast_price": 0.21998499999999999,
     "fast_alert_type": "FAST",
-    "micro_timestamp": 1790329085,
-    "micro_score": 86,
-    "micro_price": 0.219845,
-    "micro_alert_type": "MICRO"
+    "micro_timestamp": 1790335479,
+    "micro_score": 78.0,
+    "micro_price": 0.22288,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.919175911251983,
+    "micro_flow": 2.0895702877432893,
+    "micro_flow_delta": 0.5329298837167789,
+    "micro_spread_bps": 5.3840631730082995,
+    "micro_rsi": 66.46207469248782,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.42005420054199927,
+    "micro_momentum_1h": 0.6500886484520683,
+    "micro_momentum_4h": 2.126481848793765,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v2"
   },
   "ALGOUSDT": {
     "score": 86,
@@ -682,5 +699,12 @@
     "fast_timestamp": 1790334541,
     "fast_price": 0.05023,
     "fast_alert_type": "FAST"
+  },
+  "DYDXUSDT": {
+    "score": 81,
+    "streak": 2,
+    "timestamp": 1790335479,
+    "price": 0.13490000000000002,
+    "alert_type": "CONFIRMED"
   }
 }
