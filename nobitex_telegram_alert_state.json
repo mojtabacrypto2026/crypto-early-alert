@@ -109,31 +109,19 @@
     "micro_alert_type": "MICRO"
   },
   "PENDLEUSDT": {
-    "score": 80,
+    "score": 92,
     "streak": 2,
-    "timestamp": 1790298942,
-    "price": 2.618,
+    "timestamp": 1790339421,
+    "price": 2.5975,
     "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790337011,
-    "micro_score": 54.0,
-    "micro_price": 2.627,
-    "micro_alert_type": "MICRO",
     "fast_score": 59,
     "fast_timestamp": 1790332688,
     "fast_price": 2.6135,
     "fast_alert_type": "FAST",
-    "micro_price_change": 0.5550239234449744,
-    "micro_flow": 2.112306052997448,
-    "micro_flow_delta": 0.5423552749076868,
-    "micro_spread_bps": 30.452988199465413,
-    "micro_rsi": 55.57397536797864,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": -0.03813882532417581,
-    "micro_momentum_1h": -3.1296572280178863,
-    "micro_momentum_4h": 2.1611001964636603,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2"
+    "micro_timestamp": 1790337011,
+    "micro_score": 54.0,
+    "micro_price": 2.627,
+    "micro_alert_type": "MICRO"
   },
   "JASMYUSDT": {
     "score": 91,
@@ -159,6 +147,11 @@
     "micro_alert_type": "MICRO"
   },
   "RENDERUSDT": {
+    "score": 87,
+    "streak": 2,
+    "timestamp": 1790339421,
+    "price": 1.9595,
+    "alert_type": "CONFIRMED",
     "fast_score": 65,
     "fast_timestamp": 1790263137,
     "fast_price": 1.8455,
@@ -232,7 +225,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 72,
+    "fast_timestamp": 1790339420,
+    "fast_price": 10.5915,
+    "fast_alert_type": "FAST"
   },
   "AEVOUSDT": {
     "score": 85,
@@ -808,5 +805,12 @@
     "fast_timestamp": 1790338194,
     "fast_price": 0.041235,
     "fast_alert_type": "FAST"
+  },
+  "CRVUSDT": {
+    "score": 86,
+    "streak": 2,
+    "timestamp": 1790339420,
+    "price": 0.34675,
+    "alert_type": "CONFIRMED"
   }
 }
