@@ -315,7 +315,16 @@
     "micro_momentum_4h": 1.790313904932734,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2"
+    "micro_trigger_version": "telemetry-v2",
+    "buildup_timestamp": 1790364157,
+    "buildup_score": 70.0,
+    "buildup_price": 0.09755905000000001,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.08869159127797524,
+    "buildup_flow": 1.7122505285206837,
+    "buildup_flow_delta": 1.1871598803734909,
+    "buildup_spread_bps": 7.164891417044112,
+    "buildup_pressure_change": 0.23825325268267397
   },
   "ENAUSDT": {
     "micro_timestamp": 1790323022,
@@ -1281,7 +1290,23 @@
     "streak": 14,
     "timestamp": 1790344932,
     "price": 0.17625000000000002,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "micro_timestamp": 1790364157,
+    "micro_score": 90.0,
+    "micro_price": 0.18059999999999998,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.8093776165224555,
+    "micro_flow": 1.743222290597944,
+    "micro_flow_delta": 0.8126651874418543,
+    "micro_spread_bps": 33.222591362127204,
+    "micro_rsi": 64.10435938915481,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.783435926133191,
+    "micro_momentum_1h": 0.39325842696629565,
+    "micro_momentum_4h": 2.642159678345774,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "TURBOUSDT": {
     "score": 83,
@@ -1406,7 +1431,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 63,
+    "fast_timestamp": 1790364156,
+    "fast_price": 0.158585,
+    "fast_alert_type": "FAST"
   },
   "WETUSDT": {
     "score": 80,
@@ -1432,5 +1461,19 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "COOKIEUSDT": {
+    "score": 82,
+    "streak": 2,
+    "timestamp": 1790364156,
+    "price": 0.01213,
+    "alert_type": "CONFIRMED"
+  },
+  "MANAUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1790364157,
+    "price": 0.091,
+    "alert_type": "CONFIRMED"
   }
 }
