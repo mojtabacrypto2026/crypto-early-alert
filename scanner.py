@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-NOBITEX EARLY MOVE RADAR - ONE-TIME CLEAN FINAL
+NOBITEX EARLY MOVE RADAR - EARLY WARNING V4
 
 هدف:
 - اسکن بازار USDT نوبیتکس
@@ -81,7 +81,25 @@ MICRO_MAX_PRICE_CHANGE = 1.20
 MICRO_MIN_FLOW = 1.08
 MICRO_MIN_FLOW_DELTA = 0.05
 MICRO_MAX_SPREAD_BPS = 35.0
+MICRO_MAX_M15_DOWNSIDE = 1.00
+MICRO_MAX_1H_DOWNSIDE = 2.50
 MICRO_ALERT_COOLDOWN_SECONDS = 90 * 60
+
+# Earlier-than-MICRO pressure build. This catches strong order-book pressure
+# while price is still nearly flat, without changing the original score.
+BUILDUP_MIN_FLOW = 1.18
+BUILDUP_MIN_FLOW_DELTA = 0.08
+BUILDUP_MAX_SPREAD_BPS = 25.0
+BUILDUP_MAX_SPREAD_WIDENING_BPS = 3.0
+BUILDUP_MIN_PRICE_CHANGE = -0.10
+BUILDUP_MAX_PRICE_CHANGE = 0.35
+BUILDUP_MIN_SCORE = 60
+BUILDUP_MIN_STRUCTURE = 5
+BUILDUP_MAX_RESISTANCE = 2.50
+BUILDUP_MAX_M15_DOWNSIDE = 0.80
+BUILDUP_MAX_1H_DOWNSIDE = 2.00
+BUILDUP_MAX_4H_DOWNSIDE = 5.00
+BUILDUP_COOLDOWN_SECONDS = 2 * 60 * 60
 
 NEWS_POSITIVE_STRONG = (
     "etf approval",
@@ -1286,6 +1304,13 @@ def _parse_news_timestamp(
         return 0
 
 
+NEWS_AMBIGUOUS_TICKERS = {
+    "ONE", "NEAR", "LINK", "ATOM", "DOT", "OP", "INJ",
+    "ARB", "APT", "SAND", "MANA", "FLOW", "COMP", "FIL",
+    "RAY", "JUP", "UNI", "TON", "SEI", "SUI", "TRX",
+}
+
+
 def news_terms(symbol):
     base = str(
         symbol
@@ -1301,10 +1326,10 @@ def news_terms(symbol):
         )
     )
 
-    if (
-        len(base) >= 3
-        or base in NEWS_SHORT_SAFE
-    ):
+    # Do not use ambiguous short tickers as generic English words.
+    if base in NEWS_SHORT_SAFE and base not in NEWS_AMBIGUOUS_TICKERS:
+        terms.append(base)
+    elif len(base) >= 4:
         terms.append(base)
 
     output = []
@@ -2115,6 +2140,32 @@ def apply_persistence(
         999.0,
     )
 
+    old_spread_bps = safe_float(
+        previous.get("spread_bps", 999),
+        999.0,
+    )
+
+    old_price_change = safe_float(
+        previous.get("price_change_since_scan", 0),
+        0.0,
+    )
+
+    price_change_acceleration = (
+        price_change_since_scan - old_price_change
+        if old_price > 0
+        else 0.0
+    )
+
+    spread_stable = (
+        old_spread_bps >= 900
+        or spread_bps <= old_spread_bps + 10.0
+    )
+
+    buildup_spread_stable = (
+        old_spread_bps >= 900
+        or spread_bps <= old_spread_bps + BUILDUP_MAX_SPREAD_WIDENING_BPS
+    )
+
     micro_early = (
         state_is_fresh
         and MICRO_MIN_PRICE_CHANGE
@@ -2123,11 +2174,36 @@ def apply_persistence(
         and current_flow >= MICRO_MIN_FLOW
         and flow_delta >= MICRO_MIN_FLOW_DELTA
         and spread_bps <= MICRO_MAX_SPREAD_BPS
+        and spread_stable
         and result.get("structure", 0) >= 4
         and 45 <= result.get("rsi", 50) <= 68
-        and result.get("momentum_1h", 99) <= 2.8
-        and result.get("momentum_4h", 99) <= 7.0
-        and result.get("momentum_15m", 99) <= 2.0
+        and -MICRO_MAX_1H_DOWNSIDE <= result.get("momentum_1h", 99) <= 2.8
+        and -MICRO_MAX_1H_DOWNSIDE <= result.get("momentum_4h", 99) <= 7.0
+        and -MICRO_MAX_M15_DOWNSIDE <= result.get("momentum_15m", 99) <= 2.0
+        and not result.get("high_risk_jump")
+    )
+
+    buildup_early = (
+        state_is_fresh
+        and BUILDUP_MIN_PRICE_CHANGE
+        <= price_change_since_scan
+        <= BUILDUP_MAX_PRICE_CHANGE
+        and current_flow >= BUILDUP_MIN_FLOW
+        and flow_delta >= BUILDUP_MIN_FLOW_DELTA
+        and spread_bps <= BUILDUP_MAX_SPREAD_BPS
+        and buildup_spread_stable
+        and result.get("score", 0) >= BUILDUP_MIN_SCORE
+        and result.get("structure", 0) >= BUILDUP_MIN_STRUCTURE
+        and 45 <= result.get("rsi", 50) <= 66
+        and result.get("resistance", 99) <= BUILDUP_MAX_RESISTANCE
+        and -BUILDUP_MAX_M15_DOWNSIDE <= result.get("momentum_15m", 99) <= 1.5
+        and -BUILDUP_MAX_1H_DOWNSIDE <= result.get("momentum_1h", 99) <= 2.5
+        and -BUILDUP_MAX_4H_DOWNSIDE <= result.get("momentum_4h", 99) <= 6.5
+        and (
+            price_change_since_scan >= 0.0
+            or price_change_acceleration > 0.0
+            or flow_delta >= 0.15
+        )
         and not result.get("high_risk_jump")
     )
 
@@ -2152,7 +2228,9 @@ def apply_persistence(
 
     result["price_change_since_scan"] = price_change_since_scan
     result["flow_delta"] = flow_delta
+    result["price_change_acceleration"] = price_change_acceleration
     result["micro_early"] = micro_early
+    result["buildup_early"] = buildup_early
 
     result["streak"] = streak
     result["strengthening"] = (
@@ -2329,6 +2407,15 @@ def prune_alert_state(
                     0,
                 )
             ),
+            int(
+                safe_float(
+                    entry.get(
+                        "buildup_timestamp",
+                        0,
+                    ),
+                    0,
+                )
+            ),
         ]
 
         latest = max(
@@ -2486,6 +2573,27 @@ def smart_alert(
         "micro_score",
         "micro_price",
         "micro_alert_type",
+        "micro_price_change",
+        "micro_flow",
+        "micro_flow_delta",
+        "micro_spread_bps",
+        "micro_rsi",
+        "micro_structure",
+        "micro_momentum_15m",
+        "micro_momentum_1h",
+        "micro_momentum_4h",
+        "micro_state_fresh",
+        "micro_high_risk",
+        "micro_trigger_version",
+        "buildup_timestamp",
+        "buildup_score",
+        "buildup_price",
+        "buildup_alert_type",
+        "buildup_price_change",
+        "buildup_flow",
+        "buildup_flow_delta",
+        "buildup_spread_bps",
+        "buildup_pressure_change",
     ):
         if key in old:
             entry[key] = old[key]
@@ -2596,6 +2704,67 @@ def fast_alert(
     return True
 
 
+def build_buildup_alert(result):
+    return (
+        "🟡 PRESSURE BUILD EARLY WARNING\n\n"
+        f"🪙 {result['symbol']}\n"
+        f"💰 Price: {result['price']:.8g}\n"
+        f"📈 Since last scan: {result['price_change_since_scan']:+.2f}%\n"
+        f"🌊 Order flow: {result['order_flow']:.2f} "
+        f"(Δ {result['flow_delta']:+.2f})\n"
+        f"📏 Spread: {result['spread_bps']:.1f} bps\n"
+        f"⭐ Technical score: {result['score']}/100\n"
+        f"📈 RSI: {result['rsi']:.1f}\n"
+        f"🏗 Structure: {result['structure']}/8\n"
+        f"🎯 Resistance: {result['resistance']:.2f}%\n"
+        f"15m: {result['momentum_15m']:+.2f}% | "
+        f"1H: {result['momentum_1h']:+.2f}% | "
+        f"4H: {result['momentum_4h']:+.2f}%\n\n"
+        "🟠 فشار خرید در order book قوی‌تر شده در حالی که قیمت هنوز "
+        "تقریباً آرام است؛ این پیش‌هشدار بسیار زود است و تأیید جهش نیست."
+    )
+
+
+def buildup_alert(result, alert_state, alerts_enabled):
+    if not alerts_enabled or not result.get("buildup_early"):
+        return False
+
+    if (
+        result.get("news_sentiment") == "negative"
+        and result.get("news_age_minutes", 999999) * 60 <= NEWS_FRESH_SECONDS
+    ):
+        return False
+
+    symbol = result["symbol"]
+    old = alert_state.get(symbol, {})
+    old_timestamp = int(safe_float(old.get("buildup_timestamp"), 0))
+    old_score = safe_float(old.get("buildup_score"), 0)
+    now = int(time.time())
+
+    if (
+        old_timestamp > 0
+        and now - old_timestamp < BUILDUP_COOLDOWN_SECONDS
+        and result["score"] < old_score + 5
+    ):
+        return False
+
+    if not telegram_send(build_buildup_alert(result)):
+        return False
+
+    current = alert_state.get(symbol, {})
+    current["buildup_timestamp"] = now
+    current["buildup_score"] = safe_float(result.get("score"), 0.0)
+    current["buildup_price"] = safe_float(result.get("price"), 0.0)
+    current["buildup_alert_type"] = "BUILDUP"
+    current["buildup_price_change"] = safe_float(result.get("price_change_since_scan"), 0.0)
+    current["buildup_flow"] = safe_float(result.get("order_flow"), 0.0)
+    current["buildup_flow_delta"] = safe_float(result.get("flow_delta"), 0.0)
+    current["buildup_spread_bps"] = safe_float(result.get("spread_bps"), 999.0)
+    current["buildup_pressure_change"] = safe_float(result.get("price_change_acceleration"), 0.0)
+    alert_state[symbol] = current
+    return True
+
+
 def build_micro_alert(result):
     return (
         "⚡ MICRO EARLY WARNING\n\n"
@@ -2620,6 +2789,12 @@ def micro_alert(result, alert_state, alerts_enabled):
     if not alerts_enabled or not result.get("micro_early"):
         return False
 
+    if (
+        result.get("news_sentiment") == "negative"
+        and result.get("news_age_minutes", 999999) * 60 <= NEWS_FRESH_SECONDS
+    ):
+        return False
+
     symbol = result["symbol"]
     old = alert_state.get(symbol, {})
     old_timestamp = int(safe_float(old.get("micro_timestamp"), 0))
@@ -2637,49 +2812,22 @@ def micro_alert(result, alert_state, alerts_enabled):
         return False
 
     current = alert_state.get(symbol, {})
-
-    # MICRO telemetry: persist every trigger input that the performance tracker
-    # needs so we can audit exactly why the warning fired and tune the layer
-    # from real data instead of guesses.
     current["micro_timestamp"] = now
     current["micro_score"] = safe_float(result.get("score"), 0.0)
     current["micro_price"] = safe_float(result.get("price"), 0.0)
-    current["micro_price_change"] = safe_float(
-        result.get("price_change_since_scan"), 0.0
-    )
-    current["micro_flow"] = safe_float(
-        result.get("order_flow"), 0.0
-    )
-    current["micro_flow_delta"] = safe_float(
-        result.get("flow_delta"), 0.0
-    )
-    current["micro_spread_bps"] = safe_float(
-        result.get("spread_bps"), 999.0
-    )
-    current["micro_rsi"] = safe_float(
-        result.get("rsi"), 50.0
-    )
-    current["micro_structure"] = safe_float(
-        result.get("structure"), 0.0
-    )
-    current["micro_momentum_15m"] = safe_float(
-        result.get("momentum_15m"), 0.0
-    )
-    current["micro_momentum_1h"] = safe_float(
-        result.get("momentum_1h"), 0.0
-    )
-    current["micro_momentum_4h"] = safe_float(
-        result.get("momentum_4h"), 0.0
-    )
-    current["micro_state_fresh"] = bool(
-        result.get("state_fresh")
-    )
-    current["micro_high_risk"] = bool(
-        result.get("high_risk_jump")
-    )
-    current["micro_trigger_version"] = "telemetry-v2"
     current["micro_alert_type"] = "MICRO"
-
+    current["micro_price_change"] = safe_float(result.get("price_change_since_scan"), 0.0)
+    current["micro_flow"] = safe_float(result.get("order_flow"), 0.0)
+    current["micro_flow_delta"] = safe_float(result.get("flow_delta"), 0.0)
+    current["micro_spread_bps"] = safe_float(result.get("spread_bps"), 999.0)
+    current["micro_rsi"] = safe_float(result.get("rsi"), 50.0)
+    current["micro_structure"] = safe_float(result.get("structure"), 0.0)
+    current["micro_momentum_15m"] = safe_float(result.get("momentum_15m"), 0.0)
+    current["micro_momentum_1h"] = safe_float(result.get("momentum_1h"), 0.0)
+    current["micro_momentum_4h"] = safe_float(result.get("momentum_4h"), 0.0)
+    current["micro_state_fresh"] = bool(result.get("state_fresh"))
+    current["micro_high_risk"] = bool(result.get("high_risk_jump"))
+    current["micro_trigger_version"] = "telemetry-v3"
     alert_state[symbol] = current
     return True
 
@@ -2846,7 +2994,7 @@ def news_alert(
 
 def run_scan():
     print("=" * 70)
-    print("NOBITEX EARLY MOVE RADAR - ONE-TIME CLEAN FINAL")
+    print("NOBITEX EARLY MOVE RADAR - EARLY WARNING V4")
     print(time.strftime(
         "%Y-%m-%d %H:%M:%S"
     ))
@@ -2981,6 +3129,8 @@ def run_scan():
             "price": result.get("price", 0.0),
             "order_flow": result.get("order_flow", 0.0),
             "spread_bps": result.get("spread_bps", 999.0),
+            "price_change_since_scan": result.get("price_change_since_scan", 0.0),
+            "flow_delta": result.get("flow_delta", 0.0),
         }
 
     # Failed markets keep prior state.
@@ -3118,14 +3268,31 @@ def run_scan():
             f"{news_mark}"
         )
 
+    buildup_alert_count = 0
     micro_alert_count = 0
     news_alert_count = 0
     fast_alert_count = 0
     confirmed_alert_count = 0
 
-    # MICRO first: current price/orderbook changes can precede a closed 15m candle.
+    # The early-warning layers run before the normal FAST/CONFIRMED layers.
     for result in results:
-        if micro_alert(result, alert_state, coverage_ok):
+        sent_buildup = buildup_alert(
+            result,
+            alert_state,
+            coverage_ok,
+        )
+
+        if sent_buildup:
+            buildup_alert_count += 1
+
+        if (
+            not sent_buildup
+            and micro_alert(
+                result,
+                alert_state,
+                coverage_ok,
+            )
+        ):
             micro_alert_count += 1
 
         if news_alert(
@@ -3184,6 +3351,9 @@ def run_scan():
     for result in watchlist[:15]:
         fast_mark = ""
 
+        if result.get("buildup_early"):
+            fast_mark += " 🟠BUILD"
+
         if (
             result.get(
                 "fast_pre_move"
@@ -3192,7 +3362,7 @@ def run_scan():
                 "high_risk_jump"
             )
         ):
-            fast_mark = " ⚡FAST"
+            fast_mark += " ⚡FAST"
 
         news_mark = ""
 
@@ -3222,6 +3392,11 @@ def run_scan():
         )
 
     print()
+    print(
+        "Pressure-build Telegram alerts sent:",
+        buildup_alert_count,
+    )
+
     print(
         "MICRO Telegram alerts sent:",
         micro_alert_count,
