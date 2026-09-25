@@ -879,7 +879,16 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "buildup_timestamp": 1790377068,
+    "buildup_score": 68.0,
+    "buildup_price": 1.0465,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.09564801530367191,
+    "buildup_flow": 2.1978324460735803,
+    "buildup_flow_delta": 1.206469768039991,
+    "buildup_spread_bps": 9.555661729573721,
+    "buildup_pressure_change": -0.28841343452830154
   },
   "TUSDT": {
     "score": 80,
@@ -1287,7 +1296,11 @@
     "micro_momentum_4h": -0.3702896972337183,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2"
+    "micro_trigger_version": "telemetry-v2",
+    "fast_score": 61,
+    "fast_timestamp": 1790377068,
+    "fast_price": 9.4055e-05,
+    "fast_alert_type": "FAST"
   },
   "SUSHIUSDT": {
     "score": 81,
