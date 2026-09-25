@@ -173,7 +173,11 @@
     "micro_timestamp": 1790282642,
     "micro_score": 47,
     "micro_price": 0.81225,
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 63,
+    "fast_timestamp": 1790326739,
+    "fast_price": 0.8224,
+    "fast_alert_type": "FAST"
   },
   "AVAXUSDT": {
     "score": 83,
@@ -477,5 +481,16 @@
     "micro_score": 65,
     "micro_price": 1.9340000000000002,
     "micro_alert_type": "MICRO"
+  },
+  "FILUSDT": {
+    "score": 88,
+    "streak": 13,
+    "timestamp": 1790326739,
+    "price": 1.0145,
+    "alert_type": "CONFIRMED",
+    "fast_score": 88,
+    "fast_timestamp": 1790326739,
+    "fast_price": 1.0145,
+    "fast_alert_type": "FAST"
   }
 }
