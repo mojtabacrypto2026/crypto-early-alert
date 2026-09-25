@@ -287,9 +287,9 @@
     "timestamp": 1790298943,
     "price": 0.1096,
     "alert_type": "CONFIRMED",
-    "fast_score": 65,
-    "fast_timestamp": 1790296770,
-    "fast_price": 0.1091,
+    "fast_score": 86,
+    "fast_timestamp": 1790299669,
+    "fast_price": 0.1096,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790285280,
     "micro_score": 53,
@@ -425,7 +425,11 @@
     "micro_timestamp": 1790295499,
     "micro_score": 61,
     "micro_price": 84421.215,
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 68,
+    "fast_timestamp": 1790299669,
+    "fast_price": 84465.10999999999,
+    "fast_alert_type": "FAST"
   },
   "HMSTRUSDT": {
     "micro_timestamp": 1790295499,
@@ -444,6 +448,12 @@
     "micro_timestamp": 1790298942,
     "micro_score": 60,
     "micro_price": 2693.615,
+    "micro_alert_type": "MICRO"
+  },
+  "TNSRUSDT": {
+    "micro_timestamp": 1790299670,
+    "micro_score": 67,
+    "micro_price": 0.038470000000000004,
     "micro_alert_type": "MICRO"
   }
 }
