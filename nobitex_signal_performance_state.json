@@ -1306,8 +1306,8 @@
           "timestamp": 1790251361
         }
       },
-      "max_return": 15.277432197063934,
-      "max_price": 0.23165,
+      "max_return": 15.94924110475241,
+      "max_price": 0.23299999999999998,
       "thresholds": {
         "2pct": {
           "timestamp": 1790256397,
@@ -1396,8 +1396,8 @@
           "timestamp": 1790258096
         }
       },
-      "max_return": 31.646463457690928,
-      "max_price": 0.5592999999999999,
+      "max_return": 33.9060845004119,
+      "max_price": 0.5689,
       "thresholds": {
         "2pct": {
           "timestamp": 1790251361,
@@ -1944,8 +1944,8 @@
           "timestamp": 1790281761
         }
       },
-      "max_return": 5.161964472309288,
-      "max_price": 0.5032,
+      "max_return": 5.454545454545434,
+      "max_price": 0.5045999999999999,
       "thresholds": {
         "2pct": {
           "timestamp": 1790281761,
@@ -4554,8 +4554,8 @@
           "timestamp": 1790316952
         }
       },
-      "max_return": 0.1376385685588966,
-      "max_price": 13.4595,
+      "max_return": 0.3050368276169956,
+      "max_price": 13.482,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -4726,8 +4726,8 @@
           "timestamp": 1790322394
         }
       },
-      "max_return": 0.8277773616001202,
-      "max_price": 13.4595,
+      "max_return": 0.9963293130571512,
+      "max_price": 13.482,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -4762,8 +4762,8 @@
           "timestamp": 1790318120
         }
       },
-      "max_return": 1.1346132171168921,
-      "max_price": 13.4595,
+      "max_return": 1.3036781004621156,
+      "max_price": 13.482,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -4942,8 +4942,8 @@
           "timestamp": 1790320754
         }
       },
-      "max_return": 0.751547303271432,
-      "max_price": 0.11395,
+      "max_return": 1.1494252873563178,
+      "max_price": 0.1144,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -5043,6 +5043,11 @@
           "price": 0.03783,
           "return_percent": -0.27678924476075917,
           "timestamp": 1790319860
+        },
+        "2h": {
+          "price": 0.03795,
+          "return_percent": 0.03954132068011368,
+          "timestamp": 1790323022
         }
       },
       "max_return": 0.26360880453407903,
@@ -5074,10 +5079,15 @@
           "price": 13.3975,
           "return_percent": -0.4495467379996847,
           "timestamp": 1790319860
+        },
+        "2h": {
+          "price": 13.482,
+          "return_percent": 0.1783325902808806,
+          "timestamp": 1790323022
         }
       },
-      "max_return": 0.011145786892568238,
-      "max_price": 13.4595,
+      "max_return": 0.1783325902808806,
+      "max_price": 13.482,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -5138,8 +5148,8 @@
           "timestamp": 1790320754
         }
       },
-      "max_return": 0.3522677234698349,
-      "max_price": 0.11395,
+      "max_return": 0.748568912373407,
+      "max_price": 0.1144,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -5200,8 +5210,8 @@
           "timestamp": 1790322394
         }
       },
-      "max_return": 0.14010507880909887,
-      "max_price": 71.475,
+      "max_return": 0.14711033274956772,
+      "max_price": 71.48,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -5219,6 +5229,11 @@
           "price": 571.44,
           "return_percent": 0.6942731277533136,
           "timestamp": 1790322394
+        },
+        "30m": {
+          "price": 569.45,
+          "return_percent": 0.3436123348017701,
+          "timestamp": 1790323022
         }
       },
       "max_return": 0.6951541850220152,
@@ -5235,7 +5250,13 @@
       "alert_time": 1790321615,
       "alert_price": 0.10935,
       "score": 79,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 0.10925,
+          "return_percent": -0.09144947416552617,
+          "timestamp": 1790323022
+        }
+      },
       "max_return": 0.0,
       "max_price": 0.10935,
       "thresholds": {
@@ -5250,7 +5271,13 @@
       "alert_time": 1790321615,
       "alert_price": 571.155,
       "score": 80,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 569.45,
+          "return_percent": -0.2985179154520099,
+          "timestamp": 1790323022
+        }
+      },
       "max_return": 0.0507743082000444,
       "max_price": 571.4449999999999,
       "thresholds": {
@@ -5281,8 +5308,8 @@
       "alert_price": 1.52192,
       "score": 64,
       "checkpoints": {},
-      "max_return": 0.276295731707318,
-      "max_price": 1.526125,
+      "max_return": 0.6485229184188424,
+      "max_price": 1.53179,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -5296,13 +5323,28 @@
       "alert_price": 13.394,
       "score": 86,
       "checkpoints": {},
-      "max_return": 0.16425265044049756,
-      "max_price": 13.416,
+      "max_return": 0.6570106017619769,
+      "max_price": 13.482,
       "thresholds": {
         "2pct": null,
         "5pct": null
       },
       "registered_at": 1790322394
+    },
+    "ENAUSDT_MICRO_1790323022": {
+      "symbol": "ENAUSDT",
+      "type": "MICRO",
+      "alert_time": 1790323022,
+      "alert_price": 0.22005000000000002,
+      "score": 30,
+      "checkpoints": {},
+      "max_return": 0.09088843444670663,
+      "max_price": 0.22025,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790323022
     }
   },
   "milestones": {
@@ -5310,20 +5352,20 @@
   },
   "statistics": {
     "15m": {
-      "count": 124,
+      "count": 126,
       "positive": 60,
-      "positive_rate": 48.38709677419355,
-      "average_return": -0.01549566826623745,
+      "positive_rate": 47.61904761904761,
+      "average_return": -0.018344684560563332,
       "best_return": 5.329335525679486,
       "worst_return": -2.782003912192985,
       "hit_2pct": 3,
       "hit_5pct": 1
     },
     "30m": {
-      "count": 123,
-      "positive": 56,
-      "positive_rate": 45.52845528455284,
-      "average_return": -0.07156899768572438,
+      "count": 124,
+      "positive": 57,
+      "positive_rate": 45.96774193548387,
+      "average_return": -0.06822076113340586,
       "best_return": 5.31914893617022,
       "worst_return": -4.015056461731496,
       "hit_2pct": 4,
@@ -5340,10 +5382,10 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 117,
-      "positive": 47,
-      "positive_rate": 40.17094017094017,
-      "average_return": -0.19478389530438955,
+      "count": 119,
+      "positive": 49,
+      "positive_rate": 41.17647058823529,
+      "average_return": -0.1896793431903578,
       "best_return": 4.730983302411889,
       "worst_return": -4.151271462725484,
       "hit_2pct": 12,
@@ -5360,11 +5402,11 @@
       "hit_5pct": 5
     },
     "MFE": {
-      "count": 129,
-      "positive": 117,
-      "positive_rate": 90.69767441860465,
-      "average_return": 2.47965962761213,
-      "best_return": 31.646463457690928,
+      "count": 130,
+      "positive": 118,
+      "positive_rate": 90.76923076923077,
+      "average_return": 2.50407202147129,
+      "best_return": 33.9060845004119,
       "worst_return": 0.0,
       "hit_2pct": 46,
       "hit_5pct": 20
@@ -5387,5 +5429,5 @@
     "completed_4h": 109,
     "reliable": true
   },
-  "updated_at": 1790322394
+  "updated_at": 1790323022
 }
