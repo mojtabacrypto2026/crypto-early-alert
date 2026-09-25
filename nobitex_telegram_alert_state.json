@@ -411,7 +411,11 @@
     "buildup_flow": 1.2465740096745206,
     "buildup_flow_delta": 0.15003835674801413,
     "buildup_spread_bps": 9.324009324009214,
-    "buildup_pressure_change": -0.2732408569445241
+    "buildup_pressure_change": -0.2732408569445241,
+    "fast_score": 76,
+    "fast_timestamp": 1790372104,
+    "fast_price": 0.0064115000000000005,
+    "fast_alert_type": "FAST"
   },
   "COTIUSDT": {
     "score": 88,
@@ -525,7 +529,11 @@
     "micro_momentum_4h": 1.6973327628013088,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 64,
+    "fast_timestamp": 1790372104,
+    "fast_price": 71.08500000000001,
+    "fast_alert_type": "FAST"
   },
   "AWEUSDT": {
     "score": 83,
@@ -911,22 +919,22 @@
     "fast_timestamp": 1790331901,
     "fast_price": 0.0040245,
     "fast_alert_type": "FAST",
-    "micro_timestamp": 1790356809,
-    "micro_score": 38.0,
-    "micro_price": 0.004106,
+    "micro_timestamp": 1790372105,
+    "micro_score": 46.0,
+    "micro_price": 0.0040715,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.5263802178969442,
-    "micro_flow": 1.2772578910000894,
-    "micro_flow_delta": 0.08585915472242256,
-    "micro_spread_bps": 34.09644422795938,
-    "micro_rsi": 56.13949149390274,
+    "micro_price_change": 0.18454724409448067,
+    "micro_flow": 1.2697436302423732,
+    "micro_flow_delta": 0.1419153046678383,
+    "micro_spread_bps": 17.192680830161027,
+    "micro_rsi": 55.98783411515343,
     "micro_structure": 4.0,
-    "micro_momentum_15m": 0.7354743809757206,
-    "micro_momentum_1h": -0.024509803921571878,
-    "micro_momentum_4h": -3.3183218772220786,
+    "micro_momentum_15m": -0.14763779527558882,
+    "micro_momentum_1h": -1.1092355919942136,
+    "micro_momentum_4h": 0.539347879382188,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2"
+    "micro_trigger_version": "telemetry-v3"
   },
   "TAOUSDT": {
     "score": 91,
@@ -936,10 +944,10 @@
     "alert_type": "CONFIRMED"
   },
   "DOGSUSDT": {
-    "score": 92,
-    "streak": 34,
-    "timestamp": 1790356808,
-    "price": 4.854e-05,
+    "score": 97,
+    "streak": 11,
+    "timestamp": 1790372103,
+    "price": 4.8435e-05,
     "alert_type": "CONFIRMED",
     "fast_score": 86,
     "fast_timestamp": 1790367701,
