@@ -20,9 +20,9 @@
     "timestamp": 1790250123,
     "price": 9.555,
     "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790229205,
-    "micro_score": 58,
-    "micro_price": 9.2971,
+    "micro_timestamp": 1790329083,
+    "micro_score": 56,
+    "micro_price": 9.5606,
     "micro_alert_type": "MICRO"
   },
   "VIRTUALUSDT": {
@@ -169,10 +169,10 @@
     "micro_alert_type": "MICRO"
   },
   "AAVEUSDT": {
-    "score": 85,
-    "streak": 2,
-    "timestamp": 1790282641,
-    "price": 145.39499999999998,
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790329083,
+    "price": 145.25,
     "alert_type": "CONFIRMED",
     "fast_score": 60,
     "fast_timestamp": 1790293094,
@@ -228,9 +228,9 @@
     "fast_timestamp": 1790299669,
     "fast_price": 0.1096,
     "fast_alert_type": "FAST",
-    "micro_timestamp": 1790321615,
-    "micro_score": 79,
-    "micro_price": 0.10935,
+    "micro_timestamp": 1790329084,
+    "micro_score": 65,
+    "micro_price": 0.11025,
     "micro_alert_type": "MICRO"
   },
   "WLDUSDT": {
@@ -239,9 +239,9 @@
     "timestamp": 1790327249,
     "price": 0.4512,
     "alert_type": "CONFIRMED",
-    "fast_score": 84,
-    "fast_timestamp": 1790323462,
-    "fast_price": 0.44215,
+    "fast_score": 93,
+    "fast_timestamp": 1790329085,
+    "fast_price": 0.4536,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790316952,
     "micro_score": 59,
@@ -459,10 +459,19 @@
     "fast_alert_type": "FAST"
   },
   "XLMUSDT": {
+    "score": 86,
+    "streak": 3,
+    "timestamp": 1790329086,
+    "price": 0.219845,
+    "alert_type": "CONFIRMED",
     "fast_score": 79,
     "fast_timestamp": 1790311567,
     "fast_price": 0.22202,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790329085,
+    "micro_score": 86,
+    "micro_price": 0.219845,
+    "micro_alert_type": "MICRO"
   },
   "ALGOUSDT": {
     "score": 86,
@@ -515,5 +524,12 @@
     "fast_timestamp": 1790328235,
     "fast_price": 0.7344999999999999,
     "fast_alert_type": "FAST"
+  },
+  "OPGUSDT": {
+    "score": 86,
+    "streak": 3,
+    "timestamp": 1790329084,
+    "price": 0.1283,
+    "alert_type": "CONFIRMED"
   }
 }
