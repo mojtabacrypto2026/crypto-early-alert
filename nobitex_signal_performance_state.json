@@ -889,8 +889,8 @@
           "timestamp": 1790249334
         }
       },
-      "max_return": 3.443373874585369,
-      "max_price": 0.09823499999999999,
+      "max_return": 3.4644342652556364,
+      "max_price": 0.09825500000000001,
       "thresholds": {
         "2pct": {
           "timestamp": 1790259752,
@@ -1539,8 +1539,8 @@
           "timestamp": 1790281761
         }
       },
-      "max_return": 3.410705826622446,
-      "max_price": 0.09823499999999999,
+      "max_return": 3.4317595662929765,
+      "max_price": 0.09825500000000001,
       "thresholds": {
         "2pct": {
           "timestamp": 1790259752,
@@ -4501,8 +4501,8 @@
           "timestamp": 1790309848
         }
       },
-      "max_return": 1.1060030648277663,
-      "max_price": 0.75875,
+      "max_return": 1.2325937770670905,
+      "max_price": 0.7597,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -4634,7 +4634,13 @@
       "alert_time": 1790311566,
       "alert_price": 0.26225,
       "score": 75,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 0.26165,
+          "return_percent": -0.22878932316491496,
+          "timestamp": 1790312665
+        }
+      },
       "max_return": 1.3536701620591243,
       "max_price": 0.26580000000000004,
       "thresholds": {
@@ -4649,7 +4655,13 @@
       "alert_time": 1790311567,
       "alert_price": 0.22202,
       "score": 79,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 0.220555,
+          "return_percent": -0.6598504639221665,
+          "timestamp": 1790312665
+        }
+      },
       "max_return": 0.0,
       "max_price": 0.22202,
       "thresholds": {
@@ -4665,22 +4677,37 @@
       "alert_price": 2.73405,
       "score": 58,
       "checkpoints": {},
-      "max_return": 0.031089409484107444,
-      "max_price": 2.7349,
+      "max_return": 0.09143943965912807,
+      "max_price": 2.7365500000000003,
       "thresholds": {
         "2pct": null,
         "5pct": null
       },
       "registered_at": 1790312239
+    },
+    "SNXUSDT_CONFIRMED_1790312665": {
+      "symbol": "SNXUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790312665,
+      "alert_price": 0.26185,
+      "score": 81,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.26185,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790312665
     }
   },
   "milestones": {},
   "statistics": {
     "15m": {
-      "count": 110,
+      "count": 112,
       "positive": 53,
-      "positive_rate": 48.18181818181818,
-      "average_return": 0.0013248001488255891,
+      "positive_rate": 47.32142857142857,
+      "average_return": -0.006633140809966667,
       "best_return": 5.329335525679486,
       "worst_return": -2.782003912192985,
       "hit_2pct": 3,
@@ -4727,10 +4754,10 @@
       "hit_5pct": 4
     },
     "MFE": {
-      "count": 113,
+      "count": 114,
       "positive": 102,
-      "positive_rate": 90.2654867256637,
-      "average_return": 2.582171744399799,
+      "positive_rate": 89.47368421052632,
+      "average_return": 2.5615303683327406,
       "best_return": 26.291632340826165,
       "worst_return": 0.0,
       "hit_2pct": 45,
@@ -4754,5 +4781,5 @@
     "completed_4h": 89,
     "reliable": false
   },
-  "updated_at": 1790312239
+  "updated_at": 1790312665
 }
