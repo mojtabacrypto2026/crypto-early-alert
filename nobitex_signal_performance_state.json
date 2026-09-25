@@ -44,8 +44,8 @@
           "return_percent": 5.381313965004961
         }
       },
-      "max_return": 5.381313965004961,
-      "max_price": 1.596,
+      "max_return": 7.296137339055797,
+      "max_price": 1.625,
       "min_return": -1.7167381974248794,
       "min_price": 1.4885000000000002,
       "thresholds": {
@@ -80,7 +80,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZROUSDT_FAST_1790192232": {
       "symbol": "ZROUSDT",
@@ -125,8 +125,8 @@
           "return_percent": 3.804878048780487
         }
       },
-      "max_return": 3.804878048780487,
-      "max_price": 1.596,
+      "max_return": 5.6910569105691,
+      "max_price": 1.625,
       "min_return": -3.1869918699186948,
       "min_price": 1.4885000000000002,
       "thresholds": {
@@ -136,7 +136,12 @@
           "price": 1.5695000000000001,
           "return_percent": 2.0813008130081316
         },
-        "5pct": null,
+        "5pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 2837.0,
+          "price": 1.625,
+          "return_percent": 5.6910569105691
+        },
         "minus_2pct": {
           "timestamp": 1790330398,
           "minutes_to_hit": 2302.8,
@@ -161,7 +166,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZROUSDT_CONFIRMED_1790218958": {
       "symbol": "ZROUSDT",
@@ -206,8 +211,8 @@
           "return_percent": 0.12547051442910925
         }
       },
-      "max_return": 0.12547051442910925,
-      "max_price": 1.596,
+      "max_return": 1.9447929736511864,
+      "max_price": 1.625,
       "min_return": -6.618569636135503,
       "min_price": 1.4885000000000002,
       "thresholds": {
@@ -218,6 +223,12 @@
           "minutes_to_hit": 1857.3,
           "price": 1.4929999999999999,
           "return_percent": -6.336260978670024
+        },
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 2391.6,
+          "price": 1.625,
+          "return_percent": 1.9447929736511864
         }
       },
       "metadata": {
@@ -231,7 +242,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ETCUSDT_MICRO_1790329083": {
       "symbol": "ETCUSDT",
@@ -301,7 +312,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ETCUSDT_CONFIRMED_1790250123": {
       "symbol": "ETCUSDT",
@@ -371,7 +382,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "VIRTUALUSDT_MICRO_1790326112": {
       "symbol": "VIRTUALUSDT",
@@ -441,7 +452,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "VIRTUALUSDT_FAST_1790305565": {
       "symbol": "VIRTUALUSDT",
@@ -522,7 +533,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRAMUSDT_MICRO_1790285851": {
       "symbol": "GRAMUSDT",
@@ -587,7 +598,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRAMUSDT_CONFIRMED_1790282643": {
       "symbol": "GRAMUSDT",
@@ -652,7 +663,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CAKEUSDT_FAST_1790312239": {
       "symbol": "CAKEUSDT",
@@ -728,7 +739,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CAKEUSDT_CONFIRMED_1790328236": {
       "symbol": "CAKEUSDT",
@@ -804,7 +815,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "BICOUSDT_MICRO_1790260698": {
       "symbol": "BICOUSDT",
@@ -869,7 +880,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "BICOUSDT_CONFIRMED_1790234737": {
       "symbol": "BICOUSDT",
@@ -934,7 +945,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ESPUSDT_MICRO_1790251360": {
       "symbol": "ESPUSDT",
@@ -1010,7 +1021,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ESPUSDT_CONFIRMED_1790328236": {
       "symbol": "ESPUSDT",
@@ -1085,7 +1096,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ROBOUSDT_FAST_1790235505": {
       "symbol": "ROBOUSDT",
@@ -1161,7 +1172,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ROBOUSDT_CONFIRMED_1790283233": {
       "symbol": "ROBOUSDT",
@@ -1226,7 +1237,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUPERUSDT_MICRO_1790255292": {
       "symbol": "SUPERUSDT",
@@ -1271,8 +1282,8 @@
           "return_percent": 3.7735849056603805
         }
       },
-      "max_return": 3.976777939042103,
-      "max_price": 0.1791,
+      "max_return": 4.1219158200290416,
+      "max_price": 0.17935,
       "min_return": 0.0,
       "min_price": 0.17225,
       "thresholds": {
@@ -1302,7 +1313,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PENDLEUSDT_MICRO_1790323461": {
       "symbol": "PENDLEUSDT",
@@ -1372,7 +1383,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PENDLEUSDT_CONFIRMED_1790298942": {
       "symbol": "PENDLEUSDT",
@@ -1442,7 +1453,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "JASMYUSDT_FAST_1790287999": {
       "symbol": "JASMYUSDT",
@@ -1518,7 +1529,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "JASMYUSDT_CONFIRMED_1790252473": {
       "symbol": "JASMYUSDT",
@@ -1599,7 +1610,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "REDUSDT_MICRO_1790257252": {
       "symbol": "REDUSDT",
@@ -1644,8 +1655,8 @@
           "return_percent": 14.806523824752164
         }
       },
-      "max_return": 14.806523824752164,
-      "max_price": 0.1795,
+      "max_return": 14.966421490246246,
+      "max_price": 0.17975,
       "min_return": 0.0,
       "min_price": 0.15635,
       "thresholds": {
@@ -1680,7 +1691,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "JTOUSDT_MICRO_1790263137": {
       "symbol": "JTOUSDT",
@@ -1761,7 +1772,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "RENDERUSDT_FAST_1790263137": {
       "symbol": "RENDERUSDT",
@@ -1842,7 +1853,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZBTUSDT_MICRO_1790263137": {
       "symbol": "ZBTUSDT",
@@ -1907,7 +1918,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZBTUSDT_CONFIRMED_1790328237": {
       "symbol": "ZBTUSDT",
@@ -1972,7 +1983,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_MICRO_1790286879": {
       "symbol": "FORMUSDT",
@@ -2042,7 +2053,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_FAST_1790281761": {
       "symbol": "FORMUSDT",
@@ -2118,7 +2129,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_CONFIRMED_1790327248": {
       "symbol": "FORMUSDT",
@@ -2194,7 +2205,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AAVEUSDT_FAST_1790293094": {
       "symbol": "AAVEUSDT",
@@ -2275,7 +2286,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AAVEUSDT_CONFIRMED_1790329083": {
       "symbol": "AAVEUSDT",
@@ -2356,7 +2367,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "APTUSDT_MICRO_1790282642": {
       "symbol": "APTUSDT",
@@ -2401,8 +2412,8 @@
           "return_percent": 4.358264081255769
         }
       },
-      "max_return": 4.666051092643882,
-      "max_price": 0.85015,
+      "max_return": 5.078485687903971,
+      "max_price": 0.8535,
       "min_return": 0.0,
       "min_price": 0.81225,
       "thresholds": {
@@ -2412,7 +2423,12 @@
           "price": 0.8331500000000001,
           "return_percent": 2.5730994152046818
         },
-        "5pct": null,
+        "5pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 1330.2,
+          "price": 0.8535,
+          "return_percent": 5.078485687903971
+        },
         "minus_2pct": null,
         "1pct": {
           "timestamp": 1790361536,
@@ -2432,7 +2448,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "APTUSDT_FAST_1790326739": {
       "symbol": "APTUSDT",
@@ -2477,8 +2493,8 @@
           "return_percent": 3.0702821011673143
         }
       },
-      "max_return": 3.374270428015557,
-      "max_price": 0.85015,
+      "max_return": 3.7816147859922196,
+      "max_price": 0.8535,
       "min_return": 0.0,
       "min_price": 0.8224,
       "thresholds": {
@@ -2508,7 +2524,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_CONFIRMED_1790282642": {
       "symbol": "AVAXUSDT",
@@ -2584,7 +2600,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AEVOUSDT_MICRO_1790285279": {
       "symbol": "AEVOUSDT",
@@ -2660,7 +2676,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGEUSDT_MICRO_1790298941": {
       "symbol": "DOGEUSDT",
@@ -2725,7 +2741,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ENAUSDT_MICRO_1790323022": {
       "symbol": "ENAUSDT",
@@ -2806,7 +2822,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ENAUSDT_FAST_1790292522": {
       "symbol": "ENAUSDT",
@@ -2887,7 +2903,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "POLUSDT_MICRO_1790329084": {
       "symbol": "POLUSDT",
@@ -2963,7 +2979,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "POLUSDT_FAST_1790329829": {
       "symbol": "POLUSDT",
@@ -3039,7 +3055,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "POLUSDT_CONFIRMED_1790298943": {
       "symbol": "POLUSDT",
@@ -3115,7 +3131,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WLDUSDT_MICRO_1790316952": {
       "symbol": "WLDUSDT",
@@ -3196,7 +3212,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WLDUSDT_FAST_1790329085": {
       "symbol": "WLDUSDT",
@@ -3272,7 +3288,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WLDUSDT_CONFIRMED_1790327249": {
       "symbol": "WLDUSDT",
@@ -3348,7 +3364,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZECUSDT_MICRO_1790295500": {
       "symbol": "ZECUSDT",
@@ -3423,7 +3439,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HOMEUSDT_MICRO_1790324357": {
       "symbol": "HOMEUSDT",
@@ -3493,7 +3509,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HOMEUSDT_CONFIRMED_1790285851": {
       "symbol": "HOMEUSDT",
@@ -3569,7 +3585,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "COTIUSDT_FAST_1790287998": {
       "symbol": "COTIUSDT",
@@ -3645,7 +3661,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "COTIUSDT_CONFIRMED_1790288818": {
       "symbol": "COTIUSDT",
@@ -3721,7 +3737,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CVCUSDT_MICRO_1790307229": {
       "symbol": "CVCUSDT",
@@ -3786,7 +3802,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HOLOUSDT_MICRO_1790323461": {
       "symbol": "HOLOUSDT",
@@ -3856,7 +3872,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HOLOUSDT_CONFIRMED_1790287999": {
       "symbol": "HOLOUSDT",
@@ -3926,7 +3942,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XMRUSDT_MICRO_1790321615": {
       "symbol": "XMRUSDT",
@@ -3996,7 +4012,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XMRUSDT_FAST_1790323462": {
       "symbol": "XMRUSDT",
@@ -4066,7 +4082,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XMRUSDT_CONFIRMED_1790320753": {
       "symbol": "XMRUSDT",
@@ -4136,7 +4152,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "MOVEUSDT_FAST_1790289445": {
       "symbol": "MOVEUSDT",
@@ -4212,7 +4228,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "KAITOUSDT_FAST_1790290053": {
       "symbol": "KAITOUSDT",
@@ -4277,7 +4293,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ARBUSDT_MICRO_1790290632": {
       "symbol": "ARBUSDT",
@@ -4353,7 +4369,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LTCUSDT_MICRO_1790318119": {
       "symbol": "LTCUSDT",
@@ -4423,7 +4439,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AWEUSDT_CONFIRMED_1790291819": {
       "symbol": "AWEUSDT",
@@ -4499,7 +4515,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "RSRUSDT_MICRO_1790291820": {
       "symbol": "RSRUSDT",
@@ -4575,7 +4591,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SOLUSDT_MICRO_1790302452": {
       "symbol": "SOLUSDT",
@@ -4651,7 +4667,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SOLUSDT_CONFIRMED_1790330397": {
       "symbol": "SOLUSDT",
@@ -4727,7 +4743,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XTZUSDT_CONFIRMED_1790293095": {
       "symbol": "XTZUSDT",
@@ -4792,7 +4808,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AXSUSDT_FAST_1790294125": {
       "symbol": "AXSUSDT",
@@ -4837,8 +4853,8 @@
           "return_percent": 10.06493506493509
         }
       },
-      "max_return": 10.89981447124306,
-      "max_price": 1.1955,
+      "max_return": 11.085343228200388,
+      "max_price": 1.1975,
       "min_return": 0.0,
       "min_price": 1.0779999999999998,
       "thresholds": {
@@ -4873,7 +4889,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "BASEDUSDT_CONFIRMED_1790295499": {
       "symbol": "BASEDUSDT",
@@ -4944,7 +4960,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "BTCUSDT_MICRO_1790302451": {
       "symbol": "BTCUSDT",
@@ -5009,7 +5025,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "BTCUSDT_FAST_1790299669": {
       "symbol": "BTCUSDT",
@@ -5074,7 +5090,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HMSTRUSDT_MICRO_1790302452": {
       "symbol": "HMSTRUSDT",
@@ -5139,7 +5155,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "1B_BABYDOGEUSDT_FAST_1790325286": {
       "symbol": "1B_BABYDOGEUSDT",
@@ -5210,7 +5226,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "1B_BABYDOGEUSDT_CONFIRMED_1790327247": {
       "symbol": "1B_BABYDOGEUSDT",
@@ -5275,7 +5291,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ETHUSDT_MICRO_1790298942": {
       "symbol": "ETHUSDT",
@@ -5340,7 +5356,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TNSRUSDT_MICRO_1790315630": {
       "symbol": "TNSRUSDT",
@@ -5416,7 +5432,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TNSRUSDT_FAST_1790314251": {
       "symbol": "TNSRUSDT",
@@ -5492,7 +5508,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AUSDT_FAST_1790300220": {
       "symbol": "AUSDT",
@@ -5557,7 +5573,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XRPUSDT_MICRO_1790325287": {
       "symbol": "XRPUSDT",
@@ -5633,7 +5649,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XRPUSDT_FAST_1790329830": {
       "symbol": "XRPUSDT",
@@ -5703,7 +5719,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XRPUSDT_CONFIRMED_1790329831": {
       "symbol": "XRPUSDT",
@@ -5773,7 +5789,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ATOMUSDT_FAST_1790302451": {
       "symbol": "ATOMUSDT",
@@ -5838,7 +5854,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LINKUSDT_MICRO_1790315630": {
       "symbol": "LINKUSDT",
@@ -5919,7 +5935,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LINKUSDT_CONFIRMED_1790322393": {
       "symbol": "LINKUSDT",
@@ -6000,7 +6016,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SNXUSDT_FAST_1790311566": {
       "symbol": "SNXUSDT",
@@ -6045,8 +6061,8 @@
           "return_percent": 0.19065776930412048
         }
       },
-      "max_return": 0.4957102001906667,
-      "max_price": 0.26355,
+      "max_return": 0.5147759771210746,
+      "max_price": 0.2636,
       "min_return": -2.955195424213529,
       "min_price": 0.2545,
       "thresholds": {
@@ -6070,7 +6086,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SNXUSDT_CONFIRMED_1790312665": {
       "symbol": "SNXUSDT",
@@ -6115,8 +6131,8 @@
           "return_percent": 0.3437082299026205
         }
       },
-      "max_return": 0.6492266564827112,
-      "max_price": 0.26355,
+      "max_return": 0.6683215581439654,
+      "max_price": 0.2636,
       "min_return": -2.806950544204706,
       "min_price": 0.2545,
       "thresholds": {
@@ -6140,7 +6156,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XLMUSDT_MICRO_1790329085": {
       "symbol": "XLMUSDT",
@@ -6210,7 +6226,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XLMUSDT_FAST_1790329830": {
       "symbol": "XLMUSDT",
@@ -6285,7 +6301,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XLMUSDT_CONFIRMED_1790329086": {
       "symbol": "XLMUSDT",
@@ -6355,7 +6371,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ALGOUSDT_MICRO_1790316951": {
       "symbol": "ALGOUSDT",
@@ -6412,7 +6428,13 @@
           "return_percent": 3.6547776309995603
         },
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 758.4,
+          "price": 0.11474999999999999,
+          "return_percent": 1.0568031704095049
+        }
       },
       "metadata": {
         "micro_flow": null,
@@ -6425,7 +6447,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ALGOUSDT_FAST_1790324356": {
       "symbol": "ALGOUSDT",
@@ -6495,7 +6517,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ALGOUSDT_CONFIRMED_1790313475": {
       "symbol": "ALGOUSDT",
@@ -6571,7 +6593,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SLPUSDT_CONFIRMED_1790325286": {
       "symbol": "SLPUSDT",
@@ -6647,7 +6669,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DEXEUSDT_MICRO_1790326111": {
       "symbol": "DEXEUSDT",
@@ -6712,7 +6734,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_FAST_1790326739": {
       "symbol": "FILUSDT",
@@ -6783,7 +6805,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_CONFIRMED_1790326739": {
       "symbol": "FILUSDT",
@@ -6854,7 +6876,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TUSDT_CONFIRMED_1790327248": {
       "symbol": "TUSDT",
@@ -6919,7 +6941,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ASTERUSDT_FAST_1790328235": {
       "symbol": "ASTERUSDT",
@@ -6989,7 +7011,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "OPGUSDT_CONFIRMED_1790329084": {
       "symbol": "OPGUSDT",
@@ -7059,7 +7081,7 @@
         "resistance": null
       },
       "registered_at": 1790330398,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_CONFIRMED_1790331899": {
       "symbol": "AVAXUSDT",
@@ -7135,7 +7157,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XMRUSDT_CONFIRMED_1790331902": {
       "symbol": "XMRUSDT",
@@ -7205,7 +7227,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "MOVEUSDT_CONFIRMED_1790331900": {
       "symbol": "MOVEUSDT",
@@ -7275,7 +7297,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HMSTRUSDT_CONFIRMED_1790331900": {
       "symbol": "HMSTRUSDT",
@@ -7340,7 +7362,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PUMPUSDT_MICRO_1790331900": {
       "symbol": "PUMPUSDT",
@@ -7416,7 +7438,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PUMPUSDT_FAST_1790331901": {
       "symbol": "PUMPUSDT",
@@ -7492,7 +7514,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PUMPUSDT_CONFIRMED_1790331901": {
       "symbol": "PUMPUSDT",
@@ -7568,7 +7590,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TAOUSDT_CONFIRMED_1790331901": {
       "symbol": "TAOUSDT",
@@ -7638,7 +7660,7 @@
         "resistance": null
       },
       "registered_at": 1790331902,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PENDLEUSDT_FAST_1790332688": {
       "symbol": "PENDLEUSDT",
@@ -7708,7 +7730,7 @@
         "resistance": null
       },
       "registered_at": 1790332689,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGEUSDT_MICRO_1790332687": {
       "symbol": "DOGEUSDT",
@@ -7773,7 +7795,7 @@
         "resistance": null
       },
       "registered_at": 1790332689,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGSUSDT_MICRO_1790332688": {
       "symbol": "DOGSUSDT",
@@ -7838,7 +7860,7 @@
         "resistance": null
       },
       "registered_at": 1790332689,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PROVEUSDT_CONFIRMED_1790332688": {
       "symbol": "PROVEUSDT",
@@ -7908,7 +7930,7 @@
         "resistance": null
       },
       "registered_at": 1790332689,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ASTERUSDT_CONFIRMED_1790333254": {
       "symbol": "ASTERUSDT",
@@ -7973,7 +7995,7 @@
         "resistance": null
       },
       "registered_at": 1790333255,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WUSDT_MICRO_1790333255": {
       "symbol": "WUSDT",
@@ -8030,7 +8052,13 @@
           "return_percent": 2.2537562604340518
         },
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 486.6,
+          "price": 0.01214,
+          "return_percent": 1.335559265442393
+        }
       },
       "metadata": {
         "micro_flow": 1.2886943390687278,
@@ -8043,7 +8071,7 @@
         "resistance": null
       },
       "registered_at": 1790333255,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SOLUSDT_MICRO_1790333998": {
       "symbol": "SOLUSDT",
@@ -8119,7 +8147,7 @@
         "resistance": null
       },
       "registered_at": 1790333999,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SOLUSDT_FAST_1790333999": {
       "symbol": "SOLUSDT",
@@ -8195,7 +8223,7 @@
         "resistance": null
       },
       "registered_at": 1790333999,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AEVOUSDT_CONFIRMED_1790334539": {
       "symbol": "AEVOUSDT",
@@ -8271,7 +8299,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HMSTRUSDT_CONFIRMED_1790334541": {
       "symbol": "HMSTRUSDT",
@@ -8336,7 +8364,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGSUSDT_CONFIRMED_1790334540": {
       "symbol": "DOGSUSDT",
@@ -8401,7 +8429,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "1M_PEPEUSDT_CONFIRMED_1790334539": {
       "symbol": "1M_PEPEUSDT",
@@ -8471,7 +8499,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "EGLDUSDT_MICRO_1790334540": {
       "symbol": "EGLDUSDT",
@@ -8541,7 +8569,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HYPEUSDT_FAST_1790334541": {
       "symbol": "HYPEUSDT",
@@ -8611,7 +8639,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "MAGICUSDT_FAST_1790334541": {
       "symbol": "MAGICUSDT",
@@ -8681,7 +8709,7 @@
         "resistance": null
       },
       "registered_at": 1790334542,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZROUSDT_CONFIRMED_1790335480": {
       "symbol": "ZROUSDT",
@@ -8726,8 +8754,8 @@
           "return_percent": 4.450261780104716
         }
       },
-      "max_return": 4.450261780104716,
-      "max_price": 1.596,
+      "max_return": 6.348167539267013,
+      "max_price": 1.625,
       "min_return": -1.7997382198952934,
       "min_price": 1.5005,
       "thresholds": {
@@ -8737,7 +8765,12 @@
           "price": 1.5655000000000001,
           "return_percent": 2.4541884816753985
         },
-        "5pct": null,
+        "5pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 449.6,
+          "price": 1.625,
+          "return_percent": 6.348167539267013
+        },
         "minus_2pct": null,
         "1pct": {
           "timestamp": 1790361536,
@@ -8757,7 +8790,7 @@
         "resistance": null
       },
       "registered_at": 1790335480,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AUSDT_CONFIRMED_1790335478": {
       "symbol": "AUSDT",
@@ -8822,7 +8855,7 @@
         "resistance": null
       },
       "registered_at": 1790335480,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XLMUSDT_MICRO_1790335479": {
       "symbol": "XLMUSDT",
@@ -8892,7 +8925,7 @@
         "resistance": null
       },
       "registered_at": 1790335480,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DYDXUSDT_CONFIRMED_1790335479": {
       "symbol": "DYDXUSDT",
@@ -8962,7 +8995,7 @@
         "resistance": null
       },
       "registered_at": 1790335480,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SKYUSDT_FAST_1790336250": {
       "symbol": "SKYUSDT",
@@ -9033,7 +9066,7 @@
         "resistance": null
       },
       "registered_at": 1790336251,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "UNIUSDT_CONFIRMED_1790336251": {
       "symbol": "UNIUSDT",
@@ -9103,7 +9136,7 @@
         "resistance": null
       },
       "registered_at": 1790336251,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "VIRTUALUSDT_MICRO_1790337012": {
       "symbol": "VIRTUALUSDT",
@@ -9173,7 +9206,7 @@
         "resistance": null
       },
       "registered_at": 1790337013,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PENDLEUSDT_MICRO_1790337011": {
       "symbol": "PENDLEUSDT",
@@ -9243,7 +9276,7 @@
         "resistance": null
       },
       "registered_at": 1790337013,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WUSDT_FAST_1790337012": {
       "symbol": "WUSDT",
@@ -9313,7 +9346,7 @@
         "resistance": null
       },
       "registered_at": 1790337013,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "1K_SHIBUSDT_FAST_1790337011": {
       "symbol": "1K_SHIBUSDT",
@@ -9383,7 +9416,7 @@
         "resistance": null
       },
       "registered_at": 1790337013,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TRBUSDT_FAST_1790337012": {
       "symbol": "TRBUSDT",
@@ -9453,7 +9486,7 @@
         "resistance": null
       },
       "registered_at": 1790337013,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AEVOUSDT_FAST_1790337577": {
       "symbol": "AEVOUSDT",
@@ -9529,7 +9562,7 @@
         "resistance": null
       },
       "registered_at": 1790337578,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XRPUSDT_MICRO_1790337577": {
       "symbol": "XRPUSDT",
@@ -9599,7 +9632,7 @@
         "resistance": null
       },
       "registered_at": 1790337578,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XRPUSDT_FAST_1790337577": {
       "symbol": "XRPUSDT",
@@ -9669,7 +9702,7 @@
         "resistance": null
       },
       "registered_at": 1790337578,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AAVEUSDT_CONFIRMED_1790338192": {
       "symbol": "AAVEUSDT",
@@ -9745,7 +9778,7 @@
         "resistance": null
       },
       "registered_at": 1790338194,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_MICRO_1790338193": {
       "symbol": "AVAXUSDT",
@@ -9815,7 +9848,7 @@
         "resistance": null
       },
       "registered_at": 1790338194,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ARBUSDT_FAST_1790338192": {
       "symbol": "ARBUSDT",
@@ -9885,7 +9918,7 @@
         "resistance": null
       },
       "registered_at": 1790338194,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FLOWUSDT_CONFIRMED_1790338193": {
       "symbol": "FLOWUSDT",
@@ -9955,7 +9988,7 @@
         "resistance": null
       },
       "registered_at": 1790338194,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSDT_FAST_1790338194": {
       "symbol": "SUSDT",
@@ -10020,7 +10053,7 @@
         "resistance": null
       },
       "registered_at": 1790338194,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PENDLEUSDT_CONFIRMED_1790339421": {
       "symbol": "PENDLEUSDT",
@@ -10090,7 +10123,7 @@
         "resistance": null
       },
       "registered_at": 1790339421,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "RENDERUSDT_CONFIRMED_1790339421": {
       "symbol": "RENDERUSDT",
@@ -10160,7 +10193,7 @@
         "resistance": null
       },
       "registered_at": 1790339421,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_FAST_1790339420": {
       "symbol": "AVAXUSDT",
@@ -10230,7 +10263,7 @@
         "resistance": null
       },
       "registered_at": 1790339421,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CRVUSDT_CONFIRMED_1790339420": {
       "symbol": "CRVUSDT",
@@ -10300,7 +10333,7 @@
         "resistance": null
       },
       "registered_at": 1790339421,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ETHUSDT_MICRO_1790340412": {
       "symbol": "ETHUSDT",
@@ -10365,7 +10398,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ETHUSDT_FAST_1790340413": {
       "symbol": "ETHUSDT",
@@ -10430,7 +10463,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DEXEUSDT_MICRO_1790340412": {
       "symbol": "DEXEUSDT",
@@ -10495,7 +10528,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGSUSDT_FAST_1790340412": {
       "symbol": "DOGSUSDT",
@@ -10560,7 +10593,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CRVUSDT_FAST_1790340411": {
       "symbol": "CRVUSDT",
@@ -10630,7 +10663,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CHZUSDT_MICRO_1790340411": {
       "symbol": "CHZUSDT",
@@ -10695,7 +10728,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUNUSDT_CONFIRMED_1790340413": {
       "symbol": "SUNUSDT",
@@ -10760,7 +10793,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WOOUSDT_CONFIRMED_1790340413": {
       "symbol": "WOOUSDT",
@@ -10830,7 +10863,7 @@
         "resistance": null
       },
       "registered_at": 1790340414,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TNSRUSDT_CONFIRMED_1790341220": {
       "symbol": "TNSRUSDT",
@@ -10875,8 +10908,8 @@
           "return_percent": 0.5953151287692354
         }
       },
-      "max_return": 0.7894396272809621,
-      "max_price": 0.03894,
+      "max_return": 0.8153228937491803,
+      "max_price": 0.03895,
       "min_return": -0.8412061602174346,
       "min_price": 0.03831,
       "thresholds": {
@@ -10895,7 +10928,7 @@
         "resistance": null
       },
       "registered_at": 1790341221,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_FAST_1790341220": {
       "symbol": "FILUSDT",
@@ -10960,7 +10993,7 @@
         "resistance": null
       },
       "registered_at": 1790341221,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WOOUSDT_CONFIRMED_1790341221": {
       "symbol": "WOOUSDT",
@@ -11030,7 +11063,7 @@
         "resistance": null
       },
       "registered_at": 1790341221,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "VIRTUALUSDT_CONFIRMED_1790341936": {
       "symbol": "VIRTUALUSDT",
@@ -11100,7 +11133,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRAMUSDT_CONFIRMED_1790341931": {
       "symbol": "GRAMUSDT",
@@ -11165,7 +11198,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "BICOUSDT_CONFIRMED_1790341930": {
       "symbol": "BICOUSDT",
@@ -11230,7 +11263,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "RENDERUSDT_FAST_1790341934": {
       "symbol": "RENDERUSDT",
@@ -11300,7 +11333,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LTCUSDT_MICRO_1790341933": {
       "symbol": "LTCUSDT",
@@ -11345,8 +11378,8 @@
           "return_percent": 1.2789540997584277
         }
       },
-      "max_return": 1.2789540997584277,
-      "max_price": 71.27000000000001,
+      "max_return": 1.3002700014210489,
+      "max_price": 71.285,
       "min_return": -1.12974278811996,
       "min_price": 69.57499999999999,
       "thresholds": {
@@ -11371,7 +11404,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ATOMUSDT_CONFIRMED_1790341930": {
       "symbol": "ATOMUSDT",
@@ -11441,7 +11474,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ALGOUSDT_MICRO_1790341929": {
       "symbol": "ALGOUSDT",
@@ -11511,7 +11544,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_MICRO_1790341931": {
       "symbol": "FILUSDT",
@@ -11581,7 +11614,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WUSDT_CONFIRMED_1790341936": {
       "symbol": "WUSDT",
@@ -11651,7 +11684,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "HYPEUSDT_MICRO_1790341932": {
       "symbol": "HYPEUSDT",
@@ -11721,7 +11754,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSDT_FAST_1790341935": {
       "symbol": "SUSDT",
@@ -11791,7 +11824,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSDT_CONFIRMED_1790341935": {
       "symbol": "SUSDT",
@@ -11861,7 +11894,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CHZUSDT_CONFIRMED_1790341930": {
       "symbol": "CHZUSDT",
@@ -11926,7 +11959,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ONDOUSDT_MICRO_1790341934": {
       "symbol": "ONDOUSDT",
@@ -11996,7 +12029,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ORCAUSDT_CONFIRMED_1790341934": {
       "symbol": "ORCAUSDT",
@@ -12061,7 +12094,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SYRUPUSDT_MICRO_1790341936": {
       "symbol": "SYRUPUSDT",
@@ -12131,7 +12164,7 @@
         "resistance": null
       },
       "registered_at": 1790341937,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CELRUSDT_MICRO_1790342881": {
       "symbol": "CELRUSDT",
@@ -12176,8 +12209,8 @@
           "return_percent": 0.22204599524187346
         }
       },
-      "max_return": 0.22204599524187346,
-      "max_price": 0.0031595,
+      "max_return": 0.7454401268834285,
+      "max_price": 0.003176,
       "min_return": -1.7922283901665386,
       "min_price": 0.003096,
       "thresholds": {
@@ -12196,7 +12229,7 @@
         "resistance": null
       },
       "registered_at": 1790342883,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ENJUSDT_CONFIRMED_1790342881": {
       "symbol": "ENJUSDT",
@@ -12272,7 +12305,7 @@
         "resistance": null
       },
       "registered_at": 1790342883,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "INJUSDT_CONFIRMED_1790342882": {
       "symbol": "INJUSDT",
@@ -12342,7 +12375,7 @@
         "resistance": null
       },
       "registered_at": 1790342883,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "NEIROUSDT_CONFIRMED_1790342882": {
       "symbol": "NEIROUSDT",
@@ -12387,8 +12420,8 @@
           "return_percent": -0.28071690779527897
         }
       },
-      "max_return": 0.10796804145973055,
-      "max_price": 9.271999999999999e-05,
+      "max_return": 0.18354567048154488,
+      "max_price": 9.279e-05,
       "min_return": -1.9434247462750915,
       "min_price": 9.082e-05,
       "thresholds": {
@@ -12407,7 +12440,7 @@
         "resistance": null
       },
       "registered_at": 1790342883,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSHIUSDT_CONFIRMED_1790342882": {
       "symbol": "SUSHIUSDT",
@@ -12452,14 +12485,20 @@
           "return_percent": 0.9925558312655052
         }
       },
-      "max_return": 1.1643443405229994,
-      "max_price": 0.265,
+      "max_return": 1.221607176942157,
+      "max_price": 0.26515,
       "min_return": -1.8896736018324145,
       "min_price": 0.257,
       "thresholds": {
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 326.2,
+          "price": 0.26515,
+          "return_percent": 1.221607176942157
+        }
       },
       "metadata": {
         "micro_flow": null,
@@ -12472,7 +12511,7 @@
         "resistance": null
       },
       "registered_at": 1790342883,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PENDLEUSDT_FAST_1790343615": {
       "symbol": "PENDLEUSDT",
@@ -12542,7 +12581,7 @@
         "resistance": null
       },
       "registered_at": 1790343616,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "RENDERUSDT_MICRO_1790343615": {
       "symbol": "RENDERUSDT",
@@ -12612,7 +12651,7 @@
         "resistance": null
       },
       "registered_at": 1790343616,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "COTIUSDT_CONFIRMED_1790343614": {
       "symbol": "COTIUSDT",
@@ -12677,7 +12716,7 @@
         "resistance": null
       },
       "registered_at": 1790343616,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GUSDT_CONFIRMED_1790343614": {
       "symbol": "GUSDT",
@@ -12734,7 +12773,13 @@
           "return_percent": 2.2537417333797474
         },
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 314.0,
+          "price": 0.0058335,
+          "return_percent": 1.5227984684998241
+        }
       },
       "metadata": {
         "micro_flow": null,
@@ -12747,7 +12792,7 @@
         "resistance": null
       },
       "registered_at": 1790343616,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_FAST_1790344380": {
       "symbol": "FORMUSDT",
@@ -12818,7 +12863,7 @@
         "resistance": null
       },
       "registered_at": 1790344381,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "APTUSDT_CONFIRMED_1790344380": {
       "symbol": "APTUSDT",
@@ -12863,12 +12908,17 @@
           "return_percent": 1.5636232925952558
         }
       },
-      "max_return": 1.5636232925952558,
-      "max_price": 0.84765,
+      "max_return": 2.2645578720345108,
+      "max_price": 0.8535,
       "min_return": -1.4138509465612308,
       "min_price": 0.8228,
       "thresholds": {
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 301.2,
+          "price": 0.8535,
+          "return_percent": 2.2645578720345108
+        },
         "5pct": null,
         "minus_2pct": null,
         "1pct": {
@@ -12889,7 +12939,7 @@
         "resistance": null
       },
       "registered_at": 1790344381,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSHIUSDT_FAST_1790344381": {
       "symbol": "SUSHIUSDT",
@@ -12934,8 +12984,8 @@
           "return_percent": 2.6780516204152987
         }
       },
-      "max_return": 2.852707160877168,
-      "max_price": 0.265,
+      "max_return": 2.9109256743644507,
+      "max_price": 0.26515,
       "min_return": -0.2522802251115792,
       "min_price": 0.257,
       "thresholds": {
@@ -12965,7 +13015,7 @@
         "resistance": null
       },
       "registered_at": 1790344381,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRTUSDT_CONFIRMED_1790344381": {
       "symbol": "GRTUSDT",
@@ -13010,8 +13060,8 @@
           "return_percent": 5.8778771162259895
         }
       },
-      "max_return": 5.8778771162259895,
-      "max_price": 0.02783,
+      "max_return": 6.353433517215147,
+      "max_price": 0.027955,
       "min_return": -0.7038234734639571,
       "min_price": 0.026099999999999998,
       "thresholds": {
@@ -13046,7 +13096,7 @@
         "resistance": null
       },
       "registered_at": 1790344381,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZECUSDT_CONFIRMED_1790344933": {
       "symbol": "ZECUSDT",
@@ -13116,7 +13166,7 @@
         "resistance": null
       },
       "registered_at": 1790344934,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGSUSDT_MICRO_1790344931": {
       "symbol": "DOGSUSDT",
@@ -13181,7 +13231,7 @@
         "resistance": null
       },
       "registered_at": 1790344934,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "COMPUSDT_MICRO_1790344931": {
       "symbol": "COMPUSDT",
@@ -13246,7 +13296,7 @@
         "resistance": null
       },
       "registered_at": 1790344934,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUPERUSDT_CONFIRMED_1790344932": {
       "symbol": "SUPERUSDT",
@@ -13291,8 +13341,8 @@
           "return_percent": 1.4184397163120421
         }
       },
-      "max_return": 1.53191489361701,
-      "max_price": 0.17895,
+      "max_return": 1.7588652482269453,
+      "max_price": 0.17935,
       "min_return": -0.9645390070922182,
       "min_price": 0.17454999999999998,
       "thresholds": {
@@ -13317,7 +13367,7 @@
         "resistance": null
       },
       "registered_at": 1790344934,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TURBOUSDT_FAST_1790344932": {
       "symbol": "TURBOUSDT",
@@ -13374,7 +13424,13 @@
           "return_percent": 2.8391615009700333
         },
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 292.0,
+          "price": 0.0010723999999999998,
+          "return_percent": 1.4905597880092465
+        }
       },
       "metadata": {
         "micro_flow": null,
@@ -13387,7 +13443,7 @@
         "resistance": null
       },
       "registered_at": 1790344934,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ARBUSDT_CONFIRMED_1790345670": {
       "symbol": "ARBUSDT",
@@ -13463,7 +13519,7 @@
         "resistance": null
       },
       "registered_at": 1790345672,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DEXEUSDT_CONFIRMED_1790345670": {
       "symbol": "DEXEUSDT",
@@ -13528,7 +13584,7 @@
         "resistance": null
       },
       "registered_at": 1790345672,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SYRUPUSDT_FAST_1790345671": {
       "symbol": "SYRUPUSDT",
@@ -13599,7 +13655,7 @@
         "resistance": null
       },
       "registered_at": 1790345672,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "NOTUSDT_FAST_1790345671": {
       "symbol": "NOTUSDT",
@@ -13670,7 +13726,7 @@
         "resistance": null
       },
       "registered_at": 1790345672,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZBTUSDT_FAST_1790346585": {
       "symbol": "ZBTUSDT",
@@ -13735,7 +13791,7 @@
         "resistance": null
       },
       "registered_at": 1790346586,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOTUSDT_MICRO_1790346584": {
       "symbol": "DOTUSDT",
@@ -13800,7 +13856,7 @@
         "resistance": null
       },
       "registered_at": 1790346586,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOTUSDT_CONFIRMED_1790346585": {
       "symbol": "DOTUSDT",
@@ -13865,7 +13921,7 @@
         "resistance": null
       },
       "registered_at": 1790346586,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "MEUSDT_CONFIRMED_1790346585": {
       "symbol": "MEUSDT",
@@ -13930,7 +13986,7 @@
         "resistance": null
       },
       "registered_at": 1790346586,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ROBOUSDT_CONFIRMED_1790347403": {
       "symbol": "ROBOUSDT",
@@ -13968,6 +14024,11 @@
           "timestamp": 1790361536,
           "price": 0.009940000000000001,
           "return_percent": 0.10070493454178843
+        },
+        "4h": {
+          "timestamp": 1790362454,
+          "price": 0.009944999999999999,
+          "return_percent": 0.1510574018126652
         }
       },
       "max_return": 0.7049345417925365,
@@ -13990,7 +14051,7 @@
         "resistance": null
       },
       "registered_at": 1790347403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "KAITOUSDT_CONFIRMED_1790347402": {
       "symbol": "KAITOUSDT",
@@ -14028,10 +14089,15 @@
           "timestamp": 1790361536,
           "price": 0.3486,
           "return_percent": -0.15752541887439195
+        },
+        "4h": {
+          "timestamp": 1790362454,
+          "price": 0.35009999999999997,
+          "return_percent": 0.27208935987398153
         }
       },
-      "max_return": 0.0716024631247395,
-      "max_price": 0.3494,
+      "max_return": 0.27208935987398153,
+      "max_price": 0.35009999999999997,
       "min_return": -1.0883574394959101,
       "min_price": 0.34535,
       "thresholds": {
@@ -14050,7 +14116,7 @@
         "resistance": null
       },
       "registered_at": 1790347403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LINKUSDT_MICRO_1790347402": {
       "symbol": "LINKUSDT",
@@ -14088,6 +14154,11 @@
           "timestamp": 1790361536,
           "price": 13.8595,
           "return_percent": -0.22676553163918667
+        },
+        "4h": {
+          "timestamp": 1790362454,
+          "price": 13.846,
+          "return_percent": -0.3239507594845578
         }
       },
       "max_return": 0.5147217622921213,
@@ -14110,7 +14181,7 @@
         "resistance": null
       },
       "registered_at": 1790347403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_MICRO_1790347401": {
       "symbol": "FILUSDT",
@@ -14148,6 +14219,11 @@
           "timestamp": 1790361536,
           "price": 1.0270000000000001,
           "return_percent": 1.3320177602368097
+        },
+        "4h": {
+          "timestamp": 1790362454,
+          "price": 1.0274999999999999,
+          "return_percent": 1.381351751356664
         }
       },
       "max_return": 1.825357671435615,
@@ -14176,7 +14252,7 @@
         "resistance": null
       },
       "registered_at": 1790347403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "EGLDUSDT_FAST_1790348146": {
       "symbol": "EGLDUSDT",
@@ -14236,7 +14312,7 @@
         "resistance": null
       },
       "registered_at": 1790348147,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "COMPUSDT_CONFIRMED_1790348146": {
       "symbol": "COMPUSDT",
@@ -14296,7 +14372,7 @@
         "resistance": null
       },
       "registered_at": 1790348147,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRAMUSDT_CONFIRMED_1790348675": {
       "symbol": "GRAMUSDT",
@@ -14336,8 +14412,8 @@
           "return_percent": 0.7730147575544553
         }
       },
-      "max_return": 0.7730147575544553,
-      "max_price": 1.434,
+      "max_return": 0.9135628952916303,
+      "max_price": 1.436,
       "min_return": -0.17568517217146498,
       "min_price": 1.4205,
       "thresholds": {
@@ -14356,7 +14432,7 @@
         "resistance": null
       },
       "registered_at": 1790348676,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "NEIROUSDT_MICRO_1790348675": {
       "symbol": "NEIROUSDT",
@@ -14396,8 +14472,8 @@
           "return_percent": 0.3258744297197559
         }
       },
-      "max_return": 0.7169237453834424,
-      "max_price": 9.271999999999999e-05,
+      "max_return": 0.792961112318055,
+      "max_price": 9.279e-05,
       "min_return": -1.3469476428416196,
       "min_price": 9.082e-05,
       "thresholds": {
@@ -14416,7 +14492,7 @@
         "resistance": null
       },
       "registered_at": 1790348676,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSHIUSDT_CONFIRMED_1790348676": {
       "symbol": "SUSHIUSDT",
@@ -14456,12 +14532,17 @@
           "return_percent": 1.8087358091206394
         }
       },
-      "max_return": 1.9819126419087885,
-      "max_price": 0.265,
+      "max_return": 2.0396382528381647,
+      "max_price": 0.26515,
       "min_return": -1.0775447373484797,
       "min_price": 0.25705,
       "thresholds": {
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 229.6,
+          "price": 0.26515,
+          "return_percent": 2.0396382528381647
+        },
         "5pct": null,
         "minus_2pct": null,
         "1pct": {
@@ -14482,7 +14563,7 @@
         "resistance": null
       },
       "registered_at": 1790348676,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRAMUSDT_MICRO_1790349639": {
       "symbol": "GRAMUSDT",
@@ -14522,8 +14603,8 @@
           "return_percent": 0.24466969591052493
         }
       },
-      "max_return": 0.24466969591052493,
-      "max_price": 1.434,
+      "max_return": 0.38448095071653693,
+      "max_price": 1.436,
       "min_return": -0.6990562740300446,
       "min_price": 1.4205,
       "thresholds": {
@@ -14542,7 +14623,7 @@
         "resistance": null
       },
       "registered_at": 1790349640,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AAVEUSDT_FAST_1790349638": {
       "symbol": "AAVEUSDT",
@@ -14613,7 +14694,7 @@
         "resistance": null
       },
       "registered_at": 1790349640,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SNXUSDT_MICRO_1790349640": {
       "symbol": "SNXUSDT",
@@ -14653,8 +14734,8 @@
           "return_percent": 2.336903602726389
         }
       },
-      "max_return": 2.336903602726389,
-      "max_price": 0.26275000000000004,
+      "max_return": 2.667964946445946,
+      "max_price": 0.2636,
       "min_return": -0.8568646543330224,
       "min_price": 0.25455,
       "thresholds": {
@@ -14684,7 +14765,7 @@
         "resistance": null
       },
       "registered_at": 1790349640,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ASTERUSDT_FAST_1790349639": {
       "symbol": "ASTERUSDT",
@@ -14750,7 +14831,7 @@
         "resistance": null
       },
       "registered_at": 1790349640,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CAKEUSDT_FAST_1790350485": {
       "symbol": "CAKEUSDT",
@@ -14810,7 +14891,7 @@
         "resistance": null
       },
       "registered_at": 1790350487,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LTCUSDT_MICRO_1790350486": {
       "symbol": "LTCUSDT",
@@ -14850,8 +14931,8 @@
           "return_percent": 1.6617930247486208
         }
       },
-      "max_return": 1.6617930247486208,
-      "max_price": 71.27000000000001,
+      "max_return": 1.6831895014621026,
+      "max_price": 71.285,
       "min_return": -0.6846872548320232,
       "min_price": 69.625,
       "thresholds": {
@@ -14876,7 +14957,7 @@
         "resistance": null
       },
       "registered_at": 1790350487,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SLPUSDT_CONFIRMED_1790350486": {
       "symbol": "SLPUSDT",
@@ -14916,8 +14997,8 @@
           "return_percent": 0.7786826689526993
         }
       },
-      "max_return": 0.7786826689526993,
-      "max_price": 0.00070535,
+      "max_return": 0.9072724674953436,
+      "max_price": 0.00070625,
       "min_return": -0.3286183740534364,
       "min_price": 0.0006976,
       "thresholds": {
@@ -14936,7 +15017,7 @@
         "resistance": null
       },
       "registered_at": 1790350487,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CELRUSDT_FAST_1790350485": {
       "symbol": "CELRUSDT",
@@ -14976,14 +15057,20 @@
           "return_percent": 0.9747523170342008
         }
       },
-      "max_return": 0.9747523170342008,
-      "max_price": 0.0031595,
+      "max_return": 1.5020773410035209,
+      "max_price": 0.003176,
       "min_return": -0.9587727708532964,
       "min_price": 0.003099,
       "thresholds": {
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 199.5,
+          "price": 0.003176,
+          "return_percent": 1.5020773410035209
+        }
       },
       "metadata": {
         "micro_flow": 2.538135346640958,
@@ -14996,7 +15083,7 @@
         "resistance": null
       },
       "registered_at": 1790350487,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AXSUSDT_MICRO_1790351771": {
       "symbol": "AXSUSDT",
@@ -15036,14 +15123,20 @@
           "return_percent": 0.7215619694397432
         }
       },
-      "max_return": 1.4855687606112116,
-      "max_price": 1.1955,
+      "max_return": 1.6553480475382065,
+      "max_price": 1.1975,
       "min_return": -0.21222410865873914,
       "min_price": 1.1755,
       "thresholds": {
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 178.1,
+          "price": 1.1975,
+          "return_percent": 1.6553480475382065
+        }
       },
       "metadata": {
         "micro_flow": 1.3597291320280211,
@@ -15056,7 +15149,7 @@
         "resistance": null
       },
       "registered_at": 1790351772,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XRPUSDT_CONFIRMED_1790351771": {
       "symbol": "XRPUSDT",
@@ -15116,7 +15209,7 @@
         "resistance": null
       },
       "registered_at": 1790351772,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_MICRO_1790352202": {
       "symbol": "FORMUSDT",
@@ -15176,7 +15269,7 @@
         "resistance": null
       },
       "registered_at": 1790352203,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_CONFIRMED_1790352203": {
       "symbol": "FORMUSDT",
@@ -15236,7 +15329,7 @@
         "resistance": null
       },
       "registered_at": 1790352203,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGSUSDT_MICRO_1790352201": {
       "symbol": "DOGSUSDT",
@@ -15296,7 +15389,7 @@
         "resistance": null
       },
       "registered_at": 1790352203,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOTUSDT_MICRO_1790352202": {
       "symbol": "DOTUSDT",
@@ -15356,7 +15449,7 @@
         "resistance": null
       },
       "registered_at": 1790352203,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_MICRO_1790353018": {
       "symbol": "AVAXUSDT",
@@ -15416,7 +15509,7 @@
         "resistance": null
       },
       "registered_at": 1790353021,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "POLUSDT_CONFIRMED_1790353019": {
       "symbol": "POLUSDT",
@@ -15476,7 +15569,7 @@
         "resistance": null
       },
       "registered_at": 1790353021,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SKYUSDT_MICRO_1790353020": {
       "symbol": "SKYUSDT",
@@ -15542,7 +15635,7 @@
         "resistance": null
       },
       "registered_at": 1790353021,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "NOTUSDT_MICRO_1790353019": {
       "symbol": "NOTUSDT",
@@ -15602,7 +15695,7 @@
         "resistance": null
       },
       "registered_at": 1790353021,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZRXUSDT_MICRO_1790353020": {
       "symbol": "ZRXUSDT",
@@ -15662,7 +15755,7 @@
         "resistance": null
       },
       "registered_at": 1790353021,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZROUSDT_FAST_1790353978": {
       "symbol": "ZROUSDT",
@@ -15702,8 +15795,8 @@
           "return_percent": 2.8681920721882186
         }
       },
-      "max_return": 2.8681920721882186,
-      "max_price": 1.596,
+      "max_return": 4.737350950692886,
+      "max_price": 1.625,
       "min_return": -1.4179825974862905,
       "min_price": 1.5295,
       "thresholds": {
@@ -15733,7 +15826,7 @@
         "resistance": null
       },
       "registered_at": 1790353978,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ONDOUSDT_MICRO_1790353977": {
       "symbol": "ONDOUSDT",
@@ -15773,8 +15866,8 @@
           "return_percent": 0.5776038755357001
         }
       },
-      "max_return": 0.6800819824855678,
-      "max_price": 0.54035,
+      "max_return": 0.7080305571082589,
+      "max_price": 0.5405,
       "min_return": -0.09316191540897056,
       "min_price": 0.5362,
       "thresholds": {
@@ -15793,7 +15886,7 @@
         "resistance": null
       },
       "registered_at": 1790353978,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SAFEUSDT_CONFIRMED_1790353978": {
       "symbol": "SAFEUSDT",
@@ -15853,7 +15946,7 @@
         "resistance": null
       },
       "registered_at": 1790353978,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "LINKUSDT_MICRO_1790354838": {
       "symbol": "LINKUSDT",
@@ -15886,6 +15979,11 @@
           "timestamp": 1790361536,
           "price": 13.8595,
           "return_percent": -0.1225092782762185
+        },
+        "2h": {
+          "timestamp": 1790362454,
+          "price": 13.846,
+          "return_percent": -0.21979605808381056
         }
       },
       "max_return": 0.0,
@@ -15908,7 +16006,7 @@
         "resistance": null
       },
       "registered_at": 1790354839,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_MICRO_1790354838": {
       "symbol": "FILUSDT",
@@ -15941,6 +16039,11 @@
           "timestamp": 1790361536,
           "price": 1.0270000000000001,
           "return_percent": -0.4844961240309974
+        },
+        "2h": {
+          "timestamp": 1790362454,
+          "price": 1.0274999999999999,
+          "return_percent": -0.43604651162792346
         }
       },
       "max_return": 0.0,
@@ -15963,7 +16066,7 @@
         "resistance": null
       },
       "registered_at": 1790354839,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WLDUSDT_CONFIRMED_1790355942": {
       "symbol": "WLDUSDT",
@@ -16018,7 +16121,7 @@
         "resistance": null
       },
       "registered_at": 1790355942,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ALGOUSDT_FAST_1790355942": {
       "symbol": "ALGOUSDT",
@@ -16078,7 +16181,7 @@
         "resistance": null
       },
       "registered_at": 1790355942,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_MICRO_1790356808": {
       "symbol": "AVAXUSDT",
@@ -16139,7 +16242,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ETHUSDT_MICRO_1790356809": {
       "symbol": "ETHUSDT",
@@ -16194,7 +16297,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "XLMUSDT_MICRO_1790356810": {
       "symbol": "XLMUSDT",
@@ -16229,8 +16332,8 @@
           "return_percent": 0.47134021566688805
         }
       },
-      "max_return": 0.47134021566688805,
-      "max_price": 0.21849000000000002,
+      "max_return": 0.8714045938426781,
+      "max_price": 0.21936,
       "min_return": -0.7426482422458938,
       "min_price": 0.21585,
       "thresholds": {
@@ -16249,7 +16352,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "PUMPUSDT_MICRO_1790356809": {
       "symbol": "PUMPUSDT",
@@ -16291,7 +16394,13 @@
       "thresholds": {
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 94.1,
+          "price": 0.004148499999999999,
+          "return_percent": 1.0350706283487368
+        }
       },
       "metadata": {
         "micro_flow": 1.2772578910000894,
@@ -16304,7 +16413,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOGSUSDT_CONFIRMED_1790356808": {
       "symbol": "DOGSUSDT",
@@ -16359,7 +16468,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "TURBOUSDT_CONFIRMED_1790356810": {
       "symbol": "TURBOUSDT",
@@ -16414,7 +16523,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "DOTUSDT_MICRO_1790356808": {
       "symbol": "DOTUSDT",
@@ -16449,8 +16558,8 @@
           "return_percent": 0.21150592216581612
         }
       },
-      "max_return": 0.4653130287648105,
-      "max_price": 1.1875,
+      "max_return": 0.5076142131979701,
+      "max_price": 1.188,
       "min_return": -0.7614213197969457,
       "min_price": 1.173,
       "thresholds": {
@@ -16469,7 +16578,7 @@
         "resistance": null
       },
       "registered_at": 1790356811,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ANKRUSDT_CONFIRMED_1790357569": {
       "symbol": "ANKRUSDT",
@@ -16524,7 +16633,7 @@
         "resistance": null
       },
       "registered_at": 1790357569,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ADAUSDT_CONFIRMED_1790358318": {
       "symbol": "ADAUSDT",
@@ -16552,6 +16661,11 @@
           "timestamp": 1790361536,
           "price": 0.254,
           "return_percent": 0.21700532649437557
+        },
+        "1h": {
+          "timestamp": 1790362454,
+          "price": 0.25445,
+          "return_percent": 0.3945551390806869
         }
       },
       "max_return": 0.7891102781613738,
@@ -16574,7 +16688,7 @@
         "resistance": null
       },
       "registered_at": 1790358318,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "GRAMUSDT_FAST_1790358972": {
       "symbol": "GRAMUSDT",
@@ -16604,8 +16718,8 @@
           "return_percent": 0.38501925096253675
         }
       },
-      "max_return": 0.38501925096253675,
-      "max_price": 1.434,
+      "max_return": 0.5250262513125544,
+      "max_price": 1.436,
       "min_return": -0.2100105005250342,
       "min_price": 1.4255,
       "thresholds": {
@@ -16624,7 +16738,7 @@
         "resistance": null
       },
       "registered_at": 1790358974,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "ZECUSDT_MICRO_1790358973": {
       "symbol": "ZECUSDT",
@@ -16654,14 +16768,20 @@
           "return_percent": 0.45700486541401214
         }
       },
-      "max_return": 0.45700486541401214,
-      "max_price": 1547.505,
+      "max_return": 1.170750390304217,
+      "max_price": 1558.5,
       "min_return": -0.2544686182418992,
       "min_price": 1536.545,
       "thresholds": {
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": null,
+        "1pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 58.0,
+          "price": 1558.5,
+          "return_percent": 1.170750390304217
+        }
       },
       "metadata": {
         "micro_flow": 1.450950425312666,
@@ -16674,7 +16794,7 @@
         "resistance": null
       },
       "registered_at": 1790358974,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FILUSDT_MICRO_1790358972": {
       "symbol": "FILUSDT",
@@ -16724,7 +16844,7 @@
         "resistance": null
       },
       "registered_at": 1790358974,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "NOTUSDT_CONFIRMED_1790358973": {
       "symbol": "NOTUSDT",
@@ -16780,7 +16900,7 @@
         "resistance": null
       },
       "registered_at": 1790358974,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CAKEUSDT_MICRO_1790359402": {
       "symbol": "CAKEUSDT",
@@ -16830,7 +16950,7 @@
         "resistance": null
       },
       "registered_at": 1790359403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "FORMUSDT_MICRO_1790359402": {
       "symbol": "FORMUSDT",
@@ -16860,8 +16980,8 @@
           "return_percent": 0.8517608517608306
         }
       },
-      "max_return": 0.8517608517608306,
-      "max_price": 0.30784999999999996,
+      "max_return": 0.9336609336609399,
+      "max_price": 0.30810000000000004,
       "min_return": -0.04914004914004373,
       "min_price": 0.30510000000000004,
       "thresholds": {
@@ -16880,7 +17000,7 @@
         "resistance": null
       },
       "registered_at": 1790359403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WLDUSDT_CONFIRMED_1790359402": {
       "symbol": "WLDUSDT",
@@ -16912,8 +17032,8 @@
       },
       "max_return": 0.1826385904598113,
       "max_price": 0.46625,
-      "min_return": -0.15040825096691746,
-      "min_price": 0.4647,
+      "min_return": -0.22561237645036428,
+      "min_price": 0.46435000000000004,
       "thresholds": {
         "2pct": null,
         "5pct": null,
@@ -16930,7 +17050,7 @@
         "resistance": null
       },
       "registered_at": 1790359403,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SOLUSDT_MICRO_1790360278": {
       "symbol": "SOLUSDT",
@@ -16953,6 +17073,11 @@
           "timestamp": 1790361536,
           "price": 122.00200000000001,
           "return_percent": 0.4160613680229571
+        },
+        "30m": {
+          "timestamp": 1790362454,
+          "price": 121.90199999999999,
+          "return_percent": 0.3337544702933742
         }
       },
       "max_return": 0.4160613680229571,
@@ -16975,7 +17100,7 @@
         "resistance": null
       },
       "registered_at": 1790360279,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "OPGUSDT_CONFIRMED_1790360277": {
       "symbol": "OPGUSDT",
@@ -16998,16 +17123,26 @@
           "timestamp": 1790361536,
           "price": 0.12805,
           "return_percent": -1.764480245492922
+        },
+        "30m": {
+          "timestamp": 1790362454,
+          "price": 0.12764999999999999,
+          "return_percent": -2.0713463751438703
         }
       },
       "max_return": 0.0,
       "max_price": 0.13035000000000002,
-      "min_return": -1.764480245492922,
-      "min_price": 0.12805,
+      "min_return": -2.0713463751438703,
+      "min_price": 0.12764999999999999,
       "thresholds": {
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": {
+          "timestamp": 1790362454,
+          "minutes_to_hit": 36.3,
+          "price": 0.12764999999999999,
+          "return_percent": -2.0713463751438703
+        }
       },
       "metadata": {
         "micro_flow": null,
@@ -17020,7 +17155,7 @@
         "resistance": null
       },
       "registered_at": 1790360279,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WUSDT_MICRO_1790360278": {
       "symbol": "WUSDT",
@@ -17043,10 +17178,15 @@
           "timestamp": 1790361536,
           "price": 0.012095,
           "return_percent": 0.04135649296939451
+        },
+        "30m": {
+          "timestamp": 1790362454,
+          "price": 0.01214,
+          "return_percent": 0.4135649296939594
         }
       },
-      "max_return": 0.08271298593878902,
-      "max_price": 0.0121,
+      "max_return": 0.4135649296939594,
+      "max_price": 0.01214,
       "min_return": 0.0,
       "min_price": 0.01209,
       "thresholds": {
@@ -17065,7 +17205,7 @@
         "resistance": null
       },
       "registered_at": 1790360279,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "COMPUSDT_MICRO_1790360277": {
       "symbol": "COMPUSDT",
@@ -17088,10 +17228,15 @@
           "timestamp": 1790361536,
           "price": 23.855,
           "return_percent": 0.5267593763168985
+        },
+        "30m": {
+          "timestamp": 1790362454,
+          "price": 23.895,
+          "return_percent": 0.6953223767383023
         }
       },
-      "max_return": 0.5267593763168985,
-      "max_price": 23.855,
+      "max_return": 0.6953223767383023,
+      "max_price": 23.895,
       "min_return": 0.0,
       "min_price": 23.73,
       "thresholds": {
@@ -17110,7 +17255,7 @@
         "resistance": null
       },
       "registered_at": 1790360279,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CFGUSDT_MICRO_1790360277": {
       "symbol": "CFGUSDT",
@@ -17131,6 +17276,11 @@
         },
         "15m": {
           "timestamp": 1790361536,
+          "price": 0.15827,
+          "return_percent": 0.1708860759493623
+        },
+        "30m": {
+          "timestamp": 1790362454,
           "price": 0.15827,
           "return_percent": 0.1708860759493623
         }
@@ -17155,7 +17305,7 @@
         "resistance": null
       },
       "registered_at": 1790360279,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "WETUSDT_CONFIRMED_1790360278": {
       "symbol": "WETUSDT",
@@ -17176,6 +17326,11 @@
         },
         "15m": {
           "timestamp": 1790361536,
+          "price": 0.06975500000000001,
+          "return_percent": 0.14356471179386512
+        },
+        "30m": {
+          "timestamp": 1790362454,
           "price": 0.06975500000000001,
           "return_percent": 0.14356471179386512
         }
@@ -17200,7 +17355,7 @@
         "resistance": null
       },
       "registered_at": 1790360279,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "AVAXUSDT_BUILDUP_1790361534": {
       "symbol": "AVAXUSDT",
@@ -17208,11 +17363,27 @@
       "alert_time": 1790361534,
       "alert_price": 10.5135,
       "score": 62.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790362454,
+          "price": 10.5015,
+          "return_percent": -0.1141389641889043
+        },
+        "10m": {
+          "timestamp": 1790362454,
+          "price": 10.5015,
+          "return_percent": -0.1141389641889043
+        },
+        "15m": {
+          "timestamp": 1790362454,
+          "price": 10.5015,
+          "return_percent": -0.1141389641889043
+        }
+      },
       "max_return": 0.1807200266324093,
       "max_price": 10.532499999999999,
-      "min_return": 0.0,
-      "min_price": 10.5135,
+      "min_return": -0.1141389641889043,
+      "min_price": 10.5015,
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -17230,7 +17401,7 @@
         "buildup_pressure_change": 0.047580530047112164
       },
       "registered_at": 1790361536,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "SUSDT_MICRO_1790361535": {
       "symbol": "SUSDT",
@@ -17238,9 +17409,25 @@
       "alert_time": 1790361535,
       "alert_price": 0.04108,
       "score": 54.0,
-      "checkpoints": {},
-      "max_return": 0.024342745861740657,
-      "max_price": 0.04109,
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790362454,
+          "price": 0.041275,
+          "return_percent": 0.4746835443037992
+        },
+        "10m": {
+          "timestamp": 1790362454,
+          "price": 0.041275,
+          "return_percent": 0.4746835443037992
+        },
+        "15m": {
+          "timestamp": 1790362454,
+          "price": 0.041275,
+          "return_percent": 0.4746835443037992
+        }
+      },
+      "max_return": 0.4746835443037992,
+      "max_price": 0.041275,
       "min_return": 0.0,
       "min_price": 0.04108,
       "thresholds": {
@@ -17262,7 +17449,7 @@
         "micro_momentum_4h": -1.2177301509985397
       },
       "registered_at": 1790361536,
-      "last_update": 1790361536
+      "last_update": 1790362454
     },
     "CELRUSDT_CONFIRMED_1790361535": {
       "symbol": "CELRUSDT",
@@ -17270,9 +17457,25 @@
       "alert_time": 1790361535,
       "alert_price": 0.003153,
       "score": 88,
-      "checkpoints": {},
-      "max_return": 0.20615287028227072,
-      "max_price": 0.0031595,
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790362454,
+          "price": 0.003176,
+          "return_percent": 0.7294640025372666
+        },
+        "10m": {
+          "timestamp": 1790362454,
+          "price": 0.003176,
+          "return_percent": 0.7294640025372666
+        },
+        "15m": {
+          "timestamp": 1790362454,
+          "price": 0.003176,
+          "return_percent": 0.7294640025372666
+        }
+      },
+      "max_return": 0.7294640025372666,
+      "max_price": 0.003176,
       "min_return": 0.0,
       "min_price": 0.003153,
       "thresholds": {
@@ -17287,7 +17490,7 @@
         "resistance": null
       },
       "registered_at": 1790361536,
-      "last_update": 1790361536
+      "last_update": 1790362454
     }
   },
   "milestones": {
@@ -17298,39 +17501,39 @@
       "events": 1,
       "checkpoints": {
         "5m": {
-          "count": 0,
+          "count": 1,
           "positive": 0,
           "positive_rate": 0.0,
-          "average_return": 0.0,
-          "median_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
+          "average_return": -0.1141389641889043,
+          "median_return": -0.1141389641889043,
+          "best_return": -0.1141389641889043,
+          "worst_return": -0.1141389641889043,
           "hit_1pct": 0,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
         "10m": {
-          "count": 0,
+          "count": 1,
           "positive": 0,
           "positive_rate": 0.0,
-          "average_return": 0.0,
-          "median_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
+          "average_return": -0.1141389641889043,
+          "median_return": -0.1141389641889043,
+          "best_return": -0.1141389641889043,
+          "worst_return": -0.1141389641889043,
           "hit_1pct": 0,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
         "15m": {
-          "count": 0,
+          "count": 1,
           "positive": 0,
           "positive_rate": 0.0,
-          "average_return": 0.0,
-          "median_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
+          "average_return": -0.1141389641889043,
+          "median_return": -0.1141389641889043,
+          "best_return": -0.1141389641889043,
+          "worst_return": -0.1141389641889043,
           "hit_1pct": 0,
           "hit_2pct": 0,
           "hit_5pct": 0,
@@ -17438,11 +17641,11 @@
       "events": 92,
       "checkpoints": {
         "5m": {
-          "count": 91,
-          "positive": 60,
-          "positive_rate": 65.93406593406593,
-          "average_return": 0.952848559576914,
-          "median_return": 0.47134021566688805,
+          "count": 92,
+          "positive": 61,
+          "positive_rate": 66.30434782608695,
+          "average_return": 0.947651113758728,
+          "median_return": 0.47301187998534366,
           "best_return": 18.24585321517835,
           "worst_return": -2.7001746071339556,
           "hit_1pct": 24,
@@ -17451,11 +17654,11 @@
           "hit_minus_2pct": 4
         },
         "10m": {
-          "count": 91,
-          "positive": 60,
-          "positive_rate": 65.93406593406593,
-          "average_return": 0.952848559576914,
-          "median_return": 0.47134021566688805,
+          "count": 92,
+          "positive": 61,
+          "positive_rate": 66.30434782608695,
+          "average_return": 0.947651113758728,
+          "median_return": 0.47301187998534366,
           "best_return": 18.24585321517835,
           "worst_return": -2.7001746071339556,
           "hit_1pct": 24,
@@ -17464,11 +17667,11 @@
           "hit_minus_2pct": 4
         },
         "15m": {
-          "count": 91,
-          "positive": 50,
-          "positive_rate": 54.94505494505495,
-          "average_return": 0.4873686145084767,
-          "median_return": 0.08300430725054671,
+          "count": 92,
+          "positive": 51,
+          "positive_rate": 55.434782608695656,
+          "average_return": 0.48723073331059974,
+          "median_return": 0.08370161499897903,
           "best_return": 10.982236154649943,
           "worst_return": -2.5318034422549243,
           "hit_1pct": 16,
@@ -17477,11 +17680,11 @@
           "hit_minus_2pct": 1
         },
         "30m": {
-          "count": 87,
-          "positive": 38,
-          "positive_rate": 43.67816091954023,
-          "average_return": 0.346321751537967,
-          "median_return": -0.045097862361315105,
+          "count": 91,
+          "positive": 42,
+          "positive_rate": 46.15384615384615,
+          "average_return": 0.34882989270855086,
+          "median_return": -0.039223479697928394,
           "best_return": 10.982236154649943,
           "worst_return": -2.8686473451931414,
           "hit_1pct": 17,
@@ -17503,11 +17706,11 @@
           "hit_minus_2pct": 2
         },
         "2h": {
-          "count": 76,
+          "count": 78,
           "positive": 41,
-          "positive_rate": 53.94736842105263,
-          "average_return": 0.4882526841175278,
-          "median_return": 0.11436156275208068,
+          "positive_rate": 52.56410256410257,
+          "average_return": 0.4673251464515434,
+          "median_return": 0.09727980886087584,
           "best_return": 10.982236154649943,
           "worst_return": -3.9435701648198216,
           "hit_1pct": 22,
@@ -17516,37 +17719,37 @@
           "hit_minus_2pct": 5
         },
         "4h": {
-          "count": 61,
-          "positive": 28,
-          "positive_rate": 45.90163934426229,
-          "average_return": 0.5575454426234,
+          "count": 63,
+          "positive": 29,
+          "positive_rate": 46.03174603174603,
+          "average_return": 0.5566297300301509,
           "median_return": -0.08448324415657767,
           "best_return": 10.982236154649943,
           "worst_return": -4.522456118433382,
-          "hit_1pct": 18,
+          "hit_1pct": 19,
           "hit_2pct": 10,
           "hit_5pct": 4,
           "hit_minus_2pct": 4
         }
       },
       "MFE": {
-        "count": 61,
-        "positive": 52,
-        "positive_rate": 85.24590163934425,
-        "average_return": 2.6049854770849863,
+        "count": 63,
+        "positive": 54,
+        "positive_rate": 85.71428571428571,
+        "average_return": 2.609860271190603,
         "median_return": 1.4514536970567193,
         "best_return": 19.586457623267425,
         "worst_return": 0.0,
-        "hit_1pct": 38,
+        "hit_1pct": 39,
         "hit_2pct": 25,
-        "hit_5pct": 6,
+        "hit_5pct": 7,
         "hit_minus_2pct": 0
       },
       "MAE": {
-        "count": 61,
+        "count": 63,
         "positive": 0,
         "positive_rate": 0.0,
-        "average_return": -1.3814375599953108,
+        "average_return": -1.3635482601471345,
         "median_return": -0.9714396735962835,
         "best_return": 0.0,
         "worst_return": -4.683212771264665,
@@ -17556,9 +17759,9 @@
         "hit_minus_2pct": 18
       },
       "time_to_1pct": {
-        "count": 24,
-        "average_minutes": 820.7291666666666,
-        "best_minutes": 78.8,
+        "count": 29,
+        "average_minutes": 733.5413793103448,
+        "best_minutes": 58.0,
         "worst_minutes": 1836.3
       },
       "time_to_2pct": {
@@ -17568,10 +17771,10 @@
         "worst_minutes": 1336.5
       },
       "time_to_5pct": {
-        "count": 6,
-        "average_minutes": 674.6,
+        "count": 7,
+        "average_minutes": 768.2571428571429,
         "best_minutes": 192.0,
-        "worst_minutes": 1219.1
+        "worst_minutes": 1330.2
       }
     },
     "FAST": {
@@ -17673,13 +17876,13 @@
         "count": 55,
         "positive": 50,
         "positive_rate": 90.9090909090909,
-        "average_return": 2.533556655320432,
+        "average_return": 2.5800354965411647,
         "median_return": 1.711185308848088,
         "best_return": 18.269662921348313,
         "worst_return": 0.0,
         "hit_1pct": 38,
         "hit_2pct": 24,
-        "hit_5pct": 5,
+        "hit_5pct": 6,
         "hit_minus_2pct": 0
       },
       "MAE": {
@@ -17696,8 +17899,8 @@
         "hit_minus_2pct": 18
       },
       "time_to_1pct": {
-        "count": 29,
-        "average_minutes": 818.3379310344827,
+        "count": 31,
+        "average_minutes": 781.3967741935484,
         "best_minutes": 126.0,
         "worst_minutes": 2821.7
       },
@@ -17708,21 +17911,21 @@
         "worst_minutes": 2545.0
       },
       "time_to_5pct": {
-        "count": 5,
-        "average_minutes": 809.88,
+        "count": 6,
+        "average_minutes": 1147.7333333333333,
         "best_minutes": 482.9,
-        "worst_minutes": 1140.7
+        "worst_minutes": 2837.0
       }
     },
     "CONFIRMED": {
       "events": 100,
       "checkpoints": {
         "5m": {
-          "count": 99,
-          "positive": 62,
-          "positive_rate": 62.62626262626263,
-          "average_return": 0.4855872495933208,
-          "median_return": 0.28578851649778325,
+          "count": 100,
+          "positive": 63,
+          "positive_rate": 63.0,
+          "average_return": 0.4880260171227603,
+          "median_return": 0.3061990884611066,
           "best_return": 6.729776247848521,
           "worst_return": -3.1850631521142376,
           "hit_1pct": 28,
@@ -17731,11 +17934,11 @@
           "hit_minus_2pct": 4
         },
         "10m": {
-          "count": 99,
-          "positive": 62,
-          "positive_rate": 62.62626262626263,
-          "average_return": 0.4855872495933208,
-          "median_return": 0.28578851649778325,
+          "count": 100,
+          "positive": 63,
+          "positive_rate": 63.0,
+          "average_return": 0.4880260171227603,
+          "median_return": 0.3061990884611066,
           "best_return": 6.729776247848521,
           "worst_return": -3.1850631521142376,
           "hit_1pct": 28,
@@ -17744,11 +17947,11 @@
           "hit_minus_2pct": 4
         },
         "15m": {
-          "count": 99,
-          "positive": 51,
-          "positive_rate": 51.515151515151516,
-          "average_return": 0.09319333820651073,
-          "median_return": 0.03789314134141566,
+          "count": 100,
+          "positive": 52,
+          "positive_rate": 52.0,
+          "average_return": 0.09955604484981828,
+          "median_return": 0.037965208936207244,
           "best_return": 5.614454233238768,
           "worst_return": -6.336260978670024,
           "hit_1pct": 10,
@@ -17757,24 +17960,24 @@
           "hit_minus_2pct": 1
         },
         "30m": {
-          "count": 97,
-          "positive": 53,
-          "positive_rate": 54.63917525773196,
-          "average_return": 0.0953858470234321,
+          "count": 99,
+          "positive": 54,
+          "positive_rate": 54.54545454545454,
+          "average_return": 0.07398631816083746,
           "median_return": 0.07568876778685209,
           "best_return": 5.614454233238768,
           "worst_return": -6.336260978670024,
           "hit_1pct": 10,
           "hit_2pct": 5,
           "hit_5pct": 1,
-          "hit_minus_2pct": 1
+          "hit_minus_2pct": 2
         },
         "1h": {
-          "count": 94,
-          "positive": 44,
-          "positive_rate": 46.808510638297875,
-          "average_return": 0.029926814527839088,
-          "median_return": -0.010715816545226815,
+          "count": 95,
+          "positive": 45,
+          "positive_rate": 47.368421052631575,
+          "average_return": 0.033765007417869065,
+          "median_return": 0.0,
           "best_return": 5.614454233238768,
           "worst_return": -6.336260978670024,
           "hit_1pct": 13,
@@ -17796,11 +17999,11 @@
           "hit_minus_2pct": 5
         },
         "4h": {
-          "count": 80,
-          "positive": 39,
-          "positive_rate": 48.75,
-          "average_return": 0.07576208670094442,
-          "median_return": -0.07007844803183678,
+          "count": 82,
+          "positive": 41,
+          "positive_rate": 50.0,
+          "average_return": 0.07907455728978292,
+          "median_return": -0.014645378485865355,
           "best_return": 4.725996714946998,
           "worst_return": -6.336260978670024,
           "hit_1pct": 21,
@@ -17810,24 +18013,24 @@
         }
       },
       "MFE": {
-        "count": 80,
-        "positive": 74,
-        "positive_rate": 92.5,
-        "average_return": 1.8670654715787893,
+        "count": 82,
+        "positive": 76,
+        "positive_rate": 92.6829268292683,
+        "average_return": 1.8980579245727176,
         "median_return": 1.357414677450799,
         "best_return": 6.729776247848521,
         "worst_return": 0.0,
-        "hit_1pct": 47,
-        "hit_2pct": 29,
-        "hit_5pct": 4,
+        "hit_1pct": 48,
+        "hit_2pct": 30,
+        "hit_5pct": 5,
         "hit_minus_2pct": 0
       },
       "MAE": {
-        "count": 80,
+        "count": 82,
         "positive": 0,
         "positive_rate": 0.0,
-        "average_return": -1.63745114722785,
-        "median_return": -1.3849505080511326,
+        "average_return": -1.6120140750276306,
+        "median_return": -1.2921868844814952,
         "best_return": 0.0,
         "worst_return": -6.618569636135503,
         "hit_1pct": 0,
@@ -17836,20 +18039,20 @@
         "hit_minus_2pct": 24
       },
       "time_to_1pct": {
-        "count": 28,
-        "average_minutes": 651.7571428571429,
+        "count": 31,
+        "average_minutes": 686.483870967742,
         "best_minutes": 42.7,
-        "worst_minutes": 1817.7
+        "worst_minutes": 2391.6
       },
       "time_to_2pct": {
-        "count": 29,
-        "average_minutes": 301.9034482758621,
+        "count": 31,
+        "average_minutes": 299.5483870967742,
         "best_minutes": 0.0,
         "worst_minutes": 1298.8
       },
       "time_to_5pct": {
-        "count": 4,
-        "average_minutes": 557.625,
+        "count": 5,
+        "average_minutes": 536.02,
         "best_minutes": 133.4,
         "worst_minutes": 1396.3
       }
@@ -17998,11 +18201,11 @@
       "events": 256,
       "checkpoints": {
         "5m": {
-          "count": 253,
-          "positive": 161,
-          "positive_rate": 63.63636363636363,
-          "average_return": 0.8291047233770719,
-          "median_return": 0.3913256155225759,
+          "count": 256,
+          "positive": 163,
+          "positive_rate": 63.671875,
+          "average_return": 0.8236464984259818,
+          "median_return": 0.3942725396381419,
           "best_return": 18.24585321517835,
           "worst_return": -3.1850631521142376,
           "hit_1pct": 81,
@@ -18011,11 +18214,11 @@
           "hit_minus_2pct": 10
         },
         "10m": {
-          "count": 253,
-          "positive": 161,
-          "positive_rate": 63.63636363636363,
-          "average_return": 0.8291047233770719,
-          "median_return": 0.3913256155225759,
+          "count": 256,
+          "positive": 163,
+          "positive_rate": 63.671875,
+          "average_return": 0.8236464984259818,
+          "median_return": 0.3942725396381419,
           "best_return": 18.24585321517835,
           "worst_return": -3.1850631521142376,
           "hit_1pct": 81,
@@ -18024,11 +18227,11 @@
           "hit_minus_2pct": 10
         },
         "15m": {
-          "count": 253,
-          "positive": 129,
-          "positive_rate": 50.988142292490124,
-          "average_return": 0.3253858384585315,
-          "median_return": 0.020624935547079712,
+          "count": 256,
+          "positive": 131,
+          "positive_rate": 51.171875,
+          "average_return": 0.3258305691900806,
+          "median_return": 0.029259038444247685,
           "best_return": 10.982236154649943,
           "worst_return": -6.336260978670024,
           "hit_1pct": 39,
@@ -18037,24 +18240,24 @@
           "hit_minus_2pct": 3
         },
         "30m": {
-          "count": 247,
-          "positive": 119,
-          "positive_rate": 48.178137651821864,
-          "average_return": 0.2573118965830049,
-          "median_return": -0.01956947162428571,
+          "count": 253,
+          "positive": 124,
+          "positive_rate": 49.01185770750988,
+          "average_return": 0.2499675282424,
+          "median_return": -0.017997264415805216,
           "best_return": 10.982236154649943,
           "worst_return": -6.336260978670024,
           "hit_1pct": 41,
           "hit_2pct": 21,
           "hit_5pct": 6,
-          "hit_minus_2pct": 4
+          "hit_minus_2pct": 5
         },
         "1h": {
-          "count": 239,
-          "positive": 115,
-          "positive_rate": 48.11715481171548,
-          "average_return": 0.267797429211162,
-          "median_return": -0.018291576249628443,
+          "count": 240,
+          "positive": 116,
+          "positive_rate": 48.333333333333336,
+          "average_return": 0.26832558633561837,
+          "median_return": -0.009145788124814222,
           "best_return": 10.982236154649943,
           "worst_return": -6.336260978670024,
           "hit_1pct": 46,
@@ -18063,11 +18266,11 @@
           "hit_minus_2pct": 6
         },
         "2h": {
-          "count": 227,
+          "count": 229,
           "positive": 118,
-          "positive_rate": 51.98237885462555,
-          "average_return": 0.31727676552155315,
-          "median_return": 0.08439892274741136,
+          "positive_rate": 51.52838427947598,
+          "average_return": 0.31164184805100803,
+          "median_return": 0.08269588587969899,
           "best_return": 10.982236154649943,
           "worst_return": -6.336260978670024,
           "hit_1pct": 58,
@@ -18076,38 +18279,38 @@
           "hit_minus_2pct": 16
         },
         "4h": {
-          "count": 196,
-          "positive": 94,
-          "positive_rate": 47.95918367346938,
-          "average_return": 0.31302750845761457,
-          "median_return": -0.040833300855939114,
+          "count": 200,
+          "positive": 97,
+          "positive_rate": 48.5,
+          "average_return": 0.314169697056256,
+          "median_return": -0.02621588927911443,
           "best_return": 10.982236154649943,
           "worst_return": -6.336260978670024,
-          "hit_1pct": 57,
+          "hit_1pct": 58,
           "hit_2pct": 27,
           "hit_5pct": 6,
           "hit_minus_2pct": 17
         }
       },
       "MFE": {
-        "count": 196,
-        "positive": 176,
-        "positive_rate": 89.79591836734694,
-        "average_return": 2.2837498360770976,
+        "count": 200,
+        "positive": 180,
+        "positive_rate": 90.0,
+        "average_return": 2.3098194960486746,
         "median_return": 1.4817563054931129,
         "best_return": 19.586457623267425,
         "worst_return": 0.0,
-        "hit_1pct": 123,
-        "hit_2pct": 78,
-        "hit_5pct": 15,
+        "hit_1pct": 125,
+        "hit_2pct": 79,
+        "hit_5pct": 18,
         "hit_minus_2pct": 0
       },
       "MAE": {
-        "count": 196,
+        "count": 200,
         "positive": 0,
         "positive_rate": 0.0,
-        "average_return": -1.471223332046003,
-        "median_return": -1.1693601095374055,
+        "average_return": -1.4559234234230494,
+        "median_return": -1.1287683979325247,
         "best_return": 0.0,
         "worst_return": -6.618569636135503,
         "hit_1pct": 0,
@@ -18116,29 +18319,29 @@
         "hit_minus_2pct": 60
       },
       "time_to_1pct": {
-        "count": 81,
-        "average_minutes": 761.4629629629629,
+        "count": 91,
+        "average_minutes": 733.8131868131868,
         "best_minutes": 42.7,
         "worst_minutes": 2821.7
       },
       "time_to_2pct": {
-        "count": 81,
-        "average_minutes": 452.98641975308647,
+        "count": 83,
+        "average_minutes": 448.4662650602409,
         "best_minutes": 0.0,
         "worst_minutes": 2545.0
       },
       "time_to_5pct": {
-        "count": 15,
-        "average_minutes": 688.5,
+        "count": 18,
+        "average_minutes": 830.2388888888888,
         "best_minutes": 133.4,
-        "worst_minutes": 1396.3
+        "worst_minutes": 2837.0
       }
     }
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 196,
+    "completed_4h": 200,
     "reliable": true
   },
-  "updated_at": 1790361536
+  "updated_at": 1790362454
 }
