@@ -1813,15 +1813,19 @@
           "timestamp": 1790281761
         }
       },
-      "max_return": 4.509114166933164,
-      "max_price": 0.1634,
+      "max_return": 6.3319475535657315,
+      "max_price": 0.16625,
       "thresholds": {
         "2pct": {
           "timestamp": 1790259752,
           "minutes_to_hit": 41.7,
           "price": 0.1596
         },
-        "5pct": null
+        "5pct": {
+          "timestamp": 1790304559,
+          "minutes_to_hit": 788.5,
+          "price": 0.16625
+        }
       },
       "registered_at": 1790257252
     },
@@ -3117,6 +3121,11 @@
           "price": 0.0063625,
           "return_percent": 0.664504390475443,
           "timestamp": 1790297614
+        },
+        "4h": {
+          "price": 0.006362,
+          "return_percent": 0.656593623922156,
+          "timestamp": 1790304559
         }
       },
       "max_return": 3.686417213828029,
@@ -3157,6 +3166,11 @@
           "price": 0.351,
           "return_percent": -0.014242985329723543,
           "timestamp": 1790297614
+        },
+        "4h": {
+          "price": 0.34604999999999997,
+          "return_percent": -1.4242985329725124,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.6836632958268091,
@@ -3752,6 +3766,11 @@
           "price": 0.10925,
           "return_percent": 0.13748854262144578,
           "timestamp": 1790300837
+        },
+        "2h": {
+          "price": 0.1081,
+          "return_percent": -0.9165902841429889,
+          "timestamp": 1790304559
         }
       },
       "max_return": 1.3290559120073262,
@@ -3783,6 +3802,11 @@
           "price": 0.4131,
           "return_percent": -0.19328340178787698,
           "timestamp": 1790300837
+        },
+        "2h": {
+          "price": 0.41145,
+          "return_percent": -0.5919304179753716,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.42280744141094906,
@@ -4088,6 +4112,11 @@
           "price": 1.5463149999999999,
           "return_percent": 0.2912133348466838,
           "timestamp": 1790303203
+        },
+        "1h": {
+          "price": 1.530325,
+          "return_percent": -0.7458693431485457,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.6048027499878409,
@@ -4135,6 +4164,11 @@
           "price": 117.368,
           "return_percent": -0.4448968339801118,
           "timestamp": 1790303912
+        },
+        "30m": {
+          "price": 117.0425,
+          "return_percent": -0.7209958224653767,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.07422015819495853,
@@ -4156,6 +4190,11 @@
           "price": 84495.845,
           "return_percent": -0.21589853831541508,
           "timestamp": 1790303912
+        },
+        "30m": {
+          "price": 84282.39,
+          "return_percent": -0.46797502062651636,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.07829599108581642,
@@ -4177,6 +4216,11 @@
           "price": 0.00017615,
           "return_percent": -0.7885102787947096,
           "timestamp": 1790303912
+        },
+        "30m": {
+          "price": 0.00017545,
+          "return_percent": -1.1827654181920566,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.0,
@@ -4198,6 +4242,11 @@
           "price": 1.771,
           "return_percent": -0.812097451694201,
           "timestamp": 1790303912
+        },
+        "30m": {
+          "price": 1.775,
+          "return_percent": -0.5880705684682136,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.056006720806503055,
@@ -4219,6 +4268,11 @@
           "price": 13.303,
           "return_percent": -1.026709322223035,
           "timestamp": 1790303912
+        },
+        "30m": {
+          "price": 13.2975,
+          "return_percent": -1.0676288966594714,
+          "timestamp": 1790304559
         }
       },
       "max_return": 0.0,
@@ -4243,40 +4297,40 @@
       "hit_5pct": 1
     },
     "30m": {
-      "count": 100,
+      "count": 105,
       "positive": 49,
-      "positive_rate": 49.0,
-      "average_return": 0.011655307940989946,
+      "positive_rate": 46.666666666666664,
+      "average_return": -0.02725623745059657,
       "best_return": 5.31914893617022,
       "worst_return": -4.015056461731496,
       "hit_2pct": 4,
       "hit_5pct": 1
     },
     "1h": {
-      "count": 98,
+      "count": 99,
       "positive": 43,
-      "positive_rate": 43.87755102040816,
-      "average_return": -0.08434780551082445,
+      "positive_rate": 43.43434343434344,
+      "average_return": -0.0910298412445388,
       "best_return": 4.3599257884972324,
       "worst_return": -4.44480102695763,
       "hit_2pct": 8,
       "hit_5pct": 0
     },
     "2h": {
-      "count": 87,
+      "count": 89,
       "positive": 40,
-      "positive_rate": 45.97701149425287,
-      "average_return": -0.041209508859066275,
+      "positive_rate": 44.9438202247191,
+      "average_return": -0.057233123290529514,
       "best_return": 4.730983302411889,
       "worst_return": -3.1332217172925136,
       "hit_2pct": 11,
       "hit_5pct": 0
     },
     "4h": {
-      "count": 70,
-      "positive": 29,
-      "positive_rate": 41.42857142857143,
-      "average_return": 0.07928091089617377,
+      "count": 72,
+      "positive": 30,
+      "positive_rate": 41.66666666666667,
+      "average_return": 0.06641609519002512,
       "best_return": 15.534894668706603,
       "worst_return": -4.971135343168691,
       "hit_2pct": 15,
@@ -4286,11 +4340,11 @@
       "count": 105,
       "positive": 97,
       "positive_rate": 92.38095238095238,
-      "average_return": 2.7041609724767945,
+      "average_return": 2.721521290444724,
       "best_return": 26.009179710486052,
       "worst_return": 0.0,
       "hit_2pct": 45,
-      "hit_5pct": 17
+      "hit_5pct": 18
     },
     "time_to_2pct": {
       "count": 45,
@@ -4299,16 +4353,16 @@
       "worst_minutes": 771.0
     },
     "time_to_5pct": {
-      "count": 17,
-      "average_minutes": 383.3529411764706,
+      "count": 18,
+      "average_minutes": 405.8611111111111,
       "best_minutes": 25.1,
       "worst_minutes": 927.5
     }
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 70,
+    "completed_4h": 72,
     "reliable": false
   },
-  "updated_at": 1790303912
+  "updated_at": 1790304559
 }
