@@ -307,6 +307,11 @@
     "micro_alert_type": "MICRO"
   },
   "ZECUSDT": {
+    "score": 92,
+    "streak": 6,
+    "timestamp": 1790344933,
+    "price": 1592.495,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790295500,
     "micro_score": 58,
     "micro_price": 1556.615,
@@ -770,14 +775,26 @@
     "timestamp": 1790334540,
     "price": 4.8349999999999996e-05,
     "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790332688,
-    "micro_score": 74.0,
-    "micro_price": 4.827e-05,
+    "micro_timestamp": 1790344931,
+    "micro_score": 86.0,
+    "micro_price": 4.8285e-05,
     "micro_alert_type": "MICRO",
     "fast_score": 86,
     "fast_timestamp": 1790340412,
     "fast_price": 4.8485e-05,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_price_change": 0.6356815339724984,
+    "micro_flow": 1.2444059642325658,
+    "micro_flow_delta": 0.0824822878646867,
+    "micro_spread_bps": 26.92347519933736,
+    "micro_rsi": 58.33186824269746,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": -0.10366991499065818,
+    "micro_momentum_1h": 0.12376237623762958,
+    "micro_momentum_4h": 1.1460720983538235,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v2"
   },
   "PROVEUSDT": {
     "score": 83,
@@ -1046,5 +1063,36 @@
     "timestamp": 1790344381,
     "price": 0.026285,
     "alert_type": "CONFIRMED"
+  },
+  "COMPUSDT": {
+    "micro_timestamp": 1790344931,
+    "micro_score": 70.0,
+    "micro_price": 23.93,
+    "micro_price_change": 0.6519453207150416,
+    "micro_flow": 1.1089610022721668,
+    "micro_flow_delta": 0.2745212923715872,
+    "micro_spread_bps": 33.43083994985302,
+    "micro_rsi": 64.56832752037747,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": 0.08305647840532861,
+    "micro_momentum_4h": 2.5095703955763495,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v2",
+    "micro_alert_type": "MICRO"
+  },
+  "SUPERUSDT": {
+    "score": 88,
+    "streak": 14,
+    "timestamp": 1790344932,
+    "price": 0.17625000000000002,
+    "alert_type": "CONFIRMED"
+  },
+  "TURBOUSDT": {
+    "fast_score": 68,
+    "fast_timestamp": 1790344932,
+    "fast_price": 0.0010566500000000001,
+    "fast_alert_type": "FAST"
   }
 }
