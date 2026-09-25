@@ -105,7 +105,11 @@
     "micro_timestamp": 1790323461,
     "micro_score": 49,
     "micro_price": 2.5735,
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 59,
+    "fast_timestamp": 1790332688,
+    "fast_price": 2.6135,
+    "fast_alert_type": "FAST"
   },
   "JASMYUSDT": {
     "score": 91,
@@ -197,10 +201,22 @@
     "micro_alert_type": "MICRO"
   },
   "DOGEUSDT": {
-    "micro_timestamp": 1790298941,
-    "micro_score": 65,
-    "micro_price": 0.09667695,
-    "micro_alert_type": "MICRO"
+    "micro_timestamp": 1790332687,
+    "micro_score": 80.0,
+    "micro_price": 0.09668579999999999,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.41965377654642666,
+    "micro_flow": 1.896099000261932,
+    "micro_flow_delta": 0.20171450540455083,
+    "micro_spread_bps": 27.098084723919992,
+    "micro_rsi": 59.43982616636565,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.5533727211623756,
+    "micro_momentum_1h": 0.45876086778108743,
+    "micro_momentum_4h": 1.790313904932734,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v2"
   },
   "ENAUSDT": {
     "micro_timestamp": 1790323022,
@@ -566,6 +582,31 @@
     "streak": 2,
     "timestamp": 1790331901,
     "price": 304.645,
+    "alert_type": "CONFIRMED"
+  },
+  "DOGSUSDT": {
+    "micro_timestamp": 1790332688,
+    "micro_score": 74.0,
+    "micro_price": 4.827e-05,
+    "micro_price_change": 0.20759809009757618,
+    "micro_flow": 1.4670243650276193,
+    "micro_flow_delta": 0.062065955446164445,
+    "micro_spread_bps": 33.146882121401546,
+    "micro_rsi": 56.85417207269937,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": -0.22774327122154042,
+    "micro_momentum_1h": 0.791831631589914,
+    "micro_momentum_4h": 1.9388830347734414,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v2",
+    "micro_alert_type": "MICRO"
+  },
+  "PROVEUSDT": {
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790332688,
+    "price": 0.23275,
     "alert_type": "CONFIRMED"
   }
 }
