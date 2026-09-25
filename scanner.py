@@ -2637,10 +2637,49 @@ def micro_alert(result, alert_state, alerts_enabled):
         return False
 
     current = alert_state.get(symbol, {})
+
+    # MICRO telemetry: persist every trigger input that the performance tracker
+    # needs so we can audit exactly why the warning fired and tune the layer
+    # from real data instead of guesses.
     current["micro_timestamp"] = now
-    current["micro_score"] = result["score"]
+    current["micro_score"] = safe_float(result.get("score"), 0.0)
     current["micro_price"] = safe_float(result.get("price"), 0.0)
+    current["micro_price_change"] = safe_float(
+        result.get("price_change_since_scan"), 0.0
+    )
+    current["micro_flow"] = safe_float(
+        result.get("order_flow"), 0.0
+    )
+    current["micro_flow_delta"] = safe_float(
+        result.get("flow_delta"), 0.0
+    )
+    current["micro_spread_bps"] = safe_float(
+        result.get("spread_bps"), 999.0
+    )
+    current["micro_rsi"] = safe_float(
+        result.get("rsi"), 50.0
+    )
+    current["micro_structure"] = safe_float(
+        result.get("structure"), 0.0
+    )
+    current["micro_momentum_15m"] = safe_float(
+        result.get("momentum_15m"), 0.0
+    )
+    current["micro_momentum_1h"] = safe_float(
+        result.get("momentum_1h"), 0.0
+    )
+    current["micro_momentum_4h"] = safe_float(
+        result.get("momentum_4h"), 0.0
+    )
+    current["micro_state_fresh"] = bool(
+        result.get("state_fresh")
+    )
+    current["micro_high_risk"] = bool(
+        result.get("high_risk_jump")
+    )
+    current["micro_trigger_version"] = "telemetry-v2"
     current["micro_alert_type"] = "MICRO"
+
     alert_state[symbol] = current
     return True
 
