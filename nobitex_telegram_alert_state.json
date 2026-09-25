@@ -280,7 +280,11 @@
     "micro_timestamp": 1790285280,
     "micro_score": 53,
     "micro_price": 0.10795,
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 65,
+    "fast_timestamp": 1790296770,
+    "fast_price": 0.1091,
+    "fast_alert_type": "FAST"
   },
   "WLDUSDT": {
     "micro_timestamp": 1790285280,
@@ -414,5 +418,12 @@
     "micro_score": 61,
     "micro_price": 0.0001775,
     "micro_alert_type": "MICRO"
+  },
+  "1B_BABYDOGEUSDT": {
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1790296769,
+    "price": 0.41390000000000005,
+    "alert_type": "CONFIRMED"
   }
 }
