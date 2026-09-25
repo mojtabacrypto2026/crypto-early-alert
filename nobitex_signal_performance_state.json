@@ -4253,6 +4253,11 @@
           "price": 1.781,
           "return_percent": 0.4512126339537511,
           "timestamp": 1790305565
+        },
+        "2h": {
+          "price": 1.771,
+          "return_percent": -0.11280315848843778,
+          "timestamp": 1790309029
         }
       },
       "max_return": 0.7614213197969582,
@@ -4481,6 +4486,11 @@
           "price": 0.03028,
           "return_percent": -0.6887504099704768,
           "timestamp": 1790308603
+        },
+        "30m": {
+          "price": 0.03025,
+          "return_percent": -0.787143325680553,
+          "timestamp": 1790309029
         }
       },
       "max_return": 0.0,
@@ -4497,7 +4507,13 @@
       "alert_time": 1790307992,
       "alert_price": 13.349,
       "score": 55,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 13.2995,
+          "return_percent": -0.37081429320548426,
+          "timestamp": 1790309029
+        }
+      },
       "max_return": 0.5393662446625153,
       "max_price": 13.421,
       "thresholds": {
@@ -4510,20 +4526,20 @@
   "milestones": {},
   "statistics": {
     "15m": {
-      "count": 108,
+      "count": 109,
       "positive": 52,
-      "positive_rate": 48.148148148148145,
-      "average_return": -0.0009570579878662611,
+      "positive_rate": 47.706422018348626,
+      "average_return": -0.004350243632064591,
       "best_return": 5.329335525679486,
       "worst_return": -2.782003912192985,
       "hit_2pct": 3,
       "hit_5pct": 1
     },
     "30m": {
-      "count": 107,
+      "count": 108,
       "positive": 50,
-      "positive_rate": 46.728971962616825,
-      "average_return": -0.051248131646767794,
+      "positive_rate": 46.2962962962963,
+      "average_return": -0.05806197603596951,
       "best_return": 5.31914893617022,
       "worst_return": -4.015056461731496,
       "hit_2pct": 4,
@@ -4540,10 +4556,10 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 99,
+      "count": 100,
       "positive": 40,
-      "positive_rate": 40.4040404040404,
-      "average_return": -0.16570958039472072,
+      "positive_rate": 40.0,
+      "average_return": -0.16518051617565788,
       "best_return": 4.730983302411889,
       "worst_return": -3.1332217172925136,
       "hit_2pct": 11,
@@ -4587,5 +4603,5 @@
     "completed_4h": 83,
     "reliable": false
   },
-  "updated_at": 1790308603
+  "updated_at": 1790309029
 }
