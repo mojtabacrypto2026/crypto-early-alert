@@ -860,7 +860,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 59,
+    "fast_timestamp": 1790348146,
+    "fast_price": 4.561999999999999,
+    "fast_alert_type": "FAST"
   },
   "HYPEUSDT": {
     "fast_score": 76,
@@ -1088,21 +1092,14 @@
     "alert_type": "CONFIRMED"
   },
   "COMPUSDT": {
+    "score": 84,
+    "streak": 6,
+    "timestamp": 1790348146,
+    "price": 23.83,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790344931,
     "micro_score": 70.0,
     "micro_price": 23.93,
-    "micro_price_change": 0.6519453207150416,
-    "micro_flow": 1.1089610022721668,
-    "micro_flow_delta": 0.2745212923715872,
-    "micro_spread_bps": 33.43083994985302,
-    "micro_rsi": 64.56832752037747,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 0.08305647840532861,
-    "micro_momentum_4h": 2.5095703955763495,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2",
     "micro_alert_type": "MICRO"
   },
   "SUPERUSDT": {
