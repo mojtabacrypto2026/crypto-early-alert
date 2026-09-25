@@ -476,8 +476,8 @@
           "timestamp": 1790243813
         }
       },
-      "max_return": 4.144218814753399,
-      "max_price": 0.25129999999999997,
+      "max_return": 4.392871943638623,
+      "max_price": 0.2519,
       "thresholds": {
         "2pct": {
           "timestamp": 1790260698,
@@ -1396,8 +1396,8 @@
           "timestamp": 1790258096
         }
       },
-      "max_return": 24.53807226079793,
-      "max_price": 0.5291,
+      "max_return": 25.326585853830757,
+      "max_price": 0.53245,
       "thresholds": {
         "2pct": {
           "timestamp": 1790251361,
@@ -1940,8 +1940,8 @@
           "timestamp": 1790281761
         }
       },
-      "max_return": 3.7408568443051142,
-      "max_price": 0.4964,
+      "max_return": 3.8557993730407447,
+      "max_price": 0.49695,
       "thresholds": {
         "2pct": {
           "timestamp": 1790281761,
@@ -2316,10 +2316,14 @@
           "timestamp": 1790292523
         }
       },
-      "max_return": 1.3894324853228734,
-      "max_price": 0.025904999999999997,
+      "max_return": 2.211350293542059,
+      "max_price": 0.026115,
       "thresholds": {
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790298944,
+          "minutes_to_hit": 227.8,
+          "price": 0.026115
+        },
         "5pct": null
       },
       "registered_at": 1790285281
@@ -2432,8 +2436,8 @@
           "timestamp": 1790292523
         }
       },
-      "max_return": 1.4358499305233865,
-      "max_price": 0.1095,
+      "max_return": 1.6211208893005906,
+      "max_price": 0.10969999999999999,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -2796,8 +2800,8 @@
           "timestamp": 1790295500
         }
       },
-      "max_return": 0.626884199326116,
-      "max_price": 567.435,
+      "max_return": 0.688951941833677,
+      "max_price": 567.7850000000001,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -3012,8 +3016,8 @@
           "timestamp": 1790297614
         }
       },
-      "max_return": 1.1707934498852983,
-      "max_price": 0.0063945,
+      "max_return": 1.7324578751681075,
+      "max_price": 0.00643,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -3149,6 +3153,11 @@
           "price": 0.4488,
           "return_percent": 1.8495404516055807,
           "timestamp": 1790295500
+        },
+        "2h": {
+          "price": 0.44405,
+          "return_percent": 0.7715874276636818,
+          "timestamp": 1790298944
         }
       },
       "max_return": 1.8495404516055807,
@@ -3180,6 +3189,11 @@
           "price": 71.465,
           "return_percent": 0.06300756090731126,
           "timestamp": 1790295500
+        },
+        "2h": {
+          "price": 71.495,
+          "return_percent": 0.10501260151218544,
+          "timestamp": 1790298944
         }
       },
       "max_return": 0.8050966115933952,
@@ -3415,8 +3429,8 @@
           "timestamp": 1790298204
         }
       },
-      "max_return": 4.3599257884972324,
-      "max_price": 1.125,
+      "max_return": 4.638218923933235,
+      "max_price": 1.1280000000000001,
       "thresholds": {
         "2pct": {
           "timestamp": 1790298204,
@@ -3523,8 +3537,8 @@
           "timestamp": 1790297614
         }
       },
-      "max_return": 0.4788732394366161,
-      "max_price": 0.00017835,
+      "max_return": 0.6760563380281702,
+      "max_price": 0.0001787,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -3542,10 +3556,15 @@
           "price": 0.10894999999999999,
           "return_percent": -0.13748854262145851,
           "timestamp": 1790298204
+        },
+        "30m": {
+          "price": 0.10969999999999999,
+          "return_percent": 0.5499541704857831,
+          "timestamp": 1790298944
         }
       },
-      "max_return": 0.0,
-      "max_price": 0.1091,
+      "max_return": 0.5499541704857831,
+      "max_price": 0.10969999999999999,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -3563,6 +3582,11 @@
           "price": 0.41564999999999996,
           "return_percent": 0.42280744141094906,
           "timestamp": 1790298204
+        },
+        "30m": {
+          "price": 0.41474999999999995,
+          "return_percent": 0.20536361439959078,
+          "timestamp": 1790298944
         }
       },
       "max_return": 0.42280744141094906,
@@ -3572,6 +3596,81 @@
         "5pct": null
       },
       "registered_at": 1790296770
+    },
+    "PENDLEUSDT_CONFIRMED_1790298942": {
+      "symbol": "PENDLEUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790298942,
+      "alert_price": 2.618,
+      "score": 80,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 2.618,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790298944
+    },
+    "DOGEUSDT_MICRO_1790298941": {
+      "symbol": "DOGEUSDT",
+      "type": "MICRO",
+      "alert_time": 1790298941,
+      "alert_price": 0.09667695,
+      "score": 65,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.09667695,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790298944
+    },
+    "POLUSDT_CONFIRMED_1790298943": {
+      "symbol": "POLUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790298943,
+      "alert_price": 0.1096,
+      "score": 86,
+      "checkpoints": {},
+      "max_return": 0.09124087591239871,
+      "max_price": 0.10969999999999999,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790298944
+    },
+    "XMRUSDT_MICRO_1790298943": {
+      "symbol": "XMRUSDT",
+      "type": "MICRO",
+      "alert_time": 1790298943,
+      "alert_price": 567.495,
+      "score": 60,
+      "checkpoints": {},
+      "max_return": 0.051101771821791785,
+      "max_price": 567.7850000000001,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790298944
+    },
+    "ETHUSDT_MICRO_1790298942": {
+      "symbol": "ETHUSDT",
+      "type": "MICRO",
+      "alert_time": 1790298942,
+      "alert_price": 2693.615,
+      "score": 60,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 2693.615,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790298944
     }
   },
   "milestones": {},
@@ -3587,10 +3686,10 @@
       "hit_5pct": 1
     },
     "30m": {
-      "count": 87,
-      "positive": 41,
-      "positive_rate": 47.12643678160919,
-      "average_return": 0.0074734231832754745,
+      "count": 89,
+      "positive": 43,
+      "positive_rate": 48.31460674157304,
+      "average_return": 0.01579219777337461,
       "best_return": 5.31914893617022,
       "worst_return": -4.015056461731496,
       "hit_2pct": 4,
@@ -3607,10 +3706,10 @@
       "hit_5pct": 0
     },
     "2h": {
-      "count": 74,
-      "positive": 31,
-      "positive_rate": 41.891891891891895,
-      "average_return": -0.14281633910371574,
+      "count": 76,
+      "positive": 33,
+      "positive_rate": 43.42105263157895,
+      "average_return": -0.1275238034802513,
       "best_return": 3.0660098310225576,
       "worst_return": -3.1332217172925136,
       "hit_2pct": 9,
@@ -3627,18 +3726,18 @@
       "hit_5pct": 4
     },
     "MFE": {
-      "count": 89,
-      "positive": 82,
-      "positive_rate": 92.13483146067416,
-      "average_return": 2.963829467397662,
-      "best_return": 24.53807226079793,
+      "count": 94,
+      "positive": 85,
+      "positive_rate": 90.42553191489363,
+      "average_return": 2.8482087854902116,
+      "best_return": 25.326585853830757,
       "worst_return": 0.0,
-      "hit_2pct": 41,
+      "hit_2pct": 42,
       "hit_5pct": 16
     },
     "time_to_2pct": {
-      "count": 41,
-      "average_minutes": 257.22682926829265,
+      "count": 42,
+      "average_minutes": 256.5261904761905,
       "best_minutes": 15.2,
       "worst_minutes": 771.0
     },
@@ -3654,5 +3753,5 @@
     "completed_4h": 51,
     "reliable": false
   },
-  "updated_at": 1790298204
+  "updated_at": 1790298944
 }

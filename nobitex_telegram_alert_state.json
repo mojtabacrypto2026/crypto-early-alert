@@ -175,6 +175,11 @@
     "fast_alert_type": "FAST"
   },
   "PENDLEUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1790298942,
+    "price": 2.618,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790290632,
     "micro_score": 60,
     "micro_price": 2.5805,
@@ -261,9 +266,9 @@
     "micro_alert_type": "MICRO"
   },
   "DOGEUSDT": {
-    "micro_timestamp": 1790289444,
+    "micro_timestamp": 1790298941,
     "micro_score": 65,
-    "micro_price": 0.0954651,
+    "micro_price": 0.09667695,
     "micro_alert_type": "MICRO"
   },
   "ENAUSDT": {
@@ -277,14 +282,19 @@
     "fast_alert_type": "FAST"
   },
   "POLUSDT": {
-    "micro_timestamp": 1790285280,
-    "micro_score": 53,
-    "micro_price": 0.10795,
-    "micro_alert_type": "MICRO",
+    "score": 86,
+    "streak": 2,
+    "timestamp": 1790298943,
+    "price": 0.1096,
+    "alert_type": "CONFIRMED",
     "fast_score": 65,
     "fast_timestamp": 1790296770,
     "fast_price": 0.1091,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790285280,
+    "micro_score": 53,
+    "micro_price": 0.10795,
+    "micro_alert_type": "MICRO"
   },
   "WLDUSDT": {
     "micro_timestamp": 1790285280,
@@ -342,7 +352,11 @@
     "streak": 2,
     "timestamp": 1790288000,
     "price": 563.9,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "micro_timestamp": 1790298943,
+    "micro_score": 60,
+    "micro_price": 567.495,
+    "micro_alert_type": "MICRO"
   },
   "MOVEUSDT": {
     "fast_score": 66,
@@ -425,5 +439,11 @@
     "timestamp": 1790296769,
     "price": 0.41390000000000005,
     "alert_type": "CONFIRMED"
+  },
+  "ETHUSDT": {
+    "micro_timestamp": 1790298942,
+    "micro_score": 60,
+    "micro_price": 2693.615,
+    "micro_alert_type": "MICRO"
   }
 }
