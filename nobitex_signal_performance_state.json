@@ -4678,6 +4678,11 @@
           "price": 0.02986,
           "return_percent": -2.0662512299114417,
           "timestamp": 1790315000
+        },
+        "4h": {
+          "price": 0.029670000000000002,
+          "return_percent": -2.6894063627418756,
+          "timestamp": 1790322394
         }
       },
       "max_return": 0.0,
@@ -4714,6 +4719,11 @@
           "price": 13.44,
           "return_percent": 0.6816990036706817,
           "timestamp": 1790315631
+        },
+        "4h": {
+          "price": 13.416,
+          "return_percent": 0.5019102554498477,
+          "timestamp": 1790322394
         }
       },
       "max_return": 0.8277773616001202,
@@ -4896,8 +4906,8 @@
           "timestamp": 1790320754
         }
       },
-      "max_return": 0.0,
-      "max_price": 0.26185,
+      "max_return": 0.30551842658009065,
+      "max_price": 0.26265,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -4997,6 +5007,11 @@
           "price": 0.4433,
           "return_percent": 0.5443411204354759,
           "timestamp": 1790319207
+        },
+        "2h": {
+          "price": 0.44345,
+          "return_percent": 0.5783624404626893,
+          "timestamp": 1790322394
         }
       },
       "max_return": 1.077341800861868,
@@ -5147,6 +5162,11 @@
           "price": 0.44565,
           "return_percent": 0.564143066681711,
           "timestamp": 1790320754
+        },
+        "1h": {
+          "price": 0.44345,
+          "return_percent": 0.06769716800181033,
+          "timestamp": 1790322394
         }
       },
       "max_return": 0.564143066681711,
@@ -5173,10 +5193,15 @@
           "price": 71.24,
           "return_percent": -0.18914185639230138,
           "timestamp": 1790320754
+        },
+        "1h": {
+          "price": 71.475,
+          "return_percent": 0.14010507880909887,
+          "timestamp": 1790322394
         }
       },
-      "max_return": 0.0,
-      "max_price": 71.375,
+      "max_return": 0.14010507880909887,
+      "max_price": 71.475,
       "thresholds": {
         "2pct": null,
         "5pct": null
@@ -5189,7 +5214,13 @@
       "alert_time": 1790320753,
       "alert_price": 567.5,
       "score": 80,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 571.44,
+          "return_percent": 0.6942731277533136,
+          "timestamp": 1790322394
+        }
+      },
       "max_return": 0.6951541850220152,
       "max_price": 571.4449999999999,
       "thresholds": {
@@ -5227,6 +5258,51 @@
         "5pct": null
       },
       "registered_at": 1790321616
+    },
+    "WLDUSDT_FAST_1790322393": {
+      "symbol": "WLDUSDT",
+      "type": "FAST",
+      "alert_time": 1790322393,
+      "alert_price": 0.44389999999999996,
+      "score": 77,
+      "checkpoints": {},
+      "max_return": 0.0,
+      "max_price": 0.44389999999999996,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790322394
+    },
+    "XRPUSDT_FAST_1790322393": {
+      "symbol": "XRPUSDT",
+      "type": "FAST",
+      "alert_time": 1790322393,
+      "alert_price": 1.52192,
+      "score": 64,
+      "checkpoints": {},
+      "max_return": 0.276295731707318,
+      "max_price": 1.526125,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790322394
+    },
+    "LINKUSDT_CONFIRMED_1790322393": {
+      "symbol": "LINKUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790322393,
+      "alert_price": 13.394,
+      "score": 86,
+      "checkpoints": {},
+      "max_return": 0.16425265044049756,
+      "max_price": 13.416,
+      "thresholds": {
+        "2pct": null,
+        "5pct": null
+      },
+      "registered_at": 1790322394
     }
   },
   "milestones": {
@@ -5234,10 +5310,10 @@
   },
   "statistics": {
     "15m": {
-      "count": 123,
-      "positive": 59,
-      "positive_rate": 47.96747967479675,
-      "average_return": -0.02126614628265656,
+      "count": 124,
+      "positive": 60,
+      "positive_rate": 48.38709677419355,
+      "average_return": -0.01549566826623745,
       "best_return": 5.329335525679486,
       "worst_return": -2.782003912192985,
       "hit_2pct": 3,
@@ -5254,40 +5330,40 @@
       "hit_5pct": 1
     },
     "1h": {
-      "count": 121,
-      "positive": 52,
-      "positive_rate": 42.97520661157025,
-      "average_return": -0.1351728352574071,
+      "count": 123,
+      "positive": 54,
+      "positive_rate": 43.90243902439025,
+      "average_return": -0.13128545381573456,
       "best_return": 4.3599257884972324,
       "worst_return": -4.44480102695763,
       "hit_2pct": 8,
       "hit_5pct": 0
     },
     "2h": {
-      "count": 116,
-      "positive": 46,
-      "positive_rate": 39.6551724137931,
-      "average_return": -0.20144894992307125,
+      "count": 117,
+      "positive": 47,
+      "positive_rate": 40.17094017094017,
+      "average_return": -0.19478389530438955,
       "best_return": 4.730983302411889,
       "worst_return": -4.151271462725484,
       "hit_2pct": 12,
       "hit_5pct": 0
     },
     "4h": {
-      "count": 107,
-      "positive": 37,
-      "positive_rate": 34.57943925233645,
-      "average_return": -0.11599923207715317,
+      "count": 109,
+      "positive": 38,
+      "positive_rate": 34.862385321100916,
+      "average_return": -0.13393957742704052,
       "best_return": 15.534894668706603,
       "worst_return": -4.971135343168691,
       "hit_2pct": 17,
       "hit_5pct": 5
     },
     "MFE": {
-      "count": 126,
-      "positive": 113,
-      "positive_rate": 89.68253968253968,
-      "average_return": 2.5316660323367284,
+      "count": 129,
+      "positive": 117,
+      "positive_rate": 90.69767441860465,
+      "average_return": 2.47965962761213,
       "best_return": 31.646463457690928,
       "worst_return": 0.0,
       "hit_2pct": 46,
@@ -5308,8 +5384,8 @@
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 107,
+    "completed_4h": 109,
     "reliable": true
   },
-  "updated_at": 1790321616
+  "updated_at": 1790322394
 }
