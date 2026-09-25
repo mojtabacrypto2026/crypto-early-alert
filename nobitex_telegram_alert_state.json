@@ -389,14 +389,19 @@
     "fast_alert_type": "FAST"
   },
   "ARBUSDT": {
-    "micro_timestamp": 1790290632,
-    "micro_score": 48,
-    "micro_price": 0.21895,
-    "micro_alert_type": "MICRO",
+    "score": 82,
+    "streak": 3,
+    "timestamp": 1790345670,
+    "price": 0.22045,
+    "alert_type": "CONFIRMED",
     "fast_score": 58,
     "fast_timestamp": 1790338192,
     "fast_price": 0.22660000000000002,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790290632,
+    "micro_score": 48,
+    "micro_price": 0.21895,
+    "micro_alert_type": "MICRO"
   },
   "LTCUSDT": {
     "micro_timestamp": 1790341933,
@@ -678,22 +683,15 @@
     "alert_type": "CONFIRMED"
   },
   "DEXEUSDT": {
+    "score": 88,
+    "streak": 10,
+    "timestamp": 1790345670,
+    "price": 1.9245,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790340412,
     "micro_score": 75.0,
     "micro_price": 1.9445000000000001,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.3612903225806512,
-    "micro_flow": 1.2313233950185143,
-    "micro_flow_delta": 0.7921446189483866,
-    "micro_spread_bps": 5.142710208280339,
-    "micro_rsi": 57.77648845485299,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": -0.9244992295839761,
-    "micro_momentum_1h": 0.4136504653567739,
-    "micro_momentum_4h": 0.5696530295183789,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2"
+    "micro_alert_type": "MICRO"
   },
   "FILUSDT": {
     "score": 88,
@@ -998,7 +996,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 79,
+    "fast_timestamp": 1790345671,
+    "fast_price": 0.217115,
+    "fast_alert_type": "FAST"
   },
   "CELRUSDT": {
     "micro_timestamp": 1790342881,
@@ -1093,6 +1095,12 @@
     "fast_score": 68,
     "fast_timestamp": 1790344932,
     "fast_price": 0.0010566500000000001,
+    "fast_alert_type": "FAST"
+  },
+  "NOTUSDT": {
+    "fast_score": 70,
+    "fast_timestamp": 1790345671,
+    "fast_price": 0.0004792,
     "fast_alert_type": "FAST"
   }
 }
