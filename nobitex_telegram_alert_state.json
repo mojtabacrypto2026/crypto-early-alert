@@ -550,6 +550,11 @@
     "alert_type": "CONFIRMED"
   },
   "ASTERUSDT": {
+    "score": 81,
+    "streak": 4,
+    "timestamp": 1790333254,
+    "price": 0.72875,
+    "alert_type": "CONFIRMED",
     "fast_score": 65,
     "fast_timestamp": 1790328235,
     "fast_price": 0.7344999999999999,
@@ -608,5 +613,23 @@
     "timestamp": 1790332688,
     "price": 0.23275,
     "alert_type": "CONFIRMED"
+  },
+  "WUSDT": {
+    "micro_timestamp": 1790333255,
+    "micro_score": 57.0,
+    "micro_price": 0.011980000000000001,
+    "micro_price_change": 0.8417508417508512,
+    "micro_flow": 1.2886943390687278,
+    "micro_flow_delta": 0.1663458520086143,
+    "micro_spread_bps": 33.38898163606019,
+    "micro_rsi": 65.89999257939519,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": 0.08474576271186096,
+    "micro_momentum_4h": 1.5477214101461703,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v2",
+    "micro_alert_type": "MICRO"
   }
 }
