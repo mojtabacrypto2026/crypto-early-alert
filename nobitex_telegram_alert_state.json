@@ -163,7 +163,11 @@
     "micro_timestamp": 1790263137,
     "micro_score": 60,
     "micro_price": 0.08852499999999999,
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 81,
+    "fast_timestamp": 1790346585,
+    "fast_price": 0.08811,
+    "fast_alert_type": "FAST"
   },
   "FORMUSDT": {
     "score": 81,
@@ -1102,5 +1106,23 @@
     "fast_timestamp": 1790345671,
     "fast_price": 0.0004792,
     "fast_alert_type": "FAST"
+  },
+  "DOTUSDT": {
+    "score": 89,
+    "streak": 10,
+    "timestamp": 1790346585,
+    "price": 1.178,
+    "alert_type": "CONFIRMED",
+    "micro_timestamp": 1790346584,
+    "micro_score": 89.0,
+    "micro_price": 1.178,
+    "micro_alert_type": "MICRO"
+  },
+  "MEUSDT": {
+    "score": 80,
+    "streak": 3,
+    "timestamp": 1790346585,
+    "price": 0.0766,
+    "alert_type": "CONFIRMED"
   }
 }
