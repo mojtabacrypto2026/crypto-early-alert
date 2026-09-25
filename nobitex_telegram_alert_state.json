@@ -69,9 +69,9 @@
     "timestamp": 1790328236,
     "price": 2.7186,
     "alert_type": "CONFIRMED",
-    "fast_score": 58,
-    "fast_timestamp": 1790312239,
-    "fast_price": 2.73405,
+    "fast_score": 61,
+    "fast_timestamp": 1790350485,
+    "fast_price": 2.77975,
     "fast_alert_type": "FAST"
   },
   "BICOUSDT": {
@@ -132,12 +132,6 @@
     "fast_timestamp": 1790287999,
     "fast_price": 0.0045415,
     "fast_alert_type": "FAST"
-  },
-  "JTOUSDT": {
-    "micro_timestamp": 1790263137,
-    "micro_score": 71,
-    "micro_price": 0.47850000000000004,
-    "micro_alert_type": "MICRO"
   },
   "RENDERUSDT": {
     "score": 87,
@@ -425,19 +419,19 @@
     "micro_alert_type": "MICRO"
   },
   "LTCUSDT": {
-    "micro_timestamp": 1790341933,
-    "micro_score": 56.0,
-    "micro_price": 70.37,
+    "micro_timestamp": 1790350486,
+    "micro_score": 48.0,
+    "micro_price": 70.10499999999999,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.42097752408134387,
-    "micro_flow": 4.0442477417269425,
-    "micro_flow_delta": 1.0043412690321993,
-    "micro_spread_bps": 25.579081995167346,
-    "micro_rsi": 49.61971489305693,
+    "micro_price_change": 0.4729487638838898,
+    "micro_flow": 1.6453296597271816,
+    "micro_flow_delta": 0.6085796037296953,
+    "micro_spread_bps": 32.80793096070238,
+    "micro_rsi": 47.36552212974961,
     "micro_structure": 4.0,
-    "micro_momentum_15m": -0.1711351968054828,
-    "micro_momentum_1h": -0.3558718861209964,
-    "micro_momentum_4h": -1.1159768328860096,
+    "micro_momentum_15m": 0.34329852667716937,
+    "micro_momentum_1h": -0.20048689674924902,
+    "micro_momentum_4h": -1.3867270411773085,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2"
@@ -725,10 +719,10 @@
     "micro_trigger_version": "telemetry-v2"
   },
   "SLPUSDT": {
-    "score": 90,
+    "score": 85,
     "streak": 3,
-    "timestamp": 1790325286,
-    "price": 0.0006957,
+    "timestamp": 1790350486,
+    "price": 0.0006999,
     "alert_type": "CONFIRMED"
   },
   "DEXEUSDT": {
@@ -1071,7 +1065,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_alert_type": "MICRO",
+    "fast_score": 60,
+    "fast_timestamp": 1790350485,
+    "fast_price": 0.003129,
+    "fast_alert_type": "FAST"
   },
   "ENJUSDT": {
     "score": 89,
