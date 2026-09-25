@@ -121,12 +121,6 @@
     "fast_price": 0.0045415,
     "fast_alert_type": "FAST"
   },
-  "REDUSDT": {
-    "micro_timestamp": 1790257252,
-    "micro_score": 62,
-    "micro_price": 0.15635,
-    "micro_alert_type": "MICRO"
-  },
   "JTOUSDT": {
     "micro_timestamp": 1790263137,
     "micro_score": 71,
@@ -177,9 +171,9 @@
     "timestamp": 1790327248,
     "price": 0.30415000000000003,
     "alert_type": "CONFIRMED",
-    "fast_score": 78,
-    "fast_timestamp": 1790281761,
-    "fast_price": 0.3043,
+    "fast_score": 73,
+    "fast_timestamp": 1790344380,
+    "fast_price": 0.30474999999999997,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790286879,
     "micro_score": 62,
@@ -198,14 +192,19 @@
     "fast_alert_type": "FAST"
   },
   "APTUSDT": {
-    "micro_timestamp": 1790282642,
-    "micro_score": 47,
-    "micro_price": 0.81225,
-    "micro_alert_type": "MICRO",
+    "score": 81,
+    "streak": 4,
+    "timestamp": 1790344380,
+    "price": 0.8346,
+    "alert_type": "CONFIRMED",
     "fast_score": 63,
     "fast_timestamp": 1790326739,
     "fast_price": 0.8224,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790282642,
+    "micro_score": 47,
+    "micro_price": 0.81225,
+    "micro_alert_type": "MICRO"
   },
   "AVAXUSDT": {
     "score": 90,
@@ -1028,13 +1027,24 @@
     "streak": 2,
     "timestamp": 1790342882,
     "price": 0.26195,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 81,
+    "fast_timestamp": 1790344381,
+    "fast_price": 0.25765,
+    "fast_alert_type": "FAST"
   },
   "GUSDT": {
     "score": 92,
     "streak": 3,
     "timestamp": 1790343614,
     "price": 0.005746,
+    "alert_type": "CONFIRMED"
+  },
+  "GRTUSDT": {
+    "score": 89,
+    "streak": 4,
+    "timestamp": 1790344381,
+    "price": 0.026285,
     "alert_type": "CONFIRMED"
   }
 }
