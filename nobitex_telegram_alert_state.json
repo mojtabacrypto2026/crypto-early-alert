@@ -411,11 +411,15 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "HOMEUSDT": {
-    "score": 82,
-    "streak": 7,
-    "timestamp": 1790285851,
-    "price": 0.0063535,
+    "score": 83,
+    "streak": 23,
+    "timestamp": 1790388953,
+    "price": 0.006510999999999999,
     "alert_type": "CONFIRMED",
+    "fast_score": 72,
+    "fast_timestamp": 1790384113,
+    "fast_price": 0.006618499999999999,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790324357,
     "micro_score": 76,
     "micro_price": 0.006396499999999999,
@@ -428,11 +432,7 @@
     "buildup_flow": 1.4673638528140247,
     "buildup_flow_delta": 0.28072027601259064,
     "buildup_spread_bps": 18.70907390084304,
-    "buildup_pressure_change": 0.0077887534330199695,
-    "fast_score": 72,
-    "fast_timestamp": 1790384113,
-    "fast_price": 0.006618499999999999,
-    "fast_alert_type": "FAST"
+    "buildup_pressure_change": 0.0077887534330199695
   },
   "COTIUSDT": {
     "score": 88,
@@ -1115,10 +1115,10 @@
     "fast_alert_type": "FAST"
   },
   "DYDXUSDT": {
-    "score": 81,
-    "streak": 2,
-    "timestamp": 1790335479,
-    "price": 0.13490000000000002,
+    "score": 98,
+    "streak": 6,
+    "timestamp": 1790388953,
+    "price": 0.13390000000000002,
     "alert_type": "CONFIRMED"
   },
   "SKYUSDT": {
@@ -1358,11 +1358,15 @@
     "alert_type": "CONFIRMED"
   },
   "NEIROUSDT": {
-    "score": 81,
-    "streak": 4,
-    "timestamp": 1790366068,
-    "price": 9.290000000000001e-05,
+    "score": 89,
+    "streak": 6,
+    "timestamp": 1790388954,
+    "price": 9.4165e-05,
     "alert_type": "CONFIRMED",
+    "fast_score": 61,
+    "fast_timestamp": 1790377068,
+    "fast_price": 9.4055e-05,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790348675,
     "micro_score": 78.0,
     "micro_price": 9.206e-05,
@@ -1378,11 +1382,7 @@
     "micro_momentum_4h": -0.3702896972337183,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2",
-    "fast_score": 61,
-    "fast_timestamp": 1790377068,
-    "fast_price": 9.4055e-05,
-    "fast_alert_type": "FAST"
+    "micro_trigger_version": "telemetry-v2"
   },
   "SUSHIUSDT": {
     "score": 81,
@@ -1467,10 +1467,10 @@
     "fast_alert_type": "FAST"
   },
   "NOTUSDT": {
-    "score": 85,
-    "streak": 2,
-    "timestamp": 1790385692,
-    "price": 0.00048945,
+    "score": 93,
+    "streak": 6,
+    "timestamp": 1790388954,
+    "price": 0.0004934500000000001,
     "alert_type": "CONFIRMED",
     "fast_score": 70,
     "fast_timestamp": 1790379395,
