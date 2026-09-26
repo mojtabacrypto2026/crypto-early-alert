@@ -120,19 +120,19 @@
     "fast_timestamp": 1790434711,
     "fast_price": 2.0255,
     "fast_alert_type": "FAST",
-    "micro_timestamp": 1790433595,
-    "micro_score": 81.0,
-    "micro_price": 1.991,
+    "micro_timestamp": 1790451783,
+    "micro_score": 45.0,
+    "micro_price": 1.9985,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.5809547865622665,
-    "micro_flow": 2.044467011819705,
-    "micro_flow_delta": 1.0951371193426116,
-    "micro_spread_bps": 30.13561024610751,
-    "micro_rsi": 57.99728256525127,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 0.7113821138211389,
-    "micro_momentum_4h": -0.9990009990009889,
+    "micro_price_change": 0.25081514923500847,
+    "micro_flow": 1.086659869741812,
+    "micro_flow_delta": 0.13100124193262785,
+    "micro_spread_bps": 5.003752814611518,
+    "micro_rsi": 57.21212518120895,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": -0.745156482861396,
+    "micro_momentum_1h": -1.711491442542794,
+    "micro_momentum_4h": -0.6426099851705558,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
@@ -338,7 +338,16 @@
     "micro_momentum_4h": 0.8492569002123165,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790451782,
+    "buildup_score": 64.0,
+    "buildup_price": 0.009855,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.4752459463745629,
+    "buildup_flow_delta": 0.4107223249127685,
+    "buildup_spread_bps": 10.147133434806015,
+    "buildup_pressure_change": 0.1013684744044561
   },
   "KAITOUSDT": {
     "score": 88,
@@ -1815,5 +1824,22 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "HOTUSDT": {
+    "fast_score": 61,
+    "fast_timestamp": 1790451781,
+    "fast_price": 0.000457,
+    "fast_alert_type": "FAST"
+  },
+  "SAFEUSDT": {
+    "buildup_timestamp": 1790451783,
+    "buildup_score": 60.0,
+    "buildup_price": 0.11605,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.043066322136096784,
+    "buildup_flow": 1.375413300776023,
+    "buildup_flow_delta": 0.33091170290091854,
+    "buildup_spread_bps": 8.616975441619042,
+    "buildup_pressure_change": -0.043066322136096784
   }
 }
