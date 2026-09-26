@@ -779,11 +779,15 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "SLPUSDT": {
-    "score": 80,
-    "streak": 18,
-    "timestamp": 1790396601,
-    "price": 0.0006974500000000001,
+    "score": 81,
+    "streak": 11,
+    "timestamp": 1790426011,
+    "price": 0.0007155,
     "alert_type": "CONFIRMED",
+    "fast_score": 71,
+    "fast_timestamp": 1790420155,
+    "fast_price": 0.00071715,
+    "fast_alert_type": "FAST",
     "buildup_timestamp": 1790412293,
     "buildup_score": 63.0,
     "buildup_price": 0.00070405,
@@ -792,11 +796,7 @@
     "buildup_flow": 1.70590691938872,
     "buildup_flow_delta": 0.33834781882123655,
     "buildup_spread_bps": 12.783183012571211,
-    "buildup_pressure_change": 0.48219374252696307,
-    "fast_score": 71,
-    "fast_timestamp": 1790420155,
-    "fast_price": 0.00071715,
-    "fast_alert_type": "FAST"
+    "buildup_pressure_change": 0.48219374252696307
   },
   "DEXEUSDT": {
     "score": 88,
@@ -1105,9 +1105,9 @@
     "timestamp": 1790407164,
     "price": 9.736,
     "alert_type": "CONFIRMED",
-    "fast_score": 91,
-    "fast_timestamp": 1790415484,
-    "fast_price": 9.5795,
+    "fast_score": 76,
+    "fast_timestamp": 1790426011,
+    "fast_price": 9.556999999999999,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790407163,
     "micro_score": 91.0,
@@ -1134,13 +1134,6 @@
     "buildup_flow_delta": 0.61546216895515,
     "buildup_spread_bps": 19.71056590071928,
     "buildup_pressure_change": -0.308466090189038
-  },
-  "FLOWUSDT": {
-    "score": 81,
-    "streak": 11,
-    "timestamp": 1790338193,
-    "price": 0.032549999999999996,
-    "alert_type": "CONFIRMED"
   },
   "SUSDT": {
     "score": 88,
@@ -1462,9 +1455,9 @@
     "timestamp": 1790388954,
     "price": 0.0004934500000000001,
     "alert_type": "CONFIRMED",
-    "fast_score": 70,
-    "fast_timestamp": 1790379395,
-    "fast_price": 0.0004930500000000001,
+    "fast_score": 64,
+    "fast_timestamp": 1790426010,
+    "fast_price": 0.00050015,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790396600,
     "micro_score": 96.0,
@@ -1908,6 +1901,17 @@
     "streak": 2,
     "timestamp": 1790421807,
     "price": 0.009905,
+    "alert_type": "CONFIRMED",
+    "fast_score": 74,
+    "fast_timestamp": 1790426011,
+    "fast_price": 0.00986,
+    "fast_alert_type": "FAST"
+  },
+  "MORPHOUSDT": {
+    "score": 86,
+    "streak": 7,
+    "timestamp": 1790426010,
+    "price": 2.78515,
     "alert_type": "CONFIRMED"
   }
 }
