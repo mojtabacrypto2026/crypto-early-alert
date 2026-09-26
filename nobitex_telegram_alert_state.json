@@ -497,28 +497,6 @@
     "fast_price": 0.42095,
     "fast_alert_type": "FAST"
   },
-  "ETHUSDT": {
-    "micro_timestamp": 1790356809,
-    "micro_score": 52.0,
-    "micro_price": 2694.575,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.35960103094318435,
-    "micro_flow": 1.987409632772403,
-    "micro_flow_delta": 0.20466678093697022,
-    "micro_spread_bps": 1.2246829277341595,
-    "micro_rsi": 46.25149053758135,
-    "micro_structure": 4.0,
-    "micro_momentum_15m": 0.3225986909579164,
-    "micro_momentum_1h": -0.10059425122483831,
-    "micro_momentum_4h": -1.3847002574475944,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2",
-    "fast_score": 67,
-    "fast_timestamp": 1790340413,
-    "fast_price": 2717.1400000000003,
-    "fast_alert_type": "FAST"
-  },
   "AUSDT": {
     "score": 80,
     "streak": 2,
@@ -1304,10 +1282,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "TURBOUSDT": {
-    "score": 86,
-    "streak": 10,
-    "timestamp": 1790420818,
-    "price": 0.00107785,
+    "score": 81,
+    "streak": 40,
+    "timestamp": 1790443509,
+    "price": 0.0010782,
     "alert_type": "CONFIRMED",
     "fast_score": 65,
     "fast_timestamp": 1790363132,
