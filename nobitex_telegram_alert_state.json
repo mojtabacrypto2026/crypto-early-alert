@@ -54,10 +54,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "VIRTUALUSDT": {
-    "score": 82,
-    "streak": 5,
-    "timestamp": 1790341936,
-    "price": 0.79135,
+    "score": 88,
+    "streak": 9,
+    "timestamp": 1790427794,
+    "price": 0.80035,
     "alert_type": "CONFIRMED",
     "fast_score": 61,
     "fast_timestamp": 1790305565,
@@ -661,14 +661,23 @@
   },
   "ATOMUSDT": {
     "score": 86,
-    "streak": 10,
-    "timestamp": 1790341930,
-    "price": 1.8210000000000002,
+    "streak": 18,
+    "timestamp": 1790427794,
+    "price": 1.8245,
     "alert_type": "CONFIRMED",
     "fast_score": 70,
     "fast_timestamp": 1790302451,
     "fast_price": 1.7854999999999999,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790427793,
+    "buildup_score": 86.0,
+    "buildup_price": 1.8245,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.05483959418699697,
+    "buildup_flow": 1.8960205059216442,
+    "buildup_flow_delta": 0.9451141882271288,
+    "buildup_spread_bps": 16.442861057824686,
+    "buildup_pressure_change": 0.27371784316100534
   },
   "LINKUSDT": {
     "score": 86,
