@@ -80,10 +80,10 @@
     "fast_alert_type": "FAST"
   },
   "CAKEUSDT": {
-    "score": 85,
+    "score": 93,
     "streak": 2,
-    "timestamp": 1790328236,
-    "price": 2.7186,
+    "timestamp": 1790383086,
+    "price": 2.7752,
     "alert_type": "CONFIRMED",
     "fast_score": 56,
     "fast_timestamp": 1790379394,
@@ -92,6 +92,7 @@
     "micro_timestamp": 1790359402,
     "micro_score": 44.0,
     "micro_price": 2.77175,
+    "micro_alert_type": "MICRO",
     "micro_price_change": 0.8257398010221693,
     "micro_flow": 1.6097282473602479,
     "micro_flow_delta": 0.3990186856302673,
@@ -103,8 +104,7 @@
     "micro_momentum_4h": -2.389456389742123,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2",
-    "micro_alert_type": "MICRO"
+    "micro_trigger_version": "telemetry-v2"
   },
   "BICOUSDT": {
     "score": 99,
@@ -605,13 +605,6 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v2"
-  },
-  "BASEDUSDT": {
-    "score": 86,
-    "streak": 20,
-    "timestamp": 1790295499,
-    "price": 0.067105,
-    "alert_type": "CONFIRMED"
   },
   "BTCUSDT": {
     "micro_timestamp": 1790302451,
