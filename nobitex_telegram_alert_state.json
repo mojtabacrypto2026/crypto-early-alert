@@ -168,21 +168,21 @@
     "fast_timestamp": 1790341934,
     "fast_price": 1.9605000000000001,
     "fast_alert_type": "FAST",
-    "micro_timestamp": 1790343615,
-    "micro_score": 73.0,
-    "micro_price": 1.96,
-    "micro_price_change": 0.46130189646334685,
-    "micro_flow": 2.0223786124854213,
-    "micro_flow_delta": 0.8204867410913737,
-    "micro_spread_bps": 20.408163265306143,
-    "micro_rsi": 64.43744135607461,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": -0.5115089514066501,
-    "micro_momentum_1h": -0.3556910569105638,
-    "micro_momentum_4h": 0.9783728115345071,
+    "micro_timestamp": 1790385692,
+    "micro_score": 41.0,
+    "micro_price": 1.9285,
+    "micro_price_change": 0.25994281258123814,
+    "micro_flow": 1.767470202973017,
+    "micro_flow_delta": 0.5174279716196188,
+    "micro_spread_bps": 25.926886180970264,
+    "micro_rsi": 54.23562168371668,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": -0.6690684508492086,
+    "micro_momentum_4h": -0.7712082262210861,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2",
+    "micro_trigger_version": "telemetry-v3",
     "micro_alert_type": "MICRO"
   },
   "ZBTUSDT": {
@@ -570,7 +570,16 @@
     "fast_score": 64,
     "fast_timestamp": 1790384113,
     "fast_price": 121.185,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790385693,
+    "buildup_score": 62.0,
+    "buildup_price": 121.64099999999999,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.21213756400169148,
+    "buildup_flow": 1.193230994327729,
+    "buildup_flow_delta": 0.28122899310656757,
+    "buildup_spread_bps": 0.1644182471366841,
+    "buildup_pressure_change": 0.04833841394186916
   },
   "XTZUSDT": {
     "score": 83,
@@ -1414,10 +1423,10 @@
     "fast_alert_type": "FAST"
   },
   "NOTUSDT": {
-    "score": 89,
-    "streak": 15,
-    "timestamp": 1790363131,
-    "price": 0.00048625000000000003,
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1790385692,
+    "price": 0.00048945,
     "alert_type": "CONFIRMED",
     "fast_score": 70,
     "fast_timestamp": 1790379395,
@@ -1671,5 +1680,12 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "APEUSDT": {
+    "score": 94,
+    "streak": 2,
+    "timestamp": 1790385692,
+    "price": 0.15439999999999998,
+    "alert_type": "CONFIRMED"
   }
 }
