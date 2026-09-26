@@ -346,9 +346,9 @@
     "buildup_flow_delta": 0.08655922108155134,
     "buildup_spread_bps": 10.147442956220303,
     "buildup_pressure_change": -0.1036124869355372,
-    "fast_score": 55,
-    "fast_timestamp": 1790399819,
-    "fast_price": 0.09759455,
+    "fast_score": 59,
+    "fast_timestamp": 1790415483,
+    "fast_price": 0.0970622,
     "fast_alert_type": "FAST"
   },
   "POLUSDT": {
@@ -621,9 +621,9 @@
     "timestamp": 1790400695,
     "price": 0.42184999999999995,
     "alert_type": "CONFIRMED",
-    "fast_score": 80,
-    "fast_timestamp": 1790325286,
-    "fast_price": 0.4155,
+    "fast_score": 70,
+    "fast_timestamp": 1790415482,
+    "fast_price": 0.42025,
     "fast_alert_type": "FAST"
   },
   "ETHUSDT": {
@@ -1134,9 +1134,9 @@
     "timestamp": 1790407164,
     "price": 9.736,
     "alert_type": "CONFIRMED",
-    "fast_score": 58,
-    "fast_timestamp": 1790399819,
-    "fast_price": 9.634,
+    "fast_score": 91,
+    "fast_timestamp": 1790415484,
+    "fast_price": 9.5795,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790407163,
     "micro_score": 91.0,
@@ -1425,7 +1425,11 @@
     "streak": 2,
     "timestamp": 1790414702,
     "price": 0.027795,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 84,
+    "fast_timestamp": 1790415483,
+    "fast_price": 0.027775,
+    "fast_alert_type": "FAST"
   },
   "COMPUSDT": {
     "score": 84,
@@ -1879,6 +1883,12 @@
     "fast_score": 80,
     "fast_timestamp": 1790413694,
     "fast_price": 0.069,
+    "fast_alert_type": "FAST"
+  },
+  "QNTUSDT": {
+    "fast_score": 72,
+    "fast_timestamp": 1790415483,
+    "fast_price": 103.94,
     "fast_alert_type": "FAST"
   }
 }
