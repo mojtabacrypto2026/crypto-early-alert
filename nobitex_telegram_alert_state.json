@@ -47,7 +47,11 @@
     "micro_momentum_4h": -0.6574379904487408,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 81,
+    "fast_timestamp": 1790394860,
+    "fast_price": 9.4246,
+    "fast_alert_type": "FAST"
   },
   "VIRTUALUSDT": {
     "score": 82,
@@ -1745,6 +1749,12 @@
     "fast_score": 68,
     "fast_timestamp": 1790394130,
     "fast_price": 148.95999999999998,
+    "fast_alert_type": "FAST"
+  },
+  "SANDUSDT": {
+    "fast_score": 55,
+    "fast_timestamp": 1790394860,
+    "fast_price": 0.045450000000000004,
     "fast_alert_type": "FAST"
   }
 }
