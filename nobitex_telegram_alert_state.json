@@ -27,11 +27,15 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "ETCUSDT": {
-    "score": 81,
-    "streak": 10,
-    "timestamp": 1790392303,
-    "price": 9.492650000000001,
+    "score": 94,
+    "streak": 6,
+    "timestamp": 1790424811,
+    "price": 9.6016,
     "alert_type": "CONFIRMED",
+    "fast_score": 81,
+    "fast_timestamp": 1790394860,
+    "fast_price": 9.4246,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790387357,
     "micro_score": 65.0,
     "micro_price": 9.5208,
@@ -47,11 +51,7 @@
     "micro_momentum_4h": -0.6574379904487408,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3",
-    "fast_score": 81,
-    "fast_timestamp": 1790394860,
-    "fast_price": 9.4246,
-    "fast_alert_type": "FAST"
+    "micro_trigger_version": "telemetry-v3"
   },
   "VIRTUALUSDT": {
     "score": 82,
@@ -304,21 +304,6 @@
     "buildup_flow_delta": 0.7583182917337825,
     "buildup_spread_bps": 21.971985718210117,
     "buildup_pressure_change": -0.39103620415794693
-  },
-  "AEVOUSDT": {
-    "score": 85,
-    "streak": 10,
-    "timestamp": 1790334539,
-    "price": 0.025689999999999998,
-    "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790285279,
-    "micro_score": 58,
-    "micro_price": 0.025550000000000003,
-    "micro_alert_type": "MICRO",
-    "fast_score": 81,
-    "fast_timestamp": 1790337577,
-    "fast_price": 0.02573,
-    "fast_alert_type": "FAST"
   },
   "DOGEUSDT": {
     "micro_timestamp": 1790332687,
@@ -1077,10 +1062,10 @@
     "micro_alert_type": "MICRO"
   },
   "DYDXUSDT": {
-    "score": 98,
+    "score": 83,
     "streak": 6,
-    "timestamp": 1790388953,
-    "price": 0.13390000000000002,
+    "timestamp": 1790424810,
+    "price": 0.13835,
     "alert_type": "CONFIRMED",
     "fast_score": 77,
     "fast_timestamp": 1790423315,
