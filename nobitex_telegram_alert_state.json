@@ -465,9 +465,9 @@
     "timestamp": 1790422616,
     "price": 0.422,
     "alert_type": "CONFIRMED",
-    "fast_score": 80,
-    "fast_timestamp": 1790418638,
-    "fast_price": 0.42095,
+    "fast_score": 68,
+    "fast_timestamp": 1790448628,
+    "fast_price": 0.42079999999999995,
     "fast_alert_type": "FAST"
   },
   "AUSDT": {
@@ -1108,33 +1108,6 @@
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
     "micro_alert_type": "MICRO"
-  },
-  "CELRUSDT": {
-    "score": 88,
-    "streak": 2,
-    "timestamp": 1790361535,
-    "price": 0.003153,
-    "alert_type": "CONFIRMED",
-    "fast_score": 60,
-    "fast_timestamp": 1790350485,
-    "fast_price": 0.003129,
-    "fast_alert_type": "FAST",
-    "micro_timestamp": 1790342881,
-    "micro_score": 67.0,
-    "micro_price": 0.0031525,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.6545338441890065,
-    "micro_flow": 2.538135346640958,
-    "micro_flow_delta": 2.0995680176592937,
-    "micro_spread_bps": 34.89294210943746,
-    "micro_rsi": 59.891914663513234,
-    "micro_structure": 6.0,
-    "micro_momentum_15m": 0.642260757867696,
-    "micro_momentum_1h": 1.2024699382515482,
-    "micro_momentum_4h": 2.5016458196181737,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v2"
   },
   "ENJUSDT": {
     "score": 91,
@@ -1850,7 +1823,11 @@
     "streak": 2,
     "timestamp": 1790446813,
     "price": 0.033299999999999996,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 83,
+    "fast_timestamp": 1790448629,
+    "fast_price": 0.033,
+    "fast_alert_type": "FAST"
   },
   "ZENUSDT": {
     "score": 80,
