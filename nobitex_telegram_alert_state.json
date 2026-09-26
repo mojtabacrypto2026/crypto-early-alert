@@ -1252,7 +1252,16 @@
     "streak": 3,
     "timestamp": 1790340413,
     "price": 0.017155999999999998,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "buildup_timestamp": 1790395479,
+    "buildup_score": 68.0,
+    "buildup_price": 0.0171435,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.04372922861641048,
+    "buildup_flow": 1.6398551987178842,
+    "buildup_flow_delta": 0.15789559584143942,
+    "buildup_spread_bps": 23.915769825297854,
+    "buildup_pressure_change": -0.01749857372440755
   },
   "WOOUSDT": {
     "score": 93,
@@ -1483,7 +1492,16 @@
     "micro_momentum_4h": 0.12435233160620941,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790395478,
+    "buildup_score": 96.0,
+    "buildup_price": 0.00049235,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.0608951588348851,
+    "buildup_flow": 1.3452563347709734,
+    "buildup_flow_delta": 0.1800615726445829,
+    "buildup_spread_bps": 22.341829998983904,
+    "buildup_pressure_change": 0.040493870872070105
   },
   "DOTUSDT": {
     "score": 91,
@@ -1746,6 +1764,11 @@
     "alert_type": "CONFIRMED"
   },
   "SPCXUSDT": {
+    "score": 86,
+    "streak": 9,
+    "timestamp": 1790395479,
+    "price": 148.965,
+    "alert_type": "CONFIRMED",
     "fast_score": 68,
     "fast_timestamp": 1790394130,
     "fast_price": 148.95999999999998,
