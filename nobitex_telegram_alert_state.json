@@ -445,12 +445,6 @@
     "fast_price": 0.016265,
     "fast_alert_type": "FAST"
   },
-  "CVCUSDT": {
-    "micro_timestamp": 1790307229,
-    "micro_score": 52,
-    "micro_price": 0.03049,
-    "micro_alert_type": "MICRO"
-  },
   "HOLOUSDT": {
     "score": 83,
     "streak": 2,
@@ -810,23 +804,23 @@
     "timestamp": 1790313475,
     "price": 0.1131,
     "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790378695,
-    "micro_score": 60.0,
-    "micro_price": 0.1168,
+    "micro_timestamp": 1790394129,
+    "micro_score": 72.0,
+    "micro_price": 0.11785,
     "micro_alert_type": "MICRO",
     "fast_score": 60,
     "fast_timestamp": 1790379393,
     "fast_price": 0.1163,
     "fast_alert_type": "FAST",
-    "micro_price_change": 0.6462731581214999,
-    "micro_flow": 1.7958781487899196,
-    "micro_flow_delta": 0.15175142514465367,
-    "micro_spread_bps": 17.123287671233367,
-    "micro_rsi": 56.85280777268846,
-    "micro_structure": 6.0,
+    "micro_price_change": 0.5975245411865064,
+    "micro_flow": 1.3530764171151597,
+    "micro_flow_delta": 0.3670696491150176,
+    "micro_spread_bps": 25.456088247772144,
+    "micro_rsi": 62.365758565099235,
+    "micro_structure": 8.0,
     "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 1.2184508268059169,
-    "micro_momentum_4h": 1.3949433304272052,
+    "micro_momentum_1h": 1.283147989734817,
+    "micro_momentum_4h": 1.8056749785038733,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
@@ -1739,5 +1733,18 @@
     "timestamp": 1790386531,
     "price": 0.008924999999999999,
     "alert_type": "CONFIRMED"
+  },
+  "BANDUSDT": {
+    "score": 86,
+    "streak": 6,
+    "timestamp": 1790394129,
+    "price": 0.22305,
+    "alert_type": "CONFIRMED"
+  },
+  "SPCXUSDT": {
+    "fast_score": 68,
+    "fast_timestamp": 1790394130,
+    "fast_price": 148.95999999999998,
+    "fast_alert_type": "FAST"
   }
 }
