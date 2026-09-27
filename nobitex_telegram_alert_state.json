@@ -689,7 +689,11 @@
     "streak": 20,
     "timestamp": 1790400696,
     "price": 0.0055835,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 76,
+    "fast_timestamp": 1790481011,
+    "fast_price": 0.0058075,
+    "fast_alert_type": "FAST"
   },
   "ASTERUSDT": {
     "score": 89,
@@ -854,10 +858,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "UNIUSDT": {
-    "score": 91,
-    "streak": 32,
-    "timestamp": 1790431795,
-    "price": 9.553,
+    "score": 81,
+    "streak": 4,
+    "timestamp": 1790481011,
+    "price": 9.649999999999999,
     "alert_type": "CONFIRMED",
     "fast_score": 79,
     "fast_timestamp": 1790436859,
@@ -1255,13 +1259,6 @@
     "fast_timestamp": 1790447780,
     "fast_price": 0.0498,
     "fast_alert_type": "FAST"
-  },
-  "BANDUSDT": {
-    "score": 86,
-    "streak": 6,
-    "timestamp": 1790394129,
-    "price": 0.22305,
-    "alert_type": "CONFIRMED"
   },
   "SPCXUSDT": {
     "score": 86,
