@@ -685,10 +685,10 @@
     "buildup_pressure_change": -0.28841343452830154
   },
   "TUSDT": {
-    "score": 92,
-    "streak": 20,
-    "timestamp": 1790400696,
-    "price": 0.0055835,
+    "score": 84,
+    "streak": 8,
+    "timestamp": 1790482183,
+    "price": 0.0058065,
     "alert_type": "CONFIRMED",
     "fast_score": 76,
     "fast_timestamp": 1790481011,
@@ -955,22 +955,6 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
-  },
-  "SUNUSDT": {
-    "score": 86,
-    "streak": 3,
-    "timestamp": 1790340413,
-    "price": 0.017155999999999998,
-    "alert_type": "CONFIRMED",
-    "buildup_timestamp": 1790395479,
-    "buildup_score": 68.0,
-    "buildup_price": 0.0171435,
-    "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": -0.04372922861641048,
-    "buildup_flow": 1.6398551987178842,
-    "buildup_flow_delta": 0.15789559584143942,
-    "buildup_spread_bps": 23.915769825297854,
-    "buildup_pressure_change": -0.01749857372440755
   },
   "WOOUSDT": {
     "score": 81,
@@ -1258,17 +1242,6 @@
     "fast_score": 75,
     "fast_timestamp": 1790447780,
     "fast_price": 0.0498,
-    "fast_alert_type": "FAST"
-  },
-  "SPCXUSDT": {
-    "score": 86,
-    "streak": 9,
-    "timestamp": 1790395479,
-    "price": 148.965,
-    "alert_type": "CONFIRMED",
-    "fast_score": 68,
-    "fast_timestamp": 1790394130,
-    "fast_price": 148.95999999999998,
     "fast_alert_type": "FAST"
   },
   "SANDUSDT": {
@@ -1742,5 +1715,16 @@
     "timestamp": 1790481590,
     "price": 0.0953,
     "alert_type": "CONFIRMED"
+  },
+  "BTCUSDT": {
+    "buildup_timestamp": 1790482182,
+    "buildup_score": 70.0,
+    "buildup_price": 84214.69,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.10340232765188002,
+    "buildup_flow": 1.3039154469928649,
+    "buildup_flow_delta": 0.4520382376316303,
+    "buildup_spread_bps": 12.988232813064402,
+    "buildup_pressure_change": 0.23191633333981948
   }
 }
