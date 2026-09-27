@@ -280,15 +280,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790452657,
-    "buildup_score": 97.0,
-    "buildup_price": 1560.6750000000002,
+    "buildup_timestamp": 1790517555,
+    "buildup_score": 84.0,
+    "buildup_price": 1649.475,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.11707348365784219,
-    "buildup_flow": 1.6074233256142916,
-    "buildup_flow_delta": 0.21587256321725934,
-    "buildup_spread_bps": 2.6270684159103066,
-    "buildup_pressure_change": -0.28806383792715057
+    "buildup_price_change": -0.0705786846314135,
+    "buildup_flow": 3.7473398108200318,
+    "buildup_flow_delta": 1.0961750439157654,
+    "buildup_spread_bps": 6.365661801482014,
+    "buildup_pressure_change": 0.10661369307260211
   },
   "HOMEUSDT": {
     "score": 90,
@@ -987,15 +987,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790505246,
-    "buildup_score": 80.0,
-    "buildup_price": 0.0005209500000000001,
+    "buildup_timestamp": 1790517554,
+    "buildup_score": 60.0,
+    "buildup_price": 0.0005163500000000001,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.26946395919548505,
-    "buildup_flow": 2.755539486346809,
-    "buildup_flow_delta": 1.5485563217288174,
-    "buildup_spread_bps": 17.276130146846484,
-    "buildup_pressure_change": -0.0007280701396352174
+    "buildup_price_change": 0.1648884578079627,
+    "buildup_flow": 1.278853761122452,
+    "buildup_flow_delta": 0.15286635487028977,
+    "buildup_spread_bps": 5.810012588361799,
+    "buildup_pressure_change": 0.551361887759642
   },
   "ADAUSDT": {
     "score": 88,
@@ -1186,7 +1186,16 @@
     "fast_score": 58,
     "fast_timestamp": 1790483123,
     "fast_price": 0.16865,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790517554,
+    "buildup_score": 76.0,
+    "buildup_price": 0.16835,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.7557171099364235,
+    "buildup_flow_delta": 0.1624612227267439,
+    "buildup_spread_bps": 17.820017820019157,
+    "buildup_pressure_change": 0.4140786749482274
   },
   "LPTUSDT": {
     "fast_score": 62,
@@ -2153,5 +2162,12 @@
     "fast_timestamp": 1790516527,
     "fast_price": 0.029704,
     "fast_alert_type": "FAST"
+  },
+  "EDGEUSDT": {
+    "score": 84,
+    "streak": 6,
+    "timestamp": 1790517554,
+    "price": 0.6142000000000001,
+    "alert_type": "CONFIRMED"
   }
 }
