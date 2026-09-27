@@ -317,9 +317,9 @@
     "timestamp": 1790500222,
     "price": 124.311,
     "alert_type": "CONFIRMED",
-    "fast_score": 72,
-    "fast_timestamp": 1790490260,
-    "fast_price": 121.426,
+    "fast_score": 66,
+    "fast_timestamp": 1790535751,
+    "fast_price": 123.269,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790535167,
     "micro_score": 59.0,
@@ -802,9 +802,9 @@
     "timestamp": 1790529630,
     "price": 0.000528,
     "alert_type": "CONFIRMED",
-    "fast_score": 81,
-    "fast_timestamp": 1790528786,
-    "fast_price": 0.00052515,
+    "fast_score": 86,
+    "fast_timestamp": 1790535749,
+    "fast_price": 0.0005208999999999999,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790528302,
     "micro_score": 52.0,
@@ -1210,10 +1210,10 @@
     "buildup_pressure_change": 0.10346592735329649
   },
   "PENDLEUSDT": {
-    "score": 82,
-    "streak": 2,
-    "timestamp": 1790501906,
-    "price": 2.6159999999999997,
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790535749,
+    "price": 2.704,
     "alert_type": "CONFIRMED",
     "fast_score": 78,
     "fast_timestamp": 1790442124,
@@ -1493,15 +1493,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790515862,
-    "buildup_score": 85.0,
-    "buildup_price": 0.1206,
+    "buildup_timestamp": 1790535750,
+    "buildup_score": 89.0,
+    "buildup_price": 0.12185,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.16611295681062443,
-    "buildup_flow": 1.298400782044398,
-    "buildup_flow_delta": 0.5311996790983072,
-    "buildup_spread_bps": 16.583747927031986,
-    "buildup_pressure_change": 1.0714627510492991
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.5637726497166846,
+    "buildup_flow_delta": 0.3014810365541738,
+    "buildup_spread_bps": 24.62043496101721,
+    "buildup_pressure_change": -0.3706754530477694
   },
   "ONDOUSDT": {
     "score": 97,
@@ -2021,9 +2021,9 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "TNSRUSDT": {
-    "fast_score": 74,
-    "fast_timestamp": 1790521367,
-    "fast_price": 0.041944999999999996,
+    "fast_score": 81,
+    "fast_timestamp": 1790535751,
+    "fast_price": 0.041765,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790530330,
     "micro_score": 69.0,
@@ -2090,5 +2090,11 @@
     "timestamp": 1790535165,
     "price": 0.2845,
     "alert_type": "CONFIRMED"
+  },
+  "WUSDT": {
+    "fast_score": 73,
+    "fast_timestamp": 1790535751,
+    "fast_price": 0.0154,
+    "fast_alert_type": "FAST"
   }
 }
