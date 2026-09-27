@@ -204,10 +204,10 @@
     "buildup_pressure_change": -0.2955781100912671
   },
   "DOGEUSDT": {
-    "score": 99,
-    "streak": 11,
-    "timestamp": 1790438643,
-    "price": 0.09833505000000001,
+    "score": 97,
+    "streak": 15,
+    "timestamp": 1790500221,
+    "price": 0.0979612,
     "alert_type": "CONFIRMED",
     "fast_score": 88,
     "fast_timestamp": 1790438171,
@@ -389,10 +389,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "SOLUSDT": {
-    "score": 86,
-    "streak": 3,
-    "timestamp": 1790483911,
-    "price": 120.40950000000001,
+    "score": 96,
+    "streak": 18,
+    "timestamp": 1790500222,
+    "price": 124.311,
     "alert_type": "CONFIRMED",
     "fast_score": 72,
     "fast_timestamp": 1790490260,
@@ -1732,7 +1732,11 @@
     "buildup_flow": 1.8291064520089189,
     "buildup_flow_delta": 1.0680162738901746,
     "buildup_spread_bps": 0.005903259857178938,
-    "buildup_pressure_change": -0.04529866555845401
+    "buildup_pressure_change": -0.04529866555845401,
+    "fast_score": 84,
+    "fast_timestamp": 1790500220,
+    "fast_price": 84689.23000000001,
+    "fast_alert_type": "FAST"
   },
   "GRAMUSDT": {
     "micro_timestamp": 1790485818,
@@ -1968,5 +1972,19 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "APTUSDT": {
+    "score": 88,
+    "streak": 6,
+    "timestamp": 1790500220,
+    "price": 0.86435,
+    "alert_type": "CONFIRMED"
+  },
+  "HBARUSDT": {
+    "score": 94,
+    "streak": 5,
+    "timestamp": 1790500221,
+    "price": 0.09492500000000001,
+    "alert_type": "CONFIRMED"
   }
 }
