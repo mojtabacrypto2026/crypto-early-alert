@@ -180,16 +180,16 @@
     "trigger_version": "ws-obi-v1"
   },
   "NOTUSDT": {
-    "timestamp": 1790536921,
+    "timestamp": 1790537575,
     "symbol": "NOTUSDT",
-    "price": 0.0005227,
-    "weighted_obi": 0.46506442354745786,
-    "obi_5": 0.5360486525658584,
-    "obi_20": 0.3641629378143159,
-    "obi_delta_60s": 0.10267374761515718,
-    "microprice_gap_bps": 9.567896270734337,
-    "spread_bps": 30.610292710924796,
-    "price_change_60s": -0.009564801530373663,
+    "price": 0.00052285,
+    "weighted_obi": 0.5970659535554133,
+    "obi_5": 0.977308702443492,
+    "obi_20": 0.43660553108641237,
+    "obi_delta_60s": 0.11007164530393643,
+    "microprice_gap_bps": 12.26023143403497,
+    "spread_bps": 24.863727646552114,
+    "price_change_60s": 0.0,
     "prior_score": 86.0,
     "alert_type": "WS_OBI",
     "trigger_version": "ws-obi-v1"
@@ -431,6 +431,21 @@
     "spread_bps": 38.842309696367536,
     "price_change_60s": 0.366073975468286,
     "prior_score": 53.0,
+    "alert_type": "WS_OBI",
+    "trigger_version": "ws-obi-v1"
+  },
+  "TNSRUSDT": {
+    "timestamp": 1790537592,
+    "symbol": "TNSRUSDT",
+    "price": 0.04138,
+    "weighted_obi": 0.35084930761754274,
+    "obi_5": 0.3371744180213936,
+    "obi_20": 0.34520208855250883,
+    "obi_delta_60s": 0.12483754474563377,
+    "microprice_gap_bps": 16.382870176263054,
+    "spread_bps": 38.66602223296121,
+    "price_change_60s": -0.24108003857281307,
+    "prior_score": 81.0,
     "alert_type": "WS_OBI",
     "trigger_version": "ws-obi-v1"
   }
