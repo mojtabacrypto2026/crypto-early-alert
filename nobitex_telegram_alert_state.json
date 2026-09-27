@@ -878,7 +878,16 @@
     "micro_momentum_4h": 2.5730994152046707,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790506944,
+    "buildup_score": 78.0,
+    "buildup_price": 0.3488,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.014332807797045865,
+    "buildup_flow": 1.3193348950448835,
+    "buildup_flow_delta": 0.10907749136671563,
+    "buildup_spread_bps": 11.467889908255618,
+    "buildup_pressure_change": 0.18592466609797165
   },
   "WOOUSDT": {
     "score": 85,
@@ -1319,7 +1328,23 @@
     "streak": 7,
     "timestamp": 1790426010,
     "price": 2.78515,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "micro_timestamp": 1790506945,
+    "micro_score": 59.0,
+    "micro_price": 2.7439,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.46315789473683583,
+    "micro_flow": 1.38733719626478,
+    "micro_flow_delta": 0.37018738905370396,
+    "micro_spread_bps": 0.7288895367922376,
+    "micro_rsi": 56.447838930639435,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": -0.3124545850893905,
+    "micro_momentum_1h": 1.0347240122252013,
+    "micro_momentum_4h": 0.7416654427962989,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "AEVOUSDT": {
     "score": 90,
@@ -1434,15 +1459,15 @@
     "fast_timestamp": 1790490258,
     "fast_price": 2705.91,
     "fast_alert_type": "FAST",
-    "buildup_timestamp": 1790490257,
-    "buildup_score": 93.0,
-    "buildup_price": 2705.91,
+    "buildup_timestamp": 1790506945,
+    "buildup_score": 98.0,
+    "buildup_price": 2712.55,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.12617946345975412,
-    "buildup_flow": 1.202634127583091,
-    "buildup_flow_delta": 0.2913005429348198,
-    "buildup_spread_bps": 7.317316540461502,
-    "buildup_pressure_change": 0.1385738567542037
+    "buildup_price_change": -0.005345237853851137,
+    "buildup_flow": 1.3075460512880264,
+    "buildup_flow_delta": 0.6230827162437258,
+    "buildup_spread_bps": 11.354629407752583,
+    "buildup_pressure_change": -0.005529556740257412
   },
   "FLOWUSDT": {
     "score": 90,
@@ -2051,5 +2076,11 @@
     "timestamp": 1790505942,
     "price": 337.755,
     "alert_type": "CONFIRMED"
+  },
+  "SKLUSDT": {
+    "fast_score": 74,
+    "fast_timestamp": 1790506946,
+    "fast_price": 0.00477,
+    "fast_alert_type": "FAST"
   }
 }
