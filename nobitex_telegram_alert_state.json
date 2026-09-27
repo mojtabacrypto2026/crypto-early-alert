@@ -508,9 +508,9 @@
     "timestamp": 1790482183,
     "price": 0.0058065,
     "alert_type": "CONFIRMED",
-    "fast_score": 76,
-    "fast_timestamp": 1790481011,
-    "fast_price": 0.0058075,
+    "fast_score": 57,
+    "fast_timestamp": 1790549091,
+    "fast_price": 0.0057870000000000005,
     "fast_alert_type": "FAST"
   },
   "ASTERUSDT": {
@@ -1134,8 +1134,8 @@
     "price": 0.027225,
     "alert_type": "CONFIRMED",
     "fast_score": 66,
-    "fast_timestamp": 1790514262,
-    "fast_price": 0.02704,
+    "fast_timestamp": 1790549090,
+    "fast_price": 0.026885,
     "fast_alert_type": "FAST"
   },
   "CATIUSDT": {
@@ -2210,5 +2210,23 @@
     "timestamp": 1790547584,
     "price": 0.11574999999999999,
     "alert_type": "CONFIRMED"
+  },
+  "KMNOUSDT": {
+    "micro_timestamp": 1790549091,
+    "micro_score": 60.0,
+    "micro_price": 0.04757,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.4010130856901703,
+    "micro_flow": 2.314625022902523,
+    "micro_flow_delta": 1.2282941505177674,
+    "micro_spread_bps": 33.63464368299357,
+    "micro_rsi": 57.41210218116148,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.042131872761742545,
+    "micro_momentum_1h": 2.0008514261387744,
+    "micro_momentum_4h": 5.064678798509098,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   }
 }
