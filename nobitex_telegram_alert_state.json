@@ -372,10 +372,10 @@
     "buildup_pressure_change": 0.34250289639027265
   },
   "1B_BABYDOGEUSDT": {
-    "score": 96,
-    "streak": 5,
-    "timestamp": 1790503605,
-    "price": 0.426,
+    "score": 83,
+    "streak": 14,
+    "timestamp": 1790531006,
+    "price": 0.4239,
     "alert_type": "CONFIRMED",
     "fast_score": 60,
     "fast_timestamp": 1790492720,
@@ -846,15 +846,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790517554,
-    "buildup_score": 60.0,
-    "buildup_price": 0.0005163500000000001,
+    "buildup_timestamp": 1790531007,
+    "buildup_score": 81.0,
+    "buildup_price": 0.0005264499999999999,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.1648884578079627,
-    "buildup_flow": 1.278853761122452,
-    "buildup_flow_delta": 0.15286635487028977,
-    "buildup_spread_bps": 5.810012588361799,
-    "buildup_pressure_change": 0.551361887759642
+    "buildup_price_change": 0.018998765080239344,
+    "buildup_flow": 1.869858926389117,
+    "buildup_flow_delta": 0.3815881551411213,
+    "buildup_spread_bps": 17.095640611643418,
+    "buildup_pressure_change": 0.3314987650802315
   },
   "ADAUSDT": {
     "score": 88,
@@ -1690,7 +1690,23 @@
     "fast_score": 71,
     "fast_timestamp": 1790489086,
     "fast_price": 72.675,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790531007,
+    "micro_score": 48.0,
+    "micro_price": 68.555,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.263254113345531,
+    "micro_flow": 1.1913735903352227,
+    "micro_flow_delta": 0.6414306166786511,
+    "micro_spread_bps": 13.12814528480624,
+    "micro_rsi": 48.72858583502581,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": 0.395662368112559,
+    "micro_momentum_1h": 2.499999999999989,
+    "micro_momentum_4h": 1.4582412726469212,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "MASKUSDT": {
     "score": 93,
@@ -2108,6 +2124,10 @@
     "streak": 2,
     "timestamp": 1790529629,
     "price": 0.1434,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 78,
+    "fast_timestamp": 1790531007,
+    "fast_price": 0.14305,
+    "fast_alert_type": "FAST"
   }
 }
