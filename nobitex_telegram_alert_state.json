@@ -647,9 +647,9 @@
     "timestamp": 1790490256,
     "price": 0.73325,
     "alert_type": "CONFIRMED",
-    "fast_score": 67,
-    "fast_timestamp": 1790349639,
-    "fast_price": 0.7255499999999999,
+    "fast_score": 66,
+    "fast_timestamp": 1790494407,
+    "fast_price": 0.73735,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790409478,
     "micro_score": 69.0,
@@ -1827,5 +1827,12 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "CAKEUSDT": {
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790494407,
+    "price": 2.76505,
+    "alert_type": "CONFIRMED"
   }
 }
