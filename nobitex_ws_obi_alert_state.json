@@ -1,16 +1,16 @@
 {
   "ONDOUSDT": {
-    "timestamp": 1790536995,
+    "timestamp": 1790552653,
     "symbol": "ONDOUSDT",
-    "price": 0.5542,
-    "weighted_obi": 0.5653532527932942,
-    "obi_5": 0.34619417846980927,
-    "obi_20": 0.6026923013834449,
-    "obi_delta_60s": 0.1086270946502213,
-    "microprice_gap_bps": 15.292322157588051,
-    "spread_bps": 43.30566582461129,
-    "price_change_60s": -0.009021199819575009,
-    "prior_score": 100.0,
+    "price": 0.5632,
+    "weighted_obi": 0.33893184868210574,
+    "obi_5": 0.2655466485680293,
+    "obi_20": 0.3200582495307118,
+    "obi_delta_60s": 0.3850374078082417,
+    "microprice_gap_bps": 14.633693167187007,
+    "spread_bps": 42.613636363635614,
+    "price_change_60s": 0.21352313167259407,
+    "prior_score": 94.0,
     "alert_type": "WS_OBI",
     "trigger_version": "ws-obi-v1"
   },
@@ -896,6 +896,21 @@
     "spread_bps": 34.246575342466734,
     "price_change_60s": -0.08554319931565685,
     "prior_score": 58.0,
+    "alert_type": "WS_OBI",
+    "trigger_version": "ws-obi-v1"
+  },
+  "JASMYUSDT": {
+    "timestamp": 1790552707,
+    "symbol": "JASMYUSDT",
+    "price": 0.005261999999999999,
+    "weighted_obi": 0.46213500477283065,
+    "obi_5": 0.4168121567764173,
+    "obi_20": 0.3298289218690238,
+    "obi_delta_60s": 0.08194488081572993,
+    "microprice_gap_bps": 15.158419062580988,
+    "spread_bps": 34.20752565564384,
+    "price_change_60s": 0.238117915991973,
+    "prior_score": 30.0,
     "alert_type": "WS_OBI",
     "trigger_version": "ws-obi-v1"
   }
