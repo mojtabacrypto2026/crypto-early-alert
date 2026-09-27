@@ -1551,7 +1551,16 @@
     "fast_score": 77,
     "fast_timestamp": 1790452239,
     "fast_price": 0.001799,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790508430,
+    "buildup_score": 63.0,
+    "buildup_price": 0.0017915000000000001,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 3.6721324264294672,
+    "buildup_flow_delta": 2.93402888054199,
+    "buildup_spread_bps": 5.5819145967062,
+    "buildup_pressure_change": 0.027901785714289414
   },
   "1K_SHIBUSDT": {
     "score": 96,
@@ -2091,5 +2100,23 @@
     "fast_timestamp": 1790506946,
     "fast_price": 0.00477,
     "fast_alert_type": "FAST"
+  },
+  "HMSTRUSDT": {
+    "buildup_timestamp": 1790508429,
+    "buildup_score": 73.0,
+    "buildup_price": 0.00018015,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.13896609227348866,
+    "buildup_flow": 2.003488059468765,
+    "buildup_flow_delta": 0.8322760874231061,
+    "buildup_spread_bps": 5.550929780738409,
+    "buildup_pressure_change": 0.3054477792879211
+  },
+  "REDUSDT": {
+    "score": 89,
+    "streak": 3,
+    "timestamp": 1790508430,
+    "price": 0.17135,
+    "alert_type": "CONFIRMED"
   }
 }
