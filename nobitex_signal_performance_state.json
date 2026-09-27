@@ -71,6 +71,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.005892
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.005886499999999999
         }
       ],
       "clean_tracking": true,
@@ -78,7 +82,7 @@
         "streak": 5
       },
       "registered_at": 1790525272,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "CHZUSDT_FAST_1790525271": {
       "symbol": "CHZUSDT",
@@ -150,6 +154,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.016585000000000003
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.016605
         }
       ],
       "clean_tracking": true,
@@ -157,7 +165,7 @@
         "streak": 19
       },
       "registered_at": 1790525272,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "RENDERUSDT_MICRO_1790526213": {
       "symbol": "RENDERUSDT",
@@ -225,6 +233,10 @@
         {
           "timestamp": 1790528302,
           "price": 2.0164999999999997
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 2.0164999999999997
         }
       ],
       "clean_tracking": true,
@@ -239,7 +251,7 @@
         "micro_momentum_4h": -1.324828263002929
       },
       "registered_at": 1790526214,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "1K_SHIBUSDT_MICRO_1790526212": {
       "symbol": "1K_SHIBUSDT",
@@ -285,8 +297,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.0059035,
-      "min_return": -0.21173879901752335,
-      "min_price": 0.005891,
+      "min_return": -0.28796476666385235,
+      "min_price": 0.005886499999999999,
       "observations": [
         {
           "timestamp": 1790526212,
@@ -307,6 +319,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.005892
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.005886499999999999
         }
       ],
       "clean_tracking": true,
@@ -321,7 +337,7 @@
         "micro_momentum_4h": -0.9081735620585306
       },
       "registered_at": 1790526214,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "ESPUSDT_MICRO_1790526213": {
       "symbol": "ESPUSDT",
@@ -365,8 +381,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.5257065689206172,
-      "max_price": 0.104215,
+      "max_return": 0.6800424423651946,
+      "max_price": 0.104375,
       "min_return": -0.3086717468891684,
       "min_price": 0.10335,
       "observations": [
@@ -389,6 +405,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.10411999999999999
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.104375
         }
       ],
       "clean_tracking": true,
@@ -402,7 +422,7 @@
         "micro_momentum_4h": -0.3099573808601326
       },
       "registered_at": 1790526214,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "LDOUSDT_FAST_1790527016": {
       "symbol": "LDOUSDT",
@@ -434,13 +454,19 @@
         }
       },
       "thresholds": {
-        "1pct": null,
+        "1pct": {
+          "timestamp": 1790528786,
+          "minutes_to_hit": 29.5,
+          "price": 0.48719999999999997,
+          "return_percent": 1.0369141435089069,
+          "first_observed": true
+        },
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.5288262131895473,
-      "max_price": 0.48475,
+      "max_return": 1.0369141435089069,
+      "max_price": 0.48719999999999997,
       "min_return": 0.0,
       "min_price": 0.4822,
       "observations": [
@@ -459,6 +485,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.4844
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.48719999999999997
         }
       ],
       "clean_tracking": true,
@@ -466,7 +496,7 @@
         "streak": 6
       },
       "registered_at": 1790527017,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "NOTUSDT_MICRO_1790528302": {
       "symbol": "NOTUSDT",
@@ -474,7 +504,15 @@
       "alert_time": 1790528302,
       "alert_price": 0.0005272,
       "score": 52.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790528786,
+          "price": 0.000527,
+          "return_percent": -0.037936267071321104,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 184
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -489,6 +527,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.0005272
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.000527
         }
       ],
       "clean_tracking": true,
@@ -503,7 +545,7 @@
         "micro_momentum_4h": -0.4050144648023138
       },
       "registered_at": 1790528302,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "CHZUSDT_BUILDUP_1790528301": {
       "symbol": "CHZUSDT",
@@ -511,15 +553,23 @@
       "alert_time": 1790528301,
       "alert_price": 0.016585000000000003,
       "score": 76.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790528786,
+          "price": 0.016605,
+          "return_percent": 0.12059089538739333,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 185
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.0,
-      "max_price": 0.016585000000000003,
+      "max_return": 0.12059089538739333,
+      "max_price": 0.016605,
       "min_return": 0.0,
       "min_price": 0.016585000000000003,
       "observations": [
@@ -530,6 +580,10 @@
         {
           "timestamp": 1790528302,
           "price": 0.016585000000000003
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.016605
         }
       ],
       "clean_tracking": true,
@@ -542,7 +596,7 @@
         "buildup_pressure_change": -0.12055456188467378
       },
       "registered_at": 1790528302,
-      "last_update": 1790528302
+      "last_update": 1790528786
     },
     "BTCUSDT_FAST_1790528301": {
       "symbol": "BTCUSDT",
@@ -550,15 +604,23 @@
       "alert_time": 1790528301,
       "alert_price": 84317.03,
       "score": 65,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790528786,
+          "price": 84356.01999999999,
+          "return_percent": 0.04624214111904877,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 185
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.0,
-      "max_price": 84317.03,
+      "max_return": 0.04624214111904877,
+      "max_price": 84356.01999999999,
       "min_return": -0.014320950346563546,
       "min_price": 84304.955,
       "observations": [
@@ -569,6 +631,10 @@
         {
           "timestamp": 1790528302,
           "price": 84304.955
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 84356.01999999999
         }
       ],
       "clean_tracking": true,
@@ -576,7 +642,103 @@
         "streak": 5
       },
       "registered_at": 1790528302,
-      "last_update": 1790528302
+      "last_update": 1790528786
+    },
+    "NOTUSDT_FAST_1790528786": {
+      "symbol": "NOTUSDT",
+      "type": "FAST",
+      "alert_time": 1790528786,
+      "alert_price": 0.00052515,
+      "score": 81,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.35228030086641215,
+      "max_price": 0.000527,
+      "min_return": 0.0,
+      "min_price": 0.00052515,
+      "observations": [
+        {
+          "timestamp": 1790528786,
+          "price": 0.00052515
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 11
+      },
+      "registered_at": 1790528786,
+      "last_update": 1790528786
+    },
+    "1INCHUSDT_CONFIRMED_1790528785": {
+      "symbol": "1INCHUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790528785,
+      "alert_price": 0.10235,
+      "score": 83,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.04885197850512408,
+      "max_price": 0.10239999999999999,
+      "min_return": 0.0,
+      "min_price": 0.10235,
+      "observations": [
+        {
+          "timestamp": 1790528785,
+          "price": 0.10235
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.10239999999999999
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 6
+      },
+      "registered_at": 1790528786,
+      "last_update": 1790528786
+    },
+    "GRASSUSDT_FAST_1790528785": {
+      "symbol": "GRASSUSDT",
+      "type": "FAST",
+      "alert_time": 1790528785,
+      "alert_price": 0.6276999999999999,
+      "score": 61,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.31862354628007045,
+      "max_price": 0.6296999999999999,
+      "min_return": 0.0,
+      "min_price": 0.6276999999999999,
+      "observations": [
+        {
+          "timestamp": 1790528785,
+          "price": 0.6276999999999999
+        },
+        {
+          "timestamp": 1790528786,
+          "price": 0.6296999999999999
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {},
+      "registered_at": 1790528786,
+      "last_update": 1790528786
     }
   },
   "milestones": {},
@@ -585,13 +747,13 @@
       "events": 1,
       "checkpoints": {
         "5m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "median_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
+          "count": 1,
+          "positive": 1,
+          "positive_rate": 100.0,
+          "average_return": 0.12059089538739333,
+          "median_return": 0.12059089538739333,
+          "best_return": 0.12059089538739333,
+          "worst_return": 0.12059089538739333,
           "hit_1pct": 0,
           "hit_2pct": 0,
           "hit_5pct": 0,
@@ -725,11 +887,11 @@
       "events": 4,
       "checkpoints": {
         "5m": {
-          "count": 3,
+          "count": 4,
           "positive": 1,
-          "positive_rate": 33.33333333333333,
-          "average_return": -0.12601128117676283,
-          "median_return": -0.21173879901752335,
+          "positive_rate": 25.0,
+          "average_return": -0.10399252765040239,
+          "median_return": -0.12483753304442223,
           "best_return": 0.1302208932188773,
           "worst_return": -0.2965159377316424,
           "hit_1pct": 0,
@@ -862,14 +1024,14 @@
       }
     },
     "FAST": {
-      "events": 4,
+      "events": 6,
       "checkpoints": {
         "5m": {
-          "count": 3,
-          "positive": 2,
-          "positive_rate": 66.66666666666666,
-          "average_return": 0.3694791775525621,
-          "median_return": 0.5288262131895473,
+          "count": 4,
+          "positive": 3,
+          "positive_rate": 75.0,
+          "average_return": 0.28866991844418377,
+          "median_return": 0.287534177154298,
           "best_return": 0.5796113194681392,
           "worst_return": 0.0,
           "hit_1pct": 0,
@@ -983,10 +1145,10 @@
         "hit_minus_2pct": 0
       },
       "time_to_1pct": {
-        "count": 0,
-        "average_minutes": 0.0,
-        "best_minutes": 0.0,
-        "worst_minutes": 0.0
+        "count": 1,
+        "average_minutes": 29.5,
+        "best_minutes": 29.5,
+        "worst_minutes": 29.5
       },
       "time_to_2pct": {
         "count": 0,
@@ -1002,7 +1164,7 @@
       }
     },
     "CONFIRMED": {
-      "events": 0,
+      "events": 1,
       "checkpoints": {
         "5m": {
           "count": 0,
@@ -1282,14 +1444,14 @@
       }
     },
     "ALL": {
-      "events": 9,
+      "events": 12,
       "checkpoints": {
         "5m": {
-          "count": 6,
-          "positive": 3,
-          "positive_rate": 50.0,
-          "average_return": 0.12173394818789966,
-          "median_return": 0.06511044660943865,
+          "count": 9,
+          "positive": 5,
+          "positive_rate": 55.55555555555556,
+          "average_return": 0.09547782872916877,
+          "median_return": 0.04624214111904877,
           "best_return": 0.5796113194681392,
           "worst_return": -0.2965159377316424,
           "hit_1pct": 0,
@@ -1403,10 +1565,10 @@
         "hit_minus_2pct": 0
       },
       "time_to_1pct": {
-        "count": 0,
-        "average_minutes": 0.0,
-        "best_minutes": 0.0,
-        "worst_minutes": 0.0
+        "count": 1,
+        "average_minutes": 29.5,
+        "best_minutes": 29.5,
+        "worst_minutes": 29.5
       },
       "time_to_2pct": {
         "count": 0,
@@ -1428,5 +1590,5 @@
     "clean_completed_4h": 0,
     "reliable": false
   },
-  "updated_at": 1790528302
+  "updated_at": 1790528786
 }
