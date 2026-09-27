@@ -1372,10 +1372,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "POLUSDT": {
-    "score": 89,
-    "streak": 6,
-    "timestamp": 1790537666,
-    "price": 0.12275,
+    "score": 94,
+    "streak": 15,
+    "timestamp": 1790543031,
+    "price": 0.12235,
     "alert_type": "CONFIRMED",
     "fast_score": 85,
     "fast_timestamp": 1790515863,
@@ -1637,6 +1637,11 @@
     "fast_alert_type": "FAST"
   },
   "NEARUSDT": {
+    "score": 86,
+    "streak": 5,
+    "timestamp": 1790543031,
+    "price": 5.446,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790529630,
     "micro_score": 36.0,
     "micro_price": 5.1845,
@@ -2118,5 +2123,16 @@
     "timestamp": 1790539742,
     "price": 0.012226500000000001,
     "alert_type": "CONFIRMED"
+  },
+  "1K_BONKUSDT": {
+    "buildup_timestamp": 1790543030,
+    "buildup_score": 71.0,
+    "buildup_price": 0.0037475,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.7677261490233558,
+    "buildup_flow_delta": 1.147175064457424,
+    "buildup_spread_bps": 2.6684456304206345,
+    "buildup_pressure_change": 0.0
   }
 }
