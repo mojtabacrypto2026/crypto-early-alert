@@ -456,9 +456,9 @@
     "timestamp": 1790326739,
     "price": 1.0145,
     "alert_type": "CONFIRMED",
-    "fast_score": 61,
-    "fast_timestamp": 1790389908,
-    "fast_price": 1.0375,
+    "fast_score": 56,
+    "fast_timestamp": 1790547584,
+    "fast_price": 1.1219999999999999,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790510254,
     "micro_score": 37.0,
@@ -2180,5 +2180,19 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "AXSUSDT": {
+    "score": 94,
+    "streak": 9,
+    "timestamp": 1790547583,
+    "price": 1.163,
+    "alert_type": "CONFIRMED"
+  },
+  "SAFEUSDT": {
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1790547584,
+    "price": 0.11574999999999999,
+    "alert_type": "CONFIRMED"
   }
 }
