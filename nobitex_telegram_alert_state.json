@@ -1651,7 +1651,11 @@
     "micro_momentum_4h": 0.25146689019278684,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 70,
+    "fast_timestamp": 1790486665,
+    "fast_price": 0.11979999999999999,
+    "fast_alert_type": "FAST"
   },
   "ONDOUSDT": {
     "micro_timestamp": 1790475689,
@@ -1723,6 +1727,19 @@
     "streak": 6,
     "timestamp": 1790485819,
     "price": 0.4978,
+    "alert_type": "CONFIRMED"
+  },
+  "GMTUSDT": {
+    "fast_score": 70,
+    "fast_timestamp": 1790486664,
+    "fast_price": 0.008844999999999999,
+    "fast_alert_type": "FAST"
+  },
+  "UMAUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1790486665,
+    "price": 0.4249,
     "alert_type": "CONFIRMED"
   }
 }
