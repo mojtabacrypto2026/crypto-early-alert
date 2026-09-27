@@ -1699,5 +1699,30 @@
     "buildup_flow_delta": 0.4520382376316303,
     "buildup_spread_bps": 12.988232813064402,
     "buildup_pressure_change": 0.23191633333981948
+  },
+  "GRAMUSDT": {
+    "micro_timestamp": 1790485818,
+    "micro_score": 49.0,
+    "micro_price": 1.5775000000000001,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.3818008272351402,
+    "micro_flow": 5.123520035032507,
+    "micro_flow_delta": 3.157032946701783,
+    "micro_spread_bps": 6.339144215531612,
+    "micro_rsi": 62.37352764985022,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.960307298335461,
+    "micro_momentum_1h": 1.1545862732520857,
+    "micro_momentum_4h": -0.5047318611987386,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
+  },
+  "REUSDT": {
+    "score": 83,
+    "streak": 6,
+    "timestamp": 1790485819,
+    "price": 0.4978,
+    "alert_type": "CONFIRMED"
   }
 }
