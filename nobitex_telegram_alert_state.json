@@ -1657,7 +1657,11 @@
     "micro_momentum_4h": -0.5394990366088721,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 84,
+    "fast_timestamp": 1790545209,
+    "fast_price": 5.5395,
+    "fast_alert_type": "FAST"
   },
   "CAKEUSDT": {
     "score": 83,
@@ -2139,5 +2143,23 @@
     "buildup_flow_delta": 1.147175064457424,
     "buildup_spread_bps": 2.6684456304206345,
     "buildup_pressure_change": 0.0
+  },
+  "DOODUSDT": {
+    "micro_timestamp": 1790545209,
+    "micro_score": 50.0,
+    "micro_price": 0.001873,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.26766595289080464,
+    "micro_flow": 1.4181742601730591,
+    "micro_flow_delta": 0.19279476145102903,
+    "micro_spread_bps": 32.034169781100616,
+    "micro_rsi": 51.330371721651666,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": -0.10718113612004547,
+    "micro_momentum_4h": 1.4697876973326018,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   }
 }
