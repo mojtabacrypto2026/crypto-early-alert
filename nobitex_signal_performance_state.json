@@ -154,6 +154,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0058975
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0059
         }
       ],
       "clean_tracking": true,
@@ -161,7 +165,7 @@
         "streak": 5
       },
       "registered_at": 1790525272,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CHZUSDT_FAST_1790525271": {
       "symbol": "CHZUSDT",
@@ -221,13 +225,19 @@
         }
       },
       "thresholds": {
-        "1pct": null,
+        "1pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 255.8,
+          "price": 0.016805,
+          "return_percent": 1.204456489009327,
+          "first_observed": true
+        },
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.9033423667569849,
-      "max_price": 0.016755,
+      "max_return": 1.204456489009327,
+      "max_price": 0.016805,
       "min_return": -0.12044564890092853,
       "min_price": 0.016585000000000003,
       "observations": [
@@ -310,6 +320,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.01675
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.016805
         }
       ],
       "clean_tracking": true,
@@ -317,7 +331,7 @@
         "streak": 19
       },
       "registered_at": 1790525272,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "RENDERUSDT_MICRO_1790526213": {
       "symbol": "RENDERUSDT",
@@ -367,6 +381,13 @@
           "return_percent": 0.3459352606869344,
           "observed_at_or_after_target": true,
           "delay_seconds": 1003
+        },
+        "4h": {
+          "timestamp": 1790540616,
+          "price": 2.0410000000000004,
+          "return_percent": 0.8648381517173469,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 3
         }
       },
       "thresholds": {
@@ -461,6 +482,10 @@
         {
           "timestamp": 1790539743,
           "price": 2.055
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.0410000000000004
         }
       ],
       "clean_tracking": true,
@@ -475,7 +500,7 @@
         "micro_momentum_4h": -1.324828263002929
       },
       "registered_at": 1790526214,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "1K_SHIBUSDT_MICRO_1790526212": {
       "symbol": "1K_SHIBUSDT",
@@ -525,6 +550,13 @@
           "return_percent": 0.2202083509782331,
           "observed_at_or_after_target": true,
           "delay_seconds": 1004
+        },
+        "4h": {
+          "timestamp": 1790540616,
+          "price": 0.0059,
+          "return_percent": -0.059286863724909475,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 4
         }
       },
       "thresholds": {
@@ -613,6 +645,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0058975
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0059
         }
       ],
       "clean_tracking": true,
@@ -627,7 +663,7 @@
         "micro_momentum_4h": -0.9081735620585306
       },
       "registered_at": 1790526214,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ESPUSDT_MICRO_1790526213": {
       "symbol": "ESPUSDT",
@@ -677,6 +713,13 @@
           "return_percent": 1.326323912414393,
           "observed_at_or_after_target": true,
           "delay_seconds": 1003
+        },
+        "4h": {
+          "timestamp": 1790540616,
+          "price": 0.105665,
+          "return_percent": 1.924375422012151,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 3
         }
       },
       "thresholds": {
@@ -777,6 +820,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.10581499999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.105665
         }
       ],
       "clean_tracking": true,
@@ -790,7 +837,7 @@
         "micro_momentum_4h": -0.3099573808601326
       },
       "registered_at": 1790526214,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "LDOUSDT_FAST_1790527016": {
       "symbol": "LDOUSDT",
@@ -936,6 +983,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.49105
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.489
         }
       ],
       "clean_tracking": true,
@@ -943,7 +994,7 @@
         "streak": 6
       },
       "registered_at": 1790527017,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_MICRO_1790528302": {
       "symbol": "NOTUSDT",
@@ -1003,8 +1054,8 @@
       },
       "max_return": 0.26555386949922716,
       "max_price": 0.0005286,
-      "min_return": -1.3372534142640329,
-      "min_price": 0.00052015,
+      "min_return": -1.3846737481031894,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790528302,
@@ -1065,6 +1116,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -1079,7 +1134,7 @@
         "micro_momentum_4h": -0.4050144648023138
       },
       "registered_at": 1790528302,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CHZUSDT_BUILDUP_1790528301": {
       "symbol": "CHZUSDT",
@@ -1143,8 +1198,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 1.0250226107928642,
-      "max_price": 0.016755,
+      "max_return": 1.3264998492613684,
+      "max_price": 0.016805,
       "min_return": 0.0,
       "min_price": 0.016585000000000003,
       "observations": [
@@ -1211,6 +1266,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.01675
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.016805
         }
       ],
       "clean_tracking": true,
@@ -1223,7 +1282,7 @@
         "buildup_pressure_change": -0.12055456188467378
       },
       "registered_at": 1790528302,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "BTCUSDT_FAST_1790528301": {
       "symbol": "BTCUSDT",
@@ -1349,6 +1408,10 @@
         {
           "timestamp": 1790539743,
           "price": 84539.555
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 84470.785
         }
       ],
       "clean_tracking": true,
@@ -1356,7 +1419,7 @@
         "streak": 5
       },
       "registered_at": 1790528302,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_FAST_1790528786": {
       "symbol": "NOTUSDT",
@@ -1416,8 +1479,8 @@
       },
       "max_return": 0.6569551556697883,
       "max_price": 0.0005286,
-      "min_return": -0.9521089212605947,
-      "min_price": 0.00052015,
+      "min_return": -0.9997143673236305,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790528786,
@@ -1474,6 +1537,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -1481,7 +1548,7 @@
         "streak": 11
       },
       "registered_at": 1790528786,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "1INCHUSDT_CONFIRMED_1790528785": {
       "symbol": "1INCHUSDT",
@@ -1609,6 +1676,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.1032
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.10300000000000001
         }
       ],
       "clean_tracking": true,
@@ -1616,7 +1687,7 @@
         "streak": 6
       },
       "registered_at": 1790528786,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "GRASSUSDT_FAST_1790528785": {
       "symbol": "GRASSUSDT",
@@ -1750,12 +1821,16 @@
         {
           "timestamp": 1790539743,
           "price": 0.6275999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.6303000000000001
         }
       ],
       "clean_tracking": true,
       "metadata": {},
       "registered_at": 1790528786,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_CONFIRMED_1790529630": {
       "symbol": "NOTUSDT",
@@ -1815,8 +1890,8 @@
       },
       "max_return": 0.11363636363634586,
       "max_price": 0.0005286,
-      "min_return": -1.4867424242424243,
-      "min_price": 0.00052015,
+      "min_return": -1.5340909090909154,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790529630,
@@ -1873,6 +1948,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -1880,7 +1959,7 @@
         "streak": 2
       },
       "registered_at": 1790529631,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CATIUSDT_CONFIRMED_1790529628": {
       "symbol": "CATIUSDT",
@@ -1998,6 +2077,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.06615499999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.065925
         }
       ],
       "clean_tracking": true,
@@ -2005,7 +2088,7 @@
         "streak": 2
       },
       "registered_at": 1790529631,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ONDOUSDT_MICRO_1790529630": {
       "symbol": "ONDOUSDT",
@@ -2075,8 +2158,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 2.8012490815576756,
-      "max_price": 0.55965,
+      "max_return": 3.370683321087432,
+      "max_price": 0.56275,
       "min_return": -0.15613519470977544,
       "min_price": 0.54355,
       "observations": [
@@ -2135,6 +2218,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.55965
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.56275
         }
       ],
       "clean_tracking": true,
@@ -2149,7 +2236,7 @@
         "micro_momentum_4h": -0.12915129151292137
       },
       "registered_at": 1790529631,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NEARUSDT_MICRO_1790529630": {
       "symbol": "NEARUSDT",
@@ -2285,6 +2372,10 @@
         {
           "timestamp": 1790539743,
           "price": 5.452
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 5.431
         }
       ],
       "clean_tracking": true,
@@ -2298,7 +2389,7 @@
         "micro_momentum_4h": -0.5394990366088721
       },
       "registered_at": 1790529631,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "LDOUSDT_MICRO_1790529629": {
       "symbol": "LDOUSDT",
@@ -2422,6 +2513,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.49105
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.489
         }
       ],
       "clean_tracking": true,
@@ -2436,7 +2531,7 @@
         "micro_momentum_4h": -1.0002041232904706
       },
       "registered_at": 1790529631,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DYDXUSDT_CONFIRMED_1790529629": {
       "symbol": "DYDXUSDT",
@@ -2496,8 +2591,8 @@
       },
       "max_return": 0.45327754532776265,
       "max_price": 0.14405,
-      "min_return": -0.5927475592747488,
-      "min_price": 0.14255,
+      "min_return": -0.6276150627614953,
+      "min_price": 0.14250000000000002,
       "observations": [
         {
           "timestamp": 1790529629,
@@ -2554,6 +2649,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.14325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.14250000000000002
         }
       ],
       "clean_tracking": true,
@@ -2561,7 +2660,7 @@
         "streak": 2
       },
       "registered_at": 1790529631,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TNSRUSDT_MICRO_1790530330": {
       "symbol": "TNSRUSDT",
@@ -2683,6 +2782,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.041325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.041155
         }
       ],
       "clean_tracking": true,
@@ -2696,7 +2799,7 @@
         "micro_momentum_4h": -0.12315270935959235
       },
       "registered_at": 1790530330,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "1B_BABYDOGEUSDT_CONFIRMED_1790531006": {
       "symbol": "1B_BABYDOGEUSDT",
@@ -2812,6 +2915,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.42869999999999997
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.4262
         }
       ],
       "clean_tracking": true,
@@ -2819,7 +2926,7 @@
         "streak": 14
       },
       "registered_at": 1790531008,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_BUILDUP_1790531007": {
       "symbol": "NOTUSDT",
@@ -2879,8 +2986,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.0005264499999999999,
-      "min_return": -1.19669484281506,
-      "min_price": 0.00052015,
+      "min_return": -1.2441827334029665,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790531007,
@@ -2929,6 +3036,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -2941,7 +3052,7 @@
         "buildup_pressure_change": 0.3314987650802315
       },
       "registered_at": 1790531008,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DASHUSDT_MICRO_1790531007": {
       "symbol": "DASHUSDT",
@@ -3057,6 +3168,10 @@
         {
           "timestamp": 1790539743,
           "price": 69.25999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 68.935
         }
       ],
       "clean_tracking": true,
@@ -3070,7 +3185,7 @@
         "micro_momentum_4h": 1.4582412726469212
       },
       "registered_at": 1790531008,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DYDXUSDT_FAST_1790531007": {
       "symbol": "DYDXUSDT",
@@ -3130,8 +3245,8 @@
       },
       "max_return": 0.69905627403006,
       "max_price": 0.14405,
-      "min_return": -0.34952813701503,
-      "min_price": 0.14255,
+      "min_return": -0.38448095071652916,
+      "min_price": 0.14250000000000002,
       "observations": [
         {
           "timestamp": 1790531007,
@@ -3180,6 +3295,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.14325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.14250000000000002
         }
       ],
       "clean_tracking": true,
@@ -3187,7 +3306,7 @@
         "streak": 2
       },
       "registered_at": 1790531008,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ONDOUSDT_WS_OBI_1790534162": {
       "symbol": "ONDOUSDT",
@@ -3240,12 +3359,18 @@
           "return_percent": 1.6805959302325546,
           "first_observed": true
         },
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 107.6,
+          "price": 0.56275,
+          "return_percent": 2.2438226744186,
+          "first_observed": true
+        },
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 1.6805959302325546,
-      "max_price": 0.55965,
+      "max_return": 2.2438226744186,
+      "max_price": 0.56275,
       "min_return": -0.1453488372093065,
       "min_price": 0.5496,
       "observations": [
@@ -3292,6 +3417,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.55965
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.56275
         }
       ],
       "clean_tracking": true,
@@ -3312,7 +3441,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.3311710656935307,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ETHUSDT_WS_OBI_1790534174": {
       "symbol": "ETHUSDT",
@@ -3365,8 +3494,8 @@
       },
       "max_return": 0.05414385949297748,
       "max_price": 2697.98,
-      "min_return": -0.17596754335216838,
-      "min_price": 2691.775,
+      "min_return": -0.2571833325916346,
+      "min_price": 2689.585,
       "observations": [
         {
           "timestamp": 1790534174,
@@ -3411,6 +3540,10 @@
         {
           "timestamp": 1790539743,
           "price": 2694.085
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2689.585
         }
       ],
       "clean_tracking": true,
@@ -3431,7 +3564,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.33223444541789465,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DYDXUSDT_WS_OBI_1790534262": {
       "symbol": "DYDXUSDT",
@@ -3484,8 +3617,8 @@
       },
       "max_return": 0.034722222222218393,
       "max_price": 0.14405,
-      "min_return": -1.006944444444449,
-      "min_price": 0.14255,
+      "min_return": -1.0416666666666674,
+      "min_price": 0.14250000000000002,
       "observations": [
         {
           "timestamp": 1790534262,
@@ -3530,6 +3663,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.14325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.14250000000000002
         }
       ],
       "clean_tracking": true,
@@ -3550,7 +3687,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5283821686646529,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NEARUSDT_WS_OBI_1790534341": {
       "symbol": "NEARUSDT",
@@ -3655,6 +3792,10 @@
         {
           "timestamp": 1790539743,
           "price": 5.452
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 5.431
         }
       ],
       "clean_tracking": true,
@@ -3675,7 +3816,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.586016467677476,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "SOLUSDT_MICRO_1790535167": {
       "symbol": "SOLUSDT",
@@ -3728,8 +3869,8 @@
       },
       "max_return": 0.1814918876780418,
       "max_price": 123.3695,
-      "min_return": -0.10881392818280769,
-      "min_price": 123.012,
+      "min_return": -0.20382310428271366,
+      "min_price": 122.89500000000001,
       "observations": [
         {
           "timestamp": 1790535167,
@@ -3766,6 +3907,10 @@
         {
           "timestamp": 1790539743,
           "price": 123.0275
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 122.89500000000001
         }
       ],
       "clean_tracking": true,
@@ -3780,7 +3925,7 @@
         "micro_momentum_4h": -0.12764227642276135
       },
       "registered_at": 1790535167,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CRVUSDT_CONFIRMED_1790535165": {
       "symbol": "CRVUSDT",
@@ -3829,12 +3974,18 @@
         "1pct": null,
         "2pct": null,
         "5pct": null,
-        "minus_2pct": null
+        "minus_2pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 90.8,
+          "price": 0.34645,
+          "return_percent": -2.0774448841153257,
+          "first_observed": true
+        }
       },
       "max_return": 0.0,
       "max_price": 0.3538,
-      "min_return": -1.4132278123233477,
-      "min_price": 0.3488,
+      "min_return": -2.0774448841153257,
+      "min_price": 0.34645,
       "observations": [
         {
           "timestamp": 1790535165,
@@ -3875,6 +4026,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.3488
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.34645
         }
       ],
       "clean_tracking": true,
@@ -3882,7 +4037,7 @@
         "streak": 2
       },
       "registered_at": 1790535167,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ONDOUSDT_CONFIRMED_1790535166": {
       "symbol": "ONDOUSDT",
@@ -3939,8 +4094,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 1.1750881316098618,
-      "max_price": 0.55965,
+      "max_return": 1.7355147789930292,
+      "max_price": 0.56275,
       "min_return": -0.6417789026484775,
       "min_price": 0.5496,
       "observations": [
@@ -3983,6 +4138,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.55965
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.56275
         }
       ],
       "clean_tracking": true,
@@ -3990,7 +4149,7 @@
         "streak": 2
       },
       "registered_at": 1790535167,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "LDOUSDT_CONFIRMED_1790535166": {
       "symbol": "LDOUSDT",
@@ -4043,8 +4202,8 @@
       },
       "max_return": 0.45778229908443013,
       "max_price": 0.49375,
-      "min_return": -0.16276703967447056,
-      "min_price": 0.4907,
+      "min_return": -0.5086469989827177,
+      "min_price": 0.489,
       "observations": [
         {
           "timestamp": 1790535166,
@@ -4085,6 +4244,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.49105
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.489
         }
       ],
       "clean_tracking": true,
@@ -4092,7 +4255,7 @@
         "streak": 2
       },
       "registered_at": 1790535167,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ENAUSDT_CONFIRMED_1790535165": {
       "symbol": "ENAUSDT",
@@ -4157,8 +4320,8 @@
       },
       "max_return": 2.987697715290005,
       "max_price": 0.29300000000000004,
-      "min_return": 0.0,
-      "min_price": 0.2845,
+      "min_return": -0.2636203866432438,
+      "min_price": 0.28374999999999995,
       "observations": [
         {
           "timestamp": 1790535165,
@@ -4199,6 +4362,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.28700000000000003
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.28374999999999995
         }
       ],
       "clean_tracking": true,
@@ -4206,7 +4373,7 @@
         "streak": 2
       },
       "registered_at": 1790535167,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "BTCUSDT_WS_OBI_1790535022": {
       "symbol": "BTCUSDT",
@@ -4259,8 +4426,8 @@
       },
       "max_return": 0.10898045938789813,
       "max_price": 84644.0,
-      "min_return": -0.020981207331311404,
-      "min_price": 84534.11499999999,
+      "min_return": -0.09588198863290105,
+      "min_price": 84470.785,
       "observations": [
         {
           "timestamp": 1790535022,
@@ -4301,6 +4468,10 @@
         {
           "timestamp": 1790539743,
           "price": 84539.555
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 84470.785
         }
       ],
       "clean_tracking": true,
@@ -4321,7 +4492,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5702337690937811,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "XTZUSDT_WS_OBI_1790534945": {
       "symbol": "XTZUSDT",
@@ -4416,6 +4587,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.3267
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.32589999999999997
         }
       ],
       "clean_tracking": true,
@@ -4436,7 +4611,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.2529387603668568,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "MANAUSDT_WS_OBI_1790535000": {
       "symbol": "MANAUSDT",
@@ -4531,6 +4706,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.09095
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.09115000000000001
         }
       ],
       "clean_tracking": true,
@@ -4551,7 +4730,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.654788000521424,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ZILUSDT_WS_OBI_1790535027": {
       "symbol": "ZILUSDT",
@@ -4652,6 +4831,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0038060000000000004
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.003796
         }
       ],
       "clean_tracking": true,
@@ -4672,7 +4855,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5850517246257758,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "GMTUSDT_WS_OBI_1790535028": {
       "symbol": "GMTUSDT",
@@ -4723,8 +4906,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.05580357142858852,
-      "max_price": 0.008965,
+      "max_return": 0.22321428571427665,
+      "max_price": 0.008979999999999998,
       "min_return": -0.1674107142857075,
       "min_price": 0.008945,
       "observations": [
@@ -4767,6 +4950,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.008965
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.008979999999999998
         }
       ],
       "clean_tracking": true,
@@ -4787,7 +4974,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5105254337163881,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "KITEUSDT_WS_OBI_1790535043": {
       "symbol": "KITEUSDT",
@@ -4888,6 +5075,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.149335
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.14777
         }
       ],
       "clean_tracking": true,
@@ -4908,7 +5099,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5491871067151449,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "BLURUSDT_WS_OBI_1790535064": {
       "symbol": "BLURUSDT",
@@ -5003,6 +5194,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.02111
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0211
         }
       ],
       "clean_tracking": true,
@@ -5023,7 +5218,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5168293842677351,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "FETUSDT_WS_OBI_1790535110": {
       "symbol": "FETUSDT",
@@ -5118,6 +5313,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.2469
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.24505
         }
       ],
       "clean_tracking": true,
@@ -5138,7 +5337,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.3806244768750921,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "SOLUSDT_FAST_1790535751": {
       "symbol": "SOLUSDT",
@@ -5191,8 +5390,8 @@
       },
       "max_return": 0.08152901378286244,
       "max_price": 123.3695,
-      "min_return": -0.2084871297731019,
-      "min_price": 123.012,
+      "min_return": -0.3034015040277728,
+      "min_price": 122.89500000000001,
       "observations": [
         {
           "timestamp": 1790535751,
@@ -5229,6 +5428,10 @@
         {
           "timestamp": 1790539743,
           "price": 123.0275
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 122.89500000000001
         }
       ],
       "clean_tracking": true,
@@ -5236,7 +5439,7 @@
         "streak": 18
       },
       "registered_at": 1790535752,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_FAST_1790535749": {
       "symbol": "NOTUSDT",
@@ -5289,8 +5492,8 @@
       },
       "max_return": 0.5375311960069242,
       "max_price": 0.0005237,
-      "min_return": 0.0,
-      "min_price": 0.0005208999999999999,
+      "min_return": -0.19197542714530927,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790535749,
@@ -5327,6 +5530,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -5334,7 +5541,7 @@
         "streak": 2
       },
       "registered_at": 1790535752,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "PENDLEUSDT_CONFIRMED_1790535749": {
       "symbol": "PENDLEUSDT",
@@ -5385,8 +5592,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.5362426035502778,
-      "max_price": 2.7184999999999997,
+      "max_return": 0.7396449704142017,
+      "max_price": 2.724,
       "min_return": -0.05547337278106718,
       "min_price": 2.7025,
       "observations": [
@@ -5425,6 +5632,10 @@
         {
           "timestamp": 1790539743,
           "price": 2.7184999999999997
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.724
         }
       ],
       "clean_tracking": true,
@@ -5432,7 +5643,7 @@
         "streak": 3
       },
       "registered_at": 1790535752,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "POLUSDT_BUILDUP_1790535750": {
       "symbol": "POLUSDT",
@@ -5529,6 +5740,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.12425
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.12405
         }
       ],
       "clean_tracking": true,
@@ -5541,7 +5756,7 @@
         "buildup_pressure_change": -0.3706754530477694
       },
       "registered_at": 1790535752,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TNSRUSDT_FAST_1790535751": {
       "symbol": "TNSRUSDT",
@@ -5594,8 +5809,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.041765,
-      "min_return": -1.065485454327772,
-      "min_price": 0.04132,
+      "min_return": -1.460553094696515,
+      "min_price": 0.041155,
       "observations": [
         {
           "timestamp": 1790535751,
@@ -5632,12 +5847,16 @@
         {
           "timestamp": 1790539743,
           "price": 0.041325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.041155
         }
       ],
       "clean_tracking": true,
       "metadata": {},
       "registered_at": 1790535752,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "WUSDT_FAST_1790535751": {
       "symbol": "WUSDT",
@@ -5690,12 +5909,18 @@
           "return_percent": 1.4610389610389578,
           "first_observed": true
         },
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 81.1,
+          "price": 0.016105,
+          "return_percent": 4.577922077922083,
+          "first_observed": true
+        },
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 1.8181818181818115,
-      "max_price": 0.01568,
+      "max_return": 4.577922077922083,
+      "max_price": 0.016105,
       "min_return": 0.0,
       "min_price": 0.0154,
       "observations": [
@@ -5734,12 +5959,16 @@
         {
           "timestamp": 1790539743,
           "price": 0.015645
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.016105
         }
       ],
       "clean_tracking": true,
       "metadata": {},
       "registered_at": 1790535752,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ETHUSDT_WS_OBI_1790535566": {
       "symbol": "ETHUSDT",
@@ -5792,8 +6021,8 @@
       },
       "max_return": 0.00593471810088481,
       "max_price": 2696.16,
-      "min_return": -0.15671364985162867,
-      "min_price": 2691.775,
+      "min_return": -0.23794510385756543,
+      "min_price": 2689.585,
       "observations": [
         {
           "timestamp": 1790535566,
@@ -5830,6 +6059,10 @@
         {
           "timestamp": 1790539743,
           "price": 2694.085
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2689.585
         }
       ],
       "clean_tracking": true,
@@ -5850,7 +6083,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.4406590497510516,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_WS_OBI_1790535476": {
       "symbol": "NOTUSDT",
@@ -5903,8 +6136,8 @@
       },
       "max_return": 0.5471824901603126,
       "max_price": 0.0005237,
-      "min_return": 0.0,
-      "min_price": 0.00052085,
+      "min_return": -0.18239416338677084,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790535476,
@@ -5941,6 +6174,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -5961,7 +6198,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.31914496564615524,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "XRPUSDT_WS_OBI_1790535497": {
       "symbol": "XRPUSDT",
@@ -6052,6 +6289,10 @@
         {
           "timestamp": 1790539743,
           "price": 1.535755
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.531755
         }
       ],
       "clean_tracking": true,
@@ -6072,7 +6313,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5194168453472886,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "WUSDT_WS_OBI_1790535530": {
       "symbol": "WUSDT",
@@ -6125,12 +6366,18 @@
           "return_percent": 1.5599610009749798,
           "first_observed": true
         },
-        "2pct": null,
+        "2pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 84.8,
+          "price": 0.016105,
+          "return_percent": 4.67988300292494,
+          "first_observed": true
+        },
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 1.9174520636984085,
-      "max_price": 0.01568,
+      "max_return": 4.67988300292494,
+      "max_price": 0.016105,
       "min_return": 0.0,
       "min_price": 0.015385,
       "observations": [
@@ -6169,6 +6416,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.015645
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.016105
         }
       ],
       "clean_tracking": true,
@@ -6189,7 +6440,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.24616996623539805,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "IMXUSDT_WS_OBI_1790535541": {
       "symbol": "IMXUSDT",
@@ -6280,6 +6531,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.17554999999999998
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.17525000000000002
         }
       ],
       "clean_tracking": true,
@@ -6300,7 +6555,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.33450252267874425,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CHIPUSDT_WS_OBI_1790535544": {
       "symbol": "CHIPUSDT",
@@ -6397,6 +6652,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.04708
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.047170000000000004
         }
       ],
       "clean_tracking": true,
@@ -6417,7 +6676,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.519647909795013,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "BATUSDT_WS_OBI_1790535578": {
       "symbol": "BATUSDT",
@@ -6508,6 +6767,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.09559999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.09595000000000001
         }
       ],
       "clean_tracking": true,
@@ -6528,7 +6791,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.2883375134038502,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TURBOUSDT_WS_OBI_1790535578": {
       "symbol": "TURBOUSDT",
@@ -6619,6 +6882,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0010685
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.00106565
         }
       ],
       "clean_tracking": true,
@@ -6639,7 +6906,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5123807940312417,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "QNTUSDT_WS_OBI_1790535635": {
       "symbol": "QNTUSDT",
@@ -6742,6 +7009,10 @@
         {
           "timestamp": 1790539743,
           "price": 190.375
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 191.64499999999998
         }
       ],
       "clean_tracking": true,
@@ -6762,7 +7033,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.42921725379755277,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "AVAXUSDT_FAST_1790536374": {
       "symbol": "AVAXUSDT",
@@ -6798,6 +7069,13 @@
           "return_percent": 0.35403050108932194,
           "observed_at_or_after_target": true,
           "delay_seconds": 111
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 11.007,
+          "return_percent": -0.08169934640523185,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 642
         }
       },
       "thresholds": {
@@ -6808,8 +7086,8 @@
       },
       "max_return": 0.3676470588235272,
       "max_price": 11.0565,
-      "min_return": 0.0,
-      "min_price": 11.016,
+      "min_return": -0.08169934640523185,
+      "min_price": 11.007,
       "observations": [
         {
           "timestamp": 1790536374,
@@ -6842,6 +7120,10 @@
         {
           "timestamp": 1790539743,
           "price": 11.0405
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 11.007
         }
       ],
       "clean_tracking": true,
@@ -6849,7 +7131,7 @@
         "streak": 2
       },
       "registered_at": 1790536376,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CRVUSDT_BUILDUP_1790536374": {
       "symbol": "CRVUSDT",
@@ -6885,6 +7167,13 @@
           "return_percent": -0.6506364922206732,
           "observed_at_or_after_target": true,
           "delay_seconds": 111
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.34645,
+          "return_percent": -1.9943422913720101,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 642
         }
       },
       "thresholds": {
@@ -6895,8 +7184,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.35350000000000004,
-      "min_return": -1.32956152758134,
-      "min_price": 0.3488,
+      "min_return": -1.9943422913720101,
+      "min_price": 0.34645,
       "observations": [
         {
           "timestamp": 1790536374,
@@ -6929,6 +7218,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.3488
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.34645
         }
       ],
       "clean_tracking": true,
@@ -6941,7 +7234,7 @@
         "buildup_pressure_change": -0.08479366873939145
       },
       "registered_at": 1790536376,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "AEVOUSDT_CONFIRMED_1790536374": {
       "symbol": "AEVOUSDT",
@@ -6977,6 +7270,13 @@
           "return_percent": -0.2938475665748273,
           "observed_at_or_after_target": true,
           "delay_seconds": 111
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.02712,
+          "return_percent": -0.38567493112948,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 642
         }
       },
       "thresholds": {
@@ -7033,6 +7333,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.02717
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.02712
         }
       ],
       "clean_tracking": true,
@@ -7040,7 +7344,7 @@
         "streak": 4
       },
       "registered_at": 1790536376,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "1K_SHIBUSDT_FAST_1790536373": {
       "symbol": "1K_SHIBUSDT",
@@ -7076,6 +7380,13 @@
           "return_percent": -0.43933761405880334,
           "observed_at_or_after_target": true,
           "delay_seconds": 112
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.0059,
+          "return_percent": -0.30415680973301434,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 643
         }
       },
       "thresholds": {
@@ -7120,6 +7431,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0058975
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0059
         }
       ],
       "clean_tracking": true,
@@ -7127,7 +7442,7 @@
         "streak": 5
       },
       "registered_at": 1790536376,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "BNBUSDT_BUILDUP_1790536375": {
       "symbol": "BNBUSDT",
@@ -7163,6 +7478,13 @@
           "return_percent": -0.01735866676198962,
           "observed_at_or_after_target": true,
           "delay_seconds": 110
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 777.69505,
+          "return_percent": -0.1866971135328553,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 641
         }
       },
       "thresholds": {
@@ -7173,8 +7495,8 @@
       },
       "max_return": 3.8503512231138724e-05,
       "max_price": 779.15,
-      "min_return": -0.07314383872572389,
-      "min_price": 778.5798,
+      "min_return": -0.1866971135328553,
+      "min_price": 777.69505,
       "observations": [
         {
           "timestamp": 1790536375,
@@ -7207,6 +7529,10 @@
         {
           "timestamp": 1790539743,
           "price": 778.5798
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 777.69505
         }
       ],
       "clean_tracking": true,
@@ -7218,7 +7544,7 @@
         "buildup_pressure_change": 0.09902504035257005
       },
       "registered_at": 1790536376,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TNSRUSDT_CONFIRMED_1790536375": {
       "symbol": "TNSRUSDT",
@@ -7254,6 +7580,13 @@
           "return_percent": -0.6720268810752489,
           "observed_at_or_after_target": true,
           "delay_seconds": 110
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.041155,
+          "return_percent": -1.224048961958487,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 641
         }
       },
       "thresholds": {
@@ -7264,8 +7597,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.041665,
-      "min_return": -0.8280331213248483,
-      "min_price": 0.04132,
+      "min_return": -1.224048961958487,
+      "min_price": 0.041155,
       "observations": [
         {
           "timestamp": 1790536375,
@@ -7298,6 +7631,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.041325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.041155
         }
       ],
       "clean_tracking": true,
@@ -7305,7 +7642,7 @@
         "streak": 2
       },
       "registered_at": 1790536376,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "XRPUSDT_WS_OBI_1790536144": {
       "symbol": "XRPUSDT",
@@ -7341,6 +7678,13 @@
           "return_percent": 0.10985679498504948,
           "observed_at_or_after_target": true,
           "delay_seconds": 341
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 1.531755,
+          "return_percent": -0.13430563659893474,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 872
         }
       },
       "thresholds": {
@@ -7385,6 +7729,10 @@
         {
           "timestamp": 1790539743,
           "price": 1.535755
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.531755
         }
       ],
       "clean_tracking": true,
@@ -7405,7 +7753,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.7032912125472328,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "POLUSDT_WS_OBI_1790536166": {
       "symbol": "POLUSDT",
@@ -7441,6 +7789,13 @@
           "return_percent": 0.9433962264150815,
           "observed_at_or_after_target": true,
           "delay_seconds": 319
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.12405,
+          "return_percent": 1.7637407711238597,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 850
         }
       },
       "thresholds": {
@@ -7491,6 +7846,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.12425
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.12405
         }
       ],
       "clean_tracking": true,
@@ -7511,7 +7870,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.2639188471841676,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ENSUSDT_WS_OBI_1790536210": {
       "symbol": "ENSUSDT",
@@ -7547,6 +7906,13 @@
           "return_percent": 0.07127583749107633,
           "observed_at_or_after_target": true,
           "delay_seconds": 275
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 7.025,
+          "return_percent": 0.142551674982178,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 806
         }
       },
       "thresholds": {
@@ -7591,6 +7957,10 @@
         {
           "timestamp": 1790539743,
           "price": 7.035
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 7.025
         }
       ],
       "clean_tracking": true,
@@ -7611,7 +7981,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.45194320424296636,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "SOLUSDT_WS_OBI_1790536254": {
       "symbol": "SOLUSDT",
@@ -7647,6 +8017,13 @@
           "return_percent": 0.019483840589711646,
           "observed_at_or_after_target": true,
           "delay_seconds": 231
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 122.89500000000001,
+          "return_percent": -0.23055878031157245,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 762
         }
       },
       "thresholds": {
@@ -7657,8 +8034,8 @@
       },
       "max_return": 0.15465298468083044,
       "max_price": 123.3695,
-      "min_return": -0.12299174372254901,
-      "min_price": 123.0275,
+      "min_return": -0.23055878031157245,
+      "min_price": 122.89500000000001,
       "observations": [
         {
           "timestamp": 1790536254,
@@ -7691,6 +8068,10 @@
         {
           "timestamp": 1790539743,
           "price": 123.0275
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 122.89500000000001
         }
       ],
       "clean_tracking": true,
@@ -7711,7 +8092,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.556193118085492,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ZECUSDT_MICRO_1790537054": {
       "symbol": "ZECUSDT",
@@ -7757,8 +8138,8 @@
       },
       "max_return": 0.0,
       "max_price": 1626.5,
-      "min_return": -0.6360282815862298,
-      "min_price": 1616.155,
+      "min_return": -0.7362434675683929,
+      "min_price": 1614.525,
       "observations": [
         {
           "timestamp": 1790537054,
@@ -7787,6 +8168,10 @@
         {
           "timestamp": 1790539743,
           "price": 1616.155
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1614.525
         }
       ],
       "clean_tracking": true,
@@ -7801,7 +8186,7 @@
         "micro_momentum_4h": 1.4515276784881677
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "1K_SHIBUSDT_CONFIRMED_1790537052": {
       "symbol": "1K_SHIBUSDT",
@@ -7877,6 +8262,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0058975
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0059
         }
       ],
       "clean_tracking": true,
@@ -7884,7 +8273,7 @@
         "streak": 2
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "POLUSDT_MICRO_1790537054": {
       "symbol": "POLUSDT",
@@ -7966,6 +8355,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.12425
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.12405
         }
       ],
       "clean_tracking": true,
@@ -7980,7 +8373,7 @@
         "micro_momentum_4h": 1.582014987510407
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ONDOUSDT_BUILDUP_1790537053": {
       "symbol": "ONDOUSDT",
@@ -8019,13 +8412,19 @@
         }
       },
       "thresholds": {
-        "1pct": null,
+        "1pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 59.4,
+          "price": 0.56275,
+          "return_percent": 1.4603804200847172,
+          "first_observed": true
+        },
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.9014693951140166,
-      "max_price": 0.55965,
+      "max_return": 1.4603804200847172,
+      "max_price": 0.56275,
       "min_return": -0.910484089065196,
       "min_price": 0.5496,
       "observations": [
@@ -8056,6 +8455,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.55965
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.56275
         }
       ],
       "clean_tracking": true,
@@ -8068,7 +8471,7 @@
         "buildup_pressure_change": -0.12789148432430192
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "BATUSDT_MICRO_1790537053": {
       "symbol": "BATUSDT",
@@ -8144,6 +8547,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.09559999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.09595000000000001
         }
       ],
       "clean_tracking": true,
@@ -8158,7 +8565,7 @@
         "micro_momentum_4h": 0.4171011470281518
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ARBUSDT_MICRO_1790537052": {
       "symbol": "ARBUSDT",
@@ -8234,6 +8641,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.23095
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.22999999999999998
         }
       ],
       "clean_tracking": true,
@@ -8248,7 +8659,7 @@
         "micro_momentum_4h": 2.9783393501805033
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "AIXBTUSDT_CONFIRMED_1790537052": {
       "symbol": "AIXBTUSDT",
@@ -8330,6 +8741,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.024919999999999998
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.024625
         }
       ],
       "clean_tracking": true,
@@ -8337,7 +8752,7 @@
         "streak": 2
       },
       "registered_at": 1790537055,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ONDOUSDT_WS_OBI_1790536995": {
       "symbol": "ONDOUSDT",
@@ -8373,16 +8788,29 @@
           "return_percent": -0.20750631540959658,
           "observed_at_or_after_target": true,
           "delay_seconds": 386
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.56275,
+          "return_percent": 1.5427643450017947,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 21
         }
       },
       "thresholds": {
-        "1pct": null,
+        "1pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 60.4,
+          "price": 0.56275,
+          "return_percent": 1.5427643450017947,
+          "first_observed": true
+        },
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.9833994947672238,
-      "max_price": 0.55965,
+      "max_return": 1.5427643450017947,
+      "max_price": 0.56275,
       "min_return": -0.8300252616384065,
       "min_price": 0.5496,
       "observations": [
@@ -8413,6 +8841,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.55965
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.56275
         }
       ],
       "clean_tracking": true,
@@ -8433,7 +8865,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5653532527932942,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_WS_OBI_1790536921": {
       "symbol": "NOTUSDT",
@@ -8469,6 +8901,13 @@
           "return_percent": 0.10522288119381953,
           "observed_at_or_after_target": true,
           "delay_seconds": 12
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.0005199,
+          "return_percent": -0.5356801224411631,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 95
         }
       },
       "thresholds": {
@@ -8479,8 +8918,8 @@
       },
       "max_return": 0.19131432944327997,
       "max_price": 0.0005237,
-      "min_return": -0.0956571647216296,
-      "min_price": 0.0005222,
+      "min_return": -0.5356801224411631,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790536921,
@@ -8509,6 +8948,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -8529,7 +8972,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.46506442354745786,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "XRPUSDT_WS_OBI_1790536932": {
       "symbol": "XRPUSDT",
@@ -8565,6 +9008,13 @@
           "return_percent": -0.13308690021410086,
           "observed_at_or_after_target": true,
           "delay_seconds": 1
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 1.531755,
+          "return_percent": -0.3146577811908136,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 84
         }
       },
       "thresholds": {
@@ -8605,6 +9055,10 @@
         {
           "timestamp": 1790539743,
           "price": 1.535755
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.531755
         }
       ],
       "clean_tracking": true,
@@ -8625,7 +9079,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.8084382289940043,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "WUSDT_WS_OBI_1790536805": {
       "symbol": "WUSDT",
@@ -8661,16 +9115,35 @@
           "return_percent": -1.180976699648884,
           "observed_at_or_after_target": true,
           "delay_seconds": 128
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.016105,
+          "return_percent": 2.808809447813616,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 211
         }
       },
       "thresholds": {
-        "1pct": null,
-        "2pct": null,
+        "1pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 63.5,
+          "price": 0.016105,
+          "return_percent": 2.808809447813616,
+          "first_observed": true
+        },
+        "2pct": {
+          "timestamp": 1790540616,
+          "minutes_to_hit": 63.5,
+          "price": 0.016105,
+          "return_percent": 2.808809447813616,
+          "first_observed": true
+        },
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.09575486753910709,
-      "max_price": 0.01568,
+      "max_return": 2.808809447813616,
+      "max_price": 0.016105,
       "min_return": -1.595914458984989,
       "min_price": 0.015415,
       "observations": [
@@ -8701,6 +9174,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.015645
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.016105
         }
       ],
       "clean_tracking": true,
@@ -8721,7 +9198,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.39537872242911365,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "POLUSDT_WS_OBI_1790536836": {
       "symbol": "POLUSDT",
@@ -8757,6 +9234,13 @@
           "return_percent": 1.0612244897959149,
           "observed_at_or_after_target": true,
           "delay_seconds": 97
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.12405,
+          "return_percent": 1.2653061224489761,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 180
         }
       },
       "thresholds": {
@@ -8803,6 +9287,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.12425
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.12405
         }
       ],
       "clean_tracking": true,
@@ -8823,7 +9311,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.3925139213452992,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ZECUSDT_WS_OBI_1790536807": {
       "symbol": "ZECUSDT",
@@ -8859,6 +9347,13 @@
           "return_percent": -0.44028059811703735,
           "observed_at_or_after_target": true,
           "delay_seconds": 126
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 1614.525,
+          "return_percent": -0.6507291858962414,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 209
         }
       },
       "thresholds": {
@@ -8869,8 +9364,8 @@
       },
       "max_return": 0.0,
       "max_price": 1625.1,
-      "min_return": -0.5504276659897813,
-      "min_price": 1616.155,
+      "min_return": -0.6507291858962414,
+      "min_price": 1614.525,
       "observations": [
         {
           "timestamp": 1790536807,
@@ -8899,6 +9394,10 @@
         {
           "timestamp": 1790539743,
           "price": 1616.155
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1614.525
         }
       ],
       "clean_tracking": true,
@@ -8919,7 +9418,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.3732575215457575,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "AUSDT_WS_OBI_1790536845": {
       "symbol": "AUSDT",
@@ -8955,6 +9454,13 @@
           "return_percent": 0.0,
           "observed_at_or_after_target": true,
           "delay_seconds": 88
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.10405,
+          "return_percent": 0.24084778420038555,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 171
         }
       },
       "thresholds": {
@@ -8995,6 +9501,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.10464999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.10405
         }
       ],
       "clean_tracking": true,
@@ -9015,7 +9525,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.47551771436040197,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "EIGENUSDT_WS_OBI_1790536912": {
       "symbol": "EIGENUSDT",
@@ -9051,6 +9561,13 @@
           "return_percent": -0.745725718443089,
           "observed_at_or_after_target": true,
           "delay_seconds": 21
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.2734,
+          "return_percent": -0.5456529647144622,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 104
         }
       },
       "thresholds": {
@@ -9091,6 +9608,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.27495
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.2734
         }
       ],
       "clean_tracking": true,
@@ -9111,7 +9632,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.4378162521238285,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ARBUSDT_WS_OBI_1790536970": {
       "symbol": "ARBUSDT",
@@ -9147,6 +9668,13 @@
           "return_percent": -0.5466870763175284,
           "observed_at_or_after_target": true,
           "delay_seconds": 411
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.22999999999999998,
+          "return_percent": 0.5904220424229006,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 46
         }
       },
       "thresholds": {
@@ -9193,6 +9721,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.23095
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.22999999999999998
         }
       ],
       "clean_tracking": true,
@@ -9213,7 +9745,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.29341748705268184,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DEXEUSDT_WS_OBI_1790536970": {
       "symbol": "DEXEUSDT",
@@ -9249,6 +9781,13 @@
           "return_percent": -0.07800312012480795,
           "observed_at_or_after_target": true,
           "delay_seconds": 411
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 1.9205,
+          "return_percent": -0.13000520020800554,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 46
         }
       },
       "thresholds": {
@@ -9259,8 +9798,8 @@
       },
       "max_return": 0.0260010400415988,
       "max_price": 1.9235,
-      "min_return": -0.07800312012480795,
-      "min_price": 1.9215,
+      "min_return": -0.13000520020800554,
+      "min_price": 1.9205,
       "observations": [
         {
           "timestamp": 1790536970,
@@ -9289,6 +9828,10 @@
         {
           "timestamp": 1790539743,
           "price": 1.9235
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.9205
         }
       ],
       "clean_tracking": true,
@@ -9309,7 +9852,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.3218180640199592,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ESPUSDT_WS_OBI_1790536995": {
       "symbol": "ESPUSDT",
@@ -9345,6 +9888,13 @@
           "return_percent": -0.18000094737341632,
           "observed_at_or_after_target": true,
           "delay_seconds": 386
+        },
+        "1h": {
+          "timestamp": 1790540616,
+          "price": 0.105665,
+          "return_percent": 0.10421107479511639,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 21
         }
       },
       "thresholds": {
@@ -9385,6 +9935,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.10581499999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.105665
         }
       ],
       "clean_tracking": true,
@@ -9405,7 +9959,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.42981364504430497,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "SANDUSDT_MICRO_1790537666": {
       "symbol": "SANDUSDT",
@@ -9477,6 +10031,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.04575
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.045700000000000005
         }
       ],
       "clean_tracking": true,
@@ -9491,7 +10049,7 @@
         "micro_momentum_4h": 1.7777777777777826
       },
       "registered_at": 1790537667,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "PENDLEUSDT_FAST_1790537665": {
       "symbol": "PENDLEUSDT",
@@ -9535,8 +10093,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.2766506824049943,
-      "max_price": 2.7184999999999997,
+      "max_return": 0.47952784950202504,
+      "max_price": 2.724,
       "min_return": -0.29509406123203435,
       "min_price": 2.703,
       "observations": [
@@ -9563,6 +10121,10 @@
         {
           "timestamp": 1790539743,
           "price": 2.7184999999999997
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.724
         }
       ],
       "clean_tracking": true,
@@ -9570,7 +10132,7 @@
         "streak": 3
       },
       "registered_at": 1790537667,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "POLUSDT_CONFIRMED_1790537666": {
       "symbol": "POLUSDT",
@@ -9648,6 +10210,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.12425
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.12405
         }
       ],
       "clean_tracking": true,
@@ -9655,7 +10221,7 @@
         "streak": 6
       },
       "registered_at": 1790537667,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "NOTUSDT_WS_OBI_1790537575": {
       "symbol": "NOTUSDT",
@@ -9701,8 +10267,8 @@
       },
       "max_return": 0.16257052691975504,
       "max_price": 0.0005237,
-      "min_return": -0.12431863823277092,
-      "min_price": 0.0005222,
+      "min_return": -0.5642153581333164,
+      "min_price": 0.0005199,
       "observations": [
         {
           "timestamp": 1790537575,
@@ -9727,6 +10293,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
         }
       ],
       "clean_tracking": true,
@@ -9747,7 +10317,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.5970659535554133,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TNSRUSDT_WS_OBI_1790537592": {
       "symbol": "TNSRUSDT",
@@ -9793,8 +10363,8 @@
       },
       "max_return": 0.012083131947796186,
       "max_price": 0.041385,
-      "min_return": -0.14499758337360452,
-      "min_price": 0.04132,
+      "min_return": -0.5437409376510464,
+      "min_price": 0.041155,
       "observations": [
         {
           "timestamp": 1790537592,
@@ -9819,6 +10389,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.041325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.041155
         }
       ],
       "clean_tracking": true,
@@ -9839,7 +10413,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.35084930761754274,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "KAITOUSDT_FAST_1790538284": {
       "symbol": "KAITOUSDT",
@@ -9868,6 +10442,13 @@
           "return_percent": 0.09671179883944776,
           "observed_at_or_after_target": true,
           "delay_seconds": 559
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.3628,
+          "return_percent": 0.24868748273003924,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 532
         }
       },
       "thresholds": {
@@ -9876,8 +10457,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.09671179883944776,
-      "max_price": 0.36224999999999996,
+      "max_return": 0.24868748273003924,
+      "max_price": 0.3628,
       "min_return": -0.4144791378833936,
       "min_price": 0.3604,
       "observations": [
@@ -9900,6 +10481,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.36224999999999996
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.3628
         }
       ],
       "clean_tracking": true,
@@ -9907,7 +10492,7 @@
         "streak": 5
       },
       "registered_at": 1790538285,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "EIGENUSDT_MICRO_1790538284": {
       "symbol": "EIGENUSDT",
@@ -9936,6 +10521,13 @@
           "return_percent": 0.07279344858963913,
           "observed_at_or_after_target": true,
           "delay_seconds": 559
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.2734,
+          "return_percent": -0.4913557779799883,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 532
         }
       },
       "thresholds": {
@@ -9968,6 +10560,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.27495
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.2734
         }
       ],
       "clean_tracking": true,
@@ -9982,7 +10578,7 @@
         "micro_momentum_4h": 0.0
       },
       "registered_at": 1790538285,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ALGOUSDT_FAST_1790538283": {
       "symbol": "ALGOUSDT",
@@ -10011,6 +10607,13 @@
           "return_percent": 0.2944888514934818,
           "observed_at_or_after_target": true,
           "delay_seconds": 560
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.11865,
+          "return_percent": -0.16827934371055267,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 533
         }
       },
       "thresholds": {
@@ -10021,8 +10624,8 @@
       },
       "max_return": 0.33655868742111705,
       "max_price": 0.11925,
-      "min_return": 0.0,
-      "min_price": 0.11885,
+      "min_return": -0.16827934371055267,
+      "min_price": 0.11865,
       "observations": [
         {
           "timestamp": 1790538283,
@@ -10043,12 +10646,16 @@
         {
           "timestamp": 1790539743,
           "price": 0.1192
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.11865
         }
       ],
       "clean_tracking": true,
       "metadata": {},
       "registered_at": 1790538285,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DOTUSDT_MICRO_1790538284": {
       "symbol": "DOTUSDT",
@@ -10077,6 +10684,13 @@
           "return_percent": -0.3940110323088963,
           "observed_at_or_after_target": true,
           "delay_seconds": 559
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 1.2654999999999998,
+          "return_percent": -0.2758077226162379,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 532
         }
       },
       "thresholds": {
@@ -10109,6 +10723,10 @@
         {
           "timestamp": 1790539743,
           "price": 1.264
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.2654999999999998
         }
       ],
       "clean_tracking": true,
@@ -10122,7 +10740,7 @@
         "micro_momentum_4h": 2.601626016260165
       },
       "registered_at": 1790538285,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "1K_SHIBUSDT_WS_OBI_1790538197": {
       "symbol": "1K_SHIBUSDT",
@@ -10151,6 +10769,13 @@
           "return_percent": 0.08488243782361084,
           "observed_at_or_after_target": true,
           "delay_seconds": 84
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.0059,
+          "return_percent": 0.1612766318648665,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 619
         }
       },
       "thresholds": {
@@ -10183,6 +10808,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0058975
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0059
         }
       ],
       "clean_tracking": true,
@@ -10203,7 +10832,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.6120858515774887,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CVXUSDT_FAST_1790538732": {
       "symbol": "CVXUSDT",
@@ -10232,6 +10861,13 @@
           "return_percent": 0.023640661938521174,
           "observed_at_or_after_target": true,
           "delay_seconds": 111
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 2.121,
+          "return_percent": 0.2836879432624011,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 84
         }
       },
       "thresholds": {
@@ -10240,8 +10876,8 @@
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.023640661938521174,
-      "max_price": 2.1155,
+      "max_return": 0.2836879432624011,
+      "max_price": 2.121,
       "min_return": -0.07092198581560552,
       "min_price": 2.1135,
       "observations": [
@@ -10260,6 +10896,10 @@
         {
           "timestamp": 1790539743,
           "price": 2.1155
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.121
         }
       ],
       "clean_tracking": true,
@@ -10267,7 +10907,7 @@
         "streak": 3
       },
       "registered_at": 1790538733,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "DYDXUSDT_BUILDUP_1790538732": {
       "symbol": "DYDXUSDT",
@@ -10296,6 +10936,13 @@
           "return_percent": -0.20898641588298325,
           "observed_at_or_after_target": true,
           "delay_seconds": 111
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.14250000000000002,
+          "return_percent": -0.7314524555903834,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 84
         }
       },
       "thresholds": {
@@ -10306,8 +10953,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.14355,
-      "min_return": -0.6966213862765592,
-      "min_price": 0.14255,
+      "min_return": -0.7314524555903834,
+      "min_price": 0.14250000000000002,
       "observations": [
         {
           "timestamp": 1790538732,
@@ -10324,6 +10971,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.14325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.14250000000000002
         }
       ],
       "clean_tracking": true,
@@ -10336,7 +10987,7 @@
         "buildup_pressure_change": -0.20942408376964922
       },
       "registered_at": 1790538733,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "IMXUSDT_WS_OBI_1790538673": {
       "symbol": "IMXUSDT",
@@ -10365,6 +11016,13 @@
           "return_percent": 0.1426126640045479,
           "observed_at_or_after_target": true,
           "delay_seconds": 170
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.17525000000000002,
+          "return_percent": -0.02852253280090958,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 143
         }
       },
       "thresholds": {
@@ -10393,6 +11051,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.17554999999999998
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.17525000000000002
         }
       ],
       "clean_tracking": true,
@@ -10413,7 +11075,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.7877838025987343,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "WLDUSDT_WS_OBI_1790538482": {
       "symbol": "WLDUSDT",
@@ -10442,6 +11104,13 @@
           "return_percent": 0.5622991788646886,
           "observed_at_or_after_target": true,
           "delay_seconds": 361
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.5588,
+          "return_percent": -0.24991074616209705,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 334
         }
       },
       "thresholds": {
@@ -10452,8 +11121,8 @@
       },
       "max_return": 0.5622991788646886,
       "max_price": 0.56335,
-      "min_return": -0.017850767583004103,
-      "min_price": 0.5601,
+      "min_return": -0.24991074616209705,
+      "min_price": 0.5588,
       "observations": [
         {
           "timestamp": 1790538482,
@@ -10470,6 +11139,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.56335
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.5588
         }
       ],
       "clean_tracking": true,
@@ -10490,7 +11163,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.4489561557326932,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ASTERUSDT_WS_OBI_1790538492": {
       "symbol": "ASTERUSDT",
@@ -10519,6 +11192,13 @@
           "return_percent": 0.0068577698532277425,
           "observed_at_or_after_target": true,
           "delay_seconds": 351
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 0.72915,
+          "return_percent": 0.0068577698532277425,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 324
         }
       },
       "thresholds": {
@@ -10547,6 +11227,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.72915
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.72915
         }
       ],
       "clean_tracking": true,
@@ -10567,7 +11251,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.6051906208137507,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "LINKUSDT_WS_OBI_1790538629": {
       "symbol": "LINKUSDT",
@@ -10596,6 +11280,13 @@
           "return_percent": 0.007098239636566197,
           "observed_at_or_after_target": true,
           "delay_seconds": 214
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 14.052,
+          "return_percent": -0.25553662691653434,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 187
         }
       },
       "thresholds": {
@@ -10606,8 +11297,8 @@
       },
       "max_return": 0.007098239636566197,
       "max_price": 14.089,
-      "min_return": -0.09582623509370038,
-      "min_price": 14.0745,
+      "min_return": -0.25553662691653434,
+      "min_price": 14.052,
       "observations": [
         {
           "timestamp": 1790538629,
@@ -10624,6 +11315,10 @@
         {
           "timestamp": 1790539743,
           "price": 14.089
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 14.052
         }
       ],
       "clean_tracking": true,
@@ -10644,7 +11339,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.3186102583114856,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CAKEUSDT_WS_OBI_1790538659": {
       "symbol": "CAKEUSDT",
@@ -10673,6 +11368,13 @@
           "return_percent": 0.16851314043957363,
           "observed_at_or_after_target": true,
           "delay_seconds": 184
+        },
+        "30m": {
+          "timestamp": 1790540616,
+          "price": 2.7931,
+          "return_percent": 0.14341543867197318,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 157
         }
       },
       "thresholds": {
@@ -10701,6 +11403,10 @@
         {
           "timestamp": 1790539743,
           "price": 2.7938
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.7931
         }
       ],
       "clean_tracking": true,
@@ -10721,7 +11427,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.32590105465436664,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "ZROUSDT_MICRO_1790539180": {
       "symbol": "ZROUSDT",
@@ -10736,6 +11442,20 @@
           "return_percent": 0.02923121894181367,
           "observed_at_or_after_target": true,
           "delay_seconds": 263
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 1.6865,
+          "return_percent": -1.4030985092078352,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 836
+        },
+        "15m": {
+          "timestamp": 1790540616,
+          "price": 1.6865,
+          "return_percent": -1.4030985092078352,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 536
         }
       },
       "thresholds": {
@@ -10746,8 +11466,8 @@
       },
       "max_return": 0.14615609470914626,
       "max_price": 1.713,
-      "min_return": 0.0,
-      "min_price": 1.7105000000000001,
+      "min_return": -1.4030985092078352,
+      "min_price": 1.6865,
       "observations": [
         {
           "timestamp": 1790539180,
@@ -10760,6 +11480,10 @@
         {
           "timestamp": 1790539743,
           "price": 1.7109999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.6865
         }
       ],
       "clean_tracking": true,
@@ -10773,7 +11497,7 @@
         "micro_momentum_4h": 2.388242498469071
       },
       "registered_at": 1790539181,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TURBOUSDT_MICRO_1790539742": {
       "symbol": "TURBOUSDT",
@@ -10781,7 +11505,22 @@
       "alert_time": 1790539742,
       "alert_price": 0.0010692499999999999,
       "score": 58.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.00106565,
+          "return_percent": -0.33668459200372886,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 574
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.00106565,
+          "return_percent": -0.33668459200372886,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 274
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -10790,8 +11529,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.0010692499999999999,
-      "min_return": -0.07014262333410173,
-      "min_price": 0.0010685,
+      "min_return": -0.33668459200372886,
+      "min_price": 0.00106565,
       "observations": [
         {
           "timestamp": 1790539742,
@@ -10800,6 +11539,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0010685
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.00106565
         }
       ],
       "clean_tracking": true,
@@ -10814,7 +11557,7 @@
         "micro_momentum_4h": 1.0129698002461411
       },
       "registered_at": 1790539743,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "PENDLEUSDT_CONFIRMED_1790539742": {
       "symbol": "PENDLEUSDT",
@@ -10822,15 +11565,30 @@
       "alert_time": 1790539742,
       "alert_price": 2.7035,
       "score": 89,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 2.724,
+          "return_percent": 0.7582763084890026,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 574
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 2.724,
+          "return_percent": 0.7582763084890026,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 274
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.5548363232846192,
-      "max_price": 2.7184999999999997,
+      "max_return": 0.7582763084890026,
+      "max_price": 2.724,
       "min_return": 0.0,
       "min_price": 2.7035,
       "observations": [
@@ -10841,6 +11599,10 @@
         {
           "timestamp": 1790539743,
           "price": 2.7184999999999997
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.724
         }
       ],
       "clean_tracking": true,
@@ -10848,7 +11610,7 @@
         "streak": 10
       },
       "registered_at": 1790539743,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "CHZUSDT_MICRO_1790539741": {
       "symbol": "CHZUSDT",
@@ -10856,15 +11618,30 @@
       "alert_time": 1790539741,
       "alert_price": 0.01675,
       "score": 53.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.016805,
+          "return_percent": 0.32835820895522083,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 575
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.016805,
+          "return_percent": 0.32835820895522083,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 275
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.0,
-      "max_price": 0.01675,
+      "max_return": 0.32835820895522083,
+      "max_price": 0.016805,
       "min_return": 0.0,
       "min_price": 0.01675,
       "observations": [
@@ -10875,6 +11652,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.01675
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.016805
         }
       ],
       "clean_tracking": true,
@@ -10889,7 +11670,7 @@
         "micro_momentum_4h": 1.1480362537764512
       },
       "registered_at": 1790539743,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "COOKIEUSDT_MICRO_1790539741": {
       "symbol": "COOKIEUSDT",
@@ -10897,7 +11678,22 @@
       "alert_time": 1790539741,
       "alert_price": 0.012275000000000001,
       "score": 71.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.01225,
+          "return_percent": -0.20366598778004658,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 575
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.01225,
+          "return_percent": -0.20366598778004658,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 275
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -10906,8 +11702,8 @@
       },
       "max_return": 0.16293279022402593,
       "max_price": 0.012295,
-      "min_return": 0.0,
-      "min_price": 0.012275000000000001,
+      "min_return": -0.20366598778004658,
+      "min_price": 0.01225,
       "observations": [
         {
           "timestamp": 1790539741,
@@ -10916,6 +11712,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.012295
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.01225
         }
       ],
       "clean_tracking": true,
@@ -10929,7 +11729,7 @@
         "micro_momentum_4h": 1.6583747927031551
       },
       "registered_at": 1790539743,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "GPSUSDT_CONFIRMED_1790539742": {
       "symbol": "GPSUSDT",
@@ -10937,15 +11737,30 @@
       "alert_time": 1790539742,
       "alert_price": 0.012226500000000001,
       "score": 90,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.01226,
+          "return_percent": 0.2739950108371063,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 574
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.01226,
+          "return_percent": 0.2739950108371063,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 274
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
         "5pct": null,
         "minus_2pct": null
       },
-      "max_return": 0.0,
-      "max_price": 0.012226500000000001,
+      "max_return": 0.2739950108371063,
+      "max_price": 0.01226,
       "min_return": 0.0,
       "min_price": 0.012226500000000001,
       "observations": [
@@ -10956,6 +11771,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.012226500000000001
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.01226
         }
       ],
       "clean_tracking": true,
@@ -10963,7 +11782,7 @@
         "streak": 2
       },
       "registered_at": 1790539743,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "TURBOUSDT_WS_OBI_1790539545": {
       "symbol": "TURBOUSDT",
@@ -10971,7 +11790,29 @@
       "alert_time": 1790539545,
       "alert_price": 0.00106805,
       "score": 65.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.00106565,
+          "return_percent": -0.22470858105894465,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 771
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.00106565,
+          "return_percent": -0.22470858105894465,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 471
+        },
+        "15m": {
+          "timestamp": 1790540616,
+          "price": 0.00106565,
+          "return_percent": -0.22470858105894465,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 171
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -10980,8 +11821,8 @@
       },
       "max_return": 0.0421328589485445,
       "max_price": 0.0010685,
-      "min_return": 0.0,
-      "min_price": 0.00106805,
+      "min_return": -0.22470858105894465,
+      "min_price": 0.00106565,
       "observations": [
         {
           "timestamp": 1790539545,
@@ -10990,6 +11831,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0010685
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.00106565
         }
       ],
       "clean_tracking": true,
@@ -11010,7 +11855,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.6144186894756185,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "PENGUUSDT_WS_OBI_1790539545": {
       "symbol": "PENGUUSDT",
@@ -11018,7 +11863,29 @@
       "alert_time": 1790539545,
       "alert_price": 0.0101625,
       "score": 47.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.010109,
+          "return_percent": -0.5264452644526418,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 771
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.010109,
+          "return_percent": -0.5264452644526418,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 471
+        },
+        "15m": {
+          "timestamp": 1790540616,
+          "price": 0.010109,
+          "return_percent": -0.5264452644526418,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 171
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -11027,8 +11894,8 @@
       },
       "max_return": 0.0,
       "max_price": 0.0101625,
-      "min_return": -0.04920049200491805,
-      "min_price": 0.0101575,
+      "min_return": -0.5264452644526418,
+      "min_price": 0.010109,
       "observations": [
         {
           "timestamp": 1790539545,
@@ -11037,6 +11904,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.0101575
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.010109
         }
       ],
       "clean_tracking": true,
@@ -11057,7 +11928,7 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.43521884110667525,
-      "last_update": 1790539743
+      "last_update": 1790540616
     },
     "JUPUSDT_WS_OBI_1790539606": {
       "symbol": "JUPUSDT",
@@ -11065,7 +11936,29 @@
       "alert_time": 1790539606,
       "alert_price": 0.34665,
       "score": 55.0,
-      "checkpoints": {},
+      "checkpoints": {
+        "5m": {
+          "timestamp": 1790540616,
+          "price": 0.34475,
+          "return_percent": -0.5481032741958785,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 710
+        },
+        "10m": {
+          "timestamp": 1790540616,
+          "price": 0.34475,
+          "return_percent": -0.5481032741958785,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 410
+        },
+        "15m": {
+          "timestamp": 1790540616,
+          "price": 0.34475,
+          "return_percent": -0.5481032741958785,
+          "observed_at_or_after_target": true,
+          "delay_seconds": 110
+        }
+      },
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -11074,8 +11967,8 @@
       },
       "max_return": 0.23078032597721707,
       "max_price": 0.34745000000000004,
-      "min_return": 0.0,
-      "min_price": 0.34665,
+      "min_return": -0.5481032741958785,
+      "min_price": 0.34475,
       "observations": [
         {
           "timestamp": 1790539606,
@@ -11084,6 +11977,10 @@
         {
           "timestamp": 1790539743,
           "price": 0.34745000000000004
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.34475
         }
       ],
       "clean_tracking": true,
@@ -11104,13 +12001,477 @@
       "benchmark_source": "nobitex_ws_obi_alert_state.json",
       "signal_family": "orderbook_microstructure",
       "weighted_obi_at_alert": 0.2879785332244281,
-      "last_update": 1790539743
+      "last_update": 1790540616
+    },
+    "AUSDT_CONFIRMED_1790540614": {
+      "symbol": "AUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790540614,
+      "alert_price": 0.10435,
+      "score": 85,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 0.10435,
+      "min_return": -0.287494010541442,
+      "min_price": 0.10405,
+      "observations": [
+        {
+          "timestamp": 1790540614,
+          "price": 0.10435
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.10405
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 2
+      },
+      "registered_at": 1790540616,
+      "last_update": 1790540616
+    },
+    "TURBOUSDT_FAST_1790540615": {
+      "symbol": "TURBOUSDT",
+      "type": "FAST",
+      "alert_time": 1790540615,
+      "alert_price": 0.0010682,
+      "score": 58,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 0.0010682,
+      "min_return": -0.23871934094739136,
+      "min_price": 0.00106565,
+      "observations": [
+        {
+          "timestamp": 1790540615,
+          "price": 0.0010682
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.00106565
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 2
+      },
+      "registered_at": 1790540616,
+      "last_update": 1790540616
+    },
+    "NOTUSDT_BUILDUP_1790540615": {
+      "symbol": "NOTUSDT",
+      "type": "BUILDUP",
+      "alert_time": 1790540615,
+      "alert_price": 0.0005222,
+      "score": 71.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 0.0005222,
+      "min_return": -0.44044427422443544,
+      "min_price": 0.0005199,
+      "observations": [
+        {
+          "timestamp": 1790540615,
+          "price": 0.0005222
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.0005199
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 2,
+        "buildup_flow": 1.5519172721265717,
+        "buildup_flow_delta": 0.21429079158244746,
+        "buildup_spread_bps": 11.489850631942064,
+        "buildup_price_change": 0.0,
+        "buildup_pressure_change": 0.2197382248972964
+      },
+      "registered_at": 1790540616,
+      "last_update": 1790540616
+    },
+    "FLOWUSDT_MICRO_1790540614": {
+      "symbol": "FLOWUSDT",
+      "type": "MICRO",
+      "alert_time": 1790540614,
+      "alert_price": 0.03325,
+      "score": 70.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 0.03325,
+      "min_return": 0.0,
+      "min_price": 0.03325,
+      "observations": [
+        {
+          "timestamp": 1790540614,
+          "price": 0.03325
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.03325
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 3,
+        "micro_flow": 1.4372837148659692,
+        "micro_flow_delta": 0.2759186147281276,
+        "micro_spread_bps": 30.075187969925672,
+        "micro_price_change": 0.4531722054380584,
+        "micro_momentum_15m": 0.6060606060606023,
+        "micro_momentum_1h": 0.6097560975609719,
+        "micro_momentum_4h": 0.3039513677811637
+      },
+      "registered_at": 1790540616,
+      "last_update": 1790540616
+    },
+    "DOTUSDT_CONFIRMED_1790540614": {
+      "symbol": "DOTUSDT",
+      "type": "CONFIRMED",
+      "alert_time": 1790540614,
+      "alert_price": 1.266,
+      "score": 86,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 1.266,
+      "min_return": -0.03949447077410482,
+      "min_price": 1.2654999999999998,
+      "observations": [
+        {
+          "timestamp": 1790540614,
+          "price": 1.266
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 1.2654999999999998
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "streak": 2
+      },
+      "registered_at": 1790540616,
+      "last_update": 1790540616
+    },
+    "ESPUSDT_WS_OBI_1790540414": {
+      "symbol": "ESPUSDT",
+      "type": "WS_OBI",
+      "alert_time": 1790540414,
+      "alert_price": 0.10497999999999999,
+      "score": 56.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.6525052390931655,
+      "max_price": 0.105665,
+      "min_return": 0.0,
+      "min_price": 0.10497999999999999,
+      "observations": [
+        {
+          "timestamp": 1790540414,
+          "price": 0.10497999999999999
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.105665
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "spread_bps": 38.102495713469004,
+        "weighted_obi": 0.6484782500327555,
+        "obi_5": 0.5350782317393372,
+        "obi_20": 0.6935859215001867,
+        "obi_delta_60s": 0.10220440914190332,
+        "microprice_gap_bps": 6.992053824664912,
+        "price_change_60s": 0.0,
+        "prior_score": 56.0,
+        "updates": null,
+        "alert_type": "WS_OBI",
+        "trigger_version": "ws-obi-v1"
+      },
+      "registered_at": 1790540616,
+      "benchmark_source": "nobitex_ws_obi_alert_state.json",
+      "signal_family": "orderbook_microstructure",
+      "weighted_obi_at_alert": 0.6484782500327555,
+      "last_update": 1790540616
+    },
+    "UNIUSDT_WS_OBI_1790540361": {
+      "symbol": "UNIUSDT",
+      "type": "WS_OBI",
+      "alert_time": 1790540361,
+      "alert_price": 9.713000000000001,
+      "score": 38.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.036034180994532566,
+      "max_price": 9.7165,
+      "min_return": 0.0,
+      "min_price": 9.713000000000001,
+      "observations": [
+        {
+          "timestamp": 1790540361,
+          "price": 9.713000000000001
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 9.7165
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "spread_bps": 37.0637290229585,
+        "weighted_obi": 0.4691431228825143,
+        "obi_5": 0.648661366675677,
+        "obi_20": 0.4521112243163609,
+        "obi_delta_60s": 0.06843034814516685,
+        "microprice_gap_bps": 7.198909967399691,
+        "price_change_60s": 0.0,
+        "prior_score": 38.0,
+        "updates": null,
+        "alert_type": "WS_OBI",
+        "trigger_version": "ws-obi-v1"
+      },
+      "registered_at": 1790540616,
+      "benchmark_source": "nobitex_ws_obi_alert_state.json",
+      "signal_family": "orderbook_microstructure",
+      "weighted_obi_at_alert": 0.4691431228825143,
+      "last_update": 1790540616
+    },
+    "SNXUSDT_WS_OBI_1790540463": {
+      "symbol": "SNXUSDT",
+      "type": "WS_OBI",
+      "alert_time": 1790540463,
+      "alert_price": 0.2711,
+      "score": 63.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 0.2711,
+      "min_return": -0.09221689413499537,
+      "min_price": 0.27085000000000004,
+      "observations": [
+        {
+          "timestamp": 1790540463,
+          "price": 0.2711
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.27085000000000004
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "spread_bps": 44.264109184801875,
+        "weighted_obi": 0.34842078041782476,
+        "obi_5": 0.8568846942404575,
+        "obi_20": 0.28124459909647137,
+        "obi_delta_60s": 0.11265696845695891,
+        "microprice_gap_bps": 8.693418443984024,
+        "price_change_60s": -0.4041146216017597,
+        "prior_score": 63.0,
+        "updates": null,
+        "alert_type": "WS_OBI",
+        "trigger_version": "ws-obi-v1"
+      },
+      "registered_at": 1790540616,
+      "benchmark_source": "nobitex_ws_obi_alert_state.json",
+      "signal_family": "orderbook_microstructure",
+      "weighted_obi_at_alert": 0.34842078041782476,
+      "last_update": 1790540616
+    },
+    "BNBUSDT_WS_OBI_1790540477": {
+      "symbol": "BNBUSDT",
+      "type": "WS_OBI",
+      "alert_time": 1790540477,
+      "alert_price": 777.7943,
+      "score": 66.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 777.7943,
+      "min_return": -0.012760443217439833,
+      "min_price": 777.69505,
+      "observations": [
+        {
+          "timestamp": 1790540477,
+          "price": 777.7943
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 777.69505
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "spread_bps": 15.538812768362188,
+        "weighted_obi": 0.35083595674725265,
+        "obi_5": 0.5269318491759482,
+        "obi_20": 0.2871934006890209,
+        "obi_delta_60s": 0.2976101851871989,
+        "microprice_gap_bps": 5.165863334468412,
+        "price_change_60s": -0.027165612486238184,
+        "prior_score": 66.0,
+        "updates": null,
+        "alert_type": "WS_OBI",
+        "trigger_version": "ws-obi-v1"
+      },
+      "registered_at": 1790540616,
+      "benchmark_source": "nobitex_ws_obi_alert_state.json",
+      "signal_family": "orderbook_microstructure",
+      "weighted_obi_at_alert": 0.35083595674725265,
+      "last_update": 1790540616
+    },
+    "ADAUSDT_WS_OBI_1790540531": {
+      "symbol": "ADAUSDT",
+      "type": "WS_OBI",
+      "alert_time": 1790540531,
+      "alert_price": 0.2556,
+      "score": 63.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 0.2556,
+      "min_return": -0.05868544600938321,
+      "min_price": 0.25545,
+      "observations": [
+        {
+          "timestamp": 1790540531,
+          "price": 0.2556
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 0.25545
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "spread_bps": 39.12363067292648,
+        "weighted_obi": 0.650774060347611,
+        "obi_5": 0.985905602868397,
+        "obi_20": 0.3410393826478332,
+        "obi_delta_60s": 0.4699218544710202,
+        "microprice_gap_bps": 19.556910782035903,
+        "price_change_60s": -0.23419203747072187,
+        "prior_score": 63.0,
+        "updates": null,
+        "alert_type": "WS_OBI",
+        "trigger_version": "ws-obi-v1"
+      },
+      "registered_at": 1790540616,
+      "benchmark_source": "nobitex_ws_obi_alert_state.json",
+      "signal_family": "orderbook_microstructure",
+      "weighted_obi_at_alert": 0.650774060347611,
+      "last_update": 1790540616
+    },
+    "RENDERUSDT_WS_OBI_1790540557": {
+      "symbol": "RENDERUSDT",
+      "type": "WS_OBI",
+      "alert_time": 1790540557,
+      "alert_price": 2.0410000000000004,
+      "score": 64.0,
+      "checkpoints": {},
+      "thresholds": {
+        "1pct": null,
+        "2pct": null,
+        "5pct": null,
+        "minus_2pct": null
+      },
+      "max_return": 0.0,
+      "max_price": 2.0410000000000004,
+      "min_return": 0.0,
+      "min_price": 2.0410000000000004,
+      "observations": [
+        {
+          "timestamp": 1790540557,
+          "price": 2.0410000000000004
+        },
+        {
+          "timestamp": 1790540616,
+          "price": 2.0410000000000004
+        }
+      ],
+      "clean_tracking": true,
+      "metadata": {
+        "spread_bps": 19.598236158745724,
+        "weighted_obi": 0.250479639331524,
+        "obi_5": 0.8037765103015434,
+        "obi_20": 0.25450907845330517,
+        "obi_delta_60s": 0.45156814256103617,
+        "microprice_gap_bps": 6.344447915196747,
+        "price_change_60s": -1.0424242424242245,
+        "prior_score": 64.0,
+        "updates": null,
+        "alert_type": "WS_OBI",
+        "trigger_version": "ws-obi-v1"
+      },
+      "registered_at": 1790540616,
+      "benchmark_source": "nobitex_ws_obi_alert_state.json",
+      "signal_family": "orderbook_microstructure",
+      "weighted_obi_at_alert": 0.250479639331524,
+      "last_update": 1790540616
     }
   },
   "milestones": {},
   "statistics": {
     "BUILDUP": {
-      "events": 7,
+      "events": 8,
       "checkpoints": {
         "5m": {
           "count": 7,
@@ -11152,26 +12513,26 @@
           "hit_minus_2pct": 0
         },
         "30m": {
-          "count": 6,
+          "count": 7,
           "positive": 1,
-          "positive_rate": 16.666666666666664,
-          "average_return": -0.1334357780470823,
-          "median_return": -0.15291443659924467,
+          "positive_rate": 14.285714285714285,
+          "average_return": -0.2188667319818396,
+          "median_return": -0.28847020643649973,
           "best_return": 0.8206811653672554,
-          "worst_return": -0.6648304682305866,
+          "worst_return": -0.7314524555903834,
           "hit_1pct": 0,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
         "1h": {
-          "count": 3,
+          "count": 5,
           "positive": 2,
-          "positive_rate": 66.66666666666666,
-          "average_return": 0.32799134033143335,
-          "median_return": 0.21103406692794877,
+          "positive_rate": 40.0,
+          "average_return": -0.23941307678211307,
+          "median_return": -0.1866971135328553,
           "best_return": 1.9696347968814112,
-          "worst_return": -1.19669484281506,
+          "worst_return": -1.9943422913720101,
           "hit_1pct": 1,
           "hit_2pct": 0,
           "hit_5pct": 0,
@@ -11231,8 +12592,8 @@
         "hit_minus_2pct": 0
       },
       "time_to_1pct": {
-        "count": 2,
-        "average_minutes": 115.5,
+        "count": 3,
+        "average_minutes": 96.80000000000001,
         "best_minutes": 49.7,
         "worst_minutes": 181.3
       },
@@ -11250,14 +12611,14 @@
       }
     },
     "MICRO": {
-      "events": 21,
+      "events": 22,
       "checkpoints": {
         "5m": {
-          "count": 18,
-          "positive": 8,
-          "positive_rate": 44.44444444444444,
-          "average_return": 0.0656800918108335,
-          "median_return": -0.018968133535660552,
+          "count": 21,
+          "positive": 9,
+          "positive_rate": 42.857142857142854,
+          "average_return": 0.046202346750783246,
+          "median_return": -0.037936267071321104,
           "best_return": 1.5389103639413502,
           "worst_return": -0.6915377616014605,
           "hit_1pct": 1,
@@ -11266,37 +12627,37 @@
           "hit_minus_2pct": 0
         },
         "10m": {
-          "count": 17,
-          "positive": 9,
-          "positive_rate": 52.94117647058824,
-          "average_return": 0.15350998277210537,
-          "median_return": 0.05846718529224539,
+          "count": 21,
+          "positive": 10,
+          "positive_rate": 47.61904761904761,
+          "average_return": 0.04736089652806673,
+          "median_return": 0.0,
           "best_return": 1.5389103639413502,
-          "worst_return": -0.520562207183759,
+          "worst_return": -1.4030985092078352,
           "hit_1pct": 1,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
         "15m": {
-          "count": 17,
+          "count": 18,
           "positive": 8,
-          "positive_rate": 47.05882352941176,
-          "average_return": 0.12518279938439328,
-          "median_return": 0.0,
+          "positive_rate": 44.44444444444444,
+          "average_return": 0.04027828224038059,
+          "median_return": -0.027553269654662652,
           "best_return": 1.5768243491015934,
-          "worst_return": -0.7287870900572538,
+          "worst_return": -1.4030985092078352,
           "hit_1pct": 2,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
         "30m": {
-          "count": 15,
+          "count": 17,
           "positive": 9,
-          "positive_rate": 60.0,
-          "average_return": 0.5151926288668205,
-          "median_return": 0.21905805038335788,
+          "positive_rate": 52.94117647058824,
+          "average_return": 0.4094544666121224,
+          "median_return": 0.1177464148246764,
           "best_return": 3.9540939338412593,
           "worst_return": -0.8849557522123787,
           "hit_1pct": 4,
@@ -11331,40 +12692,40 @@
           "hit_minus_2pct": 0
         },
         "4h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "median_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_1pct": 0,
+          "count": 3,
+          "positive": 2,
+          "positive_rate": 66.66666666666666,
+          "average_return": 0.9099755700015294,
+          "median_return": 0.8648381517173469,
+          "best_return": 1.924375422012151,
+          "worst_return": -0.059286863724909475,
+          "hit_1pct": 1,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         }
       },
       "MFE": {
-        "count": 0,
-        "positive": 0,
-        "positive_rate": 0.0,
-        "average_return": 0.0,
-        "median_return": 0.0,
-        "best_return": 0.0,
-        "worst_return": 0.0,
-        "hit_1pct": 0,
-        "hit_2pct": 0,
+        "count": 3,
+        "positive": 3,
+        "positive_rate": 100.0,
+        "average_return": 1.627940191737755,
+        "median_return": 1.8532246108228363,
+        "best_return": 2.1751712163595958,
+        "worst_return": 0.8554247480308326,
+        "hit_1pct": 2,
+        "hit_2pct": 1,
         "hit_5pct": 0,
         "hit_minus_2pct": 0
       },
       "MAE": {
-        "count": 0,
+        "count": 3,
         "positive": 0,
         "positive_rate": 0.0,
-        "average_return": 0.0,
-        "median_return": 0.0,
-        "best_return": 0.0,
-        "worst_return": 0.0,
+        "average_return": -0.4130292373238658,
+        "median_return": -0.3086717468891684,
+        "best_return": -0.28796476666385235,
+        "worst_return": -0.6424511984185768,
         "hit_1pct": 0,
         "hit_2pct": 0,
         "hit_5pct": 0,
@@ -11390,7 +12751,7 @@
       }
     },
     "FAST": {
-      "events": 17,
+      "events": 18,
       "checkpoints": {
         "5m": {
           "count": 17,
@@ -11432,11 +12793,11 @@
           "hit_minus_2pct": 0
         },
         "30m": {
-          "count": 14,
-          "positive": 9,
-          "positive_rate": 64.28571428571429,
-          "average_return": 0.2536805462251731,
-          "median_return": 0.18702663990379387,
+          "count": 17,
+          "positive": 11,
+          "positive_rate": 64.70588235294117,
+          "average_return": 0.23033080761378302,
+          "median_return": 0.24868748273003924,
           "best_return": 1.4724180837826617,
           "worst_return": -0.9098527475158589,
           "hit_1pct": 2,
@@ -11445,11 +12806,11 @@
           "hit_minus_2pct": 0
         },
         "1h": {
-          "count": 11,
+          "count": 13,
           "positive": 7,
-          "positive_rate": 63.63636363636363,
-          "average_return": 0.3614279346542517,
-          "median_return": 0.308603137468198,
+          "positive_rate": 53.84615384615385,
+          "average_return": 0.276142394235271,
+          "median_return": 0.24956805528893955,
           "best_return": 1.5909090909090824,
           "worst_return": -1.0535137076499366,
           "hit_1pct": 2,
@@ -11488,11 +12849,11 @@
         "count": 2,
         "positive": 2,
         "positive_rate": 100.0,
-        "average_return": 1.201756420337241,
-        "median_return": 1.201756420337241,
+        "average_return": 1.3523134814634123,
+        "median_return": 1.3523134814634123,
         "best_return": 1.5001704739174975,
-        "worst_return": 0.9033423667569849,
-        "hit_1pct": 1,
+        "worst_return": 1.204456489009327,
+        "hit_1pct": 2,
         "hit_2pct": 0,
         "hit_5pct": 0,
         "hit_minus_2pct": 0
@@ -11511,14 +12872,14 @@
         "hit_minus_2pct": 0
       },
       "time_to_1pct": {
-        "count": 4,
-        "average_minutes": 54.725,
+        "count": 5,
+        "average_minutes": 94.94000000000001,
         "best_minutes": 10.4,
-        "worst_minutes": 164.9
+        "worst_minutes": 255.8
       },
       "time_to_2pct": {
-        "count": 2,
-        "average_minutes": 74.95,
+        "count": 3,
+        "average_minutes": 77.0,
         "best_minutes": 14.1,
         "worst_minutes": 135.8
       },
@@ -11530,14 +12891,14 @@
       }
     },
     "CONFIRMED": {
-      "events": 17,
+      "events": 19,
       "checkpoints": {
         "5m": {
-          "count": 15,
-          "positive": 8,
-          "positive_rate": 53.333333333333336,
-          "average_return": 0.08375489460889494,
-          "median_return": 0.036156557895684345,
+          "count": 17,
+          "positive": 10,
+          "positive_rate": 58.82352941176471,
+          "average_return": 0.1346232199093843,
+          "median_return": 0.055473372781050766,
           "best_return": 2.7592267135325215,
           "worst_return": -1.3848948085363997,
           "hit_1pct": 1,
@@ -11546,11 +12907,11 @@
           "hit_minus_2pct": 0
         },
         "10m": {
-          "count": 15,
-          "positive": 8,
-          "positive_rate": 53.333333333333336,
-          "average_return": 0.003609212295279347,
-          "median_return": 0.055473372781050766,
+          "count": 17,
+          "positive": 10,
+          "positive_rate": 58.82352941176471,
+          "average_return": 0.06390644139737055,
+          "median_return": 0.0632739763174476,
           "best_return": 1.845342706502648,
           "worst_return": -1.3848948085363997,
           "hit_1pct": 1,
@@ -11585,13 +12946,13 @@
           "hit_minus_2pct": 0
         },
         "1h": {
-          "count": 10,
+          "count": 12,
           "positive": 6,
-          "positive_rate": 60.0,
-          "average_return": 0.11197849995806948,
-          "median_return": 0.22663877266389182,
+          "positive_rate": 50.0,
+          "average_return": -0.040828241125606006,
+          "median_return": -0.009039139473910584,
           "best_return": 0.773286467486812,
-          "worst_return": -0.9751271905031115,
+          "worst_return": -1.224048961958487,
           "hit_1pct": 0,
           "hit_2pct": 0,
           "hit_5pct": 0,
@@ -11810,14 +13171,14 @@
       }
     },
     "WS_OBI": {
-      "events": 47,
+      "events": 53,
       "checkpoints": {
         "5m": {
-          "count": 44,
+          "count": 47,
           "positive": 24,
-          "positive_rate": 54.54545454545454,
-          "average_return": 0.09634397758124241,
-          "median_return": 0.01923591879088845,
+          "positive_rate": 51.06382978723404,
+          "average_return": 0.06255059348653619,
+          "median_return": 0.008925383791482232,
           "best_return": 1.5599610009749798,
           "worst_return": -1.595914458984989,
           "hit_1pct": 2,
@@ -11826,11 +13187,11 @@
           "hit_minus_2pct": 0
         },
         "10m": {
-          "count": 44,
+          "count": 47,
           "positive": 27,
-          "positive_rate": 61.36363636363637,
-          "average_return": 0.10452365769241022,
-          "median_return": 0.054973715460783,
+          "positive_rate": 57.446808510638306,
+          "average_return": 0.07020816635656563,
+          "median_return": 0.02638870563398071,
           "best_return": 1.5599610009749798,
           "worst_return": -1.595914458984989,
           "hit_1pct": 2,
@@ -11839,11 +13200,11 @@
           "hit_minus_2pct": 0
         },
         "15m": {
-          "count": 44,
+          "count": 47,
           "positive": 25,
-          "positive_rate": 56.81818181818182,
-          "average_return": 0.1549158799849748,
-          "median_return": 0.05115670816652462,
+          "positive_rate": 53.191489361702125,
+          "average_return": 0.11738386382194524,
+          "median_return": 0.007098239636566197,
           "best_return": 2.5730125467519,
           "worst_return": -1.1171401212894867,
           "hit_1pct": 4,
@@ -11852,10 +13213,10 @@
           "hit_minus_2pct": 0
         },
         "30m": {
-          "count": 38,
-          "positive": 17,
-          "positive_rate": 44.73684210526316,
-          "average_return": 0.007898390801626912,
+          "count": 44,
+          "positive": 20,
+          "positive_rate": 45.45454545454545,
+          "average_return": 0.0017663360220988426,
           "median_return": -0.011032738492571905,
           "best_return": 1.1043058648849273,
           "worst_return": -1.180976699648884,
@@ -11865,15 +13226,15 @@
           "hit_minus_2pct": 0
         },
         "1h": {
-          "count": 21,
-          "positive": 11,
-          "positive_rate": 52.38095238095239,
-          "average_return": 0.09343559238580187,
-          "median_return": 0.009325638095084026,
-          "best_return": 1.2899034892353318,
+          "count": 36,
+          "positive": 19,
+          "positive_rate": 52.77777777777778,
+          "average_return": 0.21886697309804093,
+          "median_return": 0.03212026001404853,
+          "best_return": 2.808809447813616,
           "worst_return": -1.635734507706832,
-          "hit_1pct": 2,
-          "hit_2pct": 0,
+          "hit_1pct": 6,
+          "hit_2pct": 1,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
@@ -11931,16 +13292,16 @@
         "hit_minus_2pct": 0
       },
       "time_to_1pct": {
-        "count": 10,
-        "average_minutes": 35.739999999999995,
+        "count": 12,
+        "average_minutes": 40.108333333333334,
         "best_minutes": 1.9,
         "worst_minutes": 93.0
       },
       "time_to_2pct": {
-        "count": 1,
-        "average_minutes": 23.7,
+        "count": 4,
+        "average_minutes": 69.89999999999999,
         "best_minutes": 23.7,
-        "worst_minutes": 23.7
+        "worst_minutes": 107.6
       },
       "time_to_5pct": {
         "count": 0,
@@ -11950,14 +13311,14 @@
       }
     },
     "ALL": {
-      "events": 109,
+      "events": 120,
       "checkpoints": {
         "5m": {
-          "count": 101,
-          "positive": 52,
-          "positive_rate": 51.48514851485149,
-          "average_return": 0.10975767745261066,
-          "median_return": 0.012083131947796186,
+          "count": 109,
+          "positive": 55,
+          "positive_rate": 50.45871559633027,
+          "average_return": 0.09730777294957582,
+          "median_return": 0.008925383791482232,
           "best_return": 2.7592267135325215,
           "worst_return": -1.595914458984989,
           "hit_1pct": 6,
@@ -11966,11 +13327,11 @@
           "hit_minus_2pct": 0
         },
         "10m": {
-          "count": 100,
-          "positive": 57,
-          "positive_rate": 56.99999999999999,
-          "average_return": 0.11732957109469867,
-          "median_return": 0.05480861613701413,
+          "count": 109,
+          "positive": 60,
+          "positive_rate": 55.04587155963303,
+          "average_return": 0.09037504980781763,
+          "median_return": 0.02638870563398071,
           "best_return": 2.2383304126175116,
           "worst_return": -1.595914458984989,
           "hit_1pct": 6,
@@ -11979,24 +13340,24 @@
           "hit_minus_2pct": 0
         },
         "15m": {
-          "count": 100,
+          "count": 104,
           "positive": 55,
-          "positive_rate": 55.00000000000001,
-          "average_return": 0.13964331490202692,
-          "median_return": 0.03590510938929647,
+          "positive_rate": 52.88461538461539,
+          "average_return": 0.10828822943545569,
+          "median_return": 0.01330584375392287,
           "best_return": 2.5730125467519,
-          "worst_return": -1.1171401212894867,
+          "worst_return": -1.4030985092078352,
           "hit_1pct": 9,
           "hit_2pct": 2,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
         "30m": {
-          "count": 88,
-          "positive": 46,
-          "positive_rate": 52.27272727272727,
-          "average_return": 0.16712702958658218,
-          "median_return": 0.029969150784363775,
+          "count": 100,
+          "positive": 51,
+          "positive_rate": 51.0,
+          "average_return": 0.13350238664225036,
+          "median_return": 0.0034288849266243737,
           "best_return": 3.9540939338412593,
           "worst_return": -1.180976699648884,
           "hit_1pct": 10,
@@ -12005,15 +13366,15 @@
           "hit_minus_2pct": 0
         },
         "1h": {
-          "count": 55,
-          "positive": 33,
-          "positive_rate": 60.0,
-          "average_return": 0.29927559928983005,
-          "median_return": 0.23684655726612552,
+          "count": 76,
+          "positive": 41,
+          "positive_rate": 53.94736842105263,
+          "average_return": 0.23948160655575274,
+          "median_return": 0.059736199513270485,
           "best_return": 3.9540939338412593,
-          "worst_return": -1.635734507706832,
-          "hit_1pct": 9,
-          "hit_2pct": 1,
+          "worst_return": -1.9943422913720101,
+          "hit_1pct": 13,
+          "hit_2pct": 2,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         },
@@ -12031,54 +13392,54 @@
           "hit_minus_2pct": 0
         },
         "4h": {
-          "count": 2,
-          "positive": 2,
-          "positive_rate": 100.0,
-          "average_return": 0.7051118973136166,
-          "median_return": 0.7051118973136166,
-          "best_return": 0.8732309545317631,
-          "worst_return": 0.5369928400954701,
-          "hit_1pct": 0,
+          "count": 5,
+          "positive": 4,
+          "positive_rate": 80.0,
+          "average_return": 0.8280301009263644,
+          "median_return": 0.8648381517173469,
+          "best_return": 1.924375422012151,
+          "worst_return": -0.059286863724909475,
+          "hit_1pct": 1,
           "hit_2pct": 0,
           "hit_5pct": 0,
           "hit_minus_2pct": 0
         }
       },
       "MFE": {
-        "count": 2,
-        "positive": 2,
+        "count": 5,
+        "positive": 5,
         "positive_rate": 100.0,
-        "average_return": 1.201756420337241,
-        "median_return": 1.201756420337241,
-        "best_return": 1.5001704739174975,
-        "worst_return": 0.9033423667569849,
-        "hit_1pct": 1,
-        "hit_2pct": 0,
+        "average_return": 1.517689507628018,
+        "median_return": 1.5001704739174975,
+        "best_return": 2.1751712163595958,
+        "worst_return": 0.8554247480308326,
+        "hit_1pct": 4,
+        "hit_2pct": 1,
         "hit_5pct": 0,
         "hit_minus_2pct": 0
       },
       "MAE": {
-        "count": 2,
+        "count": 5,
         "positive": 0,
         "positive_rate": 0.0,
-        "average_return": -0.060222824450464264,
-        "median_return": -0.060222824450464264,
+        "average_return": -0.2719066721745052,
+        "median_return": -0.28796476666385235,
         "best_return": 0.0,
-        "worst_return": -0.12044564890092853,
+        "worst_return": -0.6424511984185768,
         "hit_1pct": 0,
         "hit_2pct": 0,
         "hit_5pct": 0,
         "hit_minus_2pct": 0
       },
       "time_to_1pct": {
-        "count": 31,
-        "average_minutes": 61.854838709677416,
+        "count": 35,
+        "average_minutes": 67.33142857142857,
         "best_minutes": 0.0,
-        "worst_minutes": 208.7
+        "worst_minutes": 255.8
       },
       "time_to_2pct": {
-        "count": 9,
-        "average_minutes": 77.05555555555556,
+        "count": 13,
+        "average_minutes": 79.26923076923077,
         "best_minutes": 0.0,
         "worst_minutes": 190.9
       },
@@ -12092,9 +13453,9 @@
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 2,
-    "clean_completed_4h": 2,
+    "completed_4h": 5,
+    "clean_completed_4h": 5,
     "reliable": false
   },
-  "updated_at": 1790539743
+  "updated_at": 1790540616
 }
