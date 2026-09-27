@@ -184,15 +184,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790444879,
-    "buildup_score": 88.0,
-    "buildup_price": 10.887,
+    "buildup_timestamp": 1790489086,
+    "buildup_score": 93.0,
+    "buildup_price": 10.873999999999999,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.08273579702151444,
-    "buildup_flow": 2.5251491192729643,
-    "buildup_flow_delta": 1.1997876358862725,
-    "buildup_spread_bps": 16.53348029760327,
-    "buildup_pressure_change": 0.17916781245064056
+    "buildup_price_change": 0.046002392124381314,
+    "buildup_flow": 2.3188102539380604,
+    "buildup_flow_delta": 1.1522790986089049,
+    "buildup_spread_bps": 20.2317454478575,
+    "buildup_pressure_change": -0.2955781100912671
   },
   "DOGEUSDT": {
     "score": 99,
@@ -1389,7 +1389,11 @@
     "buildup_flow": 5.29769347487915,
     "buildup_flow_delta": 3.935906412483164,
     "buildup_spread_bps": 2.103713053539776,
-    "buildup_pressure_change": -0.7745438046138107
+    "buildup_pressure_change": -0.7745438046138107,
+    "fast_score": 76,
+    "fast_timestamp": 1790489087,
+    "fast_price": 0.004809,
+    "fast_alert_type": "FAST"
   },
   "SAHARAUSDT": {
     "score": 92,
@@ -1734,7 +1738,11 @@
     "micro_momentum_4h": -0.5047318611987386,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 71,
+    "fast_timestamp": 1790489087,
+    "fast_price": 1.5905,
+    "fast_alert_type": "FAST"
   },
   "REUSDT": {
     "score": 83,
@@ -1755,5 +1763,11 @@
     "timestamp": 1790486665,
     "price": 0.4249,
     "alert_type": "CONFIRMED"
+  },
+  "DASHUSDT": {
+    "fast_score": 71,
+    "fast_timestamp": 1790489086,
+    "fast_price": 72.675,
+    "fast_alert_type": "FAST"
   }
 }
