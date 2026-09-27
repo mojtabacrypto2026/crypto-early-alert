@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-NOBITEX SIGNAL PERFORMANCE TRACKER V7
+NOBITEX SIGNAL PERFORMANCE TRACKER V7.1
 
 Purpose:
 - Measure BUILDUP / MICRO / FAST / CONFIRMED / NEWS separately.
-- NEVER back-fill a 5m/10m/... checkpoint with a later price.
-- Keep a small observation history per event and select the first observation
-  at or after each checkpoint target.
-- Track MFE/MAE from observations actually seen by the tracker.
-- Record first observed +1%, +2%, +5%, -2% threshold hits.
-- Keep the existing schema compatible; old events are retained but marked
-  legacy_checkpoint_data so they are not treated as clean benchmark samples.
-- Require 100 clean completed 4h samples before declaring the dataset reliable.
+- Measure WS_OBI independently from the main scanner alert-state file.
+- Never back-fill a checkpoint with a later observation.
+- Keep event observations actually seen by the tracker.
+- Track MFE/MAE and first observed +1%, +2%, +5%, -2% hits.
+- Preserve the existing performance schema and legacy-event handling.
 """
 
 import json
@@ -23,9 +20,11 @@ import urllib.request
 BASE_URL = "https://apiv2.nobitex.ir"
 WORKSPACE = os.environ.get("GITHUB_WORKSPACE", ".")
 ALERT_STATE_PATH = os.path.join(WORKSPACE, "nobitex_telegram_alert_state.json")
+WS_ALERT_STATE_PATH = os.path.join(WORKSPACE, "nobitex_ws_obi_alert_state.json")
 PERFORMANCE_STATE_PATH = os.path.join(WORKSPACE, "nobitex_signal_performance_state.json")
 TRACKING_START_PATH = os.path.join(WORKSPACE, "nobitex_performance_tracking_start.json")
 
+# Keep schema compatible with the current v6 performance state.
 PERFORMANCE_SCHEMA_VERSION = 6
 TRACKING_SCHEMA_VERSION = 2
 MIN_RELIABLE_4H_SAMPLES = 100
@@ -44,7 +43,8 @@ CHECKPOINTS = {
     "4h": 4 * 60 * 60,
 }
 
-EVENT_TYPES = ("BUILDUP", "MICRO", "FAST", "CONFIRMED", "NEWS")
+# WS_OBI is intentionally a separate benchmark class.
+EVENT_TYPES = ("BUILDUP", "MICRO", "FAST", "CONFIRMED", "NEWS", "WS_OBI")
 THRESHOLDS = {"1pct": 1.0, "2pct": 2.0, "5pct": 5.0, "minus_2pct": -2.0}
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
@@ -87,7 +87,7 @@ def http_get_json(url, params=None):
     if params:
         url += "?" + urllib.parse.urlencode(params)
     headers = {
-        "User-Agent": "Nobitex-Performance-Tracker/7.0",
+        "User-Agent": "Nobitex-Performance-Tracker/7.1",
         "Accept": "application/json",
     }
     last = None
@@ -109,7 +109,7 @@ def http_post_json(url, data):
         url,
         data=payload,
         headers={
-            "User-Agent": "Nobitex-Performance-Tracker/7.0",
+            "User-Agent": "Nobitex-Performance-Tracker/7.1",
             "Content-Type": "application/json",
             "Accept": "application/json",
         },
@@ -145,11 +145,14 @@ def get_tracking_start(now):
     marker = load_json(TRACKING_START_PATH, {})
     if isinstance(marker, dict) and safe_int(marker.get("started_at"), 0) > 0:
         return safe_int(marker["started_at"], now)
-    save_json(TRACKING_START_PATH, {
-        "schema_version": TRACKING_SCHEMA_VERSION,
-        "started_at": now,
-        "created_at": now,
-    })
+    save_json(
+        TRACKING_START_PATH,
+        {
+            "schema_version": TRACKING_SCHEMA_VERSION,
+            "started_at": now,
+            "created_at": now,
+        },
+    )
     return now
 
 
@@ -158,10 +161,12 @@ def get_prices():
     prices = {}
     if not isinstance(data, dict):
         return prices
+
     for raw_symbol, book in data.items():
         symbol = str(raw_symbol).upper()
         if not symbol.endswith("USDT") or not isinstance(book, dict):
             continue
+
         bids = book.get("bids", [])
         asks = book.get("asks", [])
         try:
@@ -169,12 +174,14 @@ def get_prices():
             ask = safe_float(asks[0][0]) if asks else 0.0
         except Exception:
             continue
+
         if bid > 0 and ask > 0:
             prices[symbol] = (bid + ask) / 2.0
         elif bid > 0:
             prices[symbol] = bid
         elif ask > 0:
             prices[symbol] = ask
+
     return prices
 
 
@@ -255,6 +262,24 @@ def candidates(alert, tracking_start):
     ]
 
 
+def ws_obi_candidates(ws_alert_state, tracking_start):
+    """Read WS OBI alerts from their own state file, independently."""
+    output = []
+    if not isinstance(ws_alert_state, dict):
+        return output
+
+    for symbol, alert in ws_alert_state.items():
+        if not isinstance(alert, dict):
+            continue
+        timestamp = safe_int(alert.get("timestamp"), 0)
+        if timestamp < tracking_start:
+            continue
+        if not str(symbol).upper().endswith("USDT"):
+            continue
+        output.append((str(symbol).upper(), timestamp, alert))
+    return output
+
+
 def alert_price(alert, event_type, current_prices, symbol):
     keys = {
         "BUILDUP": ("buildup_price", "price"),
@@ -262,6 +287,7 @@ def alert_price(alert, event_type, current_prices, symbol):
         "FAST": ("fast_price", "price"),
         "NEWS": ("news_price", "price"),
         "CONFIRMED": ("price", "confirmed_price"),
+        "WS_OBI": ("price", "mid", "last_trade_price"),
     }[event_type]
     for key in keys:
         price = safe_float(alert.get(key), 0.0)
@@ -277,6 +303,9 @@ def event_score(alert, event_type):
         "FAST": "fast_score",
         "NEWS": "news_score",
         "CONFIRMED": "score",
+        # WS OBI has no main technical score. Preserve its technical context
+        # separately and use prior_score only as a reference value.
+        "WS_OBI": "prior_score",
     }[event_type]
     return alert.get(key)
 
@@ -290,17 +319,50 @@ def event_metadata(alert, event_type):
         "price_change_acceleration", "previous_score", "streak",
     )
     meta = {k: alert.get(k) for k in keys if k in alert}
+
     if event_type == "BUILDUP":
-        meta.update({k: alert.get(k) for k in (
-            "buildup_flow", "buildup_flow_delta", "buildup_spread_bps",
-            "buildup_price_change", "buildup_pressure_change") if k in alert})
+        meta.update({
+            k: alert.get(k)
+            for k in (
+                "buildup_flow", "buildup_flow_delta", "buildup_spread_bps",
+                "buildup_price_change", "buildup_pressure_change",
+            )
+            if k in alert
+        })
+
     if event_type == "MICRO":
-        meta.update({k: alert.get(k) for k in (
-            "micro_flow", "micro_flow_delta", "micro_spread_bps", "micro_price_change",
-            "micro_momentum_15m", "micro_momentum_1h", "micro_momentum_4h") if k in alert})
+        meta.update({
+            k: alert.get(k)
+            for k in (
+                "micro_flow", "micro_flow_delta", "micro_spread_bps", "micro_price_change",
+                "micro_momentum_15m", "micro_momentum_1h", "micro_momentum_4h",
+            )
+            if k in alert
+        })
+
     if event_type == "FAST":
-        meta.update({k: alert.get(k) for k in (
-            "fast_volume_ratio", "fast_volume_acceleration") if k in alert})
+        meta.update({
+            k: alert.get(k)
+            for k in ("fast_volume_ratio", "fast_volume_acceleration")
+            if k in alert
+        })
+
+    if event_type == "WS_OBI":
+        # These fields are the independent WS microstructure measurements.
+        meta.update({
+            "weighted_obi": alert.get("weighted_obi"),
+            "obi_5": alert.get("obi_5"),
+            "obi_20": alert.get("obi_20"),
+            "obi_delta_60s": alert.get("obi_delta_60s"),
+            "microprice_gap_bps": alert.get("microprice_gap_bps"),
+            "spread_bps": alert.get("spread_bps"),
+            "price_change_60s": alert.get("price_change_60s"),
+            "prior_score": alert.get("prior_score"),
+            "updates": alert.get("updates"),
+            "alert_type": alert.get("alert_type"),
+            "trigger_version": alert.get("trigger_version"),
+        })
+
     return meta
 
 
@@ -308,10 +370,12 @@ def register_event(performance, symbol, alert, event_type, timestamp, current_pr
     event_id = f"{str(symbol).upper()}_{event_type}_{timestamp}"
     if event_id in performance["events"]:
         return False
+
     symbol = str(symbol).upper()
     price = alert_price(alert, event_type, current_prices, symbol)
     if price <= 0:
         return False
+
     performance["events"][event_id] = {
         "symbol": symbol,
         "type": event_type,
@@ -329,7 +393,22 @@ def register_event(performance, symbol, alert, event_type, timestamp, current_pr
         "metadata": event_metadata(alert, event_type),
         "registered_at": now,
     }
-    print("NEW EVENT:", event_id, "| price:", price)
+
+    if event_type == "WS_OBI":
+        performance["events"][event_id]["benchmark_source"] = "nobitex_ws_obi_alert_state.json"
+        performance["events"][event_id]["signal_family"] = "orderbook_microstructure"
+        performance["events"][event_id]["weighted_obi_at_alert"] = safe_float(
+            alert.get("weighted_obi"), 0.0
+        )
+
+    print(
+        "NEW EVENT:",
+        event_id,
+        "| price:",
+        price,
+        "| source:",
+        "WS_OBI" if event_type == "WS_OBI" else "MAIN",
+    )
     return True
 
 
@@ -352,7 +431,8 @@ def select_checkpoint_observation(event, checkpoint_seconds):
     target = alert_time + checkpoint_seconds
     observations = event.get("observations", [])
     valid = [
-        obs for obs in observations
+        obs
+        for obs in observations
         if safe_int(obs.get("timestamp"), 0) >= target
         and safe_float(obs.get("price"), 0.0) > 0
     ]
@@ -381,6 +461,7 @@ def update_event(event, current_price, now):
     thresholds = event.get("thresholds")
     if not isinstance(thresholds, dict):
         thresholds = {k: None for k in THRESHOLDS}
+
     observations = event.get("observations", [])
     for key, target in THRESHOLDS.items():
         if thresholds.get(key) is not None:
@@ -406,6 +487,7 @@ def update_event(event, current_price, now):
     checkpoints = event.get("checkpoints")
     if not isinstance(checkpoints, dict):
         checkpoints = {}
+
     for name, seconds in CHECKPOINTS.items():
         if name in checkpoints:
             continue
@@ -428,7 +510,13 @@ def statistics_by_type(events):
     output = {}
     for event_type in EVENT_TYPES + ("ALL",):
         selected = [e for e in events if event_type == "ALL" or e.get("type") == event_type]
-        type_stats = {"events": len(selected), "checkpoints": {}, "MFE": blank_stats(), "MAE": blank_stats()}
+        type_stats = {
+            "events": len(selected),
+            "checkpoints": {},
+            "MFE": blank_stats(),
+            "MAE": blank_stats(),
+        }
+
         for checkpoint_name in CHECKPOINTS:
             values = []
             for event in selected:
@@ -436,10 +524,21 @@ def statistics_by_type(events):
                 if isinstance(checkpoint, dict):
                     values.append(safe_float(checkpoint.get("return_percent"), 0.0))
             type_stats["checkpoints"][checkpoint_name] = stats(values)
-        complete = [e for e in selected if isinstance(e.get("checkpoints", {}).get("4h"), dict)]
+
+        complete = [
+            e
+            for e in selected
+            if isinstance(e.get("checkpoints", {}).get("4h"), dict)
+        ]
         clean_complete = [e for e in complete if e.get("clean_tracking", False)]
-        type_stats["MFE"] = stats([safe_float(e.get("max_return"), 0.0) for e in clean_complete])
-        type_stats["MAE"] = stats([safe_float(e.get("min_return"), 0.0) for e in clean_complete])
+
+        type_stats["MFE"] = stats(
+            [safe_float(e.get("max_return"), 0.0) for e in clean_complete]
+        )
+        type_stats["MAE"] = stats(
+            [safe_float(e.get("min_return"), 0.0) for e in clean_complete]
+        )
+
         for key in ("1pct", "2pct", "5pct"):
             hits = []
             for e in selected:
@@ -452,34 +551,37 @@ def statistics_by_type(events):
                 "best_minutes": min(hits) if hits else 0.0,
                 "worst_minutes": max(hits) if hits else 0.0,
             }
+
         output[event_type] = type_stats
+
     return output
 
 
 def main():
     now = int(time.time())
     tracking_start = get_tracking_start(now)
+
     print("=" * 72)
-    print("NOBITEX SIGNAL PERFORMANCE TRACKER V7")
+    print("NOBITEX SIGNAL PERFORMANCE TRACKER V7.1")
     print("UTC:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(now)))
     print("Tracking started:", tracking_start)
+    print("WS OBI benchmark: ENABLED")
     print("=" * 72)
 
     alert_state = load_json(ALERT_STATE_PATH, {})
+    ws_alert_state = load_json(WS_ALERT_STATE_PATH, {})
     performance = load_json(PERFORMANCE_STATE_PATH, {})
 
     if not isinstance(performance, dict) or performance.get("schema_version") != PERFORMANCE_SCHEMA_VERSION:
         old_events = performance.get("events", {}) if isinstance(performance, dict) else {}
         performance = new_performance_state()
-        # Existing events from the old tracker had invalid back-filled checkpoints.
-        # Preserve them only as legacy records, never as clean benchmark samples.
         if isinstance(old_events, dict):
             for event_id, event in old_events.items():
                 if isinstance(event, dict):
                     event["clean_tracking"] = False
                     event["legacy_checkpoint_data"] = True
                     performance["events"][event_id] = event
-        print("Performance state migrated; legacy events are excluded from clean reliability.")
+        print("Performance state migrated; legacy events excluded from clean reliability.")
 
     if not isinstance(performance.get("events"), dict):
         performance["events"] = {}
@@ -495,11 +597,35 @@ def main():
     print("Current prices:", len(current_prices))
     registered = 0
 
+    # Main scanner alerts.
     if isinstance(alert_state, dict):
         for symbol, alert in alert_state.items():
             for event_type, timestamp in candidates(alert, tracking_start):
-                if register_event(performance, symbol, alert, event_type, timestamp, current_prices, now):
+                if register_event(
+                    performance,
+                    symbol,
+                    alert,
+                    event_type,
+                    timestamp,
+                    current_prices,
+                    now,
+                ):
                     registered += 1
+
+    # Independent WS OBI alerts.
+    ws_candidates = ws_obi_candidates(ws_alert_state, tracking_start)
+    print("WS OBI alerts available for registration:", len(ws_candidates))
+    for symbol, timestamp, alert in ws_candidates:
+        if register_event(
+            performance,
+            symbol,
+            alert,
+            "WS_OBI",
+            timestamp,
+            current_prices,
+            now,
+        ):
+            registered += 1
 
     print("New events registered:", registered)
 
@@ -507,10 +633,12 @@ def main():
     for event_id, event in list(performance["events"].items()):
         if not isinstance(event, dict):
             continue
+
         symbol = str(event.get("symbol", "")).upper()
         current_price = safe_float(current_prices.get(symbol), 0.0)
         if not symbol or current_price <= 0:
             continue
+
         update_event(event, current_price, now)
         performance["events"][event_id] = event
         updated += 1
@@ -528,12 +656,16 @@ def main():
     events = [e for e in performance["events"].values() if isinstance(e, dict)]
     performance["statistics"] = statistics_by_type(events)
 
-    completed_4h = sum(isinstance(e.get("checkpoints", {}).get("4h"), dict) for e in events)
+    completed_4h = sum(
+        isinstance(e.get("checkpoints", {}).get("4h"), dict)
+        for e in events
+    )
     clean_completed_4h = sum(
         e.get("clean_tracking", False)
         and isinstance(e.get("checkpoints", {}).get("4h"), dict)
         for e in events
     )
+
     performance["reliability"] = {
         "minimum_required_4h": MIN_RELIABLE_4H_SAMPLES,
         "completed_4h": completed_4h,
@@ -541,11 +673,15 @@ def main():
         "reliable": clean_completed_4h >= MIN_RELIABLE_4H_SAMPLES,
     }
 
-    if clean_completed_4h >= MIN_RELIABLE_4H_SAMPLES and not performance["milestones"].get("100_clean_4h"):
+    if (
+        clean_completed_4h >= MIN_RELIABLE_4H_SAMPLES
+        and not performance["milestones"].get("100_clean_4h")
+    ):
         performance["milestones"]["100_clean_4h"] = True
         telegram_send(
             "📊 ۱۰۰ نمونه تمیز ۴ساعته برای رادار Nobitex ثبت شد.\n\n"
-            "اکنون می‌توان عملکرد BUILDUP / MICRO / FAST / CONFIRMED / NEWS را با داده واقعی تنظیم کرد."
+            "اکنون می‌توان عملکرد BUILDUP / MICRO / FAST / CONFIRMED / NEWS / WS_OBI "
+            "را با داده واقعی تنظیم کرد."
         )
 
     performance["updated_at"] = now
@@ -574,9 +710,22 @@ def main():
         )
         for key in ("1pct", "2pct", "5pct"):
             timing = data["time_to_" + key]
-            print(" time_to_" + key, "hits=", timing["count"], "avg_min=", f"{timing['average_minutes']:.1f}")
+            print(
+                " time_to_" + key,
+                "hits=",
+                timing["count"],
+                "avg_min=",
+                f"{timing['average_minutes']:.1f}",
+            )
 
-    print("\nCompleted 4H:", completed_4h, "| Clean 4H:", clean_completed_4h, "/", MIN_RELIABLE_4H_SAMPLES)
+    print(
+        "\nCompleted 4H:",
+        completed_4h,
+        "| Clean 4H:",
+        clean_completed_4h,
+        "/",
+        MIN_RELIABLE_4H_SAMPLES,
+    )
     print("Reliable:", performance["reliability"]["reliable"])
     print("PERFORMANCE TRACKER FINISHED")
 
