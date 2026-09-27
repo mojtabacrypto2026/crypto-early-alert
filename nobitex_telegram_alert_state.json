@@ -805,9 +805,9 @@
     "timestamp": 1790496149,
     "price": 9.992999999999999,
     "alert_type": "CONFIRMED",
-    "fast_score": 79,
-    "fast_timestamp": 1790436859,
-    "fast_price": 9.6875,
+    "fast_score": 85,
+    "fast_timestamp": 1790502575,
+    "fast_price": 10.012,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790483124,
     "micro_score": 67.0,
@@ -1270,12 +1270,6 @@
     "buildup_flow_delta": 0.42538991907669654,
     "buildup_spread_bps": 18.626703920074338,
     "buildup_pressure_change": 0.5926430433652728
-  },
-  "QNTUSDT": {
-    "fast_score": 72,
-    "fast_timestamp": 1790415483,
-    "fast_price": 103.94,
-    "fast_alert_type": "FAST"
   },
   "JASMYUSDT": {
     "score": 86,
@@ -1987,6 +1981,40 @@
     "fast_score": 71,
     "fast_timestamp": 1790501906,
     "fast_price": 0.4853,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790502574,
+    "micro_score": 71.0,
+    "micro_price": 0.4868,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.3090871625798478,
+    "micro_flow": 1.6730139017016485,
+    "micro_flow_delta": 0.1527557809117026,
+    "micro_spread_bps": 32.86770747740325,
+    "micro_rsi": 52.83275631321,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": -0.5330053300532986,
+    "micro_momentum_4h": 1.294363256784977,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
+  },
+  "XRPUSDT": {
+    "micro_timestamp": 1790502575,
+    "micro_score": 74.0,
+    "micro_price": 1.536495,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.20575997495663184,
+    "micro_flow": 1.3617482799845324,
+    "micro_flow_delta": 0.23149751712357958,
+    "micro_spread_bps": 6.443236066502308,
+    "micro_rsi": 51.86576277250277,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": 0.3259286353452982,
+    "micro_momentum_1h": -0.13309095630721984,
+    "micro_momentum_4h": 1.8142225516930937,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   }
 }
