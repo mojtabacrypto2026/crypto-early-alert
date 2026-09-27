@@ -329,7 +329,23 @@
     "buildup_flow": 1.3094040668606124,
     "buildup_flow_delta": 0.4714132404742004,
     "buildup_spread_bps": 23.47417840375589,
-    "buildup_pressure_change": 0.10576483486883519
+    "buildup_pressure_change": 0.10576483486883519,
+    "micro_timestamp": 1790546713,
+    "micro_score": 66.0,
+    "micro_price": 0.42875,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.24549918166940637,
+    "micro_flow": 1.165240566127191,
+    "micro_flow_delta": 0.29151165016315617,
+    "micro_spread_bps": 25.655976676384604,
+    "micro_rsi": 59.7421289442478,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.6104719417703666,
+    "micro_momentum_1h": 0.2573701450631703,
+    "micro_momentum_4h": 1.3002364066193866,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "AUSDT": {
     "score": 85,
@@ -1323,13 +1339,6 @@
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
   },
-  "YFIUSDT": {
-    "score": 84,
-    "streak": 5,
-    "timestamp": 1790459672,
-    "price": 2469.5,
-    "alert_type": "CONFIRMED"
-  },
   "XMRUSDT": {
     "micro_timestamp": 1790463537,
     "micro_score": 87.0,
@@ -1826,10 +1835,10 @@
     "fast_alert_type": "FAST"
   },
   "LDOUSDT": {
-    "score": 93,
-    "streak": 2,
-    "timestamp": 1790535166,
-    "price": 0.49150000000000005,
+    "score": 98,
+    "streak": 21,
+    "timestamp": 1790546714,
+    "price": 0.48945000000000005,
     "alert_type": "CONFIRMED",
     "fast_score": 62,
     "fast_timestamp": 1790527016,
@@ -1941,6 +1950,11 @@
     "alert_type": "CONFIRMED"
   },
   "AVNTUSDT": {
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1790546714,
+    "price": 0.1283,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790521367,
     "micro_score": 44.0,
     "micro_price": 0.12695,
@@ -2134,6 +2148,11 @@
     "alert_type": "CONFIRMED"
   },
   "1K_BONKUSDT": {
+    "score": 84,
+    "streak": 7,
+    "timestamp": 1790546713,
+    "price": 0.003748,
+    "alert_type": "CONFIRMED",
     "buildup_timestamp": 1790543030,
     "buildup_score": 71.0,
     "buildup_price": 0.0037475,
