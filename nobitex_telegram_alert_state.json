@@ -630,33 +630,6 @@
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
   },
-  "SSVUSDT": {
-    "micro_timestamp": 1790549702,
-    "micro_score": 71.0,
-    "micro_price": 3.202,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.45490196078431233,
-    "micro_flow": 1.1104470949351382,
-    "micro_flow_delta": 0.8509597189462229,
-    "micro_spread_bps": 18.738288569644684,
-    "micro_rsi": 52.31114406265752,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 0.0,
-    "micro_momentum_4h": 0.0,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790550113,
-    "buildup_score": 73.0,
-    "buildup_price": 3.202,
-    "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.0,
-    "buildup_flow": 1.456889011187891,
-    "buildup_flow_delta": 0.3464419162527528,
-    "buildup_spread_bps": 18.738288569644684,
-    "buildup_pressure_change": -0.45490196078431233
-  },
   "ZILUSDT": {
     "score": 80,
     "streak": 3,
@@ -872,7 +845,11 @@
     "micro_momentum_4h": 4.444905295174898,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 56,
+    "fast_timestamp": 1790637549,
+    "fast_price": 15.252500000000001,
+    "fast_alert_type": "FAST"
   },
   "STRKUSDT": {
     "micro_timestamp": 1790629798,
