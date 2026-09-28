@@ -62,30 +62,6 @@
     "buildup_spread_bps": 9.624639076035725,
     "buildup_pressure_change": -0.2905080816776691
   },
-  "ZBTUSDT": {
-    "score": 96,
-    "streak": 4,
-    "timestamp": 1790419498,
-    "price": 0.09124499999999999,
-    "alert_type": "CONFIRMED",
-    "fast_score": 64,
-    "fast_timestamp": 1790414703,
-    "fast_price": 0.09018,
-    "fast_alert_type": "FAST",
-    "micro_timestamp": 1790263137,
-    "micro_score": 60,
-    "micro_price": 0.08852499999999999,
-    "micro_alert_type": "MICRO",
-    "buildup_timestamp": 1790479355,
-    "buildup_score": 66.0,
-    "buildup_price": 0.08973,
-    "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.0,
-    "buildup_flow": 2.6108908072725043,
-    "buildup_flow_delta": 1.7565958423166173,
-    "buildup_spread_bps": 6.686726847208792,
-    "buildup_pressure_change": 0.0946389801258161
-  },
   "FORMUSDT": {
     "score": 90,
     "streak": 6,
@@ -1394,17 +1370,6 @@
     "buildup_spread_bps": 12.620571531597113,
     "buildup_pressure_change": -0.12789148432430192
   },
-  "HYPEUSDT": {
-    "buildup_timestamp": 1790479355,
-    "buildup_score": 68.0,
-    "buildup_price": 93.678,
-    "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": -0.08905574249558805,
-    "buildup_flow": 1.3103106617876419,
-    "buildup_flow_delta": 0.737820014987437,
-    "buildup_spread_bps": 14.517816349622716,
-    "buildup_pressure_change": -0.09438870607679006
-  },
   "BATUSDT": {
     "score": 89,
     "streak": 5,
@@ -1980,7 +1945,11 @@
     "micro_momentum_4h": -0.3099573808601326,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 70,
+    "fast_timestamp": 1790566241,
+    "fast_price": 0.104235,
+    "fast_alert_type": "FAST"
   },
   "1INCHUSDT": {
     "score": 83,
@@ -2301,15 +2270,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790558632,
-    "buildup_score": 65.0,
-    "buildup_price": 0.124975,
+    "buildup_timestamp": 1790566242,
+    "buildup_score": 70.0,
+    "buildup_price": 0.126835,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.0,
-    "buildup_flow": 1.4814407877087563,
-    "buildup_flow_delta": 0.17136431115105055,
-    "buildup_spread_bps": 2.4004800960193835,
-    "buildup_pressure_change": 0.0
+    "buildup_price_change": 0.14607185155943034,
+    "buildup_flow": 1.3299020921819282,
+    "buildup_flow_delta": 0.3771252114412763,
+    "buildup_spread_bps": 8.672684984428509,
+    "buildup_pressure_change": -0.4536342527338123
   },
   "PYTHUSDT": {
     "micro_timestamp": 1790557150,
