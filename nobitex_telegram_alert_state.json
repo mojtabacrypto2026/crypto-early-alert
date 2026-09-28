@@ -662,7 +662,23 @@
     "fast_score": 64,
     "fast_timestamp": 1790557729,
     "fast_price": 0.2698,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790562209,
+    "micro_score": 60.0,
+    "micro_price": 0.26595,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.6814310051107416,
+    "micro_flow": 1.4805550372299185,
+    "micro_flow_delta": 0.7233243820589612,
+    "micro_spread_bps": 33.84094754653175,
+    "micro_rsi": 45.223838386603475,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": 0.4901960784313814,
+    "micro_momentum_1h": -1.7413856984068106,
+    "micro_momentum_4h": -0.9708737864077638,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "GRTUSDT": {
     "score": 81,
@@ -1935,6 +1951,11 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "ESPUSDT": {
+    "score": 81,
+    "streak": 2,
+    "timestamp": 1790562209,
+    "price": 0.10604,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790526213,
     "micro_score": 44.0,
     "micro_price": 0.10367,
