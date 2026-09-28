@@ -87,10 +87,10 @@
     "buildup_pressure_change": 0.0946389801258161
   },
   "FORMUSDT": {
-    "score": 81,
-    "streak": 2,
-    "timestamp": 1790497784,
-    "price": 0.3211,
+    "score": 90,
+    "streak": 6,
+    "timestamp": 1790558632,
+    "price": 0.31289999999999996,
     "alert_type": "CONFIRMED",
     "fast_score": 78,
     "fast_timestamp": 1790467604,
@@ -845,10 +845,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "EIGENUSDT": {
-    "score": 80,
+    "score": 88,
     "streak": 2,
-    "timestamp": 1790504502,
-    "price": 0.2843,
+    "timestamp": 1790558632,
+    "price": 0.2802,
     "alert_type": "CONFIRMED",
     "fast_score": 62,
     "fast_timestamp": 1790452238,
@@ -1599,10 +1599,10 @@
     "fast_alert_type": "FAST"
   },
   "CAKEUSDT": {
-    "score": 83,
-    "streak": 3,
-    "timestamp": 1790494407,
-    "price": 2.76505,
+    "score": 84,
+    "streak": 10,
+    "timestamp": 1790558631,
+    "price": 2.80875,
     "alert_type": "CONFIRMED"
   },
   "AAVEUSDT": {
@@ -1860,10 +1860,10 @@
     "alert_type": "CONFIRMED"
   },
   "BLURUSDT": {
-    "score": 85,
-    "streak": 4,
-    "timestamp": 1790516526,
-    "price": 0.02096,
+    "score": 93,
+    "streak": 2,
+    "timestamp": 1790558631,
+    "price": 0.021265,
     "alert_type": "CONFIRMED"
   },
   "HUMAUSDT": {
@@ -2129,10 +2129,10 @@
     "alert_type": "CONFIRMED"
   },
   "1K_BONKUSDT": {
-    "score": 84,
-    "streak": 7,
-    "timestamp": 1790546713,
-    "price": 0.003748,
+    "score": 98,
+    "streak": 2,
+    "timestamp": 1790558631,
+    "price": 0.003711,
     "alert_type": "CONFIRMED",
     "buildup_timestamp": 1790543030,
     "buildup_score": 71.0,
@@ -2270,7 +2270,16 @@
     "micro_momentum_4h": -0.4169339320076914,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790558632,
+    "buildup_score": 65.0,
+    "buildup_price": 0.124975,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.4814407877087563,
+    "buildup_flow_delta": 0.17136431115105055,
+    "buildup_spread_bps": 2.4004800960193835,
+    "buildup_pressure_change": 0.0
   },
   "PYTHUSDT": {
     "micro_timestamp": 1790557150,
@@ -2286,6 +2295,31 @@
     "micro_momentum_15m": -0.07183908045975888,
     "micro_momentum_1h": 0.2039592081583725,
     "micro_momentum_4h": -2.464089688193391,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
+  },
+  "EGLDUSDT": {
+    "score": 83,
+    "streak": 2,
+    "timestamp": 1790558632,
+    "price": 4.669499999999999,
+    "alert_type": "CONFIRMED"
+  },
+  "SUNUSDT": {
+    "micro_timestamp": 1790558633,
+    "micro_score": 48.0,
+    "micro_price": 0.0169435,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.8751823296520186,
+    "micro_flow": 2.7339825448506696,
+    "micro_flow_delta": 1.7215118401868033,
+    "micro_spread_bps": 25.378463717650643,
+    "micro_rsi": 47.78455091738923,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": 0.0,
+    "micro_momentum_4h": -0.029538606959304842,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
