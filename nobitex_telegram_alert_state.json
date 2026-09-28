@@ -1202,13 +1202,6 @@
     "fast_price": 0.104235,
     "fast_alert_type": "FAST"
   },
-  "1INCHUSDT": {
-    "score": 83,
-    "streak": 6,
-    "timestamp": 1790528785,
-    "price": 0.10235,
-    "alert_type": "CONFIRMED"
-  },
   "GRASSUSDT": {
     "score": 81,
     "streak": 5,
@@ -1282,6 +1275,11 @@
     "alert_type": "CONFIRMED"
   },
   "ALGOUSDT": {
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1790616110,
+    "price": 0.1372,
+    "alert_type": "CONFIRMED",
     "fast_score": 73,
     "fast_timestamp": 1790538283,
     "fast_price": 0.11885,
@@ -1614,7 +1612,11 @@
     "micro_momentum_4h": 0.5151542458922757,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 88,
+    "fast_timestamp": 1790616111,
+    "fast_price": 2711.26,
+    "fast_alert_type": "FAST"
   },
   "DOGEUSDT": {
     "micro_timestamp": 1790615138,
@@ -1630,6 +1632,24 @@
     "micro_momentum_15m": 0.3298122165593106,
     "micro_momentum_1h": 1.064173987572304,
     "micro_momentum_4h": -0.18696434239763185,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
+  },
+  "BTCUSDT": {
+    "micro_timestamp": 1790616110,
+    "micro_score": 60.0,
+    "micro_price": 84142.005,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.705797488866095,
+    "micro_flow": 2.47488571156421,
+    "micro_flow_delta": 1.7302540361455945,
+    "micro_spread_bps": 13.785029249065937,
+    "micro_rsi": 49.532875678294914,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": 0.6503018407435291,
+    "micro_momentum_1h": 0.24525810324129999,
+    "micro_momentum_4h": 0.19274411514925,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
