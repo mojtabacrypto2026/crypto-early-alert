@@ -630,13 +630,6 @@
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
   },
-  "ZILUSDT": {
-    "score": 80,
-    "streak": 3,
-    "timestamp": 1790551524,
-    "price": 0.00375,
-    "alert_type": "CONFIRMED"
-  },
   "SKYUSDT": {
     "fast_score": 74,
     "fast_timestamp": 1790552168,
@@ -773,7 +766,16 @@
     "fast_score": 88,
     "fast_timestamp": 1790616111,
     "fast_price": 2711.26,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790638333,
+    "buildup_score": 62.0,
+    "buildup_price": 2688.615,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.15272777391817344,
+    "buildup_flow": 1.1989317020274213,
+    "buildup_flow_delta": 0.430055788542823,
+    "buildup_spread_bps": 10.302702320711527,
+    "buildup_pressure_change": 0.132422032795878
   },
   "DOGEUSDT": {
     "micro_timestamp": 1790625409,
