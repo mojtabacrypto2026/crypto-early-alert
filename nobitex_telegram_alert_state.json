@@ -274,6 +274,11 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "BTCUSDT": {
+    "score": 98,
+    "streak": 8,
+    "timestamp": 1790669173,
+    "price": 83973.0,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790616110,
     "micro_score": 60.0,
     "micro_price": 84142.005,
@@ -289,7 +294,16 @@
     "micro_momentum_4h": 0.19274411514925,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790669173,
+    "buildup_score": 98.0,
+    "buildup_price": 83973.0,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.011299974554208487,
+    "buildup_flow": 3.97889831043916,
+    "buildup_flow_delta": 2.258036529698144,
+    "buildup_spread_bps": 6.43063841949198,
+    "buildup_pressure_change": 0.04256318374767311
   },
   "JASMYUSDT": {
     "micro_timestamp": 1790625893,
