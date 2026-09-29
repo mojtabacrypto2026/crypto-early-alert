@@ -596,7 +596,11 @@
     "micro_momentum_4h": 3.703703703703707,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 73,
+    "fast_timestamp": 1790699303,
+    "fast_price": 1.0779999999999998,
+    "fast_alert_type": "FAST"
   },
   "INJUSDT": {
     "score": 83,
@@ -822,19 +826,19 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "SUSHIUSDT": {
-    "micro_timestamp": 1790688494,
-    "micro_score": 60.0,
-    "micro_price": 0.26615,
+    "micro_timestamp": 1790699303,
+    "micro_score": 62.0,
+    "micro_price": 0.26475,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.4150160347104282,
-    "micro_flow": 1.698639583707772,
-    "micro_flow_delta": 0.05244883962226288,
-    "micro_spread_bps": 3.757279729475446,
-    "micro_rsi": 60.27941840005663,
-    "micro_structure": 6.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": -1.4535967200894369,
-    "micro_momentum_4h": 1.6141429669485154,
+    "micro_price_change": 0.24611889435819156,
+    "micro_flow": 2.2455345503074735,
+    "micro_flow_delta": 1.0364471993810265,
+    "micro_spread_bps": 33.99433427762085,
+    "micro_rsi": 57.031232625136084,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.037835792659873066,
+    "micro_momentum_1h": -1.9658753709198913,
+    "micro_momentum_4h": -1.4908684308609779,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
@@ -1102,6 +1106,11 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "CRVUSDT": {
+    "score": 81,
+    "streak": 2,
+    "timestamp": 1790699302,
+    "price": 0.3981,
+    "alert_type": "CONFIRMED",
     "fast_score": 74,
     "fast_timestamp": 1790690312,
     "fast_price": 0.39944999999999997,
@@ -1507,5 +1516,30 @@
     "fast_timestamp": 1790698063,
     "fast_price": 1.1425,
     "fast_alert_type": "FAST"
+  },
+  "CVXUSDT": {
+    "micro_timestamp": 1790699301,
+    "micro_score": 53.0,
+    "micro_price": 2.2554999999999996,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.22217285047764715,
+    "micro_flow": 1.220050139706289,
+    "micro_flow_delta": 0.7104392305907375,
+    "micro_spread_bps": 4.433606739081756,
+    "micro_rsi": 56.68607683411985,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": -1.6428880242109922,
+    "micro_momentum_4h": -2.4442538593481964,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
+  },
+  "DOODUSDT": {
+    "score": 81,
+    "streak": 2,
+    "timestamp": 1790699302,
+    "price": 0.0018205,
+    "alert_type": "CONFIRMED"
   }
 }
