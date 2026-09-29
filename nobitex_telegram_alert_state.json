@@ -362,7 +362,16 @@
     "fast_score": 67,
     "fast_timestamp": 1790687255,
     "fast_price": 15.2605,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790688493,
+    "buildup_score": 67.0,
+    "buildup_price": 15.254999999999999,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.03604075882180395,
+    "buildup_flow": 1.9269882413151065,
+    "buildup_flow_delta": 0.6426693590702122,
+    "buildup_spread_bps": 18.35463782366468,
+    "buildup_pressure_change": -0.03931729879559564
   },
   "STRKUSDT": {
     "micro_timestamp": 1790677342,
@@ -558,6 +567,11 @@
     "alert_type": "CONFIRMED"
   },
   "FILUSDT": {
+    "score": 86,
+    "streak": 10,
+    "timestamp": 1790688492,
+    "price": 1.077,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790673916,
     "micro_score": 57.0,
     "micro_price": 1.0685,
@@ -770,19 +784,19 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "SUSHIUSDT": {
-    "micro_timestamp": 1790677343,
-    "micro_score": 67.0,
-    "micro_price": 0.26505,
+    "micro_timestamp": 1790688494,
+    "micro_score": 60.0,
+    "micro_price": 0.26615,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.8369792657409092,
-    "micro_flow": 2.478884077974226,
-    "micro_flow_delta": 0.936892753303584,
-    "micro_spread_bps": 3.7728730428216934,
-    "micro_rsi": 61.53569543490485,
+    "micro_price_change": 0.4150160347104282,
+    "micro_flow": 1.698639583707772,
+    "micro_flow_delta": 0.05244883962226288,
+    "micro_spread_bps": 3.757279729475446,
+    "micro_rsi": 60.27941840005663,
     "micro_structure": 6.0,
-    "micro_momentum_15m": 0.22857142857142457,
-    "micro_momentum_1h": 0.8839354342813315,
-    "micro_momentum_4h": 5.548854041013271,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": -1.4535967200894369,
+    "micro_momentum_4h": 1.6141429669485154,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
@@ -1085,5 +1099,18 @@
     "fast_timestamp": 1790687255,
     "fast_price": 0.043550000000000005,
     "fast_alert_type": "FAST"
+  },
+  "MMTUSDT": {
+    "fast_score": 91,
+    "fast_timestamp": 1790688494,
+    "fast_price": 0.1846,
+    "fast_alert_type": "FAST"
+  },
+  "TURBOUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1790688495,
+    "price": 0.001039,
+    "alert_type": "CONFIRMED"
   }
 }
