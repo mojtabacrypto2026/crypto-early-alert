@@ -5,9 +5,9 @@
     "timestamp": 1790676328,
     "price": 119.937,
     "alert_type": "CONFIRMED",
-    "fast_score": 96,
-    "fast_timestamp": 1790676327,
-    "fast_price": 119.937,
+    "fast_score": 92,
+    "fast_timestamp": 1790686372,
+    "fast_price": 120.61099999999999,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790682397,
     "micro_score": 74.0,
@@ -1018,5 +1018,44 @@
     "fast_timestamp": 1790685192,
     "fast_price": 0.00017085,
     "fast_alert_type": "FAST"
+  },
+  "ATOMUSDT": {
+    "score": 80,
+    "streak": 12,
+    "timestamp": 1790686371,
+    "price": 1.7605,
+    "alert_type": "CONFIRMED"
+  },
+  "ENSUSDT": {
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790686371,
+    "price": 7.02,
+    "alert_type": "CONFIRMED"
+  },
+  "ROBOUSDT": {
+    "score": 80,
+    "streak": 3,
+    "timestamp": 1790686371,
+    "price": 0.00909,
+    "alert_type": "CONFIRMED"
+  },
+  "SUSDT": {
+    "buildup_timestamp": 1790686372,
+    "buildup_score": 62.0,
+    "buildup_price": 0.039,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.8133473389368238,
+    "buildup_flow_delta": 0.8865794457581783,
+    "buildup_spread_bps": 20.512820512819676,
+    "buildup_pressure_change": 0.26850786344457467
+  },
+  "XTZUSDT": {
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790686373,
+    "price": 0.32135,
+    "alert_type": "CONFIRMED"
   }
 }
