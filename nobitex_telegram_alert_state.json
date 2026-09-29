@@ -108,6 +108,15 @@
     "buildup_pressure_change": 0.9570811410198922
   },
   "BNBUSDT": {
+    "score": 92,
+    "streak": 11,
+    "timestamp": 1790689453,
+    "price": 765.62915,
+    "alert_type": "CONFIRMED",
+    "fast_score": 67,
+    "fast_timestamp": 1790519664,
+    "fast_price": 777.6975,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790622207,
     "micro_score": 78.0,
     "micro_price": 769.6542999999999,
@@ -124,10 +133,6 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "fast_score": 67,
-    "fast_timestamp": 1790519664,
-    "fast_price": 777.6975,
-    "fast_alert_type": "FAST",
     "buildup_timestamp": 1790550111,
     "buildup_score": 71.0,
     "buildup_price": 774.8670500000001,
@@ -1042,7 +1047,11 @@
     "streak": 12,
     "timestamp": 1790686371,
     "price": 1.7605,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 70,
+    "fast_timestamp": 1790689453,
+    "fast_price": 1.754,
+    "fast_alert_type": "FAST"
   },
   "ENSUSDT": {
     "score": 83,
@@ -1056,7 +1065,11 @@
     "streak": 3,
     "timestamp": 1790686371,
     "price": 0.00909,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 65,
+    "fast_timestamp": 1790689455,
+    "fast_price": 0.009125,
+    "fast_alert_type": "FAST"
   },
   "SUSDT": {
     "buildup_timestamp": 1790686372,
@@ -1101,6 +1114,11 @@
     "fast_alert_type": "FAST"
   },
   "MMTUSDT": {
+    "score": 93,
+    "streak": 3,
+    "timestamp": 1790689455,
+    "price": 0.18305,
+    "alert_type": "CONFIRMED",
     "fast_score": 91,
     "fast_timestamp": 1790688494,
     "fast_price": 0.1846,
@@ -1112,5 +1130,25 @@
     "timestamp": 1790688495,
     "price": 0.001039,
     "alert_type": "CONFIRMED"
+  },
+  "FETUSDT": {
+    "score": 81,
+    "streak": 3,
+    "timestamp": 1790689454,
+    "price": 0.2344,
+    "alert_type": "CONFIRMED"
+  },
+  "MAGICUSDT": {
+    "score": 85,
+    "streak": 4,
+    "timestamp": 1790689454,
+    "price": 0.05269,
+    "alert_type": "CONFIRMED"
+  },
+  "PENGUUSDT": {
+    "fast_score": 68,
+    "fast_timestamp": 1790689455,
+    "fast_price": 0.009961999999999999,
+    "fast_alert_type": "FAST"
   }
 }
