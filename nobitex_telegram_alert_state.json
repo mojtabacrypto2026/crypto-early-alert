@@ -235,9 +235,9 @@
     "timestamp": 1790678341,
     "price": 2708.465,
     "alert_type": "CONFIRMED",
-    "fast_score": 96,
-    "fast_timestamp": 1790683160,
-    "fast_price": 2727.13,
+    "fast_score": 68,
+    "fast_timestamp": 1790695724,
+    "fast_price": 2682.6949999999997,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790683160,
     "micro_score": 96.0,
@@ -1014,6 +1014,11 @@
     "fast_alert_type": "FAST"
   },
   "ZRXUSDT": {
+    "score": 82,
+    "streak": 2,
+    "timestamp": 1790695725,
+    "price": 0.1225,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790692042,
     "micro_score": 55.0,
     "micro_price": 0.12325,
@@ -1303,6 +1308,11 @@
     "alert_type": "CONFIRMED"
   },
   "ETCUSDT": {
+    "score": 80,
+    "streak": 6,
+    "timestamp": 1790695723,
+    "price": 9.187850000000001,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790692947,
     "micro_score": 70.0,
     "micro_price": 9.285150000000002,
@@ -1385,5 +1395,19 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "BANKUSDT": {
+    "score": 88,
+    "streak": 2,
+    "timestamp": 1790695723,
+    "price": 0.031715,
+    "alert_type": "CONFIRMED"
+  },
+  "REDUSDT": {
+    "score": 85,
+    "streak": 9,
+    "timestamp": 1790695724,
+    "price": 0.1627,
+    "alert_type": "CONFIRMED"
   }
 }
