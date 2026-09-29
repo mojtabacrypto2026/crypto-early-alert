@@ -303,7 +303,11 @@
     "buildup_flow": 3.97889831043916,
     "buildup_flow_delta": 2.258036529698144,
     "buildup_spread_bps": 6.43063841949198,
-    "buildup_pressure_change": 0.04256318374767311
+    "buildup_pressure_change": 0.04256318374767311,
+    "fast_score": 98,
+    "fast_timestamp": 1790672169,
+    "fast_price": 83884.995,
+    "fast_alert_type": "FAST"
   },
   "JASMYUSDT": {
     "score": 91,
@@ -493,5 +497,12 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "JSTUSDT": {
+    "score": 86,
+    "streak": 4,
+    "timestamp": 1790672169,
+    "price": 0.12929000000000002,
+    "alert_type": "CONFIRMED"
   }
 }
