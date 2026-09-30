@@ -171,10 +171,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "XLMUSDT": {
-    "score": 91,
-    "streak": 9,
-    "timestamp": 1790676329,
-    "price": 0.23154999999999998,
+    "score": 84,
+    "streak": 5,
+    "timestamp": 1790762832,
+    "price": 0.228205,
     "alert_type": "CONFIRMED",
     "fast_score": 55,
     "fast_timestamp": 1790666952,
@@ -784,11 +784,15 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "CHZUSDT": {
-    "score": 88,
-    "streak": 13,
-    "timestamp": 1790679824,
-    "price": 0.016215,
+    "score": 83,
+    "streak": 9,
+    "timestamp": 1790762831,
+    "price": 0.016505,
     "alert_type": "CONFIRMED",
+    "fast_score": 83,
+    "fast_timestamp": 1790762830,
+    "fast_price": 0.016505,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790743285,
     "micro_score": 67.0,
     "micro_price": 0.016315,
@@ -804,11 +808,7 @@
     "micro_momentum_4h": 0.18575851393188098,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3",
-    "fast_score": 78,
-    "fast_timestamp": 1790692946,
-    "fast_price": 0.016605,
-    "fast_alert_type": "FAST"
+    "micro_trigger_version": "telemetry-v3"
   },
   "ENJUSDT": {
     "score": 85,
@@ -1757,6 +1757,15 @@
     "fast_alert_type": "FAST"
   },
   "BICOUSDT": {
+    "score": 85,
+    "streak": 9,
+    "timestamp": 1790762830,
+    "price": 0.02181,
+    "alert_type": "CONFIRMED",
+    "fast_score": 85,
+    "fast_timestamp": 1790762829,
+    "fast_price": 0.02181,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790731905,
     "micro_score": 62.0,
     "micro_price": 0.02137,
@@ -1961,6 +1970,11 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "HOMEUSDT": {
+    "score": 87,
+    "streak": 5,
+    "timestamp": 1790762831,
+    "price": 0.005968,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790755136,
     "micro_score": 56.0,
     "micro_price": 0.0060105,
@@ -2006,6 +2020,10 @@
     "buildup_flow": 1.4143248684996153,
     "buildup_flow_delta": 0.4926705680677257,
     "buildup_spread_bps": 20.413370757846884,
-    "buildup_pressure_change": -0.2694480165572698
+    "buildup_pressure_change": -0.2694480165572698,
+    "fast_score": 76,
+    "fast_timestamp": 1790762829,
+    "fast_price": 0.0039135,
+    "fast_alert_type": "FAST"
   }
 }
