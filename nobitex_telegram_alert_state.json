@@ -171,10 +171,10 @@
     "buildup_pressure_change": 0.9144218643637955
   },
   "BTCUSDT": {
-    "score": 84,
-    "streak": 2,
-    "timestamp": 1790777116,
-    "price": 84592.155,
+    "score": 92,
+    "streak": 9,
+    "timestamp": 1790784344,
+    "price": 84012.095,
     "alert_type": "CONFIRMED",
     "fast_score": 69,
     "fast_timestamp": 1790696628,
@@ -383,13 +383,6 @@
     "fast_price": 1.0779999999999998,
     "fast_alert_type": "FAST"
   },
-  "INJUSDT": {
-    "score": 83,
-    "streak": 8,
-    "timestamp": 1790697502,
-    "price": 7.6015,
-    "alert_type": "CONFIRMED"
-  },
   "RENDERUSDT": {
     "score": 80,
     "streak": 3,
@@ -400,19 +393,19 @@
     "fast_timestamp": 1790772141,
     "fast_price": 1.975,
     "fast_alert_type": "FAST",
-    "micro_timestamp": 1790764892,
-    "micro_score": 63.0,
-    "micro_price": 1.9475,
+    "micro_timestamp": 1790784345,
+    "micro_score": 55.0,
+    "micro_price": 1.959,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.2574002574002634,
-    "micro_flow": 1.1917220572188794,
-    "micro_flow_delta": 0.2859797505871716,
-    "micro_spread_bps": 5.1347881899865975,
-    "micro_rsi": 51.80614770822551,
+    "micro_price_change": 0.5905006418485271,
+    "micro_flow": 1.2129269346412008,
+    "micro_flow_delta": 0.31026491816840274,
+    "micro_spread_bps": 30.627871362940304,
+    "micro_rsi": 47.79360508887475,
     "micro_structure": 4.0,
-    "micro_momentum_15m": -0.05133470225872124,
-    "micro_momentum_1h": 0.1547189272820986,
-    "micro_momentum_4h": 0.5696530295183789,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": 0.20768431983385274,
+    "micro_momentum_4h": -1.177675371223765,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
@@ -1072,17 +1065,6 @@
     "fast_price": 0.029224,
     "fast_alert_type": "FAST"
   },
-  "WALUSDT": {
-    "score": 84,
-    "streak": 8,
-    "timestamp": 1790697503,
-    "price": 0.0338,
-    "alert_type": "CONFIRMED",
-    "fast_score": 68,
-    "fast_timestamp": 1790692952,
-    "fast_price": 0.034449999999999995,
-    "fast_alert_type": "FAST"
-  },
   "ZENUSDT": {
     "score": 80,
     "streak": 2,
@@ -1139,12 +1121,6 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
-  },
-  "WOOUSDT": {
-    "fast_score": 57,
-    "fast_timestamp": 1790697503,
-    "fast_price": 0.013695,
-    "fast_alert_type": "FAST"
   },
   "AXSUSDT": {
     "score": 81,
@@ -1806,7 +1782,16 @@
     "streak": 8,
     "timestamp": 1790780403,
     "price": 0.0005008,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "buildup_timestamp": 1790784345,
+    "buildup_score": 62.0,
+    "buildup_price": 0.00050225,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.03983666965441786,
+    "buildup_flow": 1.2531013249195508,
+    "buildup_flow_delta": 0.2822162219336025,
+    "buildup_spread_bps": 9.955201592833577,
+    "buildup_pressure_change": -0.5713857752353603
   },
   "SEIUSDT": {
     "score": 81,
