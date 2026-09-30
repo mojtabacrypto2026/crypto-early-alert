@@ -113,9 +113,9 @@
     "timestamp": 1790750552,
     "price": 759.58745,
     "alert_type": "CONFIRMED",
-    "fast_score": 67,
-    "fast_timestamp": 1790519664,
-    "fast_price": 777.6975,
+    "fast_score": 98,
+    "fast_timestamp": 1790751573,
+    "fast_price": 757.2842499999999,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790746683,
     "micro_score": 83.0,
@@ -773,6 +773,15 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "SUSHIUSDT": {
+    "score": 91,
+    "streak": 3,
+    "timestamp": 1790751573,
+    "price": 0.26435,
+    "alert_type": "CONFIRMED",
+    "fast_score": 75,
+    "fast_timestamp": 1790679827,
+    "fast_price": 0.26844999999999997,
+    "fast_alert_type": "FAST",
     "micro_timestamp": 1790699303,
     "micro_score": 62.0,
     "micro_price": 0.26475,
@@ -788,11 +797,7 @@
     "micro_momentum_4h": -1.4908684308609779,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3",
-    "fast_score": 75,
-    "fast_timestamp": 1790679827,
-    "fast_price": 0.26844999999999997,
-    "fast_alert_type": "FAST"
+    "micro_trigger_version": "telemetry-v3"
   },
   "CHZUSDT": {
     "score": 88,
@@ -1287,6 +1292,11 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "WLDUSDT": {
+    "score": 81,
+    "streak": 3,
+    "timestamp": 1790751574,
+    "price": 0.5025,
+    "alert_type": "CONFIRMED",
     "micro_timestamp": 1790692041,
     "micro_score": 69.0,
     "micro_price": 0.5017499999999999,
@@ -1302,7 +1312,16 @@
     "micro_momentum_4h": -0.3189792663476965,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790751574,
+    "buildup_score": 81.0,
+    "buildup_price": 0.5025,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.02984183825725544,
+    "buildup_flow": 1.2398413942350905,
+    "buildup_flow_delta": 0.4018925636746523,
+    "buildup_spread_bps": 19.90049751243783,
+    "buildup_pressure_change": 0.386205710033976
   },
   "XRPUSDT": {
     "score": 88,
