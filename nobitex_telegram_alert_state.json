@@ -1206,6 +1206,11 @@
     "alert_type": "CONFIRMED"
   },
   "PENGUUSDT": {
+    "score": 81,
+    "streak": 6,
+    "timestamp": 1790738074,
+    "price": 0.0101175,
+    "alert_type": "CONFIRMED",
     "fast_score": 68,
     "fast_timestamp": 1790689455,
     "fast_price": 0.009961999999999999,
@@ -1702,7 +1707,16 @@
     "fast_score": 55,
     "fast_timestamp": 1790736658,
     "fast_price": 1.2125,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "buildup_timestamp": 1790738073,
+    "buildup_score": 62.0,
+    "buildup_price": 1.2095,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.041322314049582226,
+    "buildup_flow": 1.5751513124079775,
+    "buildup_flow_delta": 0.35666537815511035,
+    "buildup_spread_bps": 24.803637866888085,
+    "buildup_pressure_change": 0.16486325296072268
   },
   "TOSHIUSDT": {
     "micro_timestamp": 1790734978,
