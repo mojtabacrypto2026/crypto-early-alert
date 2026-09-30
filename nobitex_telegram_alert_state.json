@@ -197,29 +197,6 @@
     "buildup_spread_bps": 8.236725733804814,
     "buildup_pressure_change": 0.9144218643637955
   },
-  "DOGEUSDT": {
-    "score": 91,
-    "streak": 8,
-    "timestamp": 1790679246,
-    "price": 0.09446840000000001,
-    "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790625409,
-    "micro_score": 56.0,
-    "micro_price": 0.09343095,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.2599026170004405,
-    "micro_flow": 3.655688297023236,
-    "micro_flow_delta": 0.48370903158432244,
-    "micro_spread_bps": 21.8664157862026,
-    "micro_rsi": 52.013288140506425,
-    "micro_structure": 4.0,
-    "micro_momentum_15m": -0.5252282095800053,
-    "micro_momentum_1h": 0.5920221992449988,
-    "micro_momentum_4h": 3.2044161701841203,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
-  },
   "BTCUSDT": {
     "score": 91,
     "streak": 33,
@@ -380,9 +357,9 @@
     "timestamp": 1790744731,
     "price": 0.7513,
     "alert_type": "CONFIRMED",
-    "fast_score": 86,
-    "fast_timestamp": 1790755135,
-    "fast_price": 0.76075,
+    "fast_score": 59,
+    "fast_timestamp": 1790766331,
+    "fast_price": 0.75845,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790753444,
     "micro_score": 86.0,
@@ -1022,10 +999,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "CRVUSDT": {
-    "score": 81,
-    "streak": 2,
-    "timestamp": 1790699302,
-    "price": 0.3981,
+    "score": 86,
+    "streak": 4,
+    "timestamp": 1790766332,
+    "price": 0.39785000000000004,
     "alert_type": "CONFIRMED",
     "fast_score": 74,
     "fast_timestamp": 1790690312,
@@ -1824,7 +1801,11 @@
     "streak": 4,
     "timestamp": 1790744123,
     "price": 2.7705,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 79,
+    "fast_timestamp": 1790766331,
+    "fast_price": 2.8203500000000004,
+    "fast_alert_type": "FAST"
   },
   "HOTUSDT": {
     "buildup_timestamp": 1790744731,
@@ -1991,5 +1972,18 @@
     "fast_timestamp": 1790765758,
     "fast_price": 0.0023265,
     "fast_alert_type": "FAST"
+  },
+  "COTIUSDT": {
+    "fast_score": 75,
+    "fast_timestamp": 1790766331,
+    "fast_price": 0.01352,
+    "fast_alert_type": "FAST"
+  },
+  "DOGEUSDT": {
+    "score": 96,
+    "streak": 5,
+    "timestamp": 1790766332,
+    "price": 0.09505854999999999,
+    "alert_type": "CONFIRMED"
   }
 }
