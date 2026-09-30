@@ -72,10 +72,10 @@
     "fast_alert_type": "FAST"
   },
   "BNBUSDT": {
-    "score": 93,
-    "streak": 5,
-    "timestamp": 1790776346,
-    "price": 771.5479,
+    "score": 99,
+    "streak": 6,
+    "timestamp": 1790777114,
+    "price": 770.485,
     "alert_type": "CONFIRMED",
     "fast_score": 85,
     "fast_timestamp": 1790768169,
@@ -171,10 +171,10 @@
     "buildup_pressure_change": 0.9144218643637955
   },
   "BTCUSDT": {
-    "score": 91,
-    "streak": 33,
-    "timestamp": 1790692040,
-    "price": 83847.445,
+    "score": 84,
+    "streak": 2,
+    "timestamp": 1790777116,
+    "price": 84592.155,
     "alert_type": "CONFIRMED",
     "fast_score": 69,
     "fast_timestamp": 1790696628,
@@ -196,15 +196,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790693872,
-    "buildup_score": 91.0,
-    "buildup_price": 83786.015,
+    "buildup_timestamp": 1790777115,
+    "buildup_score": 84.0,
+    "buildup_price": 84592.155,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": -0.06637511313737475,
-    "buildup_flow": 1.5681428273710627,
-    "buildup_flow_delta": 0.8666277851132904,
-    "buildup_spread_bps": 0.003580549808799935,
-    "buildup_pressure_change": -0.059481641308866635
+    "buildup_price_change": 0.04132113386185003,
+    "buildup_flow": 2.353479373810556,
+    "buildup_flow_delta": 0.8439816647533858,
+    "buildup_spread_bps": 12.330930687366656,
+    "buildup_pressure_change": 0.7380231833868853
   },
   "JASMYUSDT": {
     "score": 91,
@@ -1448,10 +1448,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "XMRUSDT": {
-    "score": 84,
-    "streak": 2,
-    "timestamp": 1790750554,
-    "price": 539.115,
+    "score": 86,
+    "streak": 5,
+    "timestamp": 1790777117,
+    "price": 542.81,
     "alert_type": "CONFIRMED",
     "fast_score": 84,
     "fast_timestamp": 1790749231,
@@ -1941,5 +1941,12 @@
     "fast_timestamp": 1790776349,
     "fast_price": 0.77825,
     "fast_alert_type": "FAST"
+  },
+  "PROMUSDT": {
+    "score": 86,
+    "streak": 6,
+    "timestamp": 1790777116,
+    "price": 6.481999999999999,
+    "alert_type": "CONFIRMED"
   }
 }
