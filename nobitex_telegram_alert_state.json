@@ -97,15 +97,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790797867,
-    "buildup_score": 91.0,
-    "buildup_price": 766.8977,
+    "buildup_timestamp": 1790808901,
+    "buildup_score": 66.0,
+    "buildup_price": 769.1831500000001,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.005294337106618741,
-    "buildup_flow": 2.150848277271209,
-    "buildup_flow_delta": 0.08059252062180766,
-    "buildup_spread_bps": 12.434513755877104,
-    "buildup_pressure_change": -0.11355203708020555
+    "buildup_price_change": 0.016825872053810594,
+    "buildup_flow": 2.4569923619239677,
+    "buildup_flow_delta": 1.2049872479705324,
+    "buildup_spread_bps": 21.223813860197666,
+    "buildup_pressure_change": -0.12166548750333361
   },
   "XLMUSDT": {
     "score": 80,
@@ -741,19 +741,10 @@
   },
   "SUSDT": {
     "score": 80,
-    "streak": 3,
-    "timestamp": 1790692951,
-    "price": 0.039075,
+    "streak": 5,
+    "timestamp": 1790808902,
+    "price": 0.040755,
     "alert_type": "CONFIRMED",
-    "buildup_timestamp": 1790686372,
-    "buildup_score": 62.0,
-    "buildup_price": 0.039,
-    "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.0,
-    "buildup_flow": 1.8133473389368238,
-    "buildup_flow_delta": 0.8865794457581783,
-    "buildup_spread_bps": 20.512820512819676,
-    "buildup_pressure_change": 0.26850786344457467,
     "fast_score": 70,
     "fast_timestamp": 1790759347,
     "fast_price": 0.039135,
@@ -773,7 +764,16 @@
     "micro_momentum_4h": 0.6268806419257779,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790686372,
+    "buildup_score": 62.0,
+    "buildup_price": 0.039,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.8133473389368238,
+    "buildup_flow_delta": 0.8865794457581783,
+    "buildup_spread_bps": 20.512820512819676,
+    "buildup_pressure_change": 0.26850786344457467
   },
   "XTZUSDT": {
     "score": 82,
@@ -1149,12 +1149,6 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
-  },
-  "OPGUSDT": {
-    "fast_score": 62,
-    "fast_timestamp": 1790721501,
-    "fast_price": 0.1276,
-    "fast_alert_type": "FAST"
   },
   "BICOUSDT": {
     "score": 90,
