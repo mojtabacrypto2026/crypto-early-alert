@@ -72,10 +72,10 @@
     "fast_alert_type": "FAST"
   },
   "BNBUSDT": {
-    "score": 98,
-    "streak": 2,
-    "timestamp": 1790750552,
-    "price": 759.58745,
+    "score": 93,
+    "streak": 5,
+    "timestamp": 1790776346,
+    "price": 771.5479,
     "alert_type": "CONFIRMED",
     "fast_score": 85,
     "fast_timestamp": 1790768169,
@@ -596,9 +596,9 @@
     "timestamp": 1790751573,
     "price": 0.26435,
     "alert_type": "CONFIRMED",
-    "fast_score": 91,
-    "fast_timestamp": 1790761337,
-    "fast_price": 0.2753,
+    "fast_score": 62,
+    "fast_timestamp": 1790776350,
+    "fast_price": 0.2704,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790760419,
     "micro_score": 93.0,
@@ -893,9 +893,9 @@
     "timestamp": 1790766332,
     "price": 0.39785000000000004,
     "alert_type": "CONFIRMED",
-    "fast_score": 74,
-    "fast_timestamp": 1790690312,
-    "fast_price": 0.39944999999999997,
+    "fast_score": 56,
+    "fast_timestamp": 1790776347,
+    "fast_price": 0.38995,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790752297,
     "micro_score": 76.0,
@@ -949,17 +949,6 @@
     "buildup_flow_delta": 0.35681542091109386,
     "buildup_spread_bps": 23.50176263219639,
     "buildup_pressure_change": -0.1473966193324923
-  },
-  "ATOMUSDT": {
-    "score": 80,
-    "streak": 12,
-    "timestamp": 1790686371,
-    "price": 1.7605,
-    "alert_type": "CONFIRMED",
-    "fast_score": 70,
-    "fast_timestamp": 1790689453,
-    "fast_price": 1.754,
-    "fast_alert_type": "FAST"
   },
   "ROBOUSDT": {
     "score": 85,
@@ -1044,20 +1033,6 @@
     "streak": 5,
     "timestamp": 1790759348,
     "price": 0.001037,
-    "alert_type": "CONFIRMED"
-  },
-  "FETUSDT": {
-    "score": 81,
-    "streak": 3,
-    "timestamp": 1790689454,
-    "price": 0.2344,
-    "alert_type": "CONFIRMED"
-  },
-  "MAGICUSDT": {
-    "score": 85,
-    "streak": 4,
-    "timestamp": 1790689454,
-    "price": 0.05269,
     "alert_type": "CONFIRMED"
   },
   "PENGUUSDT": {
@@ -1230,7 +1205,11 @@
     "micro_momentum_4h": 0.5291978702220845,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 80,
+    "fast_timestamp": 1790776349,
+    "fast_price": 9.1554,
+    "fast_alert_type": "FAST"
   },
   "HUMAUSDT": {
     "score": 86,
@@ -1594,9 +1573,9 @@
     "timestamp": 1790775365,
     "price": 1.2495,
     "alert_type": "CONFIRMED",
-    "fast_score": 62,
-    "fast_timestamp": 1790763943,
-    "fast_price": 1.226,
+    "fast_score": 93,
+    "fast_timestamp": 1790776348,
+    "fast_price": 1.244,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790729106,
     "micro_score": 50.0,
@@ -1865,6 +1844,11 @@
     "fast_alert_type": "FAST"
   },
   "COTIUSDT": {
+    "score": 81,
+    "streak": 3,
+    "timestamp": 1790776347,
+    "price": 0.013434999999999999,
+    "alert_type": "CONFIRMED",
     "fast_score": 75,
     "fast_timestamp": 1790766331,
     "fast_price": 0.01352,
@@ -1876,9 +1860,9 @@
     "timestamp": 1790766332,
     "price": 0.09505854999999999,
     "alert_type": "CONFIRMED",
-    "fast_score": 96,
-    "fast_timestamp": 1790767273,
-    "fast_price": 0.0949015,
+    "fast_score": 71,
+    "fast_timestamp": 1790776348,
+    "fast_price": 0.0963071,
     "fast_alert_type": "FAST"
   },
   "JSTUSDT": {
@@ -1944,6 +1928,18 @@
     "fast_score": 79,
     "fast_timestamp": 1790773347,
     "fast_price": 0.00879,
+    "fast_alert_type": "FAST"
+  },
+  "ENSUSDT": {
+    "fast_score": 55,
+    "fast_timestamp": 1790776349,
+    "fast_price": 7.045,
+    "fast_alert_type": "FAST"
+  },
+  "ETHFIUSDT": {
+    "fast_score": 73,
+    "fast_timestamp": 1790776349,
+    "fast_price": 0.77825,
     "fast_alert_type": "FAST"
   }
 }
