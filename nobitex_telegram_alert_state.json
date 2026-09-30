@@ -770,10 +770,10 @@
     "fast_alert_type": "FAST"
   },
   "1K_SHIBUSDT": {
-    "score": 81,
-    "streak": 2,
-    "timestamp": 1790763943,
-    "price": 0.005766,
+    "score": 88,
+    "streak": 8,
+    "timestamp": 1790768978,
+    "price": 0.0058325,
     "alert_type": "CONFIRMED",
     "micro_timestamp": 1790693871,
     "micro_score": 58.0,
@@ -981,15 +981,15 @@
     "fast_timestamp": 1790696630,
     "fast_price": 0.0001695,
     "fast_alert_type": "FAST",
-    "buildup_timestamp": 1790761337,
-    "buildup_score": 75.0,
-    "buildup_price": 0.0001704,
+    "buildup_timestamp": 1790768980,
+    "buildup_score": 61.0,
+    "buildup_price": 0.00017020000000000002,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.26478375992939746,
-    "buildup_flow": 1.6599499489771172,
-    "buildup_flow_delta": 0.32733173587920494,
-    "buildup_spread_bps": 23.47417840375644,
-    "buildup_pressure_change": 0.11746496205080054,
+    "buildup_price_change": 0.05878894767783799,
+    "buildup_flow": 1.4929888367250923,
+    "buildup_flow_delta": 0.35681542091109386,
+    "buildup_spread_bps": 23.50176263219639,
+    "buildup_pressure_change": -0.1473966193324923,
     "micro_timestamp": 1790758765,
     "micro_score": 70.0,
     "micro_price": 0.00016994999999999998,
@@ -1953,5 +1953,18 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "ENAUSDT": {
+    "score": 84,
+    "streak": 4,
+    "timestamp": 1790768979,
+    "price": 0.25465,
+    "alert_type": "CONFIRMED"
+  },
+  "ENJUSDT": {
+    "fast_score": 58,
+    "fast_timestamp": 1790768979,
+    "fast_price": 0.0299,
+    "fast_alert_type": "FAST"
   }
 }
