@@ -908,24 +908,6 @@
     "fast_price": 9.3655e-05,
     "fast_alert_type": "FAST"
   },
-  "NOTUSDT": {
-    "micro_timestamp": 1790683804,
-    "micro_score": 68.0,
-    "micro_price": 0.00049845,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.2816618046474267,
-    "micro_flow": 1.285523376837856,
-    "micro_flow_delta": 0.17208154416943677,
-    "micro_spread_bps": 26.080850636976344,
-    "micro_rsi": 52.55445119419534,
-    "micro_structure": 4.0,
-    "micro_momentum_15m": 0.7679870654809992,
-    "micro_momentum_1h": 2.130274477673081,
-    "micro_momentum_4h": 0.6256306760847672,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
-  },
   "CRVUSDT": {
     "score": 86,
     "streak": 4,
@@ -1604,10 +1586,10 @@
     "fast_alert_type": "FAST"
   },
   "BICOUSDT": {
-    "score": 85,
-    "streak": 9,
-    "timestamp": 1790762830,
-    "price": 0.02181,
+    "score": 90,
+    "streak": 18,
+    "timestamp": 1790770656,
+    "price": 0.022039999999999997,
     "alert_type": "CONFIRMED",
     "fast_score": 85,
     "fast_timestamp": 1790762829,
@@ -1779,19 +1761,19 @@
     "alert_type": "CONFIRMED"
   },
   "YFIUSDT": {
-    "micro_timestamp": 1790746684,
-    "micro_score": 46.0,
-    "micro_price": 2442.5,
+    "micro_timestamp": 1790770657,
+    "micro_score": 47.0,
+    "micro_price": 2485.0,
     "micro_alert_type": "MICRO",
-    "micro_price_change": 0.36983768235052394,
-    "micro_flow": 1.5579638807769627,
-    "micro_flow_delta": 0.24116143109474852,
-    "micro_spread_bps": 12.282497441146367,
-    "micro_rsi": 53.566479700763665,
-    "micro_structure": 4.0,
+    "micro_price_change": 0.343226327478296,
+    "micro_flow": 1.2351533642696075,
+    "micro_flow_delta": 0.4422961462352911,
+    "micro_spread_bps": 32.19315895372233,
+    "micro_rsi": 53.319575452969566,
+    "micro_structure": 6.0,
     "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 1.1652101539741988,
-    "micro_momentum_4h": -0.8159934720522236,
+    "micro_momentum_1h": -0.32454361054766734,
+    "micro_momentum_4h": 1.1943986820428336,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
@@ -1959,5 +1941,11 @@
     "buildup_flow_delta": 0.3276301750613674,
     "buildup_spread_bps": 23.16462825021996,
     "buildup_pressure_change": 0.04994214600587491
+  },
+  "TAOUSDT": {
+    "fast_score": 62,
+    "fast_timestamp": 1790770657,
+    "fast_price": 312.2,
+    "fast_alert_type": "FAST"
   }
 }
