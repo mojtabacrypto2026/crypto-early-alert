@@ -1173,24 +1173,6 @@
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
   },
-  "PNUTUSDT": {
-    "micro_timestamp": 1790713995,
-    "micro_score": 52.0,
-    "micro_price": 0.053145,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.3777504957975103,
-    "micro_flow": 1.3703139980198733,
-    "micro_flow_delta": 0.4536845175144857,
-    "micro_spread_bps": 1.881644557343694,
-    "micro_rsi": 63.25126380691409,
-    "micro_structure": 6.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 0.0,
-    "micro_momentum_4h": 0.0,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
-  },
   "POLUSDT": {
     "micro_timestamp": 1790726570,
     "micro_score": 32.0,
@@ -1918,5 +1900,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "PROVEUSDT": {
+    "fast_score": 58,
+    "fast_timestamp": 1790800950,
+    "fast_price": 0.24145,
+    "fast_alert_type": "FAST"
   }
 }
