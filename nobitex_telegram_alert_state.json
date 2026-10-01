@@ -61,15 +61,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790864988,
-    "buildup_score": 73.0,
-    "buildup_price": 771.29925,
+    "buildup_timestamp": 1790884922,
+    "buildup_score": 69.0,
+    "buildup_price": 770.72615,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.25521365312779754,
-    "buildup_flow": 1.6102302683916658,
-    "buildup_flow_delta": 0.47954770796387525,
-    "buildup_spread_bps": 17.29678850329538,
-    "buildup_pressure_change": 0.3358999719295954
+    "buildup_price_change": 0.010173260091914603,
+    "buildup_flow": 1.6634904951957947,
+    "buildup_flow_delta": 1.0092268034869556,
+    "buildup_spread_bps": 13.962157635367591,
+    "buildup_pressure_change": -0.10682619875635008
   },
   "XLMUSDT": {
     "score": 80,
@@ -1797,5 +1797,12 @@
     "fast_timestamp": 1790877236,
     "fast_price": 0.081215,
     "fast_alert_type": "FAST"
+  },
+  "BEAMXUSDT": {
+    "score": 81,
+    "streak": 5,
+    "timestamp": 1790884921,
+    "price": 0.0020225,
+    "alert_type": "CONFIRMED"
   }
 }
