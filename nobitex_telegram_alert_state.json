@@ -622,7 +622,16 @@
     "micro_momentum_4h": -1.1748044674756115,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790872854,
+    "buildup_score": 96.0,
+    "buildup_price": 307.83000000000004,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.31937428711097215,
+    "buildup_flow": 3.5490551382396247,
+    "buildup_flow_delta": 2.3430516569816726,
+    "buildup_spread_bps": 11.04505733684095,
+    "buildup_pressure_change": 0.49179929849752063
   },
   "WLDUSDT": {
     "score": 86,
@@ -1361,7 +1370,16 @@
     "micro_momentum_4h": 2.4151287309182017,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790872855,
+    "buildup_score": 90.0,
+    "buildup_price": 9.042,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.11071744906997108,
+    "buildup_flow": 1.5939784387245544,
+    "buildup_flow_delta": 0.11799744654903788,
+    "buildup_spread_bps": 6.635700066357252,
+    "buildup_pressure_change": 0.4032603645636912
   },
   "BABAUSDT": {
     "micro_timestamp": 1790800160,
@@ -1770,6 +1788,24 @@
     "micro_momentum_15m": -0.9950248756218845,
     "micro_momentum_1h": -1.0901883052527326,
     "micro_momentum_4h": 3.0991735537190075,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
+  },
+  "JSTUSDT": {
+    "micro_timestamp": 1790872855,
+    "micro_score": 71.0,
+    "micro_price": 0.13356,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.23640661938535007,
+    "micro_flow": 2.6874956110656796,
+    "micro_flow_delta": 1.6036010927444242,
+    "micro_spread_bps": 29.949086552858915,
+    "micro_rsi": 63.47541404878237,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.0,
+    "micro_momentum_1h": 0.0,
+    "micro_momentum_4h": 0.728708061332941,
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
