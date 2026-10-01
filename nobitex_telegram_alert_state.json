@@ -1752,7 +1752,16 @@
     "micro_momentum_4h": 0.16705952353708176,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790877235,
+    "buildup_score": 91.0,
+    "buildup_price": 4.4542,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.155150315922018,
+    "buildup_flow": 1.4254774833789041,
+    "buildup_flow_delta": 0.7963495599594447,
+    "buildup_spread_bps": 18.858605361232012,
+    "buildup_pressure_change": -0.18553828116295867
   },
   "WUSDT": {
     "fast_score": 71,
@@ -1795,5 +1804,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "SKYUSDT": {
+    "fast_score": 65,
+    "fast_timestamp": 1790877236,
+    "fast_price": 0.081215,
+    "fast_alert_type": "FAST"
   }
 }
