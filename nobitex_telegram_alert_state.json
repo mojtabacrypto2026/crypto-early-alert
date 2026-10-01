@@ -234,14 +234,14 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "TRXUSDT": {
-    "score": 98,
-    "streak": 2,
-    "timestamp": 1790750554,
-    "price": 0.337245,
+    "score": 82,
+    "streak": 3,
+    "timestamp": 1790833002,
+    "price": 0.33912,
     "alert_type": "CONFIRMED",
-    "fast_score": 68,
-    "fast_timestamp": 1790827456,
-    "fast_price": 0.339765,
+    "fast_score": 82,
+    "fast_timestamp": 1790833001,
+    "fast_price": 0.33912,
     "fast_alert_type": "FAST",
     "buildup_timestamp": 1790793313,
     "buildup_score": 62.0,
@@ -1198,13 +1198,6 @@
     "buildup_spread_bps": 22.296544035675012,
     "buildup_pressure_change": 0.0
   },
-  "BANDUSDT": {
-    "score": 85,
-    "streak": 6,
-    "timestamp": 1790745760,
-    "price": 0.2198,
-    "alert_type": "CONFIRMED"
-  },
   "SKLUSDT": {
     "score": 84,
     "streak": 2,
@@ -1708,9 +1701,9 @@
     "timestamp": 1790828411,
     "price": 0.8067,
     "alert_type": "CONFIRMED",
-    "fast_score": 67,
-    "fast_timestamp": 1790787355,
-    "fast_price": 0.815,
+    "fast_score": 56,
+    "fast_timestamp": 1790833002,
+    "fast_price": 0.81945,
     "fast_alert_type": "FAST"
   },
   "ZAMAUSDT": {
@@ -2038,5 +2031,35 @@
     "timestamp": 1790832058,
     "price": 0.46830000000000005,
     "alert_type": "CONFIRMED"
+  },
+  "IMXUSDT": {
+    "score": 83,
+    "streak": 3,
+    "timestamp": 1790833000,
+    "price": 0.17099999999999999,
+    "alert_type": "CONFIRMED"
+  },
+  "ROBOUSDT": {
+    "score": 81,
+    "streak": 3,
+    "timestamp": 1790833001,
+    "price": 0.009045000000000001,
+    "alert_type": "CONFIRMED",
+    "micro_timestamp": 1790833000,
+    "micro_score": 81.0,
+    "micro_price": 0.009045000000000001,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.2216066481994562,
+    "micro_flow": 1.777032205273681,
+    "micro_flow_delta": 0.8853412526052868,
+    "micro_spread_bps": 33.16749585406358,
+    "micro_rsi": 52.2207041106861,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.44296788482835114,
+    "micro_momentum_1h": 0.11086474501108197,
+    "micro_momentum_4h": 1.1198208286674065,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   }
 }
