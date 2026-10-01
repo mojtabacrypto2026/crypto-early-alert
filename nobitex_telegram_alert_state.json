@@ -77,9 +77,9 @@
     "timestamp": 1790777114,
     "price": 770.485,
     "alert_type": "CONFIRMED",
-    "fast_score": 85,
-    "fast_timestamp": 1790768169,
-    "fast_price": 769.3307500000001,
+    "fast_score": 64,
+    "fast_timestamp": 1790819130,
+    "fast_price": 768.8459,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790781284,
     "micro_score": 67.0,
@@ -1898,5 +1898,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "WOOUSDT": {
+    "fast_score": 60,
+    "fast_timestamp": 1790819130,
+    "fast_price": 0.013975000000000001,
+    "fast_alert_type": "FAST"
   }
 }
