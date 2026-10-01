@@ -245,10 +245,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "ASTERUSDT": {
-    "score": 93,
-    "streak": 4,
-    "timestamp": 1790744731,
-    "price": 0.7513,
+    "score": 85,
+    "streak": 5,
+    "timestamp": 1790840398,
+    "price": 0.7618,
     "alert_type": "CONFIRMED",
     "fast_score": 59,
     "fast_timestamp": 1790766331,
@@ -840,9 +840,9 @@
     "buildup_flow_delta": 0.4018925636746523,
     "buildup_spread_bps": 19.90049751243783,
     "buildup_pressure_change": 0.386205710033976,
-    "fast_score": 88,
-    "fast_timestamp": 1790761338,
-    "fast_price": 0.5196000000000001,
+    "fast_score": 68,
+    "fast_timestamp": 1790840399,
+    "fast_price": 0.5292,
     "fast_alert_type": "FAST"
   },
   "XRPUSDT": {
@@ -1873,9 +1873,9 @@
     "timestamp": 1790825765,
     "price": 163.37,
     "alert_type": "CONFIRMED",
-    "fast_score": 80,
-    "fast_timestamp": 1790826778,
-    "fast_price": 165.79500000000002,
+    "fast_score": 89,
+    "fast_timestamp": 1790840398,
+    "fast_price": 165.87,
     "fast_alert_type": "FAST",
     "buildup_timestamp": 1790828408,
     "buildup_score": 83.0,
@@ -2075,5 +2075,11 @@
     "timestamp": 1790839319,
     "price": 1.529,
     "alert_type": "CONFIRMED"
+  },
+  "PYTHUSDT": {
+    "fast_score": 63,
+    "fast_timestamp": 1790840399,
+    "fast_price": 0.077295,
+    "fast_alert_type": "FAST"
   }
 }
