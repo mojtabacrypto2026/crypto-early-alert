@@ -1004,7 +1004,23 @@
     "fast_score": 65,
     "fast_timestamp": 1790913286,
     "fast_price": 1.5699999999999998,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790934851,
+    "micro_score": 82.0,
+    "micro_price": 1.56,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.22486347574687174,
+    "micro_flow": 3.722397991852101,
+    "micro_flow_delta": 0.7218270805065874,
+    "micro_spread_bps": 12.820512820512832,
+    "micro_rsi": 52.200790400302104,
+    "micro_structure": 4.0,
+    "micro_momentum_15m": -0.06422607578676236,
+    "micro_momentum_1h": 0.12845215157353898,
+    "micro_momentum_4h": -1.329113924050641,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "OPGUSDT": {
     "score": 80,
@@ -1525,7 +1541,16 @@
     "streak": 9,
     "timestamp": 1790924780,
     "price": 59.785,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "buildup_timestamp": 1790934851,
+    "buildup_score": 67.0,
+    "buildup_price": 59.95,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0,
+    "buildup_flow": 1.8823487807349346,
+    "buildup_flow_delta": 0.1674507403588683,
+    "buildup_spread_bps": 16.68056713928297,
+    "buildup_pressure_change": 0.008339588024344011
   },
   "METISUSDT": {
     "micro_timestamp": 1790924781,
@@ -1755,7 +1780,16 @@
     "micro_momentum_4h": -0.07146047342563354,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "buildup_timestamp": 1790934852,
+    "buildup_score": 76.0,
+    "buildup_price": 0.22533,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.05106231822924938,
+    "buildup_flow": 8.937223745673856,
+    "buildup_flow_delta": 4.772582114361006,
+    "buildup_spread_bps": 15.088980606222295,
+    "buildup_pressure_change": -0.5182866145205937
   },
   "AUSDT": {
     "score": 93,
@@ -1770,5 +1804,17 @@
     "timestamp": 1790933941,
     "price": 0.0322,
     "alert_type": "CONFIRMED"
+  },
+  "1B_BABYDOGEUSDT": {
+    "fast_score": 87,
+    "fast_timestamp": 1790934850,
+    "fast_price": 0.4144,
+    "fast_alert_type": "FAST"
+  },
+  "CAKEUSDT": {
+    "fast_score": 72,
+    "fast_timestamp": 1790934850,
+    "fast_price": 2.6128,
+    "fast_alert_type": "FAST"
   }
 }
