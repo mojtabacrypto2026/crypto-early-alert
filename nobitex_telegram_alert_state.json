@@ -805,33 +805,6 @@
     "fast_price": 0.012505,
     "fast_alert_type": "FAST"
   },
-  "ZENUSDT": {
-    "score": 85,
-    "streak": 6,
-    "timestamp": 1790853819,
-    "price": 7.2620000000000005,
-    "alert_type": "CONFIRMED",
-    "fast_score": 61,
-    "fast_timestamp": 1790846785,
-    "fast_price": 7.303,
-    "fast_alert_type": "FAST",
-    "micro_timestamp": 1790804940,
-    "micro_score": 49.0,
-    "micro_price": 7.3165,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.3979416809605478,
-    "micro_flow": 3.679407033256442,
-    "micro_flow_delta": 0.5596039935410966,
-    "micro_spread_bps": 1.3667737306093541,
-    "micro_rsi": 58.34772908400078,
-    "micro_structure": 6.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": 0.0,
-    "micro_momentum_4h": -2.1017402945113792,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
-  },
   "AAVEUSDT": {
     "score": 90,
     "streak": 6,
@@ -1705,7 +1678,11 @@
     "streak": 5,
     "timestamp": 1790928339,
     "price": 0.0010520999999999998,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 66,
+    "fast_timestamp": 1790941267,
+    "fast_price": 0.0010554,
+    "fast_alert_type": "FAST"
   },
   "ATOMUSDT": {
     "micro_timestamp": 1790929450,
@@ -1811,7 +1788,11 @@
     "streak": 2,
     "timestamp": 1790932877,
     "price": 0.029295,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 91,
+    "fast_timestamp": 1790941267,
+    "fast_price": 0.02914,
+    "fast_alert_type": "FAST"
   },
   "XLMUSDT": {
     "score": 91,
@@ -1861,7 +1842,11 @@
     "streak": 7,
     "timestamp": 1790933941,
     "price": 0.0322,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 62,
+    "fast_timestamp": 1790941266,
+    "fast_price": 0.031799999999999995,
+    "fast_alert_type": "FAST"
   },
   "1B_BABYDOGEUSDT": {
     "fast_score": 87,
@@ -1931,5 +1916,26 @@
     "fast_timestamp": 1790938134,
     "fast_price": 0.2642,
     "fast_alert_type": "FAST"
+  },
+  "1K_BONKUSDT": {
+    "score": 80,
+    "streak": 3,
+    "timestamp": 1790941265,
+    "price": 0.003878,
+    "alert_type": "CONFIRMED"
+  },
+  "1K_SHIBUSDT": {
+    "score": 92,
+    "streak": 7,
+    "timestamp": 1790941265,
+    "price": 0.0058885,
+    "alert_type": "CONFIRMED"
+  },
+  "AEVOUSDT": {
+    "score": 91,
+    "streak": 8,
+    "timestamp": 1790941266,
+    "price": 0.0264,
+    "alert_type": "CONFIRMED"
   }
 }
