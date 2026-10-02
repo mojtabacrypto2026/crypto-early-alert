@@ -617,10 +617,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "DOTUSDT": {
-    "score": 86,
+    "score": 80,
     "streak": 2,
-    "timestamp": 1790828408,
-    "price": 1.241,
+    "timestamp": 1790922735,
+    "price": 1.2175,
     "alert_type": "CONFIRMED",
     "fast_score": 86,
     "fast_timestamp": 1790827454,
@@ -768,29 +768,6 @@
     "buildup_spread_bps": 0.06263067629538482,
     "buildup_pressure_change": -0.1720629865979863
   },
-  "ENAUSDT": {
-    "score": 84,
-    "streak": 4,
-    "timestamp": 1790768979,
-    "price": 0.25465,
-    "alert_type": "CONFIRMED",
-    "micro_timestamp": 1790835942,
-    "micro_score": 76.0,
-    "micro_price": 0.27655,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.7651666970304415,
-    "micro_flow": 1.4633270071949915,
-    "micro_flow_delta": 0.26455819456591434,
-    "micro_spread_bps": 3.615982643282914,
-    "micro_rsi": 58.973530329849694,
-    "micro_structure": 8.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": -1.1896178803172206,
-    "micro_momentum_4h": 3.355957767722481,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
-  },
   "ENJUSDT": {
     "score": 85,
     "streak": 4,
@@ -812,33 +789,6 @@
     "fast_timestamp": 1790845638,
     "fast_price": 0.008719999999999999,
     "fast_alert_type": "FAST"
-  },
-  "ETHFIUSDT": {
-    "score": 80,
-    "streak": 13,
-    "timestamp": 1790792196,
-    "price": 0.7859499999999999,
-    "alert_type": "CONFIRMED",
-    "fast_score": 58,
-    "fast_timestamp": 1790835942,
-    "fast_price": 0.77925,
-    "fast_alert_type": "FAST",
-    "micro_timestamp": 1790826780,
-    "micro_score": 67.0,
-    "micro_price": 0.7794,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.9847110650427494,
-    "micro_flow": 2.6985585060217363,
-    "micro_flow_delta": 1.6873402814329974,
-    "micro_spread_bps": 33.3589940980233,
-    "micro_rsi": 53.283941079570056,
-    "micro_structure": 6.0,
-    "micro_momentum_15m": 0.41141681666237856,
-    "micro_momentum_1h": -0.21808851828093956,
-    "micro_momentum_4h": 1.2101496421600633,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
   },
   "FETUSDT": {
     "score": 89,
@@ -924,10 +874,10 @@
     "fast_alert_type": "FAST"
   },
   "SUIUSDT": {
-    "score": 85,
+    "score": 83,
     "streak": 2,
-    "timestamp": 1790828410,
-    "price": 1.1717499999999998,
+    "timestamp": 1790922736,
+    "price": 1.18635,
     "alert_type": "CONFIRMED",
     "fast_score": 71,
     "fast_timestamp": 1790887647,
@@ -951,10 +901,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "UNIUSDT": {
-    "score": 81,
+    "score": 91,
     "streak": 2,
-    "timestamp": 1790914858,
-    "price": 8.9155,
+    "timestamp": 1790922737,
+    "price": 9.093499999999999,
     "alert_type": "CONFIRMED",
     "fast_score": 90,
     "fast_timestamp": 1790873649,
@@ -1154,17 +1104,6 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
-  },
-  "ZECUSDT": {
-    "score": 87,
-    "streak": 2,
-    "timestamp": 1790835943,
-    "price": 1451.26,
-    "alert_type": "CONFIRMED",
-    "fast_score": 83,
-    "fast_timestamp": 1790834676,
-    "fast_price": 1452.15,
-    "fast_alert_type": "FAST"
   },
   "JASMYUSDT": {
     "score": 85,
@@ -1604,6 +1543,31 @@
     "streak": 10,
     "timestamp": 1790921413,
     "price": 1.9735,
+    "alert_type": "CONFIRMED"
+  },
+  "100K_FLOKIUSDT": {
+    "buildup_timestamp": 1790922735,
+    "buildup_score": 65.0,
+    "buildup_price": 2.8205999999999998,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": -0.0017726410579237963,
+    "buildup_flow": 1.3150630287972775,
+    "buildup_flow_delta": 0.7254155457377713,
+    "buildup_spread_bps": 24.81741473445408,
+    "buildup_pressure_change": -0.2701598295688252
+  },
+  "GLMUSDT": {
+    "score": 86,
+    "streak": 3,
+    "timestamp": 1790922735,
+    "price": 0.12735000000000002,
+    "alert_type": "CONFIRMED"
+  },
+  "ONDOUSDT": {
+    "score": 83,
+    "streak": 7,
+    "timestamp": 1790922736,
+    "price": 0.5083,
     "alert_type": "CONFIRMED"
   }
 }
