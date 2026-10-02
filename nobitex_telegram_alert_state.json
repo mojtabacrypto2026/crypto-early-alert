@@ -149,9 +149,9 @@
     "timestamp": 1790881852,
     "price": 0.14825,
     "alert_type": "CONFIRMED",
-    "fast_score": 57,
-    "fast_timestamp": 1790927704,
-    "fast_price": 0.1526,
+    "fast_score": 62,
+    "fast_timestamp": 1790930433,
+    "fast_price": 0.15139999999999998,
     "fast_alert_type": "FAST",
     "micro_timestamp": 1790923935,
     "micro_score": 64.0,
@@ -1452,7 +1452,23 @@
     "buildup_flow": 1.3150630287972775,
     "buildup_flow_delta": 0.7254155457377713,
     "buildup_spread_bps": 24.81741473445408,
-    "buildup_pressure_change": -0.2701598295688252
+    "buildup_pressure_change": -0.2701598295688252,
+    "micro_timestamp": 1790930432,
+    "micro_score": 95.0,
+    "micro_price": 2.8456,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.45894231448139167,
+    "micro_flow": 1.7633745501622848,
+    "micro_flow_delta": 0.5245525188110611,
+    "micro_spread_bps": 23.896542029800884,
+    "micro_rsi": 59.0204502061335,
+    "micro_structure": 8.0,
+    "micro_momentum_15m": 0.4665959703075248,
+    "micro_momentum_1h": 0.44769755542921913,
+    "micro_momentum_4h": 1.6613924050632838,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "GLMUSDT": {
     "score": 86,
@@ -1639,5 +1655,11 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3"
+  },
+  "ASTERUSDT": {
+    "fast_score": 79,
+    "fast_timestamp": 1790930432,
+    "fast_price": 0.7559,
+    "fast_alert_type": "FAST"
   }
 }
