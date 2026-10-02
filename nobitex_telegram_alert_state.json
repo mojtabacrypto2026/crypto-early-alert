@@ -1449,7 +1449,11 @@
     "micro_momentum_4h": 0.33264033264034354,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 68,
+    "fast_timestamp": 1790920769,
+    "fast_price": 4.8465000000000004e-05,
+    "fast_alert_type": "FAST"
   },
   "ZORAUSDT": {
     "score": 85,
@@ -1593,5 +1597,12 @@
     "fast_timestamp": 1790919188,
     "fast_price": 0.15105000000000002,
     "fast_alert_type": "FAST"
+  },
+  "WOOUSDT": {
+    "score": 80,
+    "streak": 5,
+    "timestamp": 1790920770,
+    "price": 0.01384,
+    "alert_type": "CONFIRMED"
   }
 }
