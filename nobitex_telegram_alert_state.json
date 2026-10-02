@@ -1643,10 +1643,10 @@
     "micro_trigger_version": "telemetry-v3"
   },
   "SKYUSDT": {
-    "score": 81,
-    "streak": 4,
-    "timestamp": 1790891643,
-    "price": 0.08423,
+    "score": 86,
+    "streak": 2,
+    "timestamp": 1790907442,
+    "price": 0.083635,
     "alert_type": "CONFIRMED",
     "fast_score": 65,
     "fast_timestamp": 1790877236,
@@ -1724,7 +1724,16 @@
     "streak": 3,
     "timestamp": 1790905139,
     "price": 4.83e-05,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "buildup_timestamp": 1790907441,
+    "buildup_score": 61.0,
+    "buildup_price": 4.8484999999999994e-05,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.3414735099337663,
+    "buildup_flow": 2.213016629707042,
+    "buildup_flow_delta": 0.566269599592512,
+    "buildup_spread_bps": 2.0624935547079715,
+    "buildup_pressure_change": 0.2793488464423643
   },
   "ZORAUSDT": {
     "score": 85,
