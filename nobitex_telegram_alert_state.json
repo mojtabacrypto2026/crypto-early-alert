@@ -1593,7 +1593,11 @@
     "buildup_flow": 1.8823487807349346,
     "buildup_flow_delta": 0.1674507403588683,
     "buildup_spread_bps": 16.68056713928297,
-    "buildup_pressure_change": 0.008339588024344011
+    "buildup_pressure_change": 0.008339588024344011,
+    "fast_score": 67,
+    "fast_timestamp": 1790937221,
+    "fast_price": 60.185,
+    "fast_alert_type": "FAST"
   },
   "METISUSDT": {
     "micro_timestamp": 1790924781,
@@ -1833,15 +1837,15 @@
     "micro_state_fresh": true,
     "micro_high_risk": false,
     "micro_trigger_version": "telemetry-v3",
-    "buildup_timestamp": 1790934852,
-    "buildup_score": 76.0,
-    "buildup_price": 0.22533,
+    "buildup_timestamp": 1790937222,
+    "buildup_score": 91.0,
+    "buildup_price": 0.22548,
     "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.05106231822924938,
-    "buildup_flow": 8.937223745673856,
-    "buildup_flow_delta": 4.772582114361006,
-    "buildup_spread_bps": 15.088980606222295,
-    "buildup_pressure_change": -0.5182866145205937
+    "buildup_price_change": 0.24006401707122463,
+    "buildup_flow": 5.215615438104982,
+    "buildup_flow_delta": 1.3701381478271553,
+    "buildup_spread_bps": 16.85293595884421,
+    "buildup_pressure_change": 0.4795531070126885
   },
   "AUSDT": {
     "score": 93,
@@ -1909,5 +1913,11 @@
     "timestamp": 1790936278,
     "price": 0.07275000000000001,
     "alert_type": "CONFIRMED"
+  },
+  "GIGGLEUSDT": {
+    "fast_score": 56,
+    "fast_timestamp": 1790937221,
+    "fast_price": 37.510000000000005,
+    "fast_alert_type": "FAST"
   }
 }
