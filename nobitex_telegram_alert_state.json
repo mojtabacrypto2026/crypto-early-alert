@@ -1522,7 +1522,11 @@
     "streak": 10,
     "timestamp": 1790879122,
     "price": 1.5705,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 65,
+    "fast_timestamp": 1790913286,
+    "fast_price": 1.5699999999999998,
+    "fast_alert_type": "FAST"
   },
   "PYTHUSDT": {
     "fast_score": 63,
@@ -1681,14 +1685,27 @@
     "streak": 15,
     "timestamp": 1790890764,
     "price": 0.061895,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "fast_score": 57,
+    "fast_timestamp": 1790913285,
+    "fast_price": 0.061270000000000005,
+    "fast_alert_type": "FAST"
   },
   "TSMUSDT": {
     "score": 81,
     "streak": 4,
     "timestamp": 1790890765,
     "price": 464.635,
-    "alert_type": "CONFIRMED"
+    "alert_type": "CONFIRMED",
+    "buildup_timestamp": 1790913286,
+    "buildup_score": 65.0,
+    "buildup_price": 474.875,
+    "buildup_alert_type": "BUILDUP",
+    "buildup_price_change": 0.0010529197464559674,
+    "buildup_flow": 1.336979849550208,
+    "buildup_flow_delta": 0.41841217360922967,
+    "buildup_spread_bps": 24.21689918399531,
+    "buildup_pressure_change": -0.5037250097116202
   },
   "REUSDT": {
     "score": 81,
