@@ -305,38 +305,6 @@
     "buildup_spread_bps": 17.56954612005899,
     "buildup_pressure_change": 0.263072568449018
   },
-  "XTZUSDT": {
-    "score": 93,
-    "streak": 2,
-    "timestamp": 1790828411,
-    "price": 0.31835,
-    "alert_type": "CONFIRMED",
-    "buildup_timestamp": 1790829454,
-    "buildup_score": 93.0,
-    "buildup_price": 0.31835,
-    "buildup_alert_type": "BUILDUP",
-    "buildup_price_change": 0.0,
-    "buildup_flow": 3.35298279695155,
-    "buildup_flow_delta": 0.9491188963783808,
-    "buildup_spread_bps": 21.988377571854198,
-    "buildup_pressure_change": 0.3287413901064481,
-    "micro_timestamp": 1790851298,
-    "micro_score": 55.0,
-    "micro_price": 0.31755,
-    "micro_alert_type": "MICRO",
-    "micro_price_change": 0.22092472778918543,
-    "micro_flow": 1.1222182029758592,
-    "micro_flow_delta": 0.24197438423961004,
-    "micro_spread_bps": 28.341993386868584,
-    "micro_rsi": 54.134814848702646,
-    "micro_structure": 6.0,
-    "micro_momentum_15m": 0.0,
-    "micro_momentum_1h": -0.1569858712715857,
-    "micro_momentum_4h": -1.15013988187752,
-    "micro_state_fresh": true,
-    "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
-  },
   "BCHUSDT": {
     "score": 94,
     "streak": 10,
@@ -581,10 +549,10 @@
     "buildup_pressure_change": 0.07842451431812161
   },
   "TNSRUSDT": {
-    "score": 91,
-    "streak": 3,
-    "timestamp": 1790850402,
-    "price": 0.040935,
+    "score": 86,
+    "streak": 4,
+    "timestamp": 1790938134,
+    "price": 0.04074,
     "alert_type": "CONFIRMED",
     "fast_score": 95,
     "fast_timestamp": 1790865980,
@@ -1690,7 +1658,23 @@
     "fast_score": 89,
     "fast_timestamp": 1790931897,
     "fast_price": 0.10477500000000001,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "micro_timestamp": 1790938133,
+    "micro_score": 91.0,
+    "micro_price": 0.105855,
+    "micro_alert_type": "MICRO",
+    "micro_price_change": 0.2747122625870435,
+    "micro_flow": 1.4001296364912088,
+    "micro_flow_delta": 0.32431730205867937,
+    "micro_spread_bps": 27.395966180151962,
+    "micro_rsi": 61.09520131384959,
+    "micro_structure": 6.0,
+    "micro_momentum_15m": 0.4453709845541535,
+    "micro_momentum_1h": 1.2392755004766536,
+    "micro_momentum_4h": 1.9781063952371867,
+    "micro_state_fresh": true,
+    "micro_high_risk": false,
+    "micro_trigger_version": "telemetry-v3"
   },
   "TAOUSDT": {
     "fast_score": 57,
@@ -1898,7 +1882,11 @@
     "micro_momentum_4h": 0.7260869565217378,
     "micro_state_fresh": true,
     "micro_high_risk": false,
-    "micro_trigger_version": "telemetry-v3"
+    "micro_trigger_version": "telemetry-v3",
+    "fast_score": 69,
+    "fast_timestamp": 1790938135,
+    "fast_price": 1393.145,
+    "fast_alert_type": "FAST"
   },
   "APTUSDT": {
     "score": 90,
@@ -1918,6 +1906,12 @@
     "fast_score": 56,
     "fast_timestamp": 1790937221,
     "fast_price": 37.510000000000005,
+    "fast_alert_type": "FAST"
+  },
+  "SUSHIUSDT": {
+    "fast_score": 82,
+    "fast_timestamp": 1790938134,
+    "fast_price": 0.2642,
     "fast_alert_type": "FAST"
   }
 }
