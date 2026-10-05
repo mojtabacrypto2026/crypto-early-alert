@@ -86,9 +86,9 @@
           "timestamp": 1791108600
         }
       },
-      "max_return": 0.0,
+      "max_return": 0.5351996706463523,
       "min_return": -1.5232606010704142,
-      "max_price": 1.2145000000000001,
+      "max_price": 1.221,
       "min_price": 1.196,
       "thresholds": {
         "1pct": null,
@@ -130,9 +130,9 @@
           "timestamp": 1791108600
         }
       },
-      "max_return": 0.050426100549641625,
+      "max_return": 0.4664414300842173,
       "min_return": -1.3816751550602637,
-      "max_price": 198.41,
+      "max_price": 199.235,
       "min_price": 195.57,
       "thresholds": {
         "1pct": null,
@@ -175,9 +175,9 @@
         }
       },
       "max_return": 1.2542372881355868,
-      "min_return": -0.8135593220339028,
+      "min_return": -1.5254237288135608,
       "max_price": 0.29869999999999997,
-      "min_price": 0.29259999999999997,
+      "min_price": 0.2905,
       "thresholds": {
         "1pct": {
           "timestamp": 1791127347,
@@ -318,9 +318,9 @@
           "timestamp": 1791108600
         }
       },
-      "max_return": 1.2804205884846864,
+      "max_return": 1.6026456372424205,
       "min_return": 0.0,
-      "max_price": 59.72,
+      "max_price": 59.91,
       "min_price": 58.965,
       "thresholds": {
         "1pct": {
@@ -411,9 +411,9 @@
         }
       },
       "max_return": 0.0,
-      "min_return": -3.007117437722418,
+      "min_return": -3.3007117437722404,
       "max_price": 0.00562,
-      "min_price": 0.005451,
+      "min_price": 0.0054345,
       "thresholds": {
         "1pct": null,
         "2pct": null,
@@ -447,6 +447,11 @@
           "price": 9.180000000000001e-05,
           "return_percent": -0.21196804174139233,
           "timestamp": 1791159938
+        },
+        "4h": {
+          "price": 9.152e-05,
+          "return_percent": -0.5163324093700723,
+          "timestamp": 1791179958
         }
       },
       "max_return": 0.0,
@@ -466,10 +471,36 @@
       "alert_time": 1791159936,
       "alert_price": 0.37925,
       "score": 61,
-      "checkpoints": {},
-      "max_return": 0.0,
+      "checkpoints": {
+        "15m": {
+          "price": 0.3806,
+          "return_percent": 0.3559657218193851,
+          "timestamp": 1791179958
+        },
+        "30m": {
+          "price": 0.3806,
+          "return_percent": 0.3559657218193851,
+          "timestamp": 1791179958
+        },
+        "1h": {
+          "price": 0.3806,
+          "return_percent": 0.3559657218193851,
+          "timestamp": 1791179958
+        },
+        "2h": {
+          "price": 0.3806,
+          "return_percent": 0.3559657218193851,
+          "timestamp": 1791179958
+        },
+        "4h": {
+          "price": 0.3806,
+          "return_percent": 0.3559657218193851,
+          "timestamp": 1791179958
+        }
+      },
+      "max_return": 0.3559657218193851,
       "min_return": -0.777851021753463,
-      "max_price": 0.37925,
+      "max_price": 0.3806,
       "min_price": 0.37629999999999997,
       "thresholds": {
         "1pct": null,
@@ -484,7 +515,33 @@
       "alert_time": 1791159936,
       "alert_price": 1.5314999999999999,
       "score": 72,
-      "checkpoints": {},
+      "checkpoints": {
+        "15m": {
+          "price": 1.5285,
+          "return_percent": -0.19588638589617316,
+          "timestamp": 1791179958
+        },
+        "30m": {
+          "price": 1.5285,
+          "return_percent": -0.19588638589617316,
+          "timestamp": 1791179958
+        },
+        "1h": {
+          "price": 1.5285,
+          "return_percent": -0.19588638589617316,
+          "timestamp": 1791179958
+        },
+        "2h": {
+          "price": 1.5285,
+          "return_percent": -0.19588638589617316,
+          "timestamp": 1791179958
+        },
+        "4h": {
+          "price": 1.5285,
+          "return_percent": -0.19588638589617316,
+          "timestamp": 1791179958
+        }
+      },
       "max_return": 0.0,
       "min_return": -0.29382957884426697,
       "max_price": 1.5314999999999999,
@@ -502,10 +559,36 @@
       "alert_time": 1791159937,
       "alert_price": 1.9835,
       "score": 82,
-      "checkpoints": {},
-      "max_return": 0.0,
+      "checkpoints": {
+        "15m": {
+          "price": 1.9865,
+          "return_percent": 0.1512477943029943,
+          "timestamp": 1791179958
+        },
+        "30m": {
+          "price": 1.9865,
+          "return_percent": 0.1512477943029943,
+          "timestamp": 1791179958
+        },
+        "1h": {
+          "price": 1.9865,
+          "return_percent": 0.1512477943029943,
+          "timestamp": 1791179958
+        },
+        "2h": {
+          "price": 1.9865,
+          "return_percent": 0.1512477943029943,
+          "timestamp": 1791179958
+        },
+        "4h": {
+          "price": 1.9865,
+          "return_percent": 0.1512477943029943,
+          "timestamp": 1791179958
+        }
+      },
+      "max_return": 0.1512477943029943,
       "min_return": -0.07562389715150274,
-      "max_price": 1.9835,
+      "max_price": 1.9865,
       "min_price": 1.982,
       "thresholds": {
         "1pct": null,
@@ -518,50 +601,50 @@
   "milestones": {},
   "statistics": {
     "15m": {
-      "count": 10,
-      "positive": 4,
-      "positive_rate": 40.0,
-      "average_return": -0.0891862473844715,
+      "count": 13,
+      "positive": 6,
+      "positive_rate": 46.15384615384615,
+      "average_return": -0.04465656489373145,
       "best_return": 1.947108398721307,
       "worst_return": -2.5889679715302454,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
     "30m": {
-      "count": 10,
-      "positive": 4,
-      "positive_rate": 40.0,
-      "average_return": -0.0891862473844715,
+      "count": 13,
+      "positive": 6,
+      "positive_rate": 46.15384615384615,
+      "average_return": -0.04465656489373145,
       "best_return": 1.947108398721307,
       "worst_return": -2.5889679715302454,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
     "1h": {
-      "count": 10,
-      "positive": 4,
-      "positive_rate": 40.0,
-      "average_return": -0.0891862473844715,
+      "count": 13,
+      "positive": 6,
+      "positive_rate": 46.15384615384615,
+      "average_return": -0.04465656489373145,
       "best_return": 1.947108398721307,
       "worst_return": -2.5889679715302454,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
     "2h": {
-      "count": 10,
-      "positive": 4,
-      "positive_rate": 40.0,
-      "average_return": -0.0891862473844715,
+      "count": 13,
+      "positive": 6,
+      "positive_rate": 46.15384615384615,
+      "average_return": -0.04465656489373145,
       "best_return": 1.947108398721307,
       "worst_return": -2.5889679715302454,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
     "4h": {
-      "count": 9,
-      "positive": 4,
-      "positive_rate": 44.44444444444444,
-      "average_return": -0.07554382578925808,
+      "count": 13,
+      "positive": 6,
+      "positive_rate": 46.15384615384615,
+      "average_return": -0.06806920855747607,
       "best_return": 1.947108398721307,
       "worst_return": -2.5889679715302454,
       "hit_2pct": 0,
@@ -569,9 +652,9 @@
     },
     "MFE": {
       "count": 13,
-      "positive": 6,
-      "positive_rate": 46.15384615384615,
-      "average_return": 0.6838203724856431,
+      "positive": 9,
+      "positive_rate": 69.23076923076923,
+      "average_return": 0.8207937236441848,
       "best_return": 3.4001743679163035,
       "worst_return": 0.0,
       "hit_2pct": 1,
@@ -581,9 +664,9 @@
       "count": 13,
       "positive": 0,
       "positive_rate": 0.0,
-      "average_return": -0.7529431097060802,
+      "average_return": -0.8302860876160404,
       "best_return": 0.0,
-      "worst_return": -3.007117437722418,
+      "worst_return": -3.3007117437722404,
       "hit_2pct": 0,
       "hit_5pct": 0
     },
@@ -699,50 +782,50 @@
       },
       "FAST": {
         "15m": {
-          "count": 10,
-          "positive": 4,
-          "positive_rate": 40.0,
-          "average_return": -0.0891862473844715,
+          "count": 13,
+          "positive": 6,
+          "positive_rate": 46.15384615384615,
+          "average_return": -0.04465656489373145,
           "best_return": 1.947108398721307,
           "worst_return": -2.5889679715302454,
           "hit_2pct": 0,
           "hit_5pct": 0
         },
         "30m": {
-          "count": 10,
-          "positive": 4,
-          "positive_rate": 40.0,
-          "average_return": -0.0891862473844715,
+          "count": 13,
+          "positive": 6,
+          "positive_rate": 46.15384615384615,
+          "average_return": -0.04465656489373145,
           "best_return": 1.947108398721307,
           "worst_return": -2.5889679715302454,
           "hit_2pct": 0,
           "hit_5pct": 0
         },
         "1h": {
-          "count": 10,
-          "positive": 4,
-          "positive_rate": 40.0,
-          "average_return": -0.0891862473844715,
+          "count": 13,
+          "positive": 6,
+          "positive_rate": 46.15384615384615,
+          "average_return": -0.04465656489373145,
           "best_return": 1.947108398721307,
           "worst_return": -2.5889679715302454,
           "hit_2pct": 0,
           "hit_5pct": 0
         },
         "2h": {
-          "count": 10,
-          "positive": 4,
-          "positive_rate": 40.0,
-          "average_return": -0.0891862473844715,
+          "count": 13,
+          "positive": 6,
+          "positive_rate": 46.15384615384615,
+          "average_return": -0.04465656489373145,
           "best_return": 1.947108398721307,
           "worst_return": -2.5889679715302454,
           "hit_2pct": 0,
           "hit_5pct": 0
         },
         "4h": {
-          "count": 9,
-          "positive": 4,
-          "positive_rate": 44.44444444444444,
-          "average_return": -0.07554382578925808,
+          "count": 13,
+          "positive": 6,
+          "positive_rate": 46.15384615384615,
+          "average_return": -0.06806920855747607,
           "best_return": 1.947108398721307,
           "worst_return": -2.5889679715302454,
           "hit_2pct": 0,
@@ -750,9 +833,9 @@
         },
         "MFE": {
           "count": 13,
-          "positive": 6,
-          "positive_rate": 46.15384615384615,
-          "average_return": 0.6838203724856431,
+          "positive": 9,
+          "positive_rate": 69.23076923076923,
+          "average_return": 0.8207937236441848,
           "best_return": 3.4001743679163035,
           "worst_return": 0.0,
           "hit_2pct": 1,
@@ -762,9 +845,9 @@
           "count": 13,
           "positive": 0,
           "positive_rate": 0.0,
-          "average_return": -0.7529431097060802,
+          "average_return": -0.8302860876160404,
           "best_return": 0.0,
-          "worst_return": -3.007117437722418,
+          "worst_return": -3.3007117437722404,
           "hit_2pct": 0,
           "hit_5pct": 0
         },
@@ -974,8 +1057,8 @@
   },
   "reliability": {
     "minimum_required_4h": 100,
-    "completed_4h": 9,
+    "completed_4h": 13,
     "reliable": false
   },
-  "updated_at": 1791159938
+  "updated_at": 1791179958
 }
