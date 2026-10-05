@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-NOBITEX EARLY MOVE RADAR - ONE-TIME CLEAN FINAL
+NOBITEX EARLY MOVE RADAR - FINAL 5.0
 
 هدف:
 - اسکن بازار USDT نوبیتکس
@@ -15,6 +15,8 @@ NOBITEX EARLY MOVE RADAR - ONE-TIME CLEAN FINAL
 - Telegram
 - بدون کتابخانه خارجی
 """
+
+SCANNER_VERSION = "5.0"
 
 import os
 import urllib.request
@@ -221,6 +223,13 @@ WORKSPACE = os.environ.get(
     ".",
 )
 
+ALERT_EVENT_SCHEMA_VERSION = 1
+ALERT_EVENT_LOG_PATH = "nobitex_alert_events.jsonl"
+ALERT_EVENT_LOG_FULL_PATH = os.path.join(
+    WORKSPACE,
+    ALERT_EVENT_LOG_PATH,
+)
+
 STATE_PATH = os.path.join(
     WORKSPACE,
     "nobitex_early_radar_state.json",
@@ -237,6 +246,16 @@ TRACKING_START_FULL_PATH = os.path.join(
 )
 
 TELEGRAM_TEST_ON_START = False
+
+
+def _event_number(value, default=0.0):
+    try:
+        result = float(value)
+        if math.isfinite(result):
+            return result
+    except Exception:
+        pass
+    return default
 
 
 # ============================================================
@@ -556,16 +575,13 @@ def get_market_snapshot():
     if not isinstance(data, dict):
         return result
 
-    # API can include a top-level status key.
     for raw_symbol, book in data.items():
         symbol = str(raw_symbol).upper()
 
         if not symbol.endswith("USDT"):
             continue
-
         if symbol in EXCLUDED_SYMBOLS:
             continue
-
         if not isinstance(book, dict):
             continue
 
@@ -577,33 +593,31 @@ def get_market_snapshot():
         best_bid = 0.0
         best_ask = 0.0
 
-        try:
-            if bids:
-                best_bid = safe_float(
-                    bids[0][0]
-                )
-
-            if asks:
-                best_ask = safe_float(
-                    asks[0][0]
-                )
-
+        if isinstance(bids, list) and bids:
             for row in bids[:20]:
-                if len(row) >= 2:
-                    bid_value += (
-                        safe_float(row[0])
-                        * safe_float(row[1])
-                    )
+                if not isinstance(row, (list, tuple)) or len(row) < 2:
+                    continue
+                price = safe_float(row[0], 0.0)
+                qty = safe_float(row[1], 0.0)
+                if price > 0 and qty > 0:
+                    bid_value += price * qty
 
+            first = bids[0]
+            if isinstance(first, (list, tuple)) and len(first) >= 2:
+                best_bid = safe_float(first[0], 0.0)
+
+        if isinstance(asks, list) and asks:
             for row in asks[:20]:
-                if len(row) >= 2:
-                    ask_value += (
-                        safe_float(row[0])
-                        * safe_float(row[1])
-                    )
+                if not isinstance(row, (list, tuple)) or len(row) < 2:
+                    continue
+                price = safe_float(row[0], 0.0)
+                qty = safe_float(row[1], 0.0)
+                if price > 0 and qty > 0:
+                    ask_value += price * qty
 
-        except Exception:
-            pass
+            first = asks[0]
+            if isinstance(first, (list, tuple)) and len(first) >= 2:
+                best_ask = safe_float(first[0], 0.0)
 
         flow = (
             bid_value / ask_value
@@ -612,23 +626,20 @@ def get_market_snapshot():
         )
 
         if best_bid > 0 and best_ask > 0:
-            live_price = (
-                best_bid + best_ask
-            ) / 2.0
+            live_price = (best_bid + best_ask) / 2.0
             spread_bps = (
-                (best_ask - best_bid)
-                / live_price
-                * 10000.0
+                (best_ask - best_bid) / live_price * 10000.0
                 if live_price > 0
                 else 999.0
             )
-
         elif best_bid > 0:
             live_price = best_bid
             spread_bps = 999.0
-
-        else:
+        elif best_ask > 0:
             live_price = best_ask
+            spread_bps = 999.0
+        else:
+            live_price = 0.0
             spread_bps = 999.0
 
         result[symbol] = {
@@ -640,7 +651,6 @@ def get_market_snapshot():
         }
 
     return result
-
 
 def get_15m_candles(symbol):
     params = {
@@ -657,66 +667,50 @@ def get_15m_candles(symbol):
     )
 
     if not isinstance(data, dict):
-        raise ValueError(
-            "INVALID_CANDLE_RESPONSE"
-        )
+        raise ValueError("INVALID_CANDLE_RESPONSE")
 
     if data.get("s") not in ("ok", "no_data"):
-        raise ValueError(
-            "CANDLE_STATUS_"
-            + str(data.get("s"))
-        )
+        raise ValueError("CANDLE_STATUS_" + str(data.get("s")))
 
-    timestamps = [
-        int(safe_float(x))
-        for x in data.get("t", [])
-    ]
+    raw_t = data.get("t", [])
+    raw_c = data.get("c", [])
+    raw_v = data.get("v", [])
+    n = min(len(raw_t), len(raw_c), len(raw_v))
 
-    closes = [
-        safe_float(x)
-        for x in data.get("c", [])
-    ]
-
-    volumes = [
-        safe_float(x)
-        for x in data.get("v", [])
-    ]
-
-    n = min(
-        len(timestamps),
-        len(closes),
-        len(volumes),
-    )
-
-    timestamps = timestamps[:n]
-    closes = closes[:n]
-    volumes = volumes[:n]
-
-    if len(closes) < 25:
-        raise ValueError(
-            "CANDLES_TOO_SHORT"
-        )
-
-    # Remove currently open 15m candle.
     now = int(time.time())
+    rows = []
 
-    if timestamps:
-        if now - timestamps[-1] < 900:
-            timestamps = timestamps[:-1]
-            closes = closes[:-1]
-            volumes = volumes[:-1]
+    for i in range(n):
+        ts = int(safe_float(raw_t[i], 0.0))
+        close = safe_float(raw_c[i], 0.0)
+        volume = safe_float(raw_v[i], 0.0)
+        if ts <= 0 or close <= 0 or volume < 0:
+            continue
+        # UDF timestamps represent candle start. Only fully closed 15m candles
+        # are allowed into the model; this avoids partial-candle leakage.
+        if ts + 900 > now:
+            continue
+        rows.append((ts, close, volume))
 
-    if len(closes) < 25:
-        raise ValueError(
-            "CANDLES_TOO_SHORT_AFTER_REMOVE"
-        )
+    rows.sort(key=lambda x: x[0])
 
-    return (
-        timestamps,
-        closes,
-        volumes,
-    )
+    if len(rows) < 25:
+        raise ValueError("CANDLES_TOO_SHORT_AFTER_CLOSED_FILTER")
 
+    # Keep one row per timestamp in case an API response contains duplicates.
+    dedup = {}
+    for row in rows:
+        dedup[row[0]] = row
+    rows = [dedup[k] for k in sorted(dedup)]
+
+    if len(rows) < 25:
+        raise ValueError("CANDLES_TOO_SHORT_AFTER_DEDUP")
+
+    timestamps = [r[0] for r in rows]
+    closes = [r[1] for r in rows]
+    volumes = [r[2] for r in rows]
+
+    return timestamps, closes, volumes
 
 def aggregate_15m_to_1h(
     timestamps,
@@ -725,24 +719,10 @@ def aggregate_15m_to_1h(
 ):
     buckets = {}
 
-    for ts, close, volume in zip(
-        timestamps,
-        closes,
-        volumes,
-    ):
-        hour_start = (
-            int(ts) // 3600
-        ) * 3600
-
-        buckets.setdefault(
-            hour_start,
-            [],
-        ).append(
-            (
-                int(ts),
-                close,
-                volume,
-            )
+    for ts, close, volume in zip(timestamps, closes, volumes):
+        hour_start = (int(ts) // 3600) * 3600
+        buckets.setdefault(hour_start, []).append(
+            (int(ts), close, volume)
         )
 
     hour_timestamps = []
@@ -757,38 +737,39 @@ def aggregate_15m_to_1h(
             key=lambda row: row[0],
         )
 
-        if len(rows) < 4:
+        unique = {}
+        for row in rows:
+            unique[row[0]] = row
+        rows = [unique[k] for k in sorted(unique)]
+
+        # A valid 1H candle must contain all four quarter-hour slots.
+        if len(rows) != 4:
+            continue
+
+        expected_timestamps = [
+            hour_start,
+            hour_start + 900,
+            hour_start + 1800,
+            hour_start + 2700,
+        ]
+        actual_timestamps = [row[0] for row in rows]
+
+        if len(set(actual_timestamps)) != 4:
+            continue
+        if actual_timestamps != expected_timestamps:
             continue
 
         if now < hour_start + 3600:
             continue
 
-        hour_timestamps.append(
-            hour_start
-        )
-
-        hour_closes.append(
-            rows[-1][1]
-        )
-
-        hour_volumes.append(
-            sum(
-                row[2]
-                for row in rows
-            )
-        )
+        hour_timestamps.append(hour_start)
+        hour_closes.append(rows[-1][1])
+        hour_volumes.append(sum(row[2] for row in rows))
 
     if len(hour_closes) < 25:
-        raise ValueError(
-            "HOURLY_AGGREGATION_TOO_SHORT"
-        )
+        raise ValueError("HOURLY_AGGREGATION_TOO_SHORT")
 
-    return (
-        hour_timestamps,
-        hour_closes,
-        hour_volumes,
-    )
-
+    return hour_timestamps, hour_closes, hour_volumes
 
 # ============================================================
 # INDICATORS
@@ -1511,7 +1492,9 @@ def fetch_news_items():
             )
 
             if published_at <= 0:
-                published_at = now
+                # Unknown publication time is unsafe for a "fresh news" alert.
+                # Do not turn an old/unparseable item into a fresh signal.
+                continue
 
             age = now - published_at
 
@@ -2382,6 +2365,86 @@ def prune_alert_state(
     return cleaned
 
 
+def append_alert_event(result, alert_type, timestamp=None):
+    now = int(timestamp or time.time())
+    symbol = str(result.get("symbol", "") or "").upper()
+    price = _event_number(result.get("price"), 0.0)
+    score = _event_number(result.get("score"), 0.0)
+
+    event_id_source = "|".join([
+        str(now),
+        str(time.time_ns()),
+        symbol,
+        str(alert_type),
+        str(price),
+        str(score),
+    ])
+    event_id = hashlib.sha256(
+        event_id_source.encode("utf-8")
+    ).hexdigest()
+
+    record = {
+        "schema_version": ALERT_EVENT_SCHEMA_VERSION,
+        "event_id": event_id,
+        "timestamp": now,
+        "timestamp_utc": time.strftime(
+            "%Y-%m-%dT%H:%M:%SZ",
+            time.gmtime(now),
+        ),
+        "symbol": symbol,
+        "alert_type": str(alert_type),
+        "telegram_sent": True,
+        "price": price,
+        "score": score,
+        "fast_score": _event_number(result.get("fast_score"), 0.0),
+        "streak": _event_number(result.get("streak"), 0.0),
+        "order_flow": _event_number(result.get("order_flow"), 0.0),
+        "spread_bps": _event_number(result.get("spread_bps"), 999.0),
+        "rsi": _event_number(result.get("rsi"), 0.0),
+        "structure": _event_number(result.get("structure"), 0.0),
+        "volume_ratio": _event_number(result.get("volume_ratio"), 0.0),
+        "volume_ratio_15m": _event_number(result.get("volume_ratio_15m"), 0.0),
+        "momentum_15m": _event_number(result.get("momentum_15m"), 0.0),
+        "momentum_1h": _event_number(result.get("momentum_1h"), 0.0),
+        "momentum_4h": _event_number(result.get("momentum_4h"), 0.0),
+        "flow_delta": _event_number(result.get("flow_delta"), 0.0),
+        "price_change_since_scan": _event_number(result.get("price_change_since_scan"), 0.0),
+        "breakout_extension_percent": _event_number(result.get("breakout_extension_percent"), 0.0),
+        "news_score": _event_number(result.get("news_score"), 0.0),
+        "news_sentiment": str(result.get("news_sentiment", "") or ""),
+        "news_age_minutes": _event_number(result.get("news_age_minutes"), 999999.0),
+        "news_id": str(result.get("news_id", "") or ""),
+        "news_source": str(result.get("news_source", "") or ""),
+        "pre_move_gate": bool(result.get("pre_move_gate")),
+        "quality": bool(result.get("quality")),
+        "high_risk_jump": bool(result.get("high_risk_jump")),
+        "fast_pre_move": bool(result.get("fast_pre_move")),
+        "micro_early": bool(result.get("micro_early")),
+    }
+
+    try:
+        directory = os.path.dirname(ALERT_EVENT_LOG_FULL_PATH)
+        if directory:
+            os.makedirs(directory, exist_ok=True)
+        with open(
+            ALERT_EVENT_LOG_FULL_PATH,
+            "a",
+            encoding="utf-8",
+        ) as handle:
+            handle.write(
+                json.dumps(
+                    record,
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                )
+                + "\n"
+            )
+        return True
+    except Exception as exc:
+        print("Alert event log error:", exc)
+        return False
+
+
 def smart_alert(
     result,
     alert_state,
@@ -2526,6 +2589,7 @@ def smart_alert(
             entry[key] = old[key]
 
     alert_state[symbol] = entry
+    append_alert_event(result, "CONFIRMED")
     return True
 
 
@@ -2628,6 +2692,7 @@ def fast_alert(
     )
 
     alert_state[symbol] = current
+    append_alert_event(result, "FAST")
     return True
 
 
@@ -2678,6 +2743,7 @@ def micro_alert(result, alert_state, alerts_enabled):
     current["micro_price"] = safe_float(result.get("price"), 0.0)
     current["micro_alert_type"] = "MICRO"
     alert_state[symbol] = current
+    append_alert_event(result, "MICRO")
     return True
 
 
@@ -2834,6 +2900,7 @@ def news_alert(
     )
 
     alert_state[symbol] = current
+    append_alert_event(result, "NEWS")
     return True
 
 
@@ -2843,7 +2910,7 @@ def news_alert(
 
 def run_scan():
     print("=" * 70)
-    print("NOBITEX EARLY MOVE RADAR - ONE-TIME CLEAN FINAL")
+    print("NOBITEX EARLY MOVE RADAR - FINAL 5.0")
     print(time.strftime(
         "%Y-%m-%d %H:%M:%S"
     ))
@@ -3240,8 +3307,10 @@ def run_scan():
     )
 
     print(
-        "SCAN FINISHED."
+        "Alert journal:",
+        len(load_json(ALERT_EVENT_LOG_PATH, [])),
     )
+    print("SCAN FINISHED.")
 
 
 def main():
