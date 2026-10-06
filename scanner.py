@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-NOBITEX EARLY MOVE RADAR - FINAL 5.0
+NOBITEX EARLY MOVE RADAR - FINAL 5.1-INTEGRATED
 
 هدف:
 - اسکن بازار USDT نوبیتکس
@@ -16,7 +16,7 @@ NOBITEX EARLY MOVE RADAR - FINAL 5.0
 - بدون کتابخانه خارجی
 """
 
-SCANNER_VERSION = "5.0"
+SCANNER_VERSION = "5.1-INTEGRATED"
 
 import os
 import urllib.request
@@ -229,6 +229,16 @@ ALERT_EVENT_LOG_FULL_PATH = os.path.join(
     WORKSPACE,
     ALERT_EVENT_LOG_PATH,
 )
+
+# Fused multi-scan early-warning layer. This is deliberately separate
+# from the core technical score so the existing scoring engine remains
+# unchanged and measurable.
+TREND_HISTORY_DEPTH = 6
+TREND_EARLY_MIN_SCORE = 55
+TREND_EARLY_MIN_DELTA = 3.0
+TREND_EARLY_MIN_ACCELERATION = 0.0
+TREND_EARLY_MIN_POSITIVE_STEPS = 2
+TREND_EARLY_COOLDOWN_SECONDS = 90 * 60
 
 STATE_PATH = os.path.join(
     WORKSPACE,
@@ -2027,6 +2037,53 @@ def analyze_symbol(
 # PERSISTENCE
 # ============================================================
 
+def _build_score_history(previous, result):
+    history = previous.get("history", [])
+    if not isinstance(history, list):
+        history = []
+
+    clean = []
+    for item in history[-TREND_HISTORY_DEPTH:]:
+        if not isinstance(item, dict):
+            continue
+        ts = int(safe_float(item.get("timestamp"), 0))
+        score = safe_float(item.get("score"), 0.0)
+        if ts > 0:
+            clean.append({
+                "timestamp": ts,
+                "score": score,
+                "price": safe_float(item.get("price"), 0.0),
+                "order_flow": safe_float(item.get("order_flow"), 0.0),
+            })
+
+    clean.append({
+        "timestamp": int(time.time()),
+        "score": safe_float(result.get("score"), 0.0),
+        "price": safe_float(result.get("price"), 0.0),
+        "order_flow": safe_float(result.get("order_flow"), 0.0),
+    })
+    return clean[-TREND_HISTORY_DEPTH:]
+
+
+def _history_trend_metrics(history, current_score):
+    scores = [safe_float(x.get("score"), 0.0) for x in history]
+    if not scores:
+        return 0, 0.0, 0.0, 0
+
+    delta = 0.0
+    acceleration = 0.0
+    positive_steps = 0
+
+    if len(scores) >= 2:
+        delta = current_score - scores[-2]
+        steps = [scores[i] - scores[i - 1] for i in range(1, len(scores))]
+        positive_steps = sum(1 for step in steps[-3:] if step > 1.0)
+        if len(steps) >= 2:
+            acceleration = steps[-1] - steps[-2]
+
+    return len(scores), delta, acceleration, positive_steps
+
+
 def apply_persistence(
     result,
     previous_state,
@@ -2072,6 +2129,11 @@ def apply_persistence(
             ),
             0.0,
         )
+    )
+
+    history = _build_score_history(previous, result)
+    history_depth, score_delta_1, score_acceleration, positive_score_steps = (
+        _history_trend_metrics(history, current_score)
     )
 
     state_is_fresh = (
@@ -2149,6 +2211,23 @@ def apply_persistence(
         and not result.get("high_risk_jump")
     )
 
+    trend_early = (
+        state_is_fresh
+        and history_depth >= 3
+        and current_score >= TREND_EARLY_MIN_SCORE
+        and score_delta_1 >= TREND_EARLY_MIN_DELTA
+        and score_acceleration > TREND_EARLY_MIN_ACCELERATION
+        and positive_score_steps >= TREND_EARLY_MIN_POSITIVE_STEPS
+        and result.get("structure", 0) >= 4
+        and result.get("volume_ratio", 0) >= 1.0
+        and result.get("order_flow", 0) >= 0.95
+        and 42 <= result.get("rsi", 50) <= 72
+        and result.get("momentum_1h", 99) <= 3.0
+        and result.get("momentum_4h", 99) <= 8.0
+        and result.get("resistance", 99) <= 5.0
+        and not result.get("high_risk_jump")
+    )
+
     strengthening = (
         current_score
         >= old_score + 5
@@ -2163,6 +2242,13 @@ def apply_persistence(
         and current_score >= 75
         and streak >= 2
     )
+
+    result["history_depth"] = history_depth
+    result["score_delta_1"] = score_delta_1
+    result["score_acceleration"] = score_acceleration
+    result["positive_score_steps"] = positive_score_steps
+    result["trend_early"] = trend_early
+    result["score_history"] = history
 
     result["previous_score"] = (
         old_score
@@ -2347,6 +2433,15 @@ def prune_alert_state(
                     0,
                 )
             ),
+            int(
+                safe_float(
+                    entry.get(
+                        "trend_timestamp",
+                        0,
+                    ),
+                    0,
+                )
+            ),
         ]
 
         latest = max(
@@ -2398,6 +2493,12 @@ def append_alert_event(result, alert_type, timestamp=None):
         "score": score,
         "fast_score": _event_number(result.get("fast_score"), 0.0),
         "streak": _event_number(result.get("streak"), 0.0),
+        "history_depth": _event_number(result.get("history_depth"), 0.0),
+        "previous_score": _event_number(result.get("previous_score"), 0.0),
+        "score_delta_1": _event_number(result.get("score_delta_1"), 0.0),
+        "score_acceleration": _event_number(result.get("score_acceleration"), 0.0),
+        "positive_score_steps": _event_number(result.get("positive_score_steps"), 0.0),
+        "trend_early": bool(result.get("trend_early")),
         "order_flow": _event_number(result.get("order_flow"), 0.0),
         "spread_bps": _event_number(result.get("spread_bps"), 999.0),
         "rsi": _event_number(result.get("rsi"), 0.0),
@@ -2443,6 +2544,56 @@ def append_alert_event(result, alert_type, timestamp=None):
     except Exception as exc:
         print("Alert event log error:", exc)
         return False
+
+
+def build_trend_early_alert(result):
+    return (
+        "🟣 TREND EARLY PRE-MOVE\n\n"
+        f"🪙 {result['symbol']}\n"
+        f"💰 Price: {result['price']:.8g}\n"
+        f"⭐ Score: {result['score']}/100\n"
+        f"📈 Score Δ: {result.get('score_delta_1', 0.0):+.1f}\n"
+        f"🚀 Score acceleration: {result.get('score_acceleration', 0.0):+.1f}\n"
+        f"🔥 Positive steps: {result.get('positive_score_steps', 0)}\n"
+        f"🌊 Order flow: {result.get('order_flow', 0.0):.2f}\n"
+        f"📊 Volume: {result.get('volume_ratio', 0.0):.2f}x\n"
+        f"📈 RSI: {result.get('rsi', 0.0):.1f}\n"
+        f"🏗 Structure: {result.get('structure', 0)}/8\n"
+        f"15m: {result.get('momentum_15m', 0.0):+.2f}% | "
+        f"1H: {result.get('momentum_1h', 0.0):+.2f}% | "
+        f"4H: {result.get('momentum_4h', 0.0):+.2f}%\n\n"
+        "🟣 چند اسکن متوالی در حال تقویت است؛ هنوز جهش اصلی تأیید نشده است."
+    )
+
+
+def trend_early_alert(result, alert_state, alerts_enabled):
+    if not alerts_enabled or not result.get("trend_early"):
+        return False
+
+    symbol = result["symbol"]
+    old = alert_state.get(symbol, {})
+    old_timestamp = int(safe_float(old.get("trend_timestamp"), 0))
+    old_score = safe_float(old.get("trend_score"), 0.0)
+    now = int(time.time())
+
+    if (
+        old_timestamp > 0
+        and now - old_timestamp < TREND_EARLY_COOLDOWN_SECONDS
+        and result["score"] < old_score + 5
+    ):
+        return False
+
+    if not telegram_send(build_trend_early_alert(result)):
+        return False
+
+    current = alert_state.get(symbol, {})
+    current["trend_timestamp"] = now
+    current["trend_score"] = result["score"]
+    current["trend_price"] = safe_float(result.get("price"), 0.0)
+    current["trend_alert_type"] = "TREND_EARLY"
+    alert_state[symbol] = current
+    append_alert_event(result, "TREND_EARLY")
+    return True
 
 
 def smart_alert(
@@ -2584,6 +2735,10 @@ def smart_alert(
         "micro_score",
         "micro_price",
         "micro_alert_type",
+        "trend_timestamp",
+        "trend_score",
+        "trend_price",
+        "trend_alert_type",
     ):
         if key in old:
             entry[key] = old[key]
@@ -2910,7 +3065,7 @@ def news_alert(
 
 def run_scan():
     print("=" * 70)
-    print("NOBITEX EARLY MOVE RADAR - FINAL 5.0")
+    print("NOBITEX EARLY MOVE RADAR - FINAL 5.1-INTEGRATED")
     print(time.strftime(
         "%Y-%m-%d %H:%M:%S"
     ))
@@ -3045,6 +3200,7 @@ def run_scan():
             "price": result.get("price", 0.0),
             "order_flow": result.get("order_flow", 0.0),
             "spread_bps": result.get("spread_bps", 999.0),
+            "history": result.get("score_history", []),
         }
 
     # Failed markets keep prior state.
@@ -3182,10 +3338,17 @@ def run_scan():
             f"{news_mark}"
         )
 
+    trend_early_alert_count = 0
     micro_alert_count = 0
     news_alert_count = 0
     fast_alert_count = 0
     confirmed_alert_count = 0
+
+    # TREND_EARLY uses multi-scan score acceleration to detect strengthening
+    # before the main confirmation threshold is reached.
+    for result in results:
+        if trend_early_alert(result, alert_state, coverage_ok):
+            trend_early_alert_count += 1
 
     # MICRO first: current price/orderbook changes can precede a closed 15m candle.
     for result in results:
@@ -3246,6 +3409,11 @@ def run_scan():
     print("-" * 70)
 
     for result in watchlist[:15]:
+        trend_mark = ""
+
+        if result.get("trend_early") and not result.get("high_risk_jump"):
+            trend_mark = " 🟣TREND"
+
         fast_mark = ""
 
         if (
@@ -3282,10 +3450,15 @@ def run_scan():
             f"vol={result['volume_ratio']:.2f}x "
             f"15mVol={result['volume_ratio_15m']:.2f}x "
             f"flow={result['order_flow']:.2f}"
-            f"{fast_mark}{news_mark}"
+            f"{trend_mark}{fast_mark}{news_mark}"
         )
 
     print()
+    print(
+        "TREND_EARLY Telegram alerts sent:",
+        trend_early_alert_count,
+    )
+
     print(
         "MICRO Telegram alerts sent:",
         micro_alert_count,
