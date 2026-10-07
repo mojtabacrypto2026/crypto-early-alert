@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791391337,
-  "generated_at_iso": "2026-10-07T16:42:17+00:00",
+  "generated_at": 1791409014,
+  "generated_at_iso": "2026-10-07T21:36:54+00:00",
   "measurement_source": "NOBITEX_UDF_1M",
   "future_leakage_policy": "Use latest 1m close at or before each target; never a future candle.",
   "signal_types": [
@@ -57,43 +57,37 @@
             "available": false,
             "target_timestamp": 1791391637,
             "target_timestamp_iso": "2026-10-07T16:47:17+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "15m": {
             "available": false,
             "target_timestamp": 1791392237,
             "target_timestamp_iso": "2026-10-07T16:57:17+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "30m": {
             "available": false,
             "target_timestamp": 1791393137,
             "target_timestamp_iso": "2026-10-07T17:12:17+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "1h": {
             "available": false,
             "target_timestamp": 1791394937,
             "target_timestamp_iso": "2026-10-07T17:42:17+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "2h": {
             "available": false,
             "target_timestamp": 1791398537,
             "target_timestamp_iso": "2026-10-07T18:42:17+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "4h": {
             "available": false,
             "target_timestamp": 1791405737,
             "target_timestamp_iso": "2026-10-07T20:42:17+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           }
         },
         "mfe_pct": null,
