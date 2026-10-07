@@ -1,69 +1,27 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-NOBITEX SIGNAL PERFORMANCE TRACKER - ONE-TIME CLEAN FINAL
+"""NOBITEX SIGNAL PERFORMANCE TRACKER - V5 EXACT OUTCOMES."""
 
-Tracks:
-- FAST
-- CONFIRMED
-- NEWS
-- MICRO
-
-Checkpoints:
-15m, 30m, 1h, 2h, 4h
-
-Also tracks:
-- MFE using sampled current price
-- first +2%
-- first +5%
-"""
-
-import os
-import urllib.request
-import urllib.parse
 import json
+import math
+import os
 import time
+import urllib.parse
+import urllib.request
+from collections import defaultdict
+from datetime import datetime, timezone
 
+BASE_URL = "https://api.nobitex.ir"
+WORKSPACE = os.path.dirname(os.path.abspath(__file__))
 
-BASE_URL = "https://apiv2.nobitex.ir"
+EVENT_LOG_PATH = os.path.join(WORKSPACE, "nobitex_alert_events.jsonl")
+LEGACY_STATE_PATH = os.path.join(WORKSPACE, "nobitex_telegram_alert_state.json")
+OUTPUT_PATH = os.path.join(WORKSPACE, "nobitex_signal_performance_state.json")
+START_PATH = os.path.join(WORKSPACE, "nobitex_performance_tracking_start.json")
 
-WORKSPACE = os.environ.get(
-    "GITHUB_WORKSPACE",
-    ".",
-)
-
-ALERT_STATE_PATH = os.path.join(
-    WORKSPACE,
-    "nobitex_telegram_alert_state.json",
-)
-
-PERFORMANCE_STATE_PATH = os.path.join(
-    WORKSPACE,
-    "nobitex_signal_performance_state.json",
-)
-
-TRACKING_START_PATH = os.path.join(
-    WORKSPACE,
-    "nobitex_performance_tracking_start.json",
-)
-
-TRACKING_SCHEMA_VERSION = 1
-PERFORMANCE_SCHEMA_VERSION = 4
-MIN_RELIABLE_4H_SAMPLES = 100
-
-HTTP_TIMEOUT = 20
-HTTP_RETRIES = 3
-
-TELEGRAM_BOT_TOKEN = os.environ.get(
-    "TELEGRAM_BOT_TOKEN",
-    "",
-).strip()
-
-TELEGRAM_CHAT_ID = os.environ.get(
-    "TELEGRAM_CHAT_ID",
-    "",
-).strip()
-
+SIGNAL_TYPES = ("MICRO", "FAST", "CONFIRMED", "NEWS", "TREND_EARLY")
 CHECKPOINTS = {
+    "5m": 5 * 60,
     "15m": 15 * 60,
     "30m": 30 * 60,
     "1h": 60 * 60,
@@ -71,1292 +29,443 @@ CHECKPOINTS = {
     "4h": 4 * 60 * 60,
 }
 
-
-def http_get_json(url, params=None):
-    if params:
-        url = url + "?" + urllib.parse.urlencode(params)
-
-    last_error = None
-
-    for attempt in range(HTTP_RETRIES):
-        try:
-            request = urllib.request.Request(
-                url,
-                headers={
-                    "User-Agent": "Nobitex-Performance-Tracker/5.0",
-                    "Accept": "application/json",
-                },
-                method="GET",
-            )
-
-            with urllib.request.urlopen(
-                request,
-                timeout=HTTP_TIMEOUT,
-            ) as response:
-                return json.loads(
-                    response.read().decode(
-                        "utf-8"
-                    )
-                )
-
-        except Exception as exc:
-            last_error = exc
-
-            if attempt < HTTP_RETRIES - 1:
-                time.sleep(
-                    1.0 * (
-                        attempt + 1
-                    )
-                )
-
-    raise last_error
+TRACKING_SCHEMA_VERSION = 2
+PERFORMANCE_SCHEMA_VERSION = 5
+MIN_RELIABLE_4H_SAMPLES = 100
+MAX_EVENTS = 1500
+REQUEST_TIMEOUT = 15
+REQUEST_DELAY = 0.03
 
 
-def http_post_json(url, data):
-    payload = json.dumps(data).encode(
-        "utf-8"
-    )
-
-    request = urllib.request.Request(
-        url,
-        data=payload,
-        headers={
-            "User-Agent": "Nobitex-Performance-Tracker/5.0",
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
-        method="POST",
-    )
-
-    last_error = None
-
-    for attempt in range(HTTP_RETRIES):
-        try:
-            with urllib.request.urlopen(
-                request,
-                timeout=HTTP_TIMEOUT,
-            ) as response:
-                return json.loads(
-                    response.read().decode(
-                        "utf-8"
-                    )
-                )
-
-        except Exception as exc:
-            last_error = exc
-
-            if attempt < HTTP_RETRIES - 1:
-                time.sleep(
-                    1.0 * (
-                        attempt + 1
-                    )
-                )
-
-    raise last_error
+def now_ts():
+    return int(time.time())
 
 
-def telegram_send(message):
-    if (
-        not TELEGRAM_BOT_TOKEN
-        or not TELEGRAM_CHAT_ID
-    ):
-        return False
-
-    url = (
-        "https://api.telegram.org/bot"
-        + TELEGRAM_BOT_TOKEN
-        + "/sendMessage"
-    )
-
+def iso(ts):
     try:
-        result = http_post_json(
-            url,
-            {
-                "chat_id": TELEGRAM_CHAT_ID,
-                "text": message,
-                "disable_web_page_preview": True,
-            },
-        )
-
-        return bool(
-            result.get("ok")
-        )
-
-    except Exception as exc:
-        print(
-            "TELEGRAM ERROR:",
-            exc,
-        )
-        return False
+        return datetime.fromtimestamp(float(ts), tz=timezone.utc).isoformat()
+    except Exception:
+        return None
 
 
 def load_json(path, default):
     try:
-        if not os.path.exists(path):
-            return default
-
-        with open(
-            path,
-            "r",
-            encoding="utf-8",
-        ) as handle:
-            return json.load(handle)
-
-    except Exception as exc:
-        print(
-            "LOAD ERROR:",
-            path,
-            exc,
-        )
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
         return default
 
 
 def save_json(path, data):
-    temp = path + ".tmp"
-
-    with open(
-        temp,
-        "w",
-        encoding="utf-8",
-    ) as handle:
-        json.dump(
-            data,
-            handle,
-            ensure_ascii=False,
-            indent=2,
-        )
-
-    os.replace(
-        temp,
-        path,
-    )
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    os.replace(tmp, path)
 
 
-def safe_float(
-    value,
-    default=0.0,
-):
+def parse_ts(value):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return int(value / 1000) if value > 10_000_000_000 else int(value)
+    s = str(value).strip()
+    if not s:
+        return None
     try:
-        result = float(value)
-
-        if result == result:
-            return result
-
+        return parse_ts(float(s))
     except Exception:
         pass
+    try:
+        return int(datetime.fromisoformat(s.replace("Z", "+00:00")).timestamp())
+    except Exception:
+        return None
 
-    return default
+
+def safe_float(value):
+    try:
+        x = float(value)
+        return x if math.isfinite(x) else None
+    except Exception:
+        return None
 
 
-def get_tracking_start(now):
-    marker = load_json(
-        TRACKING_START_PATH,
-        {},
+def normalize_symbol(value):
+    if not value:
+        return None
+    return str(value).upper().strip().replace("/", "").replace("_", "")
+
+
+def normalize_signal_type(value):
+    if not value:
+        return None
+    s = str(value).upper().strip()
+    return {
+        "TREND": "TREND_EARLY",
+        "TREND-EARLY": "TREND_EARLY",
+        "MICRO_EARLY": "MICRO",
+        "FAST_EARLY": "FAST",
+    }.get(s, s)
+
+
+def read_event_log():
+    out = []
+    if not os.path.exists(EVENT_LOG_PATH):
+        return out
+    try:
+        with open(EVENT_LOG_PATH, "r", encoding="utf-8") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                try:
+                    x = json.loads(line)
+                    if isinstance(x, dict):
+                        out.append(x)
+                except Exception:
+                    pass
+    except Exception:
+        pass
+    return out
+
+
+def extract_event(raw):
+    if not isinstance(raw, dict):
+        return None
+
+    symbol = normalize_symbol(
+        raw.get("symbol") or raw.get("market") or raw.get("pair")
+        or raw.get("ticker")
+    )
+    kind = normalize_signal_type(
+        raw.get("alert_type") or raw.get("signal_type")
+        or raw.get("type") or raw.get("event_type")
+    )
+    ts = parse_ts(
+        raw.get("timestamp") or raw.get("ts") or raw.get("created_at")
+        or raw.get("time") or raw.get("alert_timestamp")
+    )
+    price = safe_float(
+        raw.get("price") or raw.get("entry_price")
+        or raw.get("alert_price")
     )
 
-    if (
-        isinstance(marker, dict)
-        and marker.get(
-            "schema_version"
-        )
-        == TRACKING_SCHEMA_VERSION
+    if not symbol or kind not in SIGNAL_TYPES or not ts:
+        return None
+    if price is None or price <= 0:
+        return None
+
+    event = {
+        "id": str(raw.get("id") or f"{symbol}:{kind}:{ts}:{price}"),
+        "symbol": symbol,
+        "signal_type": kind,
+        "timestamp": int(ts),
+        "timestamp_iso": iso(ts),
+        "price": price,
+        "source": "EVENT_LOG",
+    }
+
+    for key in (
+        "score", "trend_score", "score_delta_1", "score_acceleration",
+        "positive_score_steps", "order_flow", "rsi", "structure",
+        "volume_ratio", "momentum_15m", "momentum_1h", "momentum_4h",
+        "resistance", "high_risk_jump", "history_depth",
     ):
-        started_at = int(
-            safe_float(
-                marker.get(
-                    "started_at",
-                    0,
-                ),
-                0,
-            )
-        )
+        if key in raw:
+            event[key] = raw[key]
+    return event
 
-        if started_at > 0:
-            return started_at
 
-    started_at = now
+def load_events():
+    events = [e for r in read_event_log() if (e := extract_event(r))]
 
-    save_json(
-        TRACKING_START_PATH,
-        {
-            "schema_version":
-                TRACKING_SCHEMA_VERSION,
-            "started_at":
-                started_at,
-            "created_at":
-                started_at,
-        },
+    if not events:
+        legacy = load_json(LEGACY_STATE_PATH, {})
+        if isinstance(legacy, dict):
+            candidates = legacy.get("alerts") or legacy.get("events") or []
+            if isinstance(candidates, dict):
+                candidates = list(candidates.values())
+            if isinstance(candidates, list):
+                for raw in candidates:
+                    e = extract_event(raw)
+                    if e:
+                        e["source"] = "LEGACY_STATE"
+                        events.append(e)
+
+    unique = {e["id"]: e for e in events}
+    return sorted(unique.values(), key=lambda x: x["timestamp"])[-MAX_EVENTS:]
+
+
+def http_json(url):
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "NobitexSignalPerformanceTracker/5.0"},
     )
-
-    return started_at
-
-
-def get_prices():
-    data = http_get_json(
-        BASE_URL
-        + "/v3/orderbook/all"
-    )
-
-    prices = {}
-
-    if not isinstance(
-        data,
-        dict,
-    ):
-        return prices
-
-    for raw_symbol, book in data.items():
-        symbol = str(
-            raw_symbol
-        ).upper()
-
-        if not symbol.endswith(
-            "USDT"
-        ):
-            continue
-
-        if not isinstance(
-            book,
-            dict,
-        ):
-            continue
-
-        bids = book.get(
-            "bids",
-            [],
-        )
-
-        asks = book.get(
-            "asks",
-            [],
-        )
-
-        bid = 0.0
-        ask = 0.0
-
-        try:
-            if bids:
-                bid = safe_float(
-                    bids[0][0]
-                )
-
-            if asks:
-                ask = safe_float(
-                    asks[0][0]
-                )
-
-        except Exception:
-            continue
-
-        if bid > 0 and ask > 0:
-            prices[symbol] = (
-                bid + ask
-            ) / 2.0
-
-        elif bid > 0:
-            prices[symbol] = bid
-
-        elif ask > 0:
-            prices[symbol] = ask
-
-    return prices
+    with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as r:
+        return json.loads(r.read().decode("utf-8"))
 
 
-def build_stats(values):
-    if not values:
-        return {
-            "count": 0,
-            "positive": 0,
-            "positive_rate": 0.0,
-            "average_return": 0.0,
-            "best_return": 0.0,
-            "worst_return": 0.0,
-            "hit_2pct": 0,
-            "hit_5pct": 0,
-        }
+def get_historical_closes(symbol, start_ts, end_ts):
+    params = {
+        "symbol": symbol,
+        "resolution": "1",
+        "from": max(0, int(start_ts) - 120),
+        "to": int(end_ts) + 120,
+    }
+    url = BASE_URL + "/market/udf/history?" + urllib.parse.urlencode(params)
+
+    try:
+        data = http_json(url)
+    except Exception:
+        return []
+
+    if not isinstance(data, dict):
+        return []
+    if str(data.get("s", "")).lower() not in ("ok", "no_data"):
+        return []
+
+    result = []
+    for t, c in zip(data.get("t") or [], data.get("c") or []):
+        ts = parse_ts(t)
+        price = safe_float(c)
+        if ts is not None and price is not None and price > 0:
+            result.append((int(ts), price))
+    return sorted(result)
+
+
+def price_at_or_before(prices, target_ts):
+    best = None
+    for ts, price in prices:
+        if ts <= target_ts:
+            best = (ts, price)
+        else:
+            break
+    return best
+
+
+def pct(entry, price):
+    if entry <= 0 or price is None:
+        return None
+    return (price / entry - 1.0) * 100.0
+
+
+def outcome(event, prices):
+    start = event["timestamp"]
+    entry = event["price"]
+    checkpoints = {}
+
+    for label, seconds in CHECKPOINTS.items():
+        target = start + seconds
+        hit = price_at_or_before(prices, target)
+        if hit is None:
+            checkpoints[label] = {
+                "available": False,
+                "target_timestamp": target,
+                "target_timestamp_iso": iso(target),
+                "source": "NOBITEX_UDF_1M",
+            }
+        else:
+            ts, price = hit
+            checkpoints[label] = {
+                "available": True,
+                "target_timestamp": target,
+                "target_timestamp_iso": iso(target),
+                "actual_timestamp": ts,
+                "actual_timestamp_iso": iso(ts),
+                "price": price,
+                "change_pct": pct(entry, price),
+                "source": "NOBITEX_UDF_1M",
+            }
+
+    window = [(ts, p) for ts, p in prices
+              if start <= ts <= start + CHECKPOINTS["4h"]]
+    changes = [pct(entry, p) for _, p in window if pct(entry, p) is not None]
+    mfe = max(changes) if changes else None
+    mae = min(changes) if changes else None
+
+    mfe_ts = next(
+        (ts for ts, p in window if pct(entry, p) == mfe), None
+    ) if mfe is not None else None
+    mae_ts = next(
+        (ts for ts, p in window if pct(entry, p) == mae), None
+    ) if mae is not None else None
 
     return {
-        "count": len(values),
-        "positive": sum(
-            1
-            for value in values
-            if value > 0
-        ),
-        "positive_rate": (
-            sum(
-                1
-                for value in values
-                if value > 0
-            )
-            / len(values)
-            * 100.0
-        ),
-        "average_return": (
-            sum(values)
-            / len(values)
-        ),
-        "best_return": max(
-            values
-        ),
-        "worst_return": min(
-            values
-        ),
-        "hit_2pct": sum(
-            1
-            for value in values
-            if value >= 2.0
-        ),
-        "hit_5pct": sum(
-            1
-            for value in values
-            if value >= 5.0
-        ),
+        "checkpoints": checkpoints,
+        "mfe_pct": mfe,
+        "mfe_timestamp": mfe_ts,
+        "mfe_timestamp_iso": iso(mfe_ts),
+        "mae_pct": mae,
+        "mae_timestamp": mae_ts,
+        "mae_timestamp_iso": iso(mae_ts),
+        "source": "NOBITEX_UDF_1M",
     }
 
 
-def return_percent(
-    start,
-    current,
-):
-    if start <= 0:
-        return 0.0
+def threshold_hit(event, prices, threshold):
+    for ts, price in prices:
+        if ts < event["timestamp"]:
+            continue
+        change = pct(event["price"], price)
+        if change is not None and change >= threshold:
+            return {
+                "hit": True,
+                "threshold_pct": threshold,
+                "timestamp": ts,
+                "timestamp_iso": iso(ts),
+                "price": price,
+                "lead_time_seconds": ts - event["timestamp"],
+                "source": "NOBITEX_UDF_1M",
+            }
+    return {
+        "hit": False,
+        "threshold_pct": threshold,
+        "source": "NOBITEX_UDF_1M",
+    }
 
-    return (
-        (current - start)
-        / start
-    ) * 100.0
+
+def tracking_start(events):
+    old = load_json(START_PATH, {})
+    if isinstance(old, dict) and old.get("started_at"):
+        return old
+
+    ts = min((e["timestamp"] for e in events), default=now_ts())
+    data = {
+        "tracking_schema_version": TRACKING_SCHEMA_VERSION,
+        "started_at": ts,
+        "started_at_iso": iso(ts),
+        "created_at": now_ts(),
+        "created_at_iso": iso(now_ts()),
+        "measurement_reset_reason":
+            "V5 exact outcomes; no later workflow current-price checkpoints.",
+    }
+    try:
+        save_json(START_PATH, data)
+    except Exception:
+        pass
+    return data
+
+
+def summarize(events):
+    result = {}
+    for kind in SIGNAL_TYPES:
+        rows = [e for e in events if e["signal_type"] == kind]
+        stats = {
+            "signals": len(rows),
+            "available": {},
+            "avg_change_pct": {},
+            "median_change_pct": {},
+            "positive_rate_pct": {},
+            "mfe_avg_pct": None,
+            "mae_avg_pct": None,
+            "threshold_hits": {"+1%": 0, "+2%": 0, "+5%": 0},
+        }
+
+        for label in CHECKPOINTS:
+            values = [
+                e["outcome"]["checkpoints"][label]["change_pct"]
+                for e in rows
+                if e.get("outcome", {}).get("checkpoints", {}).get(label, {})
+                .get("available")
+                and e["outcome"]["checkpoints"][label].get("change_pct")
+                is not None
+            ]
+            stats["available"][label] = len(values)
+            if values:
+                ordered = sorted(values)
+                mid = len(ordered) // 2
+                stats["avg_change_pct"][label] = sum(values) / len(values)
+                stats["median_change_pct"][label] = (
+                    ordered[mid] if len(ordered) % 2
+                    else (ordered[mid - 1] + ordered[mid]) / 2
+                )
+                stats["positive_rate_pct"][label] = (
+                    sum(x > 0 for x in values) / len(values) * 100
+                )
+            else:
+                stats["avg_change_pct"][label] = None
+                stats["median_change_pct"][label] = None
+                stats["positive_rate_pct"][label] = None
+
+        mfes = [e["outcome"]["mfe_pct"] for e in rows
+                if e.get("outcome", {}).get("mfe_pct") is not None]
+        maes = [e["outcome"]["mae_pct"] for e in rows
+                if e.get("outcome", {}).get("mae_pct") is not None]
+        stats["mfe_avg_pct"] = sum(mfes) / len(mfes) if mfes else None
+        stats["mae_avg_pct"] = sum(maes) / len(maes) if maes else None
+
+        for threshold in (1, 2, 5):
+            key = f"+{threshold}%"
+            stats["threshold_hits"][key] = sum(
+                e.get("threshold_hits", {}).get(key, {}).get("hit", False)
+                for e in rows
+            )
+
+        result[kind] = stats
+    return result
 
 
 def main():
-    now = int(time.time())
+    events = load_events()
+    start = tracking_start(events)
+    current = now_ts()
 
-    tracking_start = (
-        get_tracking_start(
-            now
-        )
-    )
+    grouped = defaultdict(list)
+    for e in events:
+        grouped[e["symbol"]].append(e)
 
-    print("=" * 70)
-    print(
-        "NOBITEX SIGNAL PERFORMANCE TRACKER - ONE-TIME CLEAN FINAL"
-    )
-    print(
-        time.strftime(
-            "%Y-%m-%d %H:%M:%S"
-        )
-    )
-    print(
-        "Tracking started:",
-        tracking_start,
-    )
-    print("=" * 70)
+    prices_by_symbol = {}
+    for symbol, rows in grouped.items():
+        a = min(e["timestamp"] for e in rows)
+        b = max(e["timestamp"] for e in rows) + CHECKPOINTS["4h"]
+        prices_by_symbol[symbol] = get_historical_closes(symbol, a, b)
+        time.sleep(REQUEST_DELAY)
 
-    alert_state = load_json(
-        ALERT_STATE_PATH,
-        {},
-    )
-
-    performance = load_json(
-        PERFORMANCE_STATE_PATH,
-        {},
-    )
-
-    if (
-        not isinstance(
-            performance,
-            dict,
-        )
-        or performance.get(
-            "schema_version"
-        )
-        != PERFORMANCE_SCHEMA_VERSION
-    ):
-        performance = {
-            "schema_version":
-                PERFORMANCE_SCHEMA_VERSION,
-            "events": {},
-            "milestones": {},
-            "statistics": {},
-            "reliability": {
-                "minimum_required_4h":
-                    MIN_RELIABLE_4H_SAMPLES,
-                "completed_4h": 0,
-                "reliable": False,
-            },
+    measured = []
+    for event in events:
+        prices = prices_by_symbol.get(event["symbol"], [])
+        row = dict(event)
+        row["outcome"] = outcome(event, prices)
+        row["threshold_hits"] = {
+            "+1%": threshold_hit(event, prices, 1.0),
+            "+2%": threshold_hit(event, prices, 2.0),
+            "+5%": threshold_hit(event, prices, 5.0),
         }
 
-        print(
-            "Clean performance dataset initialized."
-        )
+        for label, seconds in CHECKPOINTS.items():
+            cp = row["outcome"]["checkpoints"].get(label)
+            if cp and event["timestamp"] + seconds > current:
+                cp["available"] = False
+                cp["censored"] = True
+        measured.append(row)
 
-    if not isinstance(
-        performance.get(
-            "events"
-        ),
-        dict,
-    ):
-        performance["events"] = {}
+    summary = summarize(measured)
+    reliable_4h = summary["TREND_EARLY"]["available"].get("4h", 0)
 
-    if not isinstance(
-        performance.get(
-            "milestones"
-        ),
-        dict,
-    ):
-        performance["milestones"] = {}
-
-    try:
-        current_prices = get_prices()
-
-    except Exception as exc:
-        print(
-            "CURRENT PRICE FETCH FAILED:",
-            exc,
-        )
-        return
-
-    print(
-        "Current prices:",
-        len(current_prices),
-    )
-
-    # --------------------------------------------------------
-    # REGISTER MICRO / FAST / CONFIRMED / NEWS
-    # --------------------------------------------------------
-
-    for symbol, alert in (
-        alert_state.items()
-    ):
-        if not isinstance(
-            alert,
-            dict,
-        ):
-            continue
-
-        candidates = []
-
-        micro_timestamp = int(
-            safe_float(
-                alert.get(
-                    "micro_timestamp",
-                    0,
-                ),
-                0,
-            )
-        )
-
-        if (
-            micro_timestamp
-            >= tracking_start
-        ):
-            candidates.append(
-                (
-                    "MICRO",
-                    micro_timestamp,
-                )
-            )
-
-        fast_timestamp = int(
-            safe_float(
-                alert.get(
-                    "fast_timestamp",
-                    0,
-                ),
-                0,
-            )
-        )
-
-        if (
-            fast_timestamp
-            >= tracking_start
-        ):
-            candidates.append(
-                (
-                    "FAST",
-                    fast_timestamp,
-                )
-            )
-
-        confirmed_timestamp = int(
-            safe_float(
-                alert.get(
-                    "timestamp",
-                    0,
-                ),
-                0,
-            )
-        )
-
-        if (
-            confirmed_timestamp
-            >= tracking_start
-        ):
-            candidates.append(
-                (
-                    "CONFIRMED",
-                    confirmed_timestamp,
-                )
-            )
-
-        news_timestamp = int(
-            safe_float(
-                alert.get(
-                    "news_timestamp",
-                    0,
-                ),
-                0,
-            )
-        )
-
-        if (
-            news_timestamp
-            >= tracking_start
-        ):
-            candidates.append(
-                (
-                    "NEWS",
-                    news_timestamp,
-                )
-            )
-
-        for alert_type, alert_time in (
-            candidates
-        ):
-            event_id = (
-                symbol
-                + "_"
-                + alert_type
-                + "_"
-                + str(
-                    alert_time
-                )
-            )
-
-            if (
-                event_id
-                in performance[
-                    "events"
-                ]
-            ):
-                continue
-
-            if alert_type == "MICRO":
-                alert_price = safe_float(
-                    alert.get(
-                        "micro_price",
-                        0,
-                    ),
-                    0.0,
-                )
-                score = alert.get(
-                    "micro_score"
-                )
-
-            elif alert_type == "FAST":
-                alert_price = safe_float(
-                    alert.get(
-                        "fast_price",
-                        0,
-                    ),
-                    0.0,
-                )
-                score = alert.get(
-                    "fast_score"
-                )
-
-            elif alert_type == "NEWS":
-                alert_price = safe_float(
-                    alert.get(
-                        "news_price",
-                        0,
-                    ),
-                    0.0,
-                )
-                score = alert.get(
-                    "news_score"
-                )
-
-            else:
-                alert_price = safe_float(
-                    alert.get(
-                        "price",
-                        0,
-                    ),
-                    0.0,
-                )
-                score = alert.get(
-                    "score"
-                )
-
-            if alert_price <= 0:
-                alert_price = safe_float(
-                    current_prices.get(
-                        symbol,
-                        0,
-                    ),
-                    0.0,
-                )
-
-            if alert_price <= 0:
-                print(
-                    "SKIP EVENT - NO PRICE:",
-                    event_id,
-                )
-                continue
-
-            performance[
-                "events"
-            ][event_id] = {
-                "symbol": symbol,
-                "type": alert_type,
-                "alert_time":
-                    alert_time,
-                "alert_price":
-                    alert_price,
-                "score":
-                    score,
-                "checkpoints": {},
-                "max_return":
-                    0.0,
-                "min_return":
-                    0.0,
-                "max_price":
-                    alert_price,
-                "min_price":
-                    alert_price,
-                "thresholds": {
-                    "1pct": None,
-                    "2pct": None,
-                    "5pct": None,
-                },
-                "registered_at":
-                    now,
-            }
-
-            print(
-                "NEW EVENT:",
-                event_id,
-                "PRICE:",
-                alert_price,
-            )
-
-    # --------------------------------------------------------
-    # UPDATE EVENTS
-    # --------------------------------------------------------
-
-    for (
-        event_id,
-        event,
-    ) in list(
-        performance[
-            "events"
-        ].items()
-    ):
-        symbol = event.get(
-            "symbol"
-        )
-
-        alert_time = int(
-            safe_float(
-                event.get(
-                    "alert_time",
-                    0,
-                ),
-                0,
-            )
-        )
-
-        alert_price = safe_float(
-            event.get(
-                "alert_price",
-                0,
-            ),
-            0.0,
-        )
-
-        if (
-            not symbol
-            or alert_time <= 0
-            or alert_price <= 0
-        ):
-            continue
-
-        current_price = safe_float(
-            current_prices.get(
-                symbol,
-                0,
-            ),
-            0.0,
-        )
-
-        if current_price <= 0:
-            continue
-
-        current_return = (
-            return_percent(
-                alert_price,
-                current_price,
-            )
-        )
-
-        thresholds = event.get(
-            "thresholds",
-            {},
-        )
-
-        if not isinstance(
-            thresholds,
-            dict,
-        ):
-            thresholds = {
-                "1pct": None,
-                "2pct": None,
-                "5pct": None,
-            }
-
-        for key, target in (
-            (
-                "1pct",
-                1.0,
-            ),
-            (
-                "2pct",
-                2.0,
-            ),
-            (
-                "5pct",
-                5.0,
-            ),
-        ):
-            if (
-                thresholds.get(
-                    key
-                )
-                is None
-                and current_return
-                >= target
-            ):
-                thresholds[key] = {
-                    "timestamp": now,
-                    "minutes_to_hit":
-                        round(
-                            (
-                                now
-                                - alert_time
-                            )
-                            / 60.0,
-                            1,
-                        ),
-                    "price":
-                        current_price,
-                }
-
-        event[
-            "thresholds"
-        ] = thresholds
-
-        if (
-            current_return
-            > safe_float(
-                event.get(
-                    "max_return",
-                    0,
-                ),
-                0.0,
-            )
-        ):
-            event[
-                "max_return"
-            ] = current_return
-
-            event[
-                "max_price"
-            ] = current_price
-
-        if (
-            current_return
-            < safe_float(
-                event.get(
-                    "min_return",
-                    0,
-                ),
-                0.0,
-            )
-        ):
-            event[
-                "min_return"
-            ] = current_return
-
-            event[
-                "min_price"
-            ] = current_price
-
-        checkpoints = event.get(
-            "checkpoints",
-            {},
-        )
-
-        if not isinstance(
-            checkpoints,
-            dict,
-        ):
-            checkpoints = {}
-
-        elapsed = (
-            now
-            - alert_time
-        )
-
-        for (
-            name,
-            seconds,
-        ) in CHECKPOINTS.items():
-            if (
-                elapsed >= seconds
-                and name
-                not in checkpoints
-            ):
-                checkpoints[name] = {
-                    "price":
-                        current_price,
-                    "return_percent":
-                        current_return,
-                    "timestamp":
-                        now,
-                }
-
-        event[
-            "checkpoints"
-        ] = checkpoints
-
-        performance[
-            "events"
-        ][event_id] = event
-
-    # Keep latest 1000 events.
-    if len(
-        performance[
-            "events"
-        ]
-    ) > 1000:
-        ordered = sorted(
-            performance[
-                "events"
-            ].items(),
-            key=lambda item: int(
-                safe_float(
-                    item[1].get(
-                        "alert_time",
-                        0,
-                    ),
-                    0,
-                )
-            ),
-            reverse=True,
-        )
-
-        performance[
-            "events"
-        ] = dict(
-            ordered[:1000]
-        )
-
-    # --------------------------------------------------------
-    # STATISTICS
-    # --------------------------------------------------------
-
-    checkpoint_values = {
-        name: []
-        for name in CHECKPOINTS
+    state = {
+        "performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
+        "tracking_schema_version": TRACKING_SCHEMA_VERSION,
+        "generated_at": current,
+        "generated_at_iso": iso(current),
+        "measurement_source": "NOBITEX_UDF_1M",
+        "future_leakage_policy":
+            "Use latest 1m close at or before each target; never a future candle.",
+        "signal_types": list(SIGNAL_TYPES),
+        "checkpoints": CHECKPOINTS,
+        "min_reliable_4h_samples": MIN_RELIABLE_4H_SAMPLES,
+        "reliable_4h_samples_trend_early": reliable_4h,
+        "measurement_ready_for_4h_optimization":
+            reliable_4h >= MIN_RELIABLE_4H_SAMPLES,
+        "tracking_start": start,
+        "event_count": len(measured),
+        "events": measured[-MAX_EVENTS:],
+        "summary": summary,
     }
+    save_json(OUTPUT_PATH, state)
 
-    mfe_values = []
-    mae_values = []
-
-    for event in performance[
-        "events"
-    ].values():
-        checkpoints = event.get(
-            "checkpoints",
-            {},
-        )
-
-        for name in CHECKPOINTS:
-            checkpoint = (
-                checkpoints.get(
-                    name
-                )
-            )
-
-            if isinstance(
-                checkpoint,
-                dict,
-            ):
-                checkpoint_values[
-                    name
-                ].append(
-                    safe_float(
-                        checkpoint.get(
-                            "return_percent",
-                            0,
-                        ),
-                        0.0,
-                    )
-                )
-
-        mfe_values.append(
-            safe_float(
-                event.get(
-                    "max_return",
-                    0,
-                ),
-                0.0,
-            )
-        )
-
-        mae_values.append(
-            safe_float(
-                event.get(
-                    "min_return",
-                    0,
-                ),
-                0.0,
-            )
-        )
-
-    statistics_data = {
-        name: build_stats(
-            values
-        )
-        for name, values
-        in checkpoint_values.items()
-    }
-
-    statistics_data[
-        "MFE"
-    ] = build_stats(
-        mfe_values
-    )
-
-    statistics_data[
-        "MAE"
-    ] = build_stats(
-        mae_values
-    )
-
-    for key in (
-        "1pct",
-        "2pct",
-        "5pct",
-    ):
-        hit_minutes = []
-
-        for event in performance[
-            "events"
-        ].values():
-            hit = event.get(
-                "thresholds",
-                {},
-            ).get(
-                key
-            )
-
-            if isinstance(
-                hit,
-                dict,
-            ):
-                hit_minutes.append(
-                    safe_float(
-                        hit.get(
-                            "minutes_to_hit",
-                            0,
-                        ),
-                        0.0,
-                    )
-                )
-
-        statistics_data[
-            f"time_to_{key}"
-        ] = {
-            "count":
-                len(hit_minutes),
-            "average_minutes":
-                (
-                    sum(
-                        hit_minutes
-                    )
-                    / len(
-                        hit_minutes
-                    )
-                    if hit_minutes
-                    else 0.0
-                ),
-            "best_minutes":
-                (
-                    min(
-                        hit_minutes
-                    )
-                    if hit_minutes
-                    else 0.0
-                ),
-            "worst_minutes":
-                (
-                    max(
-                        hit_minutes
-                    )
-                    if hit_minutes
-                    else 0.0
-                ),
-        }
-
-    by_type = {}
-    event_types = (
-        "MICRO",
-        "FAST",
-        "CONFIRMED",
-        "NEWS",
-    )
-
-    for alert_type in event_types:
-        typed_events = [
-            event
-            for event in performance["events"].values()
-            if event.get("type") == alert_type
-        ]
-
-        typed_checkpoint_values = {
-            name: []
-            for name in CHECKPOINTS
-        }
-        typed_mfe = []
-        typed_mae = []
-
-        for event in typed_events:
-            checkpoints = event.get("checkpoints", {})
-            for name in CHECKPOINTS:
-                checkpoint = checkpoints.get(name)
-                if isinstance(checkpoint, dict):
-                    typed_checkpoint_values[name].append(
-                        safe_float(checkpoint.get("return_percent", 0), 0.0)
-                    )
-            typed_mfe.append(safe_float(event.get("max_return", 0), 0.0))
-            typed_mae.append(safe_float(event.get("min_return", 0), 0.0))
-
-        typed_stats = {
-            name: build_stats(values)
-            for name, values in typed_checkpoint_values.items()
-        }
-        typed_stats["MFE"] = build_stats(typed_mfe)
-        typed_stats["MAE"] = build_stats(typed_mae)
-
-        for key in ("1pct", "2pct", "5pct"):
-            hit_minutes = []
-            for event in typed_events:
-                hit = event.get("thresholds", {}).get(key)
-                if isinstance(hit, dict):
-                    hit_minutes.append(safe_float(hit.get("minutes_to_hit", 0), 0.0))
-            typed_stats[f"time_to_{key}"] = {
-                "count": len(hit_minutes),
-                "average_minutes": sum(hit_minutes) / len(hit_minutes) if hit_minutes else 0.0,
-                "best_minutes": min(hit_minutes) if hit_minutes else 0.0,
-                "worst_minutes": max(hit_minutes) if hit_minutes else 0.0,
-            }
-
-        typed_stats["events"] = len(typed_events)
-        by_type[alert_type] = typed_stats
-
-    statistics_data["by_type"] = by_type
-
-    performance[
-        "statistics"
-    ] = statistics_data
-
-    completed_4h = len(
-        checkpoint_values[
-            "4h"
-        ]
-    )
-
-    performance[
-        "reliability"
-    ] = {
-        "minimum_required_4h":
-            MIN_RELIABLE_4H_SAMPLES,
-        "completed_4h":
-            completed_4h,
-        "reliable":
-            (
-                completed_4h
-                >= MIN_RELIABLE_4H_SAMPLES
-            ),
-    }
-
-    # --------------------------------------------------------
-    # MILESTONE
-    # --------------------------------------------------------
-
-    milestone_sent = bool(
-        performance[
-            "milestones"
-        ].get(
-            "100_4h",
-            False,
-        )
-    )
-
-    if (
-        completed_4h
-        >= MIN_RELIABLE_4H_SAMPLES
-        and not milestone_sent
-    ):
-        performance[
-            "milestones"
-        ][
-            "100_4h"
-        ] = True
-
-        message = (
-            "📊 ۱۰۰ نمونه کامل ۴ساعته "
-            "برای رادار Nobitex ثبت شد.\n\n"
-            "حالا می‌توان عملکرد واقعی "
-            "هشدارها را بررسی کرد."
-        )
-
-        if telegram_send(
-            message
-        ):
-            print(
-                "MILESTONE Telegram sent."
-            )
-        else:
-            print(
-                "MILESTONE reached; "
-                "Telegram not sent."
-            )
-
-    performance[
-        "updated_at"
-    ] = now
-
-    save_json(
-        PERFORMANCE_STATE_PATH,
-        performance,
-    )
-
-    # --------------------------------------------------------
-    # SUMMARY
-    # --------------------------------------------------------
-
-    print()
-    print(
-        "PERFORMANCE SUMMARY"
-    )
-    print("-" * 50)
-
-    for name in CHECKPOINTS:
-        stats = (
-            statistics_data[name]
-        )
-
-        print(
-            name,
-            "| samples:",
-            stats[
-                "count"
-            ],
-            "| positive:",
-            f"{stats['positive_rate']:.1f}%",
-            "| avg:",
-            f"{stats['average_return']:+.2f}%",
-            "| +1%:",
-            statistics_data["time_to_1pct"]["count"],
-            "| +2%:",
-            stats[
-                "hit_2pct"
-            ],
-            "| +5%:",
-            stats[
-                "hit_5pct"
-            ],
-        )
-
-    print()
-
-    print(
-        "MFE | samples:",
-        statistics_data[
-            "MFE"
-        ]["count"],
-        "| avg:",
-        f"{statistics_data['MFE']['average_return']:+.2f}%",
-        "| best:",
-        f"{statistics_data['MFE']['best_return']:+.2f}%",
-    )
-
-    print(
-        "MAE | samples:",
-        statistics_data["MAE"]["count"],
-        "| avg:",
-        f"{statistics_data['MAE']['average_return']:+.2f}%",
-        "| worst:",
-        f"{statistics_data['MAE']['worst_return']:+.2f}%",
-    )
-
-    print()
-    print("SIGNAL TYPE BREAKDOWN")
-    print("-" * 50)
-
-    for alert_type in event_types:
-        typed = statistics_data["by_type"][alert_type]
-        h2 = typed["2h"]
-        print(
-            f"{alert_type:9} | events={typed['events']:3} | "
-            f"2h+={h2['positive_rate']:.1f}% | "
-            f"2h avg={h2['average_return']:+.2f}% | "
-            f"MFE={typed['MFE']['average_return']:+.2f}% | "
-            f"MAE={typed['MAE']['average_return']:+.2f}% | "
-            f"+1%={typed['time_to_1pct']['count']} | "
-            f"+2%={typed['time_to_2pct']['count']} | "
-            f"+5%={typed['time_to_5pct']['count']}"
-        )
-
-    print()
-
-    for key in (
-        "2pct",
-        "5pct",
-    ):
-        timed = statistics_data[
-            f"time_to_{key}"
-        ]
-
-        print(
-            f"{key}: "
-            f"hits={timed['count']} | "
-            f"avg_minutes="
-            f"{timed['average_minutes']:.1f}"
-        )
-
-    print()
-
-    print(
-        "Completed 4H:",
-        completed_4h,
-        "/",
-        MIN_RELIABLE_4H_SAMPLES,
-    )
-
-    print(
-        "Reliable:",
-        performance[
-            "reliability"
-        ]["reliable"],
-    )
-
-    print(
-        "PERFORMANCE TRACKER FINISHED"
-    )
+    print("Performance Tracker V5 EXACT")
+    print("Events:", len(measured))
+    print("4h reliable TREND_EARLY samples:", reliable_4h)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
