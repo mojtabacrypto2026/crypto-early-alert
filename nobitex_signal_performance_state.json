@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791390702,
-  "generated_at_iso": "2026-10-07T16:31:42+00:00",
+  "generated_at": 1791391337,
+  "generated_at_iso": "2026-10-07T16:42:17+00:00",
   "measurement_source": "NOBITEX_UDF_1M",
   "future_leakage_policy": "Use latest 1m close at or before each target; never a future candle.",
   "signal_types": [
@@ -28,8 +28,101 @@
     "started_at": 1790524995,
     "created_at": 1790524995
   },
-  "event_count": 0,
-  "events": [],
+  "event_count": 1,
+  "events": [
+    {
+      "id": "BEAMXUSDT:CONFIRMED:1791391337:0.002709",
+      "symbol": "BEAMXUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791391337,
+      "timestamp_iso": "2026-10-07T16:42:17+00:00",
+      "price": 0.002709,
+      "source": "EVENT_LOG",
+      "score": 90.0,
+      "score_delta_1": 5.0,
+      "score_acceleration": -5.0,
+      "positive_score_steps": 3.0,
+      "order_flow": 1.4167134246164383,
+      "rsi": 58.629339922687464,
+      "structure": 8.0,
+      "volume_ratio": 2.169339799908671,
+      "momentum_15m": 0.663961637772048,
+      "momentum_1h": 1.9600156801254462,
+      "momentum_4h": 2.441906262307995,
+      "high_risk_jump": true,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791391637,
+            "target_timestamp_iso": "2026-10-07T16:47:17+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791392237,
+            "target_timestamp_iso": "2026-10-07T16:57:17+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791393137,
+            "target_timestamp_iso": "2026-10-07T17:12:17+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791394937,
+            "target_timestamp_iso": "2026-10-07T17:42:17+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791398537,
+            "target_timestamp_iso": "2026-10-07T18:42:17+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791405737,
+            "target_timestamp_iso": "2026-10-07T20:42:17+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "source": "NOBITEX_UDF_1M"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "source": "NOBITEX_UDF_1M"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "source": "NOBITEX_UDF_1M"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "source": "NOBITEX_UDF_1M"
+        }
+      }
+    }
+  ],
   "summary": {
     "MICRO": {
       "signals": 0,
@@ -116,7 +209,7 @@
       }
     },
     "CONFIRMED": {
-      "signals": 0,
+      "signals": 1,
       "available": {
         "5m": 0,
         "15m": 0,
