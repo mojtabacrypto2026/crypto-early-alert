@@ -1,1348 +1,245 @@
 {
-  "schema_version": 4,
-  "events": {
-    "ATOMUSDT_FAST_1791039023": {
-      "symbol": "ATOMUSDT",
-      "type": "FAST",
-      "alert_time": 1791039023,
-      "alert_price": 1.7205,
-      "score": 86,
-      "checkpoints": {
-        "15m": {
-          "price": 1.754,
-          "return_percent": 1.947108398721307,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 1.754,
-          "return_percent": 1.947108398721307,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 1.754,
-          "return_percent": 1.947108398721307,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 1.754,
-          "return_percent": 1.947108398721307,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 1.754,
-          "return_percent": 1.947108398721307,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 4.99854693403081,
-      "min_return": -1.365882011043293,
-      "max_price": 1.8065,
-      "min_price": 1.697,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791108600,
-          "minutes_to_hit": 1159.6,
-          "price": 1.754
-        },
-        "2pct": {
-          "timestamp": 1791127347,
-          "minutes_to_hit": 1472.1,
-          "price": 1.779
-        },
-        "5pct": null
-      },
-      "registered_at": 1791108600
-    },
-    "DOTUSDT_FAST_1791039024": {
-      "symbol": "DOTUSDT",
-      "type": "FAST",
-      "alert_time": 1791039024,
-      "alert_price": 1.2145000000000001,
-      "score": 82,
-      "checkpoints": {
-        "15m": {
-          "price": 1.2005,
-          "return_percent": -1.1527377521614024,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 1.2005,
-          "return_percent": -1.1527377521614024,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 1.2005,
-          "return_percent": -1.1527377521614024,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 1.2005,
-          "return_percent": -1.1527377521614024,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 1.2005,
-          "return_percent": -1.1527377521614024,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 2.3878139151914297,
-      "min_return": -6.6694112803623025,
-      "max_price": 1.2435,
-      "min_price": 1.1335,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791274431,
-          "minutes_to_hit": 3923.4,
-          "price": 1.2435
-        },
-        "2pct": {
-          "timestamp": 1791274431,
-          "minutes_to_hit": 3923.4,
-          "price": 1.2435
-        },
-        "5pct": null
-      },
-      "registered_at": 1791108600
-    },
-    "SKHYUSDT_FAST_1791039024": {
-      "symbol": "SKHYUSDT",
-      "type": "FAST",
-      "alert_time": 1791039024,
-      "alert_price": 198.31,
-      "score": 59,
-      "checkpoints": {
-        "15m": {
-          "price": 195.945,
-          "return_percent": -1.1925772779990969,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 195.945,
-          "return_percent": -1.1925772779990969,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 195.945,
-          "return_percent": -1.1925772779990969,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 195.945,
-          "return_percent": -1.1925772779990969,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 195.945,
-          "return_percent": -1.1925772779990969,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 0.4664414300842173,
-      "min_return": -8.650597549291513,
-      "max_price": 199.235,
-      "min_price": 181.155,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791108600
-    },
-    "API3USDT_FAST_1791051734": {
-      "symbol": "API3USDT",
-      "type": "FAST",
-      "alert_time": 1791051734,
-      "alert_price": 0.295,
-      "score": 60,
-      "checkpoints": {
-        "15m": {
-          "price": 0.2966,
-          "return_percent": 0.542372881355929,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 0.2966,
-          "return_percent": 0.542372881355929,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 0.2966,
-          "return_percent": 0.542372881355929,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 0.2966,
-          "return_percent": 0.542372881355929,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 0.2966,
-          "return_percent": 0.542372881355929,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 37.61016949152544,
-      "min_return": -1.5254237288135608,
-      "max_price": 0.40595000000000003,
-      "min_price": 0.2905,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791127347,
-          "minutes_to_hit": 1260.2,
-          "price": 0.29869999999999997
-        },
-        "2pct": {
-          "timestamp": 1791251271,
-          "minutes_to_hit": 3325.6,
-          "price": 0.31205000000000005
-        },
-        "5pct": {
-          "timestamp": 1791251271,
-          "minutes_to_hit": 3325.6,
-          "price": 0.31205000000000005
-        }
-      },
-      "registered_at": 1791108600
-    },
-    "SOLUSDT_FAST_1791051734": {
-      "symbol": "SOLUSDT",
-      "type": "FAST",
-      "alert_time": 1791051734,
-      "alert_price": 120.0775,
-      "score": 100,
-      "checkpoints": {
-        "15m": {
-          "price": 121.38550000000001,
-          "return_percent": 1.0892964960129974,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 121.38550000000001,
-          "return_percent": 1.0892964960129974,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 121.38550000000001,
-          "return_percent": 1.0892964960129974,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 121.38550000000001,
-          "return_percent": 1.0892964960129974,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 121.38550000000001,
-          "return_percent": 1.0892964960129974,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 1.4986154775041194,
-      "min_return": -1.7297162249380593,
-      "max_price": 121.87700000000001,
-      "min_price": 118.0005,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791108600,
-          "minutes_to_hit": 947.8,
-          "price": 121.38550000000001
-        },
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791108600
-    },
-    "ENAUSDT_FAST_1791062909": {
-      "symbol": "ENAUSDT",
-      "type": "FAST",
-      "alert_time": 1791062909,
-      "alert_price": 0.2383,
-      "score": 68,
-      "checkpoints": {
-        "15m": {
-          "price": 0.23820000000000002,
-          "return_percent": -0.04196391103650398,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 0.23820000000000002,
-          "return_percent": -0.04196391103650398,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 0.23820000000000002,
-          "return_percent": -0.04196391103650398,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 0.23820000000000002,
-          "return_percent": -0.04196391103650398,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 0.23820000000000002,
-          "return_percent": -0.04196391103650398,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 6.735207721359634,
-      "min_return": -4.217373059169116,
-      "max_price": 0.25435,
-      "min_price": 0.22825,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791159938,
-          "minutes_to_hit": 1617.2,
-          "price": 0.24164999999999998
-        },
-        "2pct": {
-          "timestamp": 1791205518,
-          "minutes_to_hit": 2376.8,
-          "price": 0.25435
-        },
-        "5pct": {
-          "timestamp": 1791205518,
-          "minutes_to_hit": 2376.8,
-          "price": 0.25435
-        }
-      },
-      "registered_at": 1791108600
-    },
-    "DASHUSDT_FAST_1791072025": {
-      "symbol": "DASHUSDT",
-      "type": "FAST",
-      "alert_time": 1791072025,
-      "alert_price": 58.965,
-      "score": 65,
-      "checkpoints": {
-        "15m": {
-          "price": 59.555,
-          "return_percent": 1.0005935724582316,
-          "timestamp": 1791108600
-        },
-        "30m": {
-          "price": 59.555,
-          "return_percent": 1.0005935724582316,
-          "timestamp": 1791108600
-        },
-        "1h": {
-          "price": 59.555,
-          "return_percent": 1.0005935724582316,
-          "timestamp": 1791108600
-        },
-        "2h": {
-          "price": 59.555,
-          "return_percent": 1.0005935724582316,
-          "timestamp": 1791108600
-        },
-        "4h": {
-          "price": 59.555,
-          "return_percent": 1.0005935724582316,
-          "timestamp": 1791108600
-        }
-      },
-      "max_return": 1.6026456372424205,
-      "min_return": -8.70855592300518,
-      "max_price": 59.91,
-      "min_price": 53.83,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791108600,
-          "minutes_to_hit": 609.6,
-          "price": 59.555
-        },
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791108600
-    },
-    "FILUSDT_FAST_1791108599": {
-      "symbol": "FILUSDT",
-      "type": "FAST",
-      "alert_time": 1791108599,
-      "alert_price": 1.06,
-      "score": 74,
-      "checkpoints": {
-        "15m": {
-          "price": 1.057,
-          "return_percent": -0.283018867924539,
-          "timestamp": 1791127347
-        },
-        "30m": {
-          "price": 1.057,
-          "return_percent": -0.283018867924539,
-          "timestamp": 1791127347
-        },
-        "1h": {
-          "price": 1.057,
-          "return_percent": -0.283018867924539,
-          "timestamp": 1791127347
-        },
-        "2h": {
-          "price": 1.057,
-          "return_percent": -0.283018867924539,
-          "timestamp": 1791127347
-        },
-        "4h": {
-          "price": 1.057,
-          "return_percent": -0.283018867924539,
-          "timestamp": 1791127347
-        }
-      },
-      "max_return": 14.009433962264136,
-      "min_return": -0.8490566037735962,
-      "max_price": 1.2085,
-      "min_price": 1.051,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791205518,
-          "minutes_to_hit": 1615.3,
-          "price": 1.0975000000000001
-        },
-        "2pct": {
-          "timestamp": 1791205518,
-          "minutes_to_hit": 1615.3,
-          "price": 1.0975000000000001
-        },
-        "5pct": {
-          "timestamp": 1791251271,
-          "minutes_to_hit": 2377.9,
-          "price": 1.1515
-        }
-      },
-      "registered_at": 1791108600
-    },
-    "TUSDT_FAST_1791108599": {
-      "symbol": "TUSDT",
-      "type": "FAST",
-      "alert_time": 1791108599,
-      "alert_price": 0.00562,
-      "score": 71,
-      "checkpoints": {
-        "15m": {
-          "price": 0.0054745,
-          "return_percent": -2.5889679715302454,
-          "timestamp": 1791127347
-        },
-        "30m": {
-          "price": 0.0054745,
-          "return_percent": -2.5889679715302454,
-          "timestamp": 1791127347
-        },
-        "1h": {
-          "price": 0.0054745,
-          "return_percent": -2.5889679715302454,
-          "timestamp": 1791127347
-        },
-        "2h": {
-          "price": 0.0054745,
-          "return_percent": -2.5889679715302454,
-          "timestamp": 1791127347
-        },
-        "4h": {
-          "price": 0.0054745,
-          "return_percent": -2.5889679715302454,
-          "timestamp": 1791127347
-        }
-      },
-      "max_return": 0.0,
-      "min_return": -9.928825622775792,
-      "max_price": 0.00562,
-      "min_price": 0.0050620000000000005,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791108600
-    },
-    "NEIROUSDT_FAST_1791151218": {
-      "symbol": "NEIROUSDT",
-      "type": "FAST",
-      "alert_time": 1791151218,
-      "alert_price": 9.1995e-05,
-      "score": 85,
-      "checkpoints": {
-        "15m": {
-          "price": 9.180000000000001e-05,
-          "return_percent": -0.21196804174139233,
-          "timestamp": 1791159938
-        },
-        "30m": {
-          "price": 9.180000000000001e-05,
-          "return_percent": -0.21196804174139233,
-          "timestamp": 1791159938
-        },
-        "1h": {
-          "price": 9.180000000000001e-05,
-          "return_percent": -0.21196804174139233,
-          "timestamp": 1791159938
-        },
-        "2h": {
-          "price": 9.180000000000001e-05,
-          "return_percent": -0.21196804174139233,
-          "timestamp": 1791159938
-        },
-        "4h": {
-          "price": 9.152e-05,
-          "return_percent": -0.5163324093700723,
-          "timestamp": 1791179958
-        }
-      },
-      "max_return": 0.8098266210120194,
-      "min_return": -7.049296157399862,
-      "max_price": 9.274000000000001e-05,
-      "min_price": 8.551e-05,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791151219
-    },
-    "CRVUSDT_FAST_1791159936": {
-      "symbol": "CRVUSDT",
-      "type": "FAST",
-      "alert_time": 1791159936,
-      "alert_price": 0.37925,
-      "score": 61,
-      "checkpoints": {
-        "15m": {
-          "price": 0.3806,
-          "return_percent": 0.3559657218193851,
-          "timestamp": 1791179958
-        },
-        "30m": {
-          "price": 0.3806,
-          "return_percent": 0.3559657218193851,
-          "timestamp": 1791179958
-        },
-        "1h": {
-          "price": 0.3806,
-          "return_percent": 0.3559657218193851,
-          "timestamp": 1791179958
-        },
-        "2h": {
-          "price": 0.3806,
-          "return_percent": 0.3559657218193851,
-          "timestamp": 1791179958
-        },
-        "4h": {
-          "price": 0.3806,
-          "return_percent": 0.3559657218193851,
-          "timestamp": 1791179958
-        }
-      },
-      "max_return": 0.3559657218193851,
-      "min_return": -7.936717205009892,
-      "max_price": 0.3806,
-      "min_price": 0.34914999999999996,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791159938
-    },
-    "GRAMUSDT_FAST_1791159936": {
-      "symbol": "GRAMUSDT",
-      "type": "FAST",
-      "alert_time": 1791159936,
-      "alert_price": 1.5314999999999999,
-      "score": 72,
-      "checkpoints": {
-        "15m": {
-          "price": 1.5285,
-          "return_percent": -0.19588638589617316,
-          "timestamp": 1791179958
-        },
-        "30m": {
-          "price": 1.5285,
-          "return_percent": -0.19588638589617316,
-          "timestamp": 1791179958
-        },
-        "1h": {
-          "price": 1.5285,
-          "return_percent": -0.19588638589617316,
-          "timestamp": 1791179958
-        },
-        "2h": {
-          "price": 1.5285,
-          "return_percent": -0.19588638589617316,
-          "timestamp": 1791179958
-        },
-        "4h": {
-          "price": 1.5285,
-          "return_percent": -0.19588638589617316,
-          "timestamp": 1791179958
-        }
-      },
-      "max_return": 2.350636630754165,
-      "min_return": -4.374795951681341,
-      "max_price": 1.5675,
-      "min_price": 1.4645000000000001,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791274431,
-          "minutes_to_hit": 1908.2,
-          "price": 1.5675
-        },
-        "2pct": {
-          "timestamp": 1791274431,
-          "minutes_to_hit": 1908.2,
-          "price": 1.5675
-        },
-        "5pct": null
-      },
-      "registered_at": 1791159938
-    },
-    "RENDERUSDT_FAST_1791159937": {
-      "symbol": "RENDERUSDT",
-      "type": "FAST",
-      "alert_time": 1791159937,
-      "alert_price": 1.9835,
-      "score": 82,
-      "checkpoints": {
-        "15m": {
-          "price": 1.9865,
-          "return_percent": 0.1512477943029943,
-          "timestamp": 1791179958
-        },
-        "30m": {
-          "price": 1.9865,
-          "return_percent": 0.1512477943029943,
-          "timestamp": 1791179958
-        },
-        "1h": {
-          "price": 1.9865,
-          "return_percent": 0.1512477943029943,
-          "timestamp": 1791179958
-        },
-        "2h": {
-          "price": 1.9865,
-          "return_percent": 0.1512477943029943,
-          "timestamp": 1791179958
-        },
-        "4h": {
-          "price": 1.9865,
-          "return_percent": 0.1512477943029943,
-          "timestamp": 1791179958
-        }
-      },
-      "max_return": 9.805898663977812,
-      "min_return": -0.07562389715150274,
-      "max_price": 2.178,
-      "min_price": 1.982,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791251271,
-          "minutes_to_hit": 1522.2,
-          "price": 2.04
-        },
-        "2pct": {
-          "timestamp": 1791251271,
-          "minutes_to_hit": 1522.2,
-          "price": 2.04
-        },
-        "5pct": {
-          "timestamp": 1791274431,
-          "minutes_to_hit": 1908.2,
-          "price": 2.097
-        }
-      },
-      "registered_at": 1791159938
-    },
-    "GRAMUSDT_FAST_1791205517": {
-      "symbol": "GRAMUSDT",
-      "type": "FAST",
-      "alert_time": 1791205517,
-      "alert_price": 1.5405,
-      "score": 72,
-      "checkpoints": {
-        "15m": {
-          "price": 1.5245,
-          "return_percent": -1.038623823433951,
-          "timestamp": 1791251271
-        },
-        "30m": {
-          "price": 1.5245,
-          "return_percent": -1.038623823433951,
-          "timestamp": 1791251271
-        },
-        "1h": {
-          "price": 1.5245,
-          "return_percent": -1.038623823433951,
-          "timestamp": 1791251271
-        },
-        "2h": {
-          "price": 1.5245,
-          "return_percent": -1.038623823433951,
-          "timestamp": 1791251271
-        },
-        "4h": {
-          "price": 1.5245,
-          "return_percent": -1.038623823433951,
-          "timestamp": 1791251271
-        }
-      },
-      "max_return": 1.7526777020447848,
-      "min_return": -4.933463161311252,
-      "max_price": 1.5675,
-      "min_price": 1.4645000000000001,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791274431,
-          "minutes_to_hit": 1148.6,
-          "price": 1.5675
-        },
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791205518
-    },
-    "FORMUSDT_FAST_1791205517": {
-      "symbol": "FORMUSDT",
-      "type": "FAST",
-      "alert_time": 1791205517,
-      "alert_price": 0.2822,
-      "score": 67,
-      "checkpoints": {
-        "15m": {
-          "price": 0.27949999999999997,
-          "return_percent": -0.9567682494684747,
-          "timestamp": 1791251271
-        },
-        "30m": {
-          "price": 0.27949999999999997,
-          "return_percent": -0.9567682494684747,
-          "timestamp": 1791251271
-        },
-        "1h": {
-          "price": 0.27949999999999997,
-          "return_percent": -0.9567682494684747,
-          "timestamp": 1791251271
-        },
-        "2h": {
-          "price": 0.27949999999999997,
-          "return_percent": -0.9567682494684747,
-          "timestamp": 1791251271
-        },
-        "4h": {
-          "price": 0.27949999999999997,
-          "return_percent": -0.9567682494684747,
-          "timestamp": 1791251271
-        }
-      },
-      "max_return": 0.12402551381997216,
-      "min_return": -6.892274982282058,
-      "max_price": 0.28254999999999997,
-      "min_price": 0.26275000000000004,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791205518
-    },
-    "ADAUSDT_FAST_1791274429": {
-      "symbol": "ADAUSDT",
-      "type": "FAST",
-      "alert_time": 1791274429,
-      "alert_price": 0.27265,
-      "score": 82,
-      "checkpoints": {
-        "15m": {
-          "price": 0.276,
-          "return_percent": 1.2286814597469355,
-          "timestamp": 1791299431
-        },
-        "30m": {
-          "price": 0.276,
-          "return_percent": 1.2286814597469355,
-          "timestamp": 1791299431
-        },
-        "1h": {
-          "price": 0.276,
-          "return_percent": 1.2286814597469355,
-          "timestamp": 1791299431
-        },
-        "2h": {
-          "price": 0.276,
-          "return_percent": 1.2286814597469355,
-          "timestamp": 1791299431
-        },
-        "4h": {
-          "price": 0.276,
-          "return_percent": 1.2286814597469355,
-          "timestamp": 1791299431
-        }
-      },
-      "max_return": 1.2286814597469355,
-      "min_return": -7.041995231982414,
-      "max_price": 0.276,
-      "min_price": 0.25344999999999995,
-      "thresholds": {
-        "1pct": {
-          "timestamp": 1791299431,
-          "minutes_to_hit": 416.7,
-          "price": 0.276
-        },
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791274431
-    },
-    "ATOMUSDT_FAST_1791274430": {
-      "symbol": "ATOMUSDT",
-      "type": "FAST",
-      "alert_time": 1791274430,
-      "alert_price": 1.808,
-      "score": 64,
-      "checkpoints": {
-        "15m": {
-          "price": 1.8065,
-          "return_percent": -0.08296460176991464,
-          "timestamp": 1791299431
-        },
-        "30m": {
-          "price": 1.8065,
-          "return_percent": -0.08296460176991464,
-          "timestamp": 1791299431
-        },
-        "1h": {
-          "price": 1.8065,
-          "return_percent": -0.08296460176991464,
-          "timestamp": 1791299431
-        },
-        "2h": {
-          "price": 1.8065,
-          "return_percent": -0.08296460176991464,
-          "timestamp": 1791299431
-        },
-        "4h": {
-          "price": 1.8065,
-          "return_percent": -0.08296460176991464,
-          "timestamp": 1791299431
-        }
-      },
-      "max_return": 0.0,
-      "min_return": -6.13938053097345,
-      "max_price": 1.808,
-      "min_price": 1.697,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791274431
-    },
-    "XRPUSDT_FAST_1791299431": {
-      "symbol": "XRPUSDT",
-      "type": "FAST",
-      "alert_time": 1791299431,
-      "alert_price": 1.52225,
-      "score": 96,
-      "checkpoints": {
-        "15m": {
-          "price": 1.5026449999999998,
-          "return_percent": -1.287896206273629,
-          "timestamp": 1791317777
-        },
-        "30m": {
-          "price": 1.5026449999999998,
-          "return_percent": -1.287896206273629,
-          "timestamp": 1791317777
-        },
-        "1h": {
-          "price": 1.5026449999999998,
-          "return_percent": -1.287896206273629,
-          "timestamp": 1791317777
-        },
-        "2h": {
-          "price": 1.5026449999999998,
-          "return_percent": -1.287896206273629,
-          "timestamp": 1791317777
-        },
-        "4h": {
-          "price": 1.5026449999999998,
-          "return_percent": -1.287896206273629,
-          "timestamp": 1791317777
-        }
-      },
-      "max_return": 0.0,
-      "min_return": -4.230251272787005,
-      "max_price": 1.52225,
-      "min_price": 1.457855,
-      "thresholds": {
-        "1pct": null,
-        "2pct": null,
-        "5pct": null
-      },
-      "registered_at": 1791299431
-    }
+  "performance_schema_version": 5,
+  "tracking_schema_version": 2,
+  "generated_at": 1791390702,
+  "generated_at_iso": "2026-10-07T16:31:42+00:00",
+  "measurement_source": "NOBITEX_UDF_1M",
+  "future_leakage_policy": "Use latest 1m close at or before each target; never a future candle.",
+  "signal_types": [
+    "MICRO",
+    "FAST",
+    "CONFIRMED",
+    "NEWS",
+    "TREND_EARLY"
+  ],
+  "checkpoints": {
+    "5m": 300,
+    "15m": 900,
+    "30m": 1800,
+    "1h": 3600,
+    "2h": 7200,
+    "4h": 14400
   },
-  "milestones": {},
-  "statistics": {
-    "15m": {
-      "count": 18,
-      "positive": 7,
-      "positive_rate": 38.88888888888889,
-      "average_return": -0.15100593137875237,
-      "best_return": 1.947108398721307,
-      "worst_return": -2.5889679715302454,
-      "hit_2pct": 0,
-      "hit_5pct": 0
-    },
-    "30m": {
-      "count": 18,
-      "positive": 7,
-      "positive_rate": 38.88888888888889,
-      "average_return": -0.15100593137875237,
-      "best_return": 1.947108398721307,
-      "worst_return": -2.5889679715302454,
-      "hit_2pct": 0,
-      "hit_5pct": 0
-    },
-    "1h": {
-      "count": 18,
-      "positive": 7,
-      "positive_rate": 38.88888888888889,
-      "average_return": -0.15100593137875237,
-      "best_return": 1.947108398721307,
-      "worst_return": -2.5889679715302454,
-      "hit_2pct": 0,
-      "hit_5pct": 0
-    },
-    "2h": {
-      "count": 18,
-      "positive": 7,
-      "positive_rate": 38.88888888888889,
-      "average_return": -0.15100593137875237,
-      "best_return": 1.947108398721307,
-      "worst_return": -2.5889679715302454,
-      "hit_2pct": 0,
-      "hit_5pct": 0
-    },
-    "4h": {
-      "count": 18,
-      "positive": 7,
-      "positive_rate": 38.88888888888889,
-      "average_return": -0.16791506291367905,
-      "best_return": 1.947108398721307,
-      "worst_return": -2.5889679715302454,
-      "hit_2pct": 0,
-      "hit_5pct": 0
-    },
-    "MFE": {
-      "count": 18,
-      "positive": 15,
-      "positive_rate": 83.33333333333334,
-      "average_return": 4.763143715687627,
-      "best_return": 37.61016949152544,
-      "worst_return": 0.0,
-      "hit_2pct": 7,
-      "hit_5pct": 4
-    },
-    "MAE": {
-      "count": 18,
-      "positive": 0,
-      "positive_rate": 0.0,
-      "average_return": -5.1288133552084,
-      "best_return": -0.07562389715150274,
-      "worst_return": -9.928825622775792,
-      "hit_2pct": 0,
-      "hit_5pct": 0
-    },
-    "time_to_1pct": {
-      "count": 11,
-      "average_minutes": 1466.2545454545455,
-      "best_minutes": 416.7,
-      "worst_minutes": 3923.4
-    },
-    "time_to_2pct": {
-      "count": 7,
-      "average_minutes": 2306.2285714285713,
-      "best_minutes": 1472.1,
-      "worst_minutes": 3923.4
-    },
-    "time_to_5pct": {
-      "count": 4,
-      "average_minutes": 2497.125,
-      "best_minutes": 1908.2,
-      "worst_minutes": 3325.6
-    },
-    "by_type": {
-      "MICRO": {
-        "15m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "30m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "1h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "2h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "4h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MFE": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MAE": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "time_to_1pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "time_to_2pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "time_to_5pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "events": 0
+  "min_reliable_4h_samples": 100,
+  "reliable_4h_samples_trend_early": 0,
+  "measurement_ready_for_4h_optimization": false,
+  "tracking_start": {
+    "schema_version": 1,
+    "started_at": 1790524995,
+    "created_at": 1790524995
+  },
+  "event_count": 0,
+  "events": [],
+  "summary": {
+    "MICRO": {
+      "signals": 0,
+      "available": {
+        "5m": 0,
+        "15m": 0,
+        "30m": 0,
+        "1h": 0,
+        "2h": 0,
+        "4h": 0
       },
-      "FAST": {
-        "15m": {
-          "count": 18,
-          "positive": 7,
-          "positive_rate": 38.88888888888889,
-          "average_return": -0.15100593137875237,
-          "best_return": 1.947108398721307,
-          "worst_return": -2.5889679715302454,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "30m": {
-          "count": 18,
-          "positive": 7,
-          "positive_rate": 38.88888888888889,
-          "average_return": -0.15100593137875237,
-          "best_return": 1.947108398721307,
-          "worst_return": -2.5889679715302454,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "1h": {
-          "count": 18,
-          "positive": 7,
-          "positive_rate": 38.88888888888889,
-          "average_return": -0.15100593137875237,
-          "best_return": 1.947108398721307,
-          "worst_return": -2.5889679715302454,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "2h": {
-          "count": 18,
-          "positive": 7,
-          "positive_rate": 38.88888888888889,
-          "average_return": -0.15100593137875237,
-          "best_return": 1.947108398721307,
-          "worst_return": -2.5889679715302454,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "4h": {
-          "count": 18,
-          "positive": 7,
-          "positive_rate": 38.88888888888889,
-          "average_return": -0.16791506291367905,
-          "best_return": 1.947108398721307,
-          "worst_return": -2.5889679715302454,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MFE": {
-          "count": 18,
-          "positive": 15,
-          "positive_rate": 83.33333333333334,
-          "average_return": 4.763143715687627,
-          "best_return": 37.61016949152544,
-          "worst_return": 0.0,
-          "hit_2pct": 7,
-          "hit_5pct": 4
-        },
-        "MAE": {
-          "count": 18,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": -5.1288133552084,
-          "best_return": -0.07562389715150274,
-          "worst_return": -9.928825622775792,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "time_to_1pct": {
-          "count": 11,
-          "average_minutes": 1466.2545454545455,
-          "best_minutes": 416.7,
-          "worst_minutes": 3923.4
-        },
-        "time_to_2pct": {
-          "count": 7,
-          "average_minutes": 2306.2285714285713,
-          "best_minutes": 1472.1,
-          "worst_minutes": 3923.4
-        },
-        "time_to_5pct": {
-          "count": 4,
-          "average_minutes": 2497.125,
-          "best_minutes": 1908.2,
-          "worst_minutes": 3325.6
-        },
-        "events": 18
+      "avg_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
       },
-      "CONFIRMED": {
-        "15m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "30m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "1h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "2h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "4h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MFE": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MAE": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "time_to_1pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "time_to_2pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "time_to_5pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "events": 0
+      "median_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
       },
-      "NEWS": {
-        "15m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "30m": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "1h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "2h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "4h": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MFE": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "MAE": {
-          "count": 0,
-          "positive": 0,
-          "positive_rate": 0.0,
-          "average_return": 0.0,
-          "best_return": 0.0,
-          "worst_return": 0.0,
-          "hit_2pct": 0,
-          "hit_5pct": 0
-        },
-        "time_to_1pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "time_to_2pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "time_to_5pct": {
-          "count": 0,
-          "average_minutes": 0.0,
-          "best_minutes": 0.0,
-          "worst_minutes": 0.0
-        },
-        "events": 0
+      "positive_rate_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "mfe_avg_pct": null,
+      "mae_avg_pct": null,
+      "threshold_hits": {
+        "+1%": 0,
+        "+2%": 0,
+        "+5%": 0
+      }
+    },
+    "FAST": {
+      "signals": 0,
+      "available": {
+        "5m": 0,
+        "15m": 0,
+        "30m": 0,
+        "1h": 0,
+        "2h": 0,
+        "4h": 0
+      },
+      "avg_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "median_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "positive_rate_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "mfe_avg_pct": null,
+      "mae_avg_pct": null,
+      "threshold_hits": {
+        "+1%": 0,
+        "+2%": 0,
+        "+5%": 0
+      }
+    },
+    "CONFIRMED": {
+      "signals": 0,
+      "available": {
+        "5m": 0,
+        "15m": 0,
+        "30m": 0,
+        "1h": 0,
+        "2h": 0,
+        "4h": 0
+      },
+      "avg_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "median_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "positive_rate_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "mfe_avg_pct": null,
+      "mae_avg_pct": null,
+      "threshold_hits": {
+        "+1%": 0,
+        "+2%": 0,
+        "+5%": 0
+      }
+    },
+    "NEWS": {
+      "signals": 0,
+      "available": {
+        "5m": 0,
+        "15m": 0,
+        "30m": 0,
+        "1h": 0,
+        "2h": 0,
+        "4h": 0
+      },
+      "avg_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "median_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "positive_rate_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "mfe_avg_pct": null,
+      "mae_avg_pct": null,
+      "threshold_hits": {
+        "+1%": 0,
+        "+2%": 0,
+        "+5%": 0
+      }
+    },
+    "TREND_EARLY": {
+      "signals": 0,
+      "available": {
+        "5m": 0,
+        "15m": 0,
+        "30m": 0,
+        "1h": 0,
+        "2h": 0,
+        "4h": 0
+      },
+      "avg_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "median_change_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "positive_rate_pct": {
+        "5m": null,
+        "15m": null,
+        "30m": null,
+        "1h": null,
+        "2h": null,
+        "4h": null
+      },
+      "mfe_avg_pct": null,
+      "mae_avg_pct": null,
+      "threshold_hits": {
+        "+1%": 0,
+        "+2%": 0,
+        "+5%": 0
       }
     }
-  },
-  "reliability": {
-    "minimum_required_4h": 100,
-    "completed_4h": 18,
-    "reliable": false
-  },
-  "updated_at": 1791364987
+  }
 }
