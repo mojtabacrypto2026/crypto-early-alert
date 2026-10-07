@@ -74,7 +74,20 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python performance_tracker.py
 
-      - name: Save radar, OBI and performance state
+      - name: Verify persistent alert event log
+        if: always()
+        run: |
+          if [ -f nobitex_alert_events.jsonl ]; then
+            echo "Alert event log exists."
+            echo "Event lines: $(grep -cve '^[[:space:]]*$' nobitex_alert_events.jsonl || true)"
+            tail -n 5 nobitex_alert_events.jsonl || true
+          else
+            echo "Alert event log does not exist yet."
+            touch nobitex_alert_events.jsonl
+          fi
+
+      - name: Save radar, OBI, event log and performance state
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -86,9 +99,10 @@ jobs:
           git add nobitex_ws_orderbook_signal.json
           git add nobitex_ws_obi_alert_state.json
           git add nobitex_ws_raw_samples.jsonl
+          git add nobitex_alert_events.jsonl
 
           if ! git diff --cached --quiet; then
-            git commit -m "Update early radar, OBI and performance state"
+            git commit -m "Persist alert event log and performance state"
           fi
 
           git push origin HEAD:main || (
