@@ -230,6 +230,7 @@ def _fetch_json_with_retry(url):
 
 
 def _parse_udf_closes(data, start_ts, end_ts):
+    """Treat UDF timestamps as candle starts; close is available at start + 60s."""
     if not isinstance(data, dict):
         return [], "invalid_response"
 
@@ -239,14 +240,16 @@ def _parse_udf_closes(data, start_ts, end_ts):
 
     result = []
     for t, c in zip(data.get("t") or [], data.get("c") or []):
-        ts = parse_ts(t)
+        candle_start = parse_ts(t)
         price = safe_float(c)
-        if ts is not None and price is not None and price > 0:
-            if int(start_ts) - 120 <= int(ts) <= int(end_ts):
-                result.append((int(ts), price))
+        if candle_start is None or price is None or price <= 0:
+            continue
+
+        close_ts = int(candle_start) + 60
+        if int(start_ts) <= close_ts <= int(end_ts):
+            result.append((close_ts, price))
 
     return sorted(set(result)), status
-
 
 def get_historical_closes(symbol, start_ts, end_ts):
     start_ts = int(start_ts)
@@ -369,7 +372,7 @@ def outcome(event, prices):
                 "available": False,
                 "target_timestamp": target,
                 "target_timestamp_iso": iso(target),
-                "source": "NOBITEX_UDF_1M",
+                "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             }
         else:
             ts, price = hit
@@ -381,7 +384,7 @@ def outcome(event, prices):
                 "actual_timestamp_iso": iso(ts),
                 "price": price,
                 "change_pct": pct(entry, price),
-                "source": "NOBITEX_UDF_1M",
+                "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             }
 
     window = [(ts, p) for ts, p in prices
@@ -405,31 +408,46 @@ def outcome(event, prices):
         "mae_pct": mae,
         "mae_timestamp": mae_ts,
         "mae_timestamp_iso": iso(mae_ts),
-        "source": "NOBITEX_UDF_1M",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
     }
 
 
 def threshold_hit(event, prices, threshold):
+    """Count threshold hits only inside the event's own 4-hour window."""
+    start_ts = int(event["timestamp"])
+    end_ts = start_ts + CHECKPOINTS["4h"]
+
     for ts, price in prices:
-        if ts < event["timestamp"]:
+        if ts < start_ts:
             continue
+        if ts > end_ts:
+            break
+
         change = pct(event["price"], price)
         if change is not None and change >= threshold:
             return {
                 "hit": True,
                 "threshold_pct": threshold,
+                "window_start_timestamp": start_ts,
+                "window_start_timestamp_iso": iso(start_ts),
+                "window_end_timestamp": end_ts,
+                "window_end_timestamp_iso": iso(end_ts),
                 "timestamp": ts,
                 "timestamp_iso": iso(ts),
                 "price": price,
-                "lead_time_seconds": ts - event["timestamp"],
-                "source": "NOBITEX_UDF_1M",
+                "lead_time_seconds": ts - start_ts,
+                "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             }
+
     return {
         "hit": False,
         "threshold_pct": threshold,
-        "source": "NOBITEX_UDF_1M",
+        "window_start_timestamp": start_ts,
+        "window_start_timestamp_iso": iso(start_ts),
+        "window_end_timestamp": end_ts,
+        "window_end_timestamp_iso": iso(end_ts),
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
     }
-
 
 def tracking_start(events):
     old = load_json(START_PATH, {})
@@ -581,9 +599,9 @@ def main():
         "tracking_schema_version": TRACKING_SCHEMA_VERSION,
         "generated_at": current,
         "generated_at_iso": iso(current),
-        "measurement_source": "NOBITEX_UDF_1M",
+        "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
         "future_leakage_policy":
-            "Use latest 1m close at or before each target; never a future candle.",
+            "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
         "signal_types": list(SIGNAL_TYPES),
         "checkpoints": CHECKPOINTS,
         "min_reliable_4h_samples": MIN_RELIABLE_4H_SAMPLES,
