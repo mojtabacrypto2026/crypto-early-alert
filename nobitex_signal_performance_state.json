@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791444645,
-  "generated_at_iso": "2026-10-08T07:30:45+00:00",
+  "generated_at": 1791470992,
+  "generated_at_iso": "2026-10-08T14:49:52+00:00",
   "measurement_source": "NOBITEX_UDF_1M",
   "future_leakage_policy": "Use latest 1m close at or before each target; never a future candle.",
   "signal_types": [
@@ -143,43 +143,37 @@
             "available": false,
             "target_timestamp": 1791444945,
             "target_timestamp_iso": "2026-10-08T07:35:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "15m": {
             "available": false,
             "target_timestamp": 1791445545,
             "target_timestamp_iso": "2026-10-08T07:45:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "30m": {
             "available": false,
             "target_timestamp": 1791446445,
             "target_timestamp_iso": "2026-10-08T08:00:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "1h": {
             "available": false,
             "target_timestamp": 1791448245,
             "target_timestamp_iso": "2026-10-08T08:30:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "2h": {
             "available": false,
             "target_timestamp": 1791451845,
             "target_timestamp_iso": "2026-10-08T09:30:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "4h": {
             "available": false,
             "target_timestamp": 1791459045,
             "target_timestamp_iso": "2026-10-08T11:30:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           }
         },
         "mfe_pct": null,
@@ -235,43 +229,37 @@
             "available": false,
             "target_timestamp": 1791444945,
             "target_timestamp_iso": "2026-10-08T07:35:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "15m": {
             "available": false,
             "target_timestamp": 1791445545,
             "target_timestamp_iso": "2026-10-08T07:45:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "30m": {
             "available": false,
             "target_timestamp": 1791446445,
             "target_timestamp_iso": "2026-10-08T08:00:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "1h": {
             "available": false,
             "target_timestamp": 1791448245,
             "target_timestamp_iso": "2026-10-08T08:30:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "2h": {
             "available": false,
             "target_timestamp": 1791451845,
             "target_timestamp_iso": "2026-10-08T09:30:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           },
           "4h": {
             "available": false,
             "target_timestamp": 1791459045,
             "target_timestamp_iso": "2026-10-08T11:30:45+00:00",
-            "source": "NOBITEX_UDF_1M",
-            "censored": true
+            "source": "NOBITEX_UDF_1M"
           }
         },
         "mfe_pct": null,
