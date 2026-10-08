@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791470992,
-  "generated_at_iso": "2026-10-08T14:49:52+00:00",
+  "generated_at": 1791490554,
+  "generated_at_iso": "2026-10-08T20:15:54+00:00",
   "measurement_source": "NOBITEX_UDF_1M",
   "future_leakage_policy": "Use latest 1m close at or before each target; never a future candle.",
   "signal_types": [
@@ -29,6 +29,79 @@
     "created_at": 1790524995
   },
   "event_count": 3,
+  "historical_fetch_summary": {
+    "symbols_requested": 3,
+    "symbols_with_data": 0,
+    "symbols_failed": 3,
+    "fallback_used": 3,
+    "total_attempts": 18,
+    "total_candles": 0
+  },
+  "historical_fetch_diagnostics": {
+    "BEAMXUSDT": {
+      "symbol": "BEAMXUSDT",
+      "requested_start": 1791391337,
+      "requested_end": 1791405737,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 6,
+      "fallback_used": true,
+      "returned_candles": 0,
+      "coverage_complete": false,
+      "status": "request_failed",
+      "errors": [
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>"
+      ]
+    },
+    "ATOMUSDT": {
+      "symbol": "ATOMUSDT",
+      "requested_start": 1791444645,
+      "requested_end": 1791459045,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 6,
+      "fallback_used": true,
+      "returned_candles": 0,
+      "coverage_complete": false,
+      "status": "request_failed",
+      "errors": [
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>"
+      ]
+    },
+    "CRVUSDT": {
+      "symbol": "CRVUSDT",
+      "requested_start": 1791444645,
+      "requested_end": 1791459045,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 6,
+      "fallback_used": true,
+      "returned_candles": 0,
+      "coverage_complete": false,
+      "status": "request_failed",
+      "errors": [
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>"
+      ]
+    }
+  },
   "events": [
     {
       "id": "BEAMXUSDT:CONFIRMED:1791391337:0.002709",
