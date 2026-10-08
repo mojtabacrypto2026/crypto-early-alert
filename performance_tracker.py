@@ -35,6 +35,8 @@ MIN_RELIABLE_4H_SAMPLES = 100
 MAX_EVENTS = 1500
 REQUEST_TIMEOUT = 15
 REQUEST_DELAY = 0.03
+HISTORICAL_FETCH_RETRIES = 3
+HISTORICAL_FETCH_BACKOFF_SECONDS = 1.0
 
 
 def now_ts():
@@ -203,32 +205,139 @@ def http_json(url):
         return json.loads(r.read().decode("utf-8"))
 
 
-def get_historical_closes(symbol, start_ts, end_ts):
-    params = {
-        "symbol": symbol,
-        "resolution": "1",
-        "from": max(0, int(start_ts) - 120),
-        "to": int(end_ts) + 120,
+def _fetch_json_with_retry(url):
+    errors = []
+    attempts = 0
+
+    for attempt in range(1, HISTORICAL_FETCH_RETRIES + 1):
+        attempts = attempt
+        try:
+            return http_json(url), {
+                "success": True,
+                "attempts": attempt,
+                "errors": errors,
+            }
+        except Exception as exc:
+            errors.append(f"{type(exc).__name__}: {exc}")
+            if attempt < HISTORICAL_FETCH_RETRIES:
+                time.sleep(HISTORICAL_FETCH_BACKOFF_SECONDS * attempt)
+
+    return None, {
+        "success": False,
+        "attempts": attempts,
+        "errors": errors,
     }
-    url = BASE_URL + "/market/udf/history?" + urllib.parse.urlencode(params)
 
-    try:
-        data = http_json(url)
-    except Exception:
-        return []
 
+def _parse_udf_closes(data, start_ts, end_ts):
     if not isinstance(data, dict):
-        return []
-    if str(data.get("s", "")).lower() not in ("ok", "no_data"):
-        return []
+        return [], "invalid_response"
+
+    status = str(data.get("s", "")).lower()
+    if status not in ("ok", "no_data"):
+        return [], f"api_status:{status or 'missing'}"
 
     result = []
     for t, c in zip(data.get("t") or [], data.get("c") or []):
         ts = parse_ts(t)
         price = safe_float(c)
         if ts is not None and price is not None and price > 0:
-            result.append((int(ts), price))
-    return sorted(result)
+            if int(start_ts) - 120 <= int(ts) <= int(end_ts):
+                result.append((int(ts), price))
+
+    return sorted(set(result)), status
+
+
+def get_historical_closes(symbol, start_ts, end_ts):
+    start_ts = int(start_ts)
+    end_ts = int(end_ts)
+    expected_candles = max(1, int(math.ceil((end_ts - start_ts) / 60.0)) + 10)
+
+    diagnostics = {
+        "symbol": symbol,
+        "requested_start": start_ts,
+        "requested_end": end_ts,
+        "requested_minutes": max(1, int(math.ceil((end_ts - start_ts) / 60.0))),
+        "expected_candles": expected_candles,
+        "method": None,
+        "attempts": 0,
+        "fallback_used": False,
+        "returned_candles": 0,
+        "coverage_complete": False,
+        "status": None,
+        "errors": [],
+    }
+
+    # Nobitex UDF countback is the primary method. It has proved more
+    # reliable than relying only on from/to for this project.
+    countback_params = {
+        "symbol": symbol,
+        "resolution": "1",
+        "to": end_ts + 120,
+        "countback": expected_candles,
+    }
+    countback_url = (
+        BASE_URL + "/market/udf/history?"
+        + urllib.parse.urlencode(countback_params)
+    )
+
+    data, meta = _fetch_json_with_retry(countback_url)
+    diagnostics["attempts"] += meta.get("attempts", 0)
+    diagnostics["errors"].extend(meta.get("errors", []))
+
+    if data is not None:
+        prices, status = _parse_udf_closes(data, start_ts, end_ts)
+        diagnostics["method"] = "countback"
+        diagnostics["status"] = status
+        diagnostics["returned_candles"] = len(prices)
+
+        if prices:
+            first_ts = prices[0][0]
+            last_ts = prices[-1][0]
+            diagnostics["coverage_complete"] = (
+                first_ts <= start_ts + 60 and last_ts >= end_ts - 60
+            )
+            if diagnostics["coverage_complete"]:
+                return prices, diagnostics
+
+    # Fallback to the explicit from/to range if countback failed, returned
+    # no usable data, or did not cover the requested interval.
+    diagnostics["fallback_used"] = True
+    fallback_params = {
+        "symbol": symbol,
+        "resolution": "1",
+        "from": max(0, start_ts - 120),
+        "to": end_ts + 120,
+    }
+    fallback_url = (
+        BASE_URL + "/market/udf/history?"
+        + urllib.parse.urlencode(fallback_params)
+    )
+
+    data, meta = _fetch_json_with_retry(fallback_url)
+    diagnostics["attempts"] += meta.get("attempts", 0)
+    diagnostics["errors"].extend(meta.get("errors", []))
+
+    if data is None:
+        diagnostics["method"] = "from_to"
+        diagnostics["status"] = "request_failed"
+        diagnostics["returned_candles"] = 0
+        diagnostics["coverage_complete"] = False
+        return [], diagnostics
+
+    prices, status = _parse_udf_closes(data, start_ts, end_ts)
+    diagnostics["method"] = "from_to"
+    diagnostics["status"] = status
+    diagnostics["returned_candles"] = len(prices)
+
+    if prices:
+        first_ts = prices[0][0]
+        last_ts = prices[-1][0]
+        diagnostics["coverage_complete"] = (
+            first_ts <= start_ts + 60 and last_ts >= end_ts - 60
+        )
+
+    return prices, diagnostics
 
 
 def price_at_or_before(prices, target_ts):
@@ -413,11 +522,38 @@ def main():
         grouped[e["symbol"]].append(e)
 
     prices_by_symbol = {}
+    historical_fetch_diagnostics = {}
     for symbol, rows in grouped.items():
         a = min(e["timestamp"] for e in rows)
         b = max(e["timestamp"] for e in rows) + CHECKPOINTS["4h"]
-        prices_by_symbol[symbol] = get_historical_closes(symbol, a, b)
+        prices, diagnostics = get_historical_closes(symbol, a, b)
+        prices_by_symbol[symbol] = prices
+        historical_fetch_diagnostics[symbol] = diagnostics
         time.sleep(REQUEST_DELAY)
+
+    fetch_summary = {
+        "symbols_requested": len(historical_fetch_diagnostics),
+        "symbols_with_data": sum(
+            bool(d.get("returned_candles"))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "symbols_failed": sum(
+            d.get("status") == "request_failed"
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "fallback_used": sum(
+            bool(d.get("fallback_used"))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "total_attempts": sum(
+            int(d.get("attempts", 0))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "total_candles": sum(
+            int(d.get("returned_candles", 0))
+            for d in historical_fetch_diagnostics.values()
+        ),
+    }
 
     measured = []
     for event in events:
@@ -456,6 +592,8 @@ def main():
             reliable_4h >= MIN_RELIABLE_4H_SAMPLES,
         "tracking_start": start,
         "event_count": len(measured),
+        "historical_fetch_summary": fetch_summary,
+        "historical_fetch_diagnostics": historical_fetch_diagnostics,
         "events": measured[-MAX_EVENTS:],
         "summary": summary,
     }
@@ -463,6 +601,10 @@ def main():
 
     print("Performance Tracker V5 EXACT")
     print("Events:", len(measured))
+    print("Historical symbols:", fetch_summary["symbols_requested"])
+    print("Symbols with data:", fetch_summary["symbols_with_data"])
+    print("Historical fetch failures:", fetch_summary["symbols_failed"])
+    print("Fallback fetches:", fetch_summary["fallback_used"])
     print("4h reliable TREND_EARLY samples:", reliable_4h)
     return 0
 
