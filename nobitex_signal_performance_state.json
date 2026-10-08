@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791422323,
-  "generated_at_iso": "2026-10-08T01:18:43+00:00",
+  "generated_at": 1791444645,
+  "generated_at_iso": "2026-10-08T07:30:45+00:00",
   "measurement_source": "NOBITEX_UDF_1M",
   "future_leakage_policy": "Use latest 1m close at or before each target; never a future candle.",
   "signal_types": [
@@ -28,7 +28,7 @@
     "started_at": 1790524995,
     "created_at": 1790524995
   },
-  "event_count": 1,
+  "event_count": 3,
   "events": [
     {
       "id": "BEAMXUSDT:CONFIRMED:1791391337:0.002709",
@@ -115,6 +115,190 @@
           "source": "NOBITEX_UDF_1M"
         }
       }
+    },
+    {
+      "id": "ATOMUSDT:FAST:1791444645:1.7805",
+      "symbol": "ATOMUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791444645,
+      "timestamp_iso": "2026-10-08T07:30:45+00:00",
+      "price": 1.7805,
+      "source": "EVENT_LOG",
+      "score": 93.0,
+      "score_delta_1": 22.0,
+      "score_acceleration": -20.0,
+      "positive_score_steps": 3.0,
+      "order_flow": 2.090564050091687,
+      "rsi": 56.55916833851912,
+      "structure": 6.0,
+      "volume_ratio": 1.8330264717171518,
+      "momentum_15m": 0.9708737864077742,
+      "momentum_1h": 1.6840882694541184,
+      "momentum_4h": 0.11435105774727156,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791444945,
+            "target_timestamp_iso": "2026-10-08T07:35:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791445545,
+            "target_timestamp_iso": "2026-10-08T07:45:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791446445,
+            "target_timestamp_iso": "2026-10-08T08:00:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791448245,
+            "target_timestamp_iso": "2026-10-08T08:30:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791451845,
+            "target_timestamp_iso": "2026-10-08T09:30:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791459045,
+            "target_timestamp_iso": "2026-10-08T11:30:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "source": "NOBITEX_UDF_1M"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "source": "NOBITEX_UDF_1M"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "source": "NOBITEX_UDF_1M"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "source": "NOBITEX_UDF_1M"
+        }
+      }
+    },
+    {
+      "id": "CRVUSDT:FAST:1791444645:0.39255",
+      "symbol": "CRVUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791444645,
+      "timestamp_iso": "2026-10-08T07:30:45+00:00",
+      "price": 0.39255,
+      "source": "EVENT_LOG",
+      "score": 63.0,
+      "score_delta_1": 30.0,
+      "score_acceleration": 75.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.3577774656596802,
+      "rsi": 65.83981993272644,
+      "structure": 8.0,
+      "volume_ratio": 0.6118737463529872,
+      "momentum_15m": -0.40920716112531724,
+      "momentum_1h": 1.4793667272255486,
+      "momentum_4h": -1.0627530364372422,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791444945,
+            "target_timestamp_iso": "2026-10-08T07:35:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791445545,
+            "target_timestamp_iso": "2026-10-08T07:45:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791446445,
+            "target_timestamp_iso": "2026-10-08T08:00:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791448245,
+            "target_timestamp_iso": "2026-10-08T08:30:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791451845,
+            "target_timestamp_iso": "2026-10-08T09:30:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791459045,
+            "target_timestamp_iso": "2026-10-08T11:30:45+00:00",
+            "source": "NOBITEX_UDF_1M",
+            "censored": true
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "source": "NOBITEX_UDF_1M"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "source": "NOBITEX_UDF_1M"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "source": "NOBITEX_UDF_1M"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "source": "NOBITEX_UDF_1M"
+        }
+      }
     }
   ],
   "summary": {
@@ -161,7 +345,7 @@
       }
     },
     "FAST": {
-      "signals": 0,
+      "signals": 2,
       "available": {
         "5m": 0,
         "15m": 0,
