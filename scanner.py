@@ -32,7 +32,7 @@ import email.utils
 import calendar
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
+from scan_quality_logger import append_scan_quality_snapshot
 
 # ============================================================
 # CONFIG
