@@ -3195,13 +3195,10 @@ def run_scan():
             coverage_ok=coverage_ok,
         )
     except Exception as exc:
-        except Exception as exc:
         print(
             "SCAN QUALITY LOGGING FAILED:",
             exc,
         )
-
-    new_state = {}
 
     new_state = {}
 
