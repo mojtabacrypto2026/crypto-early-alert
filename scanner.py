@@ -3495,10 +3495,35 @@ def run_scan():
         confirmed_alert_count,
     )
 
-    print(
-        "Alert journal:",
-        len(load_json(ALERT_EVENT_LOG_PATH, [])),
-    )
+        # Count valid JSONL event records safely.
+    alert_journal_count = 0
+
+    try:
+        with open(
+            ALERT_EVENT_LOG_PATH,
+            "r",
+            encoding="utf-8",
+        ) as event_handle:
+            for event_line in event_handle:
+                if not event_line.strip():
+                    continue
+
+                try:
+                    event_record = json.loads(event_line)
+
+                    if isinstance(event_record, dict):
+                        alert_journal_count += 1
+
+                except json.JSONDecodeError:
+                    continue
+
+    except FileNotFoundError:
+        pass
+
+    except OSError as exc:
+        print("Alert journal read error:", exc)
+
+    print("Alert journal:", alert_journal_count)
     print("SCAN FINISHED.")
 
 
