@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791505554,
-  "generated_at_iso": "2026-10-09T00:25:54+00:00",
+  "generated_at": 1791527146,
+  "generated_at_iso": "2026-10-09T06:25:46+00:00",
   "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
   "future_leakage_policy": "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
   "signal_types": [
@@ -28,13 +28,13 @@
     "started_at": 1790524995,
     "created_at": 1790524995
   },
-  "event_count": 3,
+  "event_count": 4,
   "historical_fetch_summary": {
-    "symbols_requested": 3,
+    "symbols_requested": 4,
     "symbols_with_data": 0,
-    "symbols_failed": 3,
-    "fallback_used": 3,
-    "total_attempts": 18,
+    "symbols_failed": 4,
+    "fallback_used": 4,
+    "total_attempts": 24,
     "total_candles": 0
   },
   "historical_fetch_diagnostics": {
@@ -84,6 +84,27 @@
       "symbol": "CRVUSDT",
       "requested_start": 1791444645,
       "requested_end": 1791459045,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 6,
+      "fallback_used": true,
+      "returned_candles": 0,
+      "coverage_complete": false,
+      "status": "request_failed",
+      "errors": [
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "URLError: <urlopen error [Errno -2] Name or service not known>"
+      ]
+    },
+    "DOTUSDT": {
+      "symbol": "DOTUSDT",
+      "requested_start": 1791527146,
+      "requested_end": 1791541546,
       "requested_minutes": 240,
       "expected_candles": 250,
       "method": "from_to",
@@ -396,6 +417,110 @@
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
         }
       }
+    },
+    {
+      "id": "DOTUSDT:FAST:1791527146:1.1564999999999999",
+      "symbol": "DOTUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791527146,
+      "timestamp_iso": "2026-10-09T06:25:46+00:00",
+      "price": 1.1564999999999999,
+      "source": "EVENT_LOG",
+      "score": 71.0,
+      "score_delta_1": 41.0,
+      "score_acceleration": 22.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 0.9812433708746235,
+      "rsi": 61.92431465594817,
+      "structure": 6.0,
+      "volume_ratio": 1.2286724323931848,
+      "momentum_15m": -0.3448275862068969,
+      "momentum_1h": 0.08628127696288955,
+      "momentum_4h": 0.4329004329004236,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791527446,
+            "target_timestamp_iso": "2026-10-09T06:30:46+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791528046,
+            "target_timestamp_iso": "2026-10-09T06:40:46+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791528946,
+            "target_timestamp_iso": "2026-10-09T06:55:46+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791530746,
+            "target_timestamp_iso": "2026-10-09T07:25:46+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791534346,
+            "target_timestamp_iso": "2026-10-09T08:25:46+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791541546,
+            "target_timestamp_iso": "2026-10-09T10:25:46+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791527146,
+          "window_start_timestamp_iso": "2026-10-09T06:25:46+00:00",
+          "window_end_timestamp": 1791541546,
+          "window_end_timestamp_iso": "2026-10-09T10:25:46+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791527146,
+          "window_start_timestamp_iso": "2026-10-09T06:25:46+00:00",
+          "window_end_timestamp": 1791541546,
+          "window_end_timestamp_iso": "2026-10-09T10:25:46+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791527146,
+          "window_start_timestamp_iso": "2026-10-09T06:25:46+00:00",
+          "window_end_timestamp": 1791541546,
+          "window_end_timestamp_iso": "2026-10-09T10:25:46+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
     }
   ],
   "summary": {
@@ -442,7 +567,7 @@
       }
     },
     "FAST": {
-      "signals": 2,
+      "signals": 3,
       "available": {
         "5m": 0,
         "15m": 0,
