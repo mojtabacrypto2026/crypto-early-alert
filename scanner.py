@@ -3183,7 +3183,22 @@ def run_scan():
         coverage
         >= MIN_COVERAGE_FOR_ALERTS
     )
-
+    # Record all successfully analyzed markets.
+    # Logging must never interrupt the alert engine.
+    try:
+        append_scan_quality_snapshot(
+            results=results,
+            scan_timestamp=now,
+            market_count=len(symbols),
+            failed_count=failed,
+            coverage=coverage,
+            coverage_ok=coverage_ok,
+        )
+    except Exception as exc:
+        print(
+            "SCAN QUALITY LOGGING FAILED:",
+            exc,
+    )
     new_state = {}
 
     for result in results:
