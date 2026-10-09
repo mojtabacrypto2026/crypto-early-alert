@@ -33,6 +33,7 @@ jobs:
           python -m py_compile scanner.py
           python -m py_compile performance_tracker.py
           python -m py_compile ws_orderbook_radar.py
+          python -m py_compile scan_quality_logger.py
 
       - name: Install WebSocket client
         continue-on-error: true
@@ -86,6 +87,17 @@ jobs:
             touch nobitex_alert_events.jsonl
           fi
 
+      - name: Verify scan quality log
+        if: always()
+        run: |
+          if [ -f nobitex_scan_quality.jsonl ]; then
+            echo "Scan quality log exists."
+            echo "Scan quality lines: $(grep -cve '^[[:space:]]*$' nobitex_scan_quality.jsonl || true)"
+            tail -n 5 nobitex_scan_quality.jsonl || true
+          else
+            echo "Scan quality log does not exist yet."
+          fi
+
       - name: Save radar, OBI, event log and performance state
         if: always()
         run: |
@@ -100,9 +112,11 @@ jobs:
           git add nobitex_ws_obi_alert_state.json
           git add nobitex_ws_raw_samples.jsonl
           git add nobitex_alert_events.jsonl
-                              if [ -f nobitex_scan_quality.jsonl ]; then
+
+          if [ -f nobitex_scan_quality.jsonl ]; then
             git add nobitex_scan_quality.jsonl
           fi
+
           if ! git diff --cached --quiet; then
             git commit -m "Persist alert event log and performance state"
           fi
