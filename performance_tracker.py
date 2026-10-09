@@ -11,7 +11,7 @@ import urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 
-BASE_URL = "https://api.nobitex.ir"
+BASE_URL = "https://apiv2.nobitex.ir"
 WORKSPACE = os.path.dirname(os.path.abspath(__file__))
 
 EVENT_LOG_PATH = os.path.join(WORKSPACE, "nobitex_alert_events.jsonl")
