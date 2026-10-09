@@ -1,14 +1,29 @@
 {
   "DOTUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1791566887,
+    "price": 1.1985000000000001,
+    "alert_type": "CONFIRMED",
     "fast_score": 64,
     "fast_timestamp": 1791555727,
     "fast_price": 1.1675,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "trend_timestamp": 1791566886,
+    "trend_score": 80,
+    "trend_price": 1.1985000000000001,
+    "trend_alert_type": "TREND_EARLY"
   },
   "DEXEUSDT": {
     "fast_score": 80,
     "fast_timestamp": 1791565778,
     "fast_price": 1.8365,
     "fast_alert_type": "FAST"
+  },
+  "SYNUSDT": {
+    "trend_timestamp": 1791566886,
+    "trend_score": 64,
+    "trend_price": 0.1876,
+    "trend_alert_type": "TREND_EARLY"
   }
 }
