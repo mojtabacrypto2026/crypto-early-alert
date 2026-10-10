@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1791644978,
-  "generated_at_iso": "2026-10-10T15:09:38+00:00",
+  "generated_at": 1791645834,
+  "generated_at_iso": "2026-10-10T15:23:54+00:00",
   "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
   "future_leakage_policy": "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
   "signal_types": [
@@ -21,21 +21,21 @@
     "4h": 14400
   },
   "min_reliable_4h_samples": 100,
-  "reliable_4h_samples_trend_early": 11,
+  "reliable_4h_samples_trend_early": 10,
   "measurement_ready_for_4h_optimization": false,
   "tracking_start": {
     "schema_version": 1,
     "started_at": 1790524995,
     "created_at": 1790524995
   },
-  "event_count": 40,
+  "event_count": 58,
   "historical_fetch_summary": {
-    "symbols_requested": 25,
-    "symbols_with_data": 25,
-    "symbols_failed": 0,
-    "fallback_used": 9,
-    "total_attempts": 34,
-    "total_candles": 6855
+    "symbols_requested": 35,
+    "symbols_with_data": 34,
+    "symbols_failed": 1,
+    "fallback_used": 21,
+    "total_attempts": 60,
+    "total_candles": 6953
   },
   "historical_fetch_diagnostics": {
     "BEAMXUSDT": {
@@ -111,14 +111,14 @@
     "SYNUSDT": {
       "symbol": "SYNUSDT",
       "requested_start": 1791566887,
-      "requested_end": 1791581287,
-      "requested_minutes": 240,
-      "expected_candles": 250,
-      "method": "countback",
-      "attempts": 1,
-      "fallback_used": false,
-      "returned_candles": 240,
-      "coverage_complete": true,
+      "requested_end": 1791660233,
+      "requested_minutes": 1556,
+      "expected_candles": 1566,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 258,
+      "coverage_complete": false,
       "status": "ok",
       "errors": []
     },
@@ -321,14 +321,14 @@
     "COTIUSDT": {
       "symbol": "COTIUSDT",
       "requested_start": 1791621774,
-      "requested_end": 1791636174,
-      "requested_minutes": 240,
-      "expected_candles": 250,
-      "method": "countback",
-      "attempts": 1,
-      "fallback_used": false,
-      "returned_candles": 240,
-      "coverage_complete": true,
+      "requested_end": 1791660231,
+      "requested_minutes": 641,
+      "expected_candles": 651,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 259,
+      "coverage_complete": false,
       "status": "ok",
       "errors": []
     },
@@ -349,13 +349,13 @@
     "BNBUSDT": {
       "symbol": "BNBUSDT",
       "requested_start": 1791644977,
-      "requested_end": 1791659377,
-      "requested_minutes": 240,
-      "expected_candles": 250,
+      "requested_end": 1791660229,
+      "requested_minutes": 255,
+      "expected_candles": 265,
       "method": "from_to",
       "attempts": 2,
       "fallback_used": true,
-      "returned_candles": 1,
+      "returned_candles": 16,
       "coverage_complete": false,
       "status": "ok",
       "errors": []
@@ -369,7 +369,7 @@
       "method": "from_to",
       "attempts": 2,
       "fallback_used": true,
-      "returned_candles": 2,
+      "returned_candles": 16,
       "coverage_complete": false,
       "status": "ok",
       "errors": []
@@ -378,6 +378,153 @@
       "symbol": "ONDOUSDT",
       "requested_start": 1791644978,
       "requested_end": 1791659378,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 16,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "1BBABYDOGEUSDT": {
+      "symbol": "1BBABYDOGEUSDT",
+      "requested_start": 1791645827,
+      "requested_end": 1791660229,
+      "requested_minutes": 241,
+      "expected_candles": 251,
+      "method": "from_to",
+      "attempts": 6,
+      "fallback_used": true,
+      "returned_candles": 0,
+      "coverage_complete": false,
+      "status": "request_failed",
+      "errors": [
+        "HTTPError: HTTP Error 400: BAD REQUEST",
+        "HTTPError: HTTP Error 400: BAD REQUEST",
+        "HTTPError: HTTP Error 400: BAD REQUEST",
+        "HTTPError: HTTP Error 400: BAD REQUEST",
+        "HTTPError: HTTP Error 400: BAD REQUEST",
+        "HTTPError: HTTP Error 400: BAD REQUEST"
+      ]
+    },
+    "CELRUSDT": {
+      "symbol": "CELRUSDT",
+      "requested_start": 1791645828,
+      "requested_end": 1791660228,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "DOGSUSDT": {
+      "symbol": "DOGSUSDT",
+      "requested_start": 1791645829,
+      "requested_end": 1791660231,
+      "requested_minutes": 241,
+      "expected_candles": 251,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "BTCUSDT": {
+      "symbol": "BTCUSDT",
+      "requested_start": 1791645830,
+      "requested_end": 1791660230,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "GRAMUSDT": {
+      "symbol": "GRAMUSDT",
+      "requested_start": 1791645831,
+      "requested_end": 1791660231,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "HBARUSDT": {
+      "symbol": "HBARUSDT",
+      "requested_start": 1791645832,
+      "requested_end": 1791660232,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "LAYERUSDT": {
+      "symbol": "LAYERUSDT",
+      "requested_start": 1791645832,
+      "requested_end": 1791660232,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "PUMPUSDT": {
+      "symbol": "PUMPUSDT",
+      "requested_start": 1791645833,
+      "requested_end": 1791660233,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "TRXUSDT": {
+      "symbol": "TRXUSDT",
+      "requested_start": 1791645833,
+      "requested_end": 1791660233,
+      "requested_minutes": 240,
+      "expected_candles": 250,
+      "method": "from_to",
+      "attempts": 2,
+      "fallback_used": true,
+      "returned_candles": 2,
+      "coverage_complete": false,
+      "status": "ok",
+      "errors": []
+    },
+    "ZECUSDT": {
+      "symbol": "ZECUSDT",
+      "requested_start": 1791645834,
+      "requested_end": 1791660234,
       "requested_minutes": 240,
       "expected_candles": 250,
       "method": "from_to",
@@ -1188,99 +1335,67 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791567187,
             "target_timestamp_iso": "2026-10-09T17:33:07+00:00",
-            "actual_timestamp": 1791567180,
-            "actual_timestamp_iso": "2026-10-09T17:33:00+00:00",
-            "price": 0.19073,
-            "change_pct": 1.6684434968017081,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791567787,
             "target_timestamp_iso": "2026-10-09T17:43:07+00:00",
-            "actual_timestamp": 1791567780,
-            "actual_timestamp_iso": "2026-10-09T17:43:00+00:00",
-            "price": 0.19073,
-            "change_pct": 1.6684434968017081,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791568687,
             "target_timestamp_iso": "2026-10-09T17:58:07+00:00",
-            "actual_timestamp": 1791568680,
-            "actual_timestamp_iso": "2026-10-09T17:58:00+00:00",
-            "price": 0.19073,
-            "change_pct": 1.6684434968017081,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791570487,
             "target_timestamp_iso": "2026-10-09T18:28:07+00:00",
-            "actual_timestamp": 1791570480,
-            "actual_timestamp_iso": "2026-10-09T18:28:00+00:00",
-            "price": 0.19361,
-            "change_pct": 3.2036247334754853,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791574087,
             "target_timestamp_iso": "2026-10-09T19:28:07+00:00",
-            "actual_timestamp": 1791574080,
-            "actual_timestamp_iso": "2026-10-09T19:28:00+00:00",
-            "price": 0.18387,
-            "change_pct": -1.9882729211087358,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791581287,
             "target_timestamp_iso": "2026-10-09T21:28:07+00:00",
-            "actual_timestamp": 1791581280,
-            "actual_timestamp_iso": "2026-10-09T21:28:00+00:00",
-            "price": 0.18516,
-            "change_pct": -1.3006396588486124,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           }
         },
-        "mfe_pct": 3.2036247334754853,
-        "mfe_timestamp": 1791569280,
-        "mfe_timestamp_iso": "2026-10-09T18:08:00+00:00",
-        "mae_pct": -3.2249466950959538,
-        "mae_timestamp": 1791576480,
-        "mae_timestamp_iso": "2026-10-09T20:08:00+00:00",
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
       },
       "threshold_hits": {
         "+1%": {
-          "hit": true,
+          "hit": false,
           "threshold_pct": 1.0,
           "window_start_timestamp": 1791566887,
           "window_start_timestamp_iso": "2026-10-09T17:28:07+00:00",
           "window_end_timestamp": 1791581287,
           "window_end_timestamp_iso": "2026-10-09T21:28:07+00:00",
-          "timestamp": 1791566940,
-          "timestamp_iso": "2026-10-09T17:29:00+00:00",
-          "price": 0.19073,
-          "lead_time_seconds": 53,
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
         },
         "+2%": {
-          "hit": true,
+          "hit": false,
           "threshold_pct": 2.0,
           "window_start_timestamp": 1791566887,
           "window_start_timestamp_iso": "2026-10-09T17:28:07+00:00",
           "window_end_timestamp": 1791581287,
           "window_end_timestamp_iso": "2026-10-09T21:28:07+00:00",
-          "timestamp": 1791569280,
-          "timestamp_iso": "2026-10-09T18:08:00+00:00",
-          "price": 0.19361,
-          "lead_time_seconds": 2393,
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
         },
         "+5%": {
@@ -4522,53 +4637,33 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791622074,
             "target_timestamp_iso": "2026-10-10T08:47:54+00:00",
-            "actual_timestamp": 1791622020,
-            "actual_timestamp_iso": "2026-10-10T08:47:00+00:00",
-            "price": 0.01303,
-            "change_pct": 0.0,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791622674,
             "target_timestamp_iso": "2026-10-10T08:57:54+00:00",
-            "actual_timestamp": 1791622620,
-            "actual_timestamp_iso": "2026-10-10T08:57:00+00:00",
-            "price": 0.01303,
-            "change_pct": 0.0,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791623574,
             "target_timestamp_iso": "2026-10-10T09:12:54+00:00",
-            "actual_timestamp": 1791623520,
-            "actual_timestamp_iso": "2026-10-10T09:12:00+00:00",
-            "price": 0.01303,
-            "change_pct": 0.0,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791625374,
             "target_timestamp_iso": "2026-10-10T09:42:54+00:00",
-            "actual_timestamp": 1791625320,
-            "actual_timestamp_iso": "2026-10-10T09:42:00+00:00",
-            "price": 0.01303,
-            "change_pct": 0.0,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1791628974,
             "target_timestamp_iso": "2026-10-10T10:42:54+00:00",
-            "actual_timestamp": 1791628920,
-            "actual_timestamp_iso": "2026-10-10T10:42:00+00:00",
-            "price": 0.01297,
-            "change_pct": -0.46047582501917983,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
@@ -4585,9 +4680,9 @@
         "mfe_pct": 0.3069838833461347,
         "mfe_timestamp": 1791634560,
         "mfe_timestamp_iso": "2026-10-10T12:16:00+00:00",
-        "mae_pct": -0.8442056792018482,
-        "mae_timestamp": 1791625980,
-        "mae_timestamp_iso": "2026-10-10T09:53:00+00:00",
+        "mae_pct": -0.46047582501917983,
+        "mae_timestamp": 1791630420,
+        "mae_timestamp_iso": "2026-10-10T11:07:00+00:00",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
       },
       "threshold_hits": {
@@ -4816,15 +4911,14 @@
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1791645058,
             "target_timestamp_iso": "2026-10-10T15:10:58+00:00",
             "actual_timestamp": 1791645000,
             "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
             "price": 0.0001639,
             "change_pct": 0.7066052227342468,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           }
         },
         "mfe_pct": 0.8294930875575979,
@@ -4889,24 +4983,23 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1791645277,
             "target_timestamp_iso": "2026-10-10T15:14:37+00:00",
-            "actual_timestamp": 1791645000,
-            "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
+            "actual_timestamp": 1791645240,
+            "actual_timestamp_iso": "2026-10-10T15:14:00+00:00",
             "price": 752.5,
             "change_pct": -0.033218197727113985,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "15m": {
             "available": false,
             "target_timestamp": 1791645877,
             "target_timestamp_iso": "2026-10-10T15:24:37+00:00",
-            "actual_timestamp": 1791645000,
-            "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
-            "price": 752.5,
-            "change_pct": -0.033218197727113985,
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.3165791885367586,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -4914,10 +5007,10 @@
             "available": false,
             "target_timestamp": 1791646777,
             "target_timestamp_iso": "2026-10-10T15:39:37+00:00",
-            "actual_timestamp": 1791645000,
-            "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
-            "price": 752.5,
-            "change_pct": -0.033218197727113985,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.3165791885367586,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -4925,10 +5018,10 @@
             "available": false,
             "target_timestamp": 1791648577,
             "target_timestamp_iso": "2026-10-10T16:09:37+00:00",
-            "actual_timestamp": 1791645000,
-            "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
-            "price": 752.5,
-            "change_pct": -0.033218197727113985,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.3165791885367586,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -4936,10 +5029,10 @@
             "available": false,
             "target_timestamp": 1791652177,
             "target_timestamp_iso": "2026-10-10T17:09:37+00:00",
-            "actual_timestamp": 1791645000,
-            "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
-            "price": 752.5,
-            "change_pct": -0.033218197727113985,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.3165791885367586,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -4947,10 +5040,10 @@
             "available": false,
             "target_timestamp": 1791659377,
             "target_timestamp_iso": "2026-10-10T19:09:37+00:00",
-            "actual_timestamp": 1791645000,
-            "actual_timestamp_iso": "2026-10-10T15:10:00+00:00",
-            "price": 752.5,
-            "change_pct": -0.033218197727113985,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.3165791885367586,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           }
@@ -4958,9 +5051,9 @@
         "mfe_pct": -0.033218197727113985,
         "mfe_timestamp": 1791645000,
         "mfe_timestamp_iso": "2026-10-10T15:10:00+00:00",
-        "mae_pct": -0.033218197727113985,
-        "mae_timestamp": 1791645000,
-        "mae_timestamp_iso": "2026-10-10T15:10:00+00:00",
+        "mae_pct": -0.3165791885367586,
+        "mae_timestamp": 1791645540,
+        "mae_timestamp_iso": "2026-10-10T15:19:00+00:00",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
       },
       "threshold_hits": {
@@ -5017,24 +5110,23 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1791645277,
             "target_timestamp_iso": "2026-10-10T15:14:37+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
+            "actual_timestamp": 1791645240,
+            "actual_timestamp_iso": "2026-10-10T15:14:00+00:00",
             "price": 0.2223,
             "change_pct": 0.15769317413831807,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "15m": {
             "available": false,
             "target_timestamp": 1791645877,
             "target_timestamp_iso": "2026-10-10T15:24:37+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.2223,
-            "change_pct": 0.15769317413831807,
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.2216,
+            "change_pct": -0.15769317413831807,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5042,10 +5134,10 @@
             "available": false,
             "target_timestamp": 1791646777,
             "target_timestamp_iso": "2026-10-10T15:39:37+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.2223,
-            "change_pct": 0.15769317413831807,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.2216,
+            "change_pct": -0.15769317413831807,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5053,10 +5145,10 @@
             "available": false,
             "target_timestamp": 1791648577,
             "target_timestamp_iso": "2026-10-10T16:09:37+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.2223,
-            "change_pct": 0.15769317413831807,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.2216,
+            "change_pct": -0.15769317413831807,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5064,10 +5156,10 @@
             "available": false,
             "target_timestamp": 1791652177,
             "target_timestamp_iso": "2026-10-10T17:09:37+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.2223,
-            "change_pct": 0.15769317413831807,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.2216,
+            "change_pct": -0.15769317413831807,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5075,10 +5167,10 @@
             "available": false,
             "target_timestamp": 1791659377,
             "target_timestamp_iso": "2026-10-10T19:09:37+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.2223,
-            "change_pct": 0.15769317413831807,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.2216,
+            "change_pct": -0.15769317413831807,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           }
@@ -5086,9 +5178,9 @@
         "mfe_pct": 0.15769317413831807,
         "mfe_timestamp": 1791645000,
         "mfe_timestamp_iso": "2026-10-10T15:10:00+00:00",
-        "mae_pct": 0.15769317413831807,
-        "mae_timestamp": 1791645000,
-        "mae_timestamp_iso": "2026-10-10T15:10:00+00:00",
+        "mae_pct": -0.15769317413831807,
+        "mae_timestamp": 1791645720,
+        "mae_timestamp_iso": "2026-10-10T15:22:00+00:00",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
       },
       "threshold_hits": {
@@ -5145,24 +5237,23 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1791645278,
             "target_timestamp_iso": "2026-10-10T15:14:38+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.5003,
-            "change_pct": 0.3912912611618413,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "actual_timestamp": 1791645240,
+            "actual_timestamp_iso": "2026-10-10T15:14:00+00:00",
+            "price": 0.4979,
+            "change_pct": -0.09029798334503347,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "15m": {
             "available": false,
             "target_timestamp": 1791645878,
             "target_timestamp_iso": "2026-10-10T15:24:38+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.5003,
-            "change_pct": 0.3912912611618413,
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.4979,
+            "change_pct": -0.09029798334503347,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5170,10 +5261,10 @@
             "available": false,
             "target_timestamp": 1791646778,
             "target_timestamp_iso": "2026-10-10T15:39:38+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.5003,
-            "change_pct": 0.3912912611618413,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.4979,
+            "change_pct": -0.09029798334503347,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5181,10 +5272,10 @@
             "available": false,
             "target_timestamp": 1791648578,
             "target_timestamp_iso": "2026-10-10T16:09:38+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.5003,
-            "change_pct": 0.3912912611618413,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.4979,
+            "change_pct": -0.09029798334503347,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5192,10 +5283,10 @@
             "available": false,
             "target_timestamp": 1791652178,
             "target_timestamp_iso": "2026-10-10T17:09:38+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.5003,
-            "change_pct": 0.3912912611618413,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.4979,
+            "change_pct": -0.09029798334503347,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           },
@@ -5203,10 +5294,10 @@
             "available": false,
             "target_timestamp": 1791659378,
             "target_timestamp_iso": "2026-10-10T19:09:38+00:00",
-            "actual_timestamp": 1791645060,
-            "actual_timestamp_iso": "2026-10-10T15:11:00+00:00",
-            "price": 0.5003,
-            "change_pct": 0.3912912611618413,
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.4979,
+            "change_pct": -0.09029798334503347,
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
             "censored": true
           }
@@ -5214,9 +5305,9 @@
         "mfe_pct": 0.3912912611618413,
         "mfe_timestamp": 1791645000,
         "mfe_timestamp_iso": "2026-10-10T15:10:00+00:00",
-        "mae_pct": 0.3912912611618413,
-        "mae_timestamp": 1791645000,
-        "mae_timestamp_iso": "2026-10-10T15:10:00+00:00",
+        "mae_pct": -0.09029798334503347,
+        "mae_timestamp": 1791645240,
+        "mae_timestamp_iso": "2026-10-10T15:14:00+00:00",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
       },
       "threshold_hits": {
@@ -5245,6 +5336,2262 @@
           "window_start_timestamp_iso": "2026-10-10T15:09:38+00:00",
           "window_end_timestamp": 1791659378,
           "window_end_timestamp_iso": "2026-10-10T19:09:38+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "1BBABYDOGEUSDT:TREND_EARLY:1791645827:0.387",
+      "symbol": "1BBABYDOGEUSDT",
+      "signal_type": "TREND_EARLY",
+      "timestamp": 1791645827,
+      "timestamp_iso": "2026-10-10T15:23:47+00:00",
+      "price": 0.387,
+      "source": "EVENT_LOG",
+      "score": 71.0,
+      "score_delta_1": 6.0,
+      "score_acceleration": 7.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.047482223124146,
+      "rsi": 57.16106860736028,
+      "structure": 8.0,
+      "volume_ratio": 4.569482089718353,
+      "momentum_15m": -0.12903225806451624,
+      "momentum_1h": 1.043024771838332,
+      "momentum_4h": 0.6493506493506499,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646127,
+            "target_timestamp_iso": "2026-10-10T15:28:47+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646727,
+            "target_timestamp_iso": "2026-10-10T15:38:47+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647627,
+            "target_timestamp_iso": "2026-10-10T15:53:47+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649427,
+            "target_timestamp_iso": "2026-10-10T16:23:47+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653027,
+            "target_timestamp_iso": "2026-10-10T17:23:47+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660227,
+            "target_timestamp_iso": "2026-10-10T19:23:47+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645827,
+          "window_start_timestamp_iso": "2026-10-10T15:23:47+00:00",
+          "window_end_timestamp": 1791660227,
+          "window_end_timestamp_iso": "2026-10-10T19:23:47+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645827,
+          "window_start_timestamp_iso": "2026-10-10T15:23:47+00:00",
+          "window_end_timestamp": 1791660227,
+          "window_end_timestamp_iso": "2026-10-10T19:23:47+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645827,
+          "window_start_timestamp_iso": "2026-10-10T15:23:47+00:00",
+          "window_end_timestamp": 1791660227,
+          "window_end_timestamp_iso": "2026-10-10T19:23:47+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "BNBUSDT:TREND_EARLY:1791645828:751.66215",
+      "symbol": "BNBUSDT",
+      "signal_type": "TREND_EARLY",
+      "timestamp": 1791645828,
+      "timestamp_iso": "2026-10-10T15:23:48+00:00",
+      "price": 751.66215,
+      "source": "EVENT_LOG",
+      "score": 83.0,
+      "score_delta_1": 4.0,
+      "score_acceleration": 9.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.472706230453197,
+      "rsi": 63.2648971815728,
+      "structure": 6.0,
+      "volume_ratio": 1.5969568345622907,
+      "momentum_15m": -0.12710750332433593,
+      "momentum_1h": 0.6554805082518741,
+      "momentum_4h": 0.44807615881546714,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646128,
+            "target_timestamp_iso": "2026-10-10T15:28:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646728,
+            "target_timestamp_iso": "2026-10-10T15:38:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647628,
+            "target_timestamp_iso": "2026-10-10T15:53:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649428,
+            "target_timestamp_iso": "2026-10-10T16:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653028,
+            "target_timestamp_iso": "2026-10-10T17:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660228,
+            "target_timestamp_iso": "2026-10-10T19:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.17230480475836085,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.17230480475836085,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "CELRUSDT:TREND_EARLY:1791645828:0.0031035",
+      "symbol": "CELRUSDT",
+      "signal_type": "TREND_EARLY",
+      "timestamp": 1791645828,
+      "timestamp_iso": "2026-10-10T15:23:48+00:00",
+      "price": 0.0031035,
+      "source": "EVENT_LOG",
+      "score": 65.0,
+      "score_delta_1": 5.0,
+      "score_acceleration": 18.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.5532345556008806,
+      "rsi": 53.41193672411679,
+      "structure": 4.0,
+      "volume_ratio": 2.1502450683247027,
+      "momentum_15m": 0.0,
+      "momentum_1h": -1.0533035429301003,
+      "momentum_4h": -0.6410256410256427,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646128,
+            "target_timestamp_iso": "2026-10-10T15:28:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0031,
+            "change_pct": -0.11277589817947353,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646728,
+            "target_timestamp_iso": "2026-10-10T15:38:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0031,
+            "change_pct": -0.11277589817947353,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647628,
+            "target_timestamp_iso": "2026-10-10T15:53:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0031,
+            "change_pct": -0.11277589817947353,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649428,
+            "target_timestamp_iso": "2026-10-10T16:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0031,
+            "change_pct": -0.11277589817947353,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653028,
+            "target_timestamp_iso": "2026-10-10T17:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0031,
+            "change_pct": -0.11277589817947353,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660228,
+            "target_timestamp_iso": "2026-10-10T19:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0031,
+            "change_pct": -0.11277589817947353,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.11277589817947353,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.11277589817947353,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "COTIUSDT:TREND_EARLY:1791645828:0.01317",
+      "symbol": "COTIUSDT",
+      "signal_type": "TREND_EARLY",
+      "timestamp": 1791645828,
+      "timestamp_iso": "2026-10-10T15:23:48+00:00",
+      "price": 0.01317,
+      "source": "EVENT_LOG",
+      "score": 85.0,
+      "score_delta_1": 5.0,
+      "score_acceleration": 11.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.503150974963863,
+      "rsi": 67.58776902800312,
+      "structure": 6.0,
+      "volume_ratio": 2.107211936999171,
+      "momentum_15m": -0.829562594268469,
+      "momentum_1h": 1.5313935681470043,
+      "momentum_4h": 2.235929067077861,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646128,
+            "target_timestamp_iso": "2026-10-10T15:28:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646728,
+            "target_timestamp_iso": "2026-10-10T15:38:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647628,
+            "target_timestamp_iso": "2026-10-10T15:53:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649428,
+            "target_timestamp_iso": "2026-10-10T16:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653028,
+            "target_timestamp_iso": "2026-10-10T17:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660228,
+            "target_timestamp_iso": "2026-10-10T19:23:48+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.6833712984054663,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.6833712984054663,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645828,
+          "window_start_timestamp_iso": "2026-10-10T15:23:48+00:00",
+          "window_end_timestamp": 1791660228,
+          "window_end_timestamp_iso": "2026-10-10T19:23:48+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "DOGSUSDT:TREND_EARLY:1791645829:4.416e-05",
+      "symbol": "DOGSUSDT",
+      "signal_type": "TREND_EARLY",
+      "timestamp": 1791645829,
+      "timestamp_iso": "2026-10-10T15:23:49+00:00",
+      "price": 4.416e-05,
+      "source": "EVENT_LOG",
+      "score": 79.0,
+      "score_delta_1": 8.0,
+      "score_acceleration": 3.0,
+      "positive_score_steps": 3.0,
+      "order_flow": 1.0877226886028863,
+      "rsi": 56.959825806656404,
+      "structure": 6.0,
+      "volume_ratio": 1.4276508533903713,
+      "momentum_15m": -0.4066877541798501,
+      "momentum_1h": 1.443960577584229,
+      "momentum_4h": 0.9810631987223385,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646129,
+            "target_timestamp_iso": "2026-10-10T15:28:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646729,
+            "target_timestamp_iso": "2026-10-10T15:38:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647629,
+            "target_timestamp_iso": "2026-10-10T15:53:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649429,
+            "target_timestamp_iso": "2026-10-10T16:23:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653029,
+            "target_timestamp_iso": "2026-10-10T17:23:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660229,
+            "target_timestamp_iso": "2026-10-10T19:23:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.18115942028985588,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.18115942028985588,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "1BBABYDOGEUSDT:FAST:1791645829:0.387",
+      "symbol": "1BBABYDOGEUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791645829,
+      "timestamp_iso": "2026-10-10T15:23:49+00:00",
+      "price": 0.387,
+      "source": "EVENT_LOG",
+      "score": 71.0,
+      "score_delta_1": 6.0,
+      "score_acceleration": 7.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.047482223124146,
+      "rsi": 57.16106860736028,
+      "structure": 8.0,
+      "volume_ratio": 4.569482089718353,
+      "momentum_15m": -0.12903225806451624,
+      "momentum_1h": 1.043024771838332,
+      "momentum_4h": 0.6493506493506499,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646129,
+            "target_timestamp_iso": "2026-10-10T15:28:49+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646729,
+            "target_timestamp_iso": "2026-10-10T15:38:49+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647629,
+            "target_timestamp_iso": "2026-10-10T15:53:49+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649429,
+            "target_timestamp_iso": "2026-10-10T16:23:49+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653029,
+            "target_timestamp_iso": "2026-10-10T17:23:49+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660229,
+            "target_timestamp_iso": "2026-10-10T19:23:49+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "BNBUSDT:CONFIRMED:1791645829:751.66215",
+      "symbol": "BNBUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645829,
+      "timestamp_iso": "2026-10-10T15:23:49+00:00",
+      "price": 751.66215,
+      "source": "EVENT_LOG",
+      "score": 83.0,
+      "score_delta_1": 4.0,
+      "score_acceleration": 9.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.472706230453197,
+      "rsi": 63.2648971815728,
+      "structure": 6.0,
+      "volume_ratio": 1.5969568345622907,
+      "momentum_15m": -0.12710750332433593,
+      "momentum_1h": 0.6554805082518741,
+      "momentum_4h": 0.44807615881546714,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646129,
+            "target_timestamp_iso": "2026-10-10T15:28:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646729,
+            "target_timestamp_iso": "2026-10-10T15:38:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647629,
+            "target_timestamp_iso": "2026-10-10T15:53:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649429,
+            "target_timestamp_iso": "2026-10-10T16:23:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653029,
+            "target_timestamp_iso": "2026-10-10T17:23:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660229,
+            "target_timestamp_iso": "2026-10-10T19:23:49+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 750.367,
+            "change_pct": -0.17230480475836085,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.17230480475836085,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.17230480475836085,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645829,
+          "window_start_timestamp_iso": "2026-10-10T15:23:49+00:00",
+          "window_end_timestamp": 1791660229,
+          "window_end_timestamp_iso": "2026-10-10T19:23:49+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "BTCUSDT:FAST:1791645830:82835.0",
+      "symbol": "BTCUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791645830,
+      "timestamp_iso": "2026-10-10T15:23:50+00:00",
+      "price": 82835.0,
+      "source": "EVENT_LOG",
+      "score": 70.0,
+      "score_delta_1": 0.0,
+      "score_acceleration": 2.0,
+      "positive_score_steps": 0.0,
+      "order_flow": 1.270398897062937,
+      "rsi": 56.87528920200883,
+      "structure": 6.0,
+      "volume_ratio": 0.41132472657365104,
+      "momentum_15m": 0.09659502535619416,
+      "momentum_1h": 0.12362523444184373,
+      "momentum_4h": 0.16763141407862692,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646130,
+            "target_timestamp_iso": "2026-10-10T15:28:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 82914.66,
+            "change_pct": 0.09616707913322475,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646730,
+            "target_timestamp_iso": "2026-10-10T15:38:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 82914.66,
+            "change_pct": 0.09616707913322475,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647630,
+            "target_timestamp_iso": "2026-10-10T15:53:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 82914.66,
+            "change_pct": 0.09616707913322475,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649430,
+            "target_timestamp_iso": "2026-10-10T16:23:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 82914.66,
+            "change_pct": 0.09616707913322475,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653030,
+            "target_timestamp_iso": "2026-10-10T17:23:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 82914.66,
+            "change_pct": 0.09616707913322475,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660230,
+            "target_timestamp_iso": "2026-10-10T19:23:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 82914.66,
+            "change_pct": 0.09616707913322475,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": 0.09616707913322475,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": 0.09616707913322475,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645830,
+          "window_start_timestamp_iso": "2026-10-10T15:23:50+00:00",
+          "window_end_timestamp": 1791660230,
+          "window_end_timestamp_iso": "2026-10-10T19:23:50+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645830,
+          "window_start_timestamp_iso": "2026-10-10T15:23:50+00:00",
+          "window_end_timestamp": 1791660230,
+          "window_end_timestamp_iso": "2026-10-10T19:23:50+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645830,
+          "window_start_timestamp_iso": "2026-10-10T15:23:50+00:00",
+          "window_end_timestamp": 1791660230,
+          "window_end_timestamp_iso": "2026-10-10T19:23:50+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "COTIUSDT:FAST:1791645830:0.01317",
+      "symbol": "COTIUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791645830,
+      "timestamp_iso": "2026-10-10T15:23:50+00:00",
+      "price": 0.01317,
+      "source": "EVENT_LOG",
+      "score": 85.0,
+      "score_delta_1": 5.0,
+      "score_acceleration": 11.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.503150974963863,
+      "rsi": 67.58776902800312,
+      "structure": 6.0,
+      "volume_ratio": 2.107211936999171,
+      "momentum_15m": -0.829562594268469,
+      "momentum_1h": 1.5313935681470043,
+      "momentum_4h": 2.235929067077861,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646130,
+            "target_timestamp_iso": "2026-10-10T15:28:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646730,
+            "target_timestamp_iso": "2026-10-10T15:38:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647630,
+            "target_timestamp_iso": "2026-10-10T15:53:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649430,
+            "target_timestamp_iso": "2026-10-10T16:23:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653030,
+            "target_timestamp_iso": "2026-10-10T17:23:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660230,
+            "target_timestamp_iso": "2026-10-10T19:23:50+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.6833712984054663,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.6833712984054663,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645830,
+          "window_start_timestamp_iso": "2026-10-10T15:23:50+00:00",
+          "window_end_timestamp": 1791660230,
+          "window_end_timestamp_iso": "2026-10-10T19:23:50+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645830,
+          "window_start_timestamp_iso": "2026-10-10T15:23:50+00:00",
+          "window_end_timestamp": 1791660230,
+          "window_end_timestamp_iso": "2026-10-10T19:23:50+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645830,
+          "window_start_timestamp_iso": "2026-10-10T15:23:50+00:00",
+          "window_end_timestamp": 1791660230,
+          "window_end_timestamp_iso": "2026-10-10T19:23:50+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "COTIUSDT:CONFIRMED:1791645831:0.01317",
+      "symbol": "COTIUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645831,
+      "timestamp_iso": "2026-10-10T15:23:51+00:00",
+      "price": 0.01317,
+      "source": "EVENT_LOG",
+      "score": 85.0,
+      "score_delta_1": 5.0,
+      "score_acceleration": 11.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.503150974963863,
+      "rsi": 67.58776902800312,
+      "structure": 6.0,
+      "volume_ratio": 2.107211936999171,
+      "momentum_15m": -0.829562594268469,
+      "momentum_1h": 1.5313935681470043,
+      "momentum_4h": 2.235929067077861,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646131,
+            "target_timestamp_iso": "2026-10-10T15:28:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646731,
+            "target_timestamp_iso": "2026-10-10T15:38:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647631,
+            "target_timestamp_iso": "2026-10-10T15:53:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649431,
+            "target_timestamp_iso": "2026-10-10T16:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653031,
+            "target_timestamp_iso": "2026-10-10T17:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660231,
+            "target_timestamp_iso": "2026-10-10T19:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.01308,
+            "change_pct": -0.6833712984054663,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.6833712984054663,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.6833712984054663,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "DOGSUSDT:FAST:1791645831:4.416e-05",
+      "symbol": "DOGSUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1791645831,
+      "timestamp_iso": "2026-10-10T15:23:51+00:00",
+      "price": 4.416e-05,
+      "source": "EVENT_LOG",
+      "score": 79.0,
+      "score_delta_1": 8.0,
+      "score_acceleration": 3.0,
+      "positive_score_steps": 3.0,
+      "order_flow": 1.0877226886028863,
+      "rsi": 56.959825806656404,
+      "structure": 6.0,
+      "volume_ratio": 1.4276508533903713,
+      "momentum_15m": -0.4066877541798501,
+      "momentum_1h": 1.443960577584229,
+      "momentum_4h": 0.9810631987223385,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646131,
+            "target_timestamp_iso": "2026-10-10T15:28:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646731,
+            "target_timestamp_iso": "2026-10-10T15:38:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647631,
+            "target_timestamp_iso": "2026-10-10T15:53:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649431,
+            "target_timestamp_iso": "2026-10-10T16:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653031,
+            "target_timestamp_iso": "2026-10-10T17:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660231,
+            "target_timestamp_iso": "2026-10-10T19:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 4.408e-05,
+            "change_pct": -0.18115942028985588,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.18115942028985588,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.18115942028985588,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "GRAMUSDT:CONFIRMED:1791645831:1.4649999999999999",
+      "symbol": "GRAMUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645831,
+      "timestamp_iso": "2026-10-10T15:23:51+00:00",
+      "price": 1.4649999999999999,
+      "source": "EVENT_LOG",
+      "score": 81.0,
+      "score_delta_1": 0.0,
+      "score_acceleration": -16.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 2.5105598037397603,
+      "rsi": 52.718837899884655,
+      "structure": 6.0,
+      "volume_ratio": 4.268512924284699,
+      "momentum_15m": -0.20519835841312528,
+      "momentum_1h": 0.41208791208791246,
+      "momentum_4h": 0.06844626967829498,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646131,
+            "target_timestamp_iso": "2026-10-10T15:28:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1.47,
+            "change_pct": 0.34129692832765013,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646731,
+            "target_timestamp_iso": "2026-10-10T15:38:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1.47,
+            "change_pct": 0.34129692832765013,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647631,
+            "target_timestamp_iso": "2026-10-10T15:53:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1.47,
+            "change_pct": 0.34129692832765013,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649431,
+            "target_timestamp_iso": "2026-10-10T16:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1.47,
+            "change_pct": 0.34129692832765013,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653031,
+            "target_timestamp_iso": "2026-10-10T17:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1.47,
+            "change_pct": 0.34129692832765013,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660231,
+            "target_timestamp_iso": "2026-10-10T19:23:51+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1.47,
+            "change_pct": 0.34129692832765013,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": 0.34129692832765013,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": 0.34129692832765013,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645831,
+          "window_start_timestamp_iso": "2026-10-10T15:23:51+00:00",
+          "window_end_timestamp": 1791660231,
+          "window_end_timestamp_iso": "2026-10-10T19:23:51+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "HBARUSDT:CONFIRMED:1791645832:0.09290499999999999",
+      "symbol": "HBARUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645832,
+      "timestamp_iso": "2026-10-10T15:23:52+00:00",
+      "price": 0.09290499999999999,
+      "source": "EVENT_LOG",
+      "score": 84.0,
+      "score_delta_1": 8.0,
+      "score_acceleration": -8.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.0687753247052663,
+      "rsi": 59.48556793825526,
+      "structure": 6.0,
+      "volume_ratio": 2.8591930558833853,
+      "momentum_15m": -0.17112299465239944,
+      "momentum_1h": 0.6133648983105575,
+      "momentum_4h": 1.0264721772015197,
+      "high_risk_jump": true,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646132,
+            "target_timestamp_iso": "2026-10-10T15:28:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.09334,
+            "change_pct": 0.46822022496100235,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646732,
+            "target_timestamp_iso": "2026-10-10T15:38:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.09334,
+            "change_pct": 0.46822022496100235,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647632,
+            "target_timestamp_iso": "2026-10-10T15:53:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.09334,
+            "change_pct": 0.46822022496100235,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649432,
+            "target_timestamp_iso": "2026-10-10T16:23:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.09334,
+            "change_pct": 0.46822022496100235,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653032,
+            "target_timestamp_iso": "2026-10-10T17:23:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.09334,
+            "change_pct": 0.46822022496100235,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660232,
+            "target_timestamp_iso": "2026-10-10T19:23:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.09334,
+            "change_pct": 0.46822022496100235,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": 0.46822022496100235,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": 0.46822022496100235,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645832,
+          "window_start_timestamp_iso": "2026-10-10T15:23:52+00:00",
+          "window_end_timestamp": 1791660232,
+          "window_end_timestamp_iso": "2026-10-10T19:23:52+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645832,
+          "window_start_timestamp_iso": "2026-10-10T15:23:52+00:00",
+          "window_end_timestamp": 1791660232,
+          "window_end_timestamp_iso": "2026-10-10T19:23:52+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645832,
+          "window_start_timestamp_iso": "2026-10-10T15:23:52+00:00",
+          "window_end_timestamp": 1791660232,
+          "window_end_timestamp_iso": "2026-10-10T19:23:52+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "LAYERUSDT:CONFIRMED:1791645832:0.0743",
+      "symbol": "LAYERUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645832,
+      "timestamp_iso": "2026-10-10T15:23:52+00:00",
+      "price": 0.0743,
+      "source": "EVENT_LOG",
+      "score": 80.0,
+      "score_delta_1": 4.0,
+      "score_acceleration": -2.0,
+      "positive_score_steps": 3.0,
+      "order_flow": 1.8497108275706122,
+      "rsi": 58.7660434578684,
+      "structure": 6.0,
+      "volume_ratio": 3.6075382981950557,
+      "momentum_15m": 0.0,
+      "momentum_1h": -0.6693440428380193,
+      "momentum_4h": -0.6693440428380193,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646132,
+            "target_timestamp_iso": "2026-10-10T15:28:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0742,
+            "change_pct": -0.1345895020188448,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646732,
+            "target_timestamp_iso": "2026-10-10T15:38:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0742,
+            "change_pct": -0.1345895020188448,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647632,
+            "target_timestamp_iso": "2026-10-10T15:53:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0742,
+            "change_pct": -0.1345895020188448,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649432,
+            "target_timestamp_iso": "2026-10-10T16:23:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0742,
+            "change_pct": -0.1345895020188448,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653032,
+            "target_timestamp_iso": "2026-10-10T17:23:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0742,
+            "change_pct": -0.1345895020188448,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660232,
+            "target_timestamp_iso": "2026-10-10T19:23:52+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.0742,
+            "change_pct": -0.1345895020188448,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.1345895020188448,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.1345895020188448,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645832,
+          "window_start_timestamp_iso": "2026-10-10T15:23:52+00:00",
+          "window_end_timestamp": 1791660232,
+          "window_end_timestamp_iso": "2026-10-10T19:23:52+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645832,
+          "window_start_timestamp_iso": "2026-10-10T15:23:52+00:00",
+          "window_end_timestamp": 1791660232,
+          "window_end_timestamp_iso": "2026-10-10T19:23:52+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645832,
+          "window_start_timestamp_iso": "2026-10-10T15:23:52+00:00",
+          "window_end_timestamp": 1791660232,
+          "window_end_timestamp_iso": "2026-10-10T19:23:52+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "PUMPUSDT:CONFIRMED:1791645833:0.0057009999999999995",
+      "symbol": "PUMPUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645833,
+      "timestamp_iso": "2026-10-10T15:23:53+00:00",
+      "price": 0.0057009999999999995,
+      "source": "EVENT_LOG",
+      "score": 91.0,
+      "score_delta_1": -2.0,
+      "score_acceleration": -36.0,
+      "positive_score_steps": 1.0,
+      "order_flow": 1.0744239051440239,
+      "rsi": 59.62499942822884,
+      "structure": 6.0,
+      "volume_ratio": 2.0886895118231843,
+      "momentum_15m": 0.3170688744055074,
+      "momentum_1h": 0.8348134991119036,
+      "momentum_4h": 1.1942959001782414,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646133,
+            "target_timestamp_iso": "2026-10-10T15:28:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.005661,
+            "change_pct": -0.7016312927556445,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646733,
+            "target_timestamp_iso": "2026-10-10T15:38:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.005661,
+            "change_pct": -0.7016312927556445,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647633,
+            "target_timestamp_iso": "2026-10-10T15:53:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.005661,
+            "change_pct": -0.7016312927556445,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649433,
+            "target_timestamp_iso": "2026-10-10T16:23:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.005661,
+            "change_pct": -0.7016312927556445,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653033,
+            "target_timestamp_iso": "2026-10-10T17:23:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.005661,
+            "change_pct": -0.7016312927556445,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660233,
+            "target_timestamp_iso": "2026-10-10T19:23:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.005661,
+            "change_pct": -0.7016312927556445,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.42097877565339115,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.7016312927556445,
+        "mae_timestamp": 1791645900,
+        "mae_timestamp_iso": "2026-10-10T15:25:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "SYNUSDT:CONFIRMED:1791645833:0.19018000000000002",
+      "symbol": "SYNUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645833,
+      "timestamp_iso": "2026-10-10T15:23:53+00:00",
+      "price": 0.19018000000000002,
+      "source": "EVENT_LOG",
+      "score": 80.0,
+      "score_delta_1": 0.0,
+      "score_acceleration": -28.0,
+      "positive_score_steps": 1.0,
+      "order_flow": 1.8615811860501186,
+      "rsi": 57.987097115883095,
+      "structure": 8.0,
+      "volume_ratio": 4.39912566629597,
+      "momentum_15m": 0.0,
+      "momentum_1h": 0.21108179419525672,
+      "momentum_4h": 0.21108179419525672,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646133,
+            "target_timestamp_iso": "2026-10-10T15:28:53+00:00",
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.1899,
+            "change_pct": -0.14722894100326345,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646733,
+            "target_timestamp_iso": "2026-10-10T15:38:53+00:00",
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.1899,
+            "change_pct": -0.14722894100326345,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647633,
+            "target_timestamp_iso": "2026-10-10T15:53:53+00:00",
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.1899,
+            "change_pct": -0.14722894100326345,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649433,
+            "target_timestamp_iso": "2026-10-10T16:23:53+00:00",
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.1899,
+            "change_pct": -0.14722894100326345,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653033,
+            "target_timestamp_iso": "2026-10-10T17:23:53+00:00",
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.1899,
+            "change_pct": -0.14722894100326345,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660233,
+            "target_timestamp_iso": "2026-10-10T19:23:53+00:00",
+            "actual_timestamp": 1791645840,
+            "actual_timestamp_iso": "2026-10-10T15:24:00+00:00",
+            "price": 0.1899,
+            "change_pct": -0.14722894100326345,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.14722894100326345,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.14722894100326345,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "TRXUSDT:CONFIRMED:1791645833:0.333515",
+      "symbol": "TRXUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645833,
+      "timestamp_iso": "2026-10-10T15:23:53+00:00",
+      "price": 0.333515,
+      "source": "EVENT_LOG",
+      "score": 94.0,
+      "score_delta_1": 0.0,
+      "score_acceleration": -4.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 2.0897146793308212,
+      "rsi": 54.87589760505831,
+      "structure": 6.0,
+      "volume_ratio": 3.4058817232466057,
+      "momentum_15m": -0.22805701425355826,
+      "momentum_1h": -0.13784423601330975,
+      "momentum_4h": 0.0750750750750668,
+      "high_risk_jump": true,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646133,
+            "target_timestamp_iso": "2026-10-10T15:28:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.33398,
+            "change_pct": 0.13942401391242587,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646733,
+            "target_timestamp_iso": "2026-10-10T15:38:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.33398,
+            "change_pct": 0.13942401391242587,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647633,
+            "target_timestamp_iso": "2026-10-10T15:53:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.33398,
+            "change_pct": 0.13942401391242587,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649433,
+            "target_timestamp_iso": "2026-10-10T16:23:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.33398,
+            "change_pct": 0.13942401391242587,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653033,
+            "target_timestamp_iso": "2026-10-10T17:23:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.33398,
+            "change_pct": 0.13942401391242587,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660233,
+            "target_timestamp_iso": "2026-10-10T19:23:53+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 0.33398,
+            "change_pct": 0.13942401391242587,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": 0.13942401391242587,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": 0.13942401391242587,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645833,
+          "window_start_timestamp_iso": "2026-10-10T15:23:53+00:00",
+          "window_end_timestamp": 1791660233,
+          "window_end_timestamp_iso": "2026-10-10T19:23:53+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        }
+      }
+    },
+    {
+      "id": "ZECUSDT:CONFIRMED:1791645834:1234.005",
+      "symbol": "ZECUSDT",
+      "signal_type": "CONFIRMED",
+      "timestamp": 1791645834,
+      "timestamp_iso": "2026-10-10T15:23:54+00:00",
+      "price": 1234.005,
+      "source": "EVENT_LOG",
+      "score": 90.0,
+      "score_delta_1": 8.0,
+      "score_acceleration": -28.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.0828692889729634,
+      "rsi": 57.180519657139776,
+      "structure": 6.0,
+      "volume_ratio": 2.78910687681722,
+      "momentum_15m": 0.5034658883619146,
+      "momentum_1h": -0.044570502431114635,
+      "momentum_4h": 0.8363172609996581,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1791646134,
+            "target_timestamp_iso": "2026-10-10T15:28:54+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1233.01,
+            "change_pct": -0.08063176405282979,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1791646734,
+            "target_timestamp_iso": "2026-10-10T15:38:54+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1233.01,
+            "change_pct": -0.08063176405282979,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1791647634,
+            "target_timestamp_iso": "2026-10-10T15:53:54+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1233.01,
+            "change_pct": -0.08063176405282979,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1791649434,
+            "target_timestamp_iso": "2026-10-10T16:23:54+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1233.01,
+            "change_pct": -0.08063176405282979,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1791653034,
+            "target_timestamp_iso": "2026-10-10T17:23:54+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1233.01,
+            "change_pct": -0.08063176405282979,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1791660234,
+            "target_timestamp_iso": "2026-10-10T19:23:54+00:00",
+            "actual_timestamp": 1791645900,
+            "actual_timestamp_iso": "2026-10-10T15:25:00+00:00",
+            "price": 1233.01,
+            "change_pct": -0.08063176405282979,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true
+          }
+        },
+        "mfe_pct": -0.08063176405282979,
+        "mfe_timestamp": 1791645840,
+        "mfe_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "mae_pct": -0.08063176405282979,
+        "mae_timestamp": 1791645840,
+        "mae_timestamp_iso": "2026-10-10T15:24:00+00:00",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "hit": false,
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1791645834,
+          "window_start_timestamp_iso": "2026-10-10T15:23:54+00:00",
+          "window_end_timestamp": 1791660234,
+          "window_end_timestamp_iso": "2026-10-10T19:23:54+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+2%": {
+          "hit": false,
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1791645834,
+          "window_start_timestamp_iso": "2026-10-10T15:23:54+00:00",
+          "window_end_timestamp": 1791660234,
+          "window_end_timestamp_iso": "2026-10-10T19:23:54+00:00",
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+        },
+        "+5%": {
+          "hit": false,
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1791645834,
+          "window_start_timestamp_iso": "2026-10-10T15:23:54+00:00",
+          "window_end_timestamp": 1791660234,
+          "window_end_timestamp_iso": "2026-10-10T19:23:54+00:00",
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
         }
       }
@@ -5294,41 +7641,41 @@
       }
     },
     "FAST": {
-      "signals": 19,
+      "signals": 23,
       "available": {
-        "5m": 11,
-        "15m": 11,
-        "30m": 11,
-        "1h": 12,
-        "2h": 13,
-        "4h": 12
+        "5m": 13,
+        "15m": 10,
+        "30m": 10,
+        "1h": 11,
+        "2h": 12,
+        "4h": 13
       },
       "avg_change_pct": {
-        "5m": 0.2453432283802984,
-        "15m": -0.10314166267390214,
-        "30m": -0.11438600872521515,
-        "1h": -0.4075857715556232,
-        "2h": 0.08604452369808711,
-        "4h": 0.41789089810254554
+        "5m": 0.21022711578841946,
+        "15m": -0.11345582894129236,
+        "30m": -0.12582460959773667,
+        "1h": -0.4446390235152253,
+        "2h": 0.13158788609119268,
+        "4h": 0.4400996923049841
       },
       "median_change_pct": {
-        "5m": 0.19657399606851644,
-        "15m": -0.03788596325061677,
-        "30m": -0.07577192650122244,
-        "1h": -0.357423103383836,
-        "2h": 0.1536098310291889,
-        "4h": 0.2337058454163765
+        "5m": 0.15769317413831807,
+        "15m": -0.07970974772850692,
+        "30m": -0.09865272935380975,
+        "1h": -0.4212299915754003,
+        "2h": 0.15680491551459674,
+        "4h": 0.3069838833461347
       },
       "positive_rate_pct": {
-        "5m": 72.72727272727273,
-        "15m": 36.36363636363637,
-        "30m": 27.27272727272727,
-        "1h": 25.0,
-        "2h": 53.84615384615385,
-        "4h": 58.333333333333336
+        "5m": 69.23076923076923,
+        "15m": 40.0,
+        "30m": 30.0,
+        "1h": 27.27272727272727,
+        "2h": 58.333333333333336,
+        "4h": 61.53846153846154
       },
-      "mfe_avg_pct": 1.011569984102572,
-      "mae_avg_pct": -0.6313112126030807,
+      "mfe_avg_pct": 0.8114082161094239,
+      "mae_avg_pct": -0.608734198453783,
       "threshold_hits": {
         "+1%": 5,
         "+2%": 3,
@@ -5336,7 +7683,7 @@
       }
     },
     "CONFIRMED": {
-      "signals": 7,
+      "signals": 16,
       "available": {
         "5m": 6,
         "15m": 6,
@@ -5369,8 +7716,8 @@
         "2h": 83.33333333333334,
         "4h": 100.0
       },
-      "mfe_avg_pct": 1.783316850535625,
-      "mae_avg_pct": -0.9527200003638251,
+      "mfe_avg_pct": 0.6673158123015114,
+      "mae_avg_pct": -0.44580909586508544,
       "threshold_hits": {
         "+1%": 5,
         "+2%": 2,
@@ -5420,44 +7767,44 @@
       }
     },
     "TREND_EARLY": {
-      "signals": 11,
+      "signals": 16,
       "available": {
-        "5m": 11,
-        "15m": 11,
-        "30m": 11,
-        "1h": 11,
-        "2h": 11,
-        "4h": 11
+        "5m": 10,
+        "15m": 10,
+        "30m": 10,
+        "1h": 10,
+        "2h": 10,
+        "4h": 10
       },
       "avg_change_pct": {
-        "5m": -0.05897519720967031,
-        "15m": -0.09506635516817186,
-        "30m": -0.11447215623715029,
-        "1h": -0.28967004745466185,
-        "2h": -0.06537029395855037,
-        "4h": 0.4262526590267651
+        "5m": -0.23171706661080815,
+        "15m": -0.27141734036515985,
+        "30m": -0.29276372154103614,
+        "1h": -0.6389995255476766,
+        "2h": 0.12691996875646816,
+        "4h": 0.5989418908143029
       },
       "median_change_pct": {
-        "5m": 0.11187470033562352,
-        "15m": 0.11187470033562352,
-        "30m": -0.20859407592825896,
-        "1h": -0.5118659841786943,
-        "2h": 0.4739336492890933,
-        "4h": 0.7324429125377119
+        "5m": 0.035077942574979204,
+        "15m": 0.035077942574979204,
+        "30m": -0.23070153234614477,
+        "1h": -0.5774399139442499,
+        "2h": 0.5498579385369018,
+        "4h": 0.803964646930333
       },
       "positive_rate_pct": {
-        "5m": 54.54545454545454,
-        "15m": 54.54545454545454,
-        "30m": 45.45454545454545,
-        "1h": 27.27272727272727,
-        "2h": 63.63636363636363,
-        "4h": 63.63636363636363
+        "5m": 50.0,
+        "15m": 50.0,
+        "30m": 40.0,
+        "1h": 20.0,
+        "2h": 70.0,
+        "4h": 70.0
       },
-      "mfe_avg_pct": 1.385611203034165,
-      "mae_avg_pct": -1.2459275112870312,
+      "mfe_avg_pct": 0.7777490770190837,
+      "mae_avg_pct": -0.830704810763896,
       "threshold_hits": {
-        "+1%": 7,
-        "+2%": 2,
+        "+1%": 6,
+        "+2%": 1,
         "+5%": 0
       }
     }

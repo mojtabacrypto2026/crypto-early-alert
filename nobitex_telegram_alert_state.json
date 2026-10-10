@@ -30,6 +30,11 @@
     "fast_alert_type": "FAST"
   },
   "SYNUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1791645833,
+    "price": 0.19018000000000002,
+    "alert_type": "CONFIRMED",
     "trend_timestamp": 1791566886,
     "trend_score": 64,
     "trend_price": 0.1876,
@@ -156,10 +161,19 @@
     "fast_alert_type": "FAST"
   },
   "COTIUSDT": {
-    "fast_score": 72,
-    "fast_timestamp": 1791621774,
-    "fast_price": 0.01303,
-    "fast_alert_type": "FAST"
+    "score": 85,
+    "streak": 2,
+    "timestamp": 1791645830,
+    "price": 0.01317,
+    "alert_type": "CONFIRMED",
+    "fast_score": 85,
+    "fast_timestamp": 1791645830,
+    "fast_price": 0.01317,
+    "fast_alert_type": "FAST",
+    "trend_timestamp": 1791645828,
+    "trend_score": 85,
+    "trend_price": 0.01317,
+    "trend_alert_type": "TREND_EARLY"
   },
   "SUIUSDT": {
     "fast_score": 79,
@@ -168,10 +182,19 @@
     "fast_alert_type": "FAST"
   },
   "BNBUSDT": {
+    "score": 83,
+    "streak": 2,
+    "timestamp": 1791645829,
+    "price": 751.66215,
+    "alert_type": "CONFIRMED",
     "fast_score": 79,
     "fast_timestamp": 1791644976,
     "fast_price": 752.75005,
-    "fast_alert_type": "FAST"
+    "fast_alert_type": "FAST",
+    "trend_timestamp": 1791645827,
+    "trend_score": 83,
+    "trend_price": 751.66215,
+    "trend_alert_type": "TREND_EARLY"
   },
   "ENAUSDT": {
     "fast_score": 83,
@@ -184,5 +207,79 @@
     "fast_timestamp": 1791644977,
     "fast_price": 0.49834999999999996,
     "fast_alert_type": "FAST"
+  },
+  "1B_BABYDOGEUSDT": {
+    "trend_timestamp": 1791645826,
+    "trend_score": 71,
+    "trend_price": 0.387,
+    "trend_alert_type": "TREND_EARLY",
+    "fast_score": 71,
+    "fast_timestamp": 1791645829,
+    "fast_price": 0.387,
+    "fast_alert_type": "FAST"
+  },
+  "CELRUSDT": {
+    "trend_timestamp": 1791645828,
+    "trend_score": 65,
+    "trend_price": 0.0031035,
+    "trend_alert_type": "TREND_EARLY"
+  },
+  "DOGSUSDT": {
+    "trend_timestamp": 1791645828,
+    "trend_score": 79,
+    "trend_price": 4.416e-05,
+    "trend_alert_type": "TREND_EARLY",
+    "fast_score": 79,
+    "fast_timestamp": 1791645831,
+    "fast_price": 4.416e-05,
+    "fast_alert_type": "FAST"
+  },
+  "BTCUSDT": {
+    "fast_score": 70,
+    "fast_timestamp": 1791645829,
+    "fast_price": 82835.0,
+    "fast_alert_type": "FAST"
+  },
+  "GRAMUSDT": {
+    "score": 81,
+    "streak": 2,
+    "timestamp": 1791645831,
+    "price": 1.4649999999999999,
+    "alert_type": "CONFIRMED"
+  },
+  "HBARUSDT": {
+    "score": 84,
+    "streak": 2,
+    "timestamp": 1791645831,
+    "price": 0.09290499999999999,
+    "alert_type": "CONFIRMED"
+  },
+  "LAYERUSDT": {
+    "score": 80,
+    "streak": 2,
+    "timestamp": 1791645832,
+    "price": 0.0743,
+    "alert_type": "CONFIRMED"
+  },
+  "PUMPUSDT": {
+    "score": 91,
+    "streak": 2,
+    "timestamp": 1791645832,
+    "price": 0.0057009999999999995,
+    "alert_type": "CONFIRMED"
+  },
+  "TRXUSDT": {
+    "score": 94,
+    "streak": 2,
+    "timestamp": 1791645833,
+    "price": 0.333515,
+    "alert_type": "CONFIRMED"
+  },
+  "ZECUSDT": {
+    "score": 90,
+    "streak": 2,
+    "timestamp": 1791645833,
+    "price": 1234.005,
+    "alert_type": "CONFIRMED"
   }
 }
