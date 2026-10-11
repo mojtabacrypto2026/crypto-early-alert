@@ -1,14 +1,16 @@
+
 name: Crypto Early Alert
 
 on:
   workflow_dispatch:
   schedule:
-        - cron: "7,17,27,37,47,57 * * * *"
+    - cron: "7,17,27,37,47,57 * * * *"
+
 permissions:
   contents: write
 
 concurrency:
-  group: crypto-early-alert
+  group: crypto-early-alert-main
   cancel-in-progress: false
 
 jobs:
@@ -20,7 +22,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+          ref: main
+
+      - name: Sync latest persisted state before scan
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+          git status --short
+          git log -1 --oneline
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -97,31 +108,50 @@ jobs:
             echo "Scan quality log does not exist yet."
           fi
 
-      - name: Save radar, OBI, event log and performance state
+      - name: Save persistent state and measurement data
         if: always()
         run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add nobitex_early_radar_state.json
-          git add nobitex_telegram_alert_state.json
-          git add nobitex_signal_performance_state.json
-          git add nobitex_performance_tracking_start.json
-          git add nobitex_ws_orderbook_signal.json
-          git add nobitex_ws_obi_alert_state.json
-          git add nobitex_ws_raw_samples.jsonl
-          git add nobitex_alert_events.jsonl
+          for file in \
+            nobitex_early_radar_state.json \
+            nobitex_telegram_alert_state.json \
+            nobitex_signal_performance_state.json \
+            nobitex_performance_tracking_start.json \
+            nobitex_ws_orderbook_signal.json \
+            nobitex_ws_obi_alert_state.json \
+            nobitex_ws_raw_samples.jsonl \
+            nobitex_alert_events.jsonl \
+            nobitex_scan_quality.jsonl; do
+            if [ -f "$file" ]; then git add -- "$file"; fi
+          done
 
-          if [ -f nobitex_scan_quality.jsonl ]; then
-            git add nobitex_scan_quality.jsonl
+          if git diff --cached --quiet; then
+            echo "No persistent data changed; nothing to commit."
+            exit 0
           fi
 
-          if ! git diff --cached --quiet; then
-            git commit -m "Persist alert event log and performance state"
-          fi
+          git commit -m "Persist radar state and measurement data"
 
-          git push origin HEAD:main || (
-            echo "Push rejected; rebasing once against latest main..."
-            git pull --rebase origin main
-            git push origin HEAD:main
-          )
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Persistent data successfully pushed."
+              exit 0
+            fi
+
+            echo "Push attempt $attempt failed; rebasing on latest main."
+            git fetch origin main
+
+            if ! git rebase origin/main; then
+              echo "::error::Rebase conflict while saving persistent JSON/JSONL data."
+              git rebase --abort || true
+              exit 1
+            fi
+
+            sleep "$attempt"
+          done
+
+          echo "::error::Could not persist data after 3 push attempts."
+          exit 1
