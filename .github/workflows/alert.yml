@@ -4,7 +4,7 @@ name: Crypto Early Alert
 on:
   workflow_dispatch:
   schedule:
-    - cron: "7,17,27,37,47,57 * * * *"
+        - cron: "3,8,13,18,23,28,33,38,43,48,53,58 * * * *"
 
 permissions:
   contents: write
