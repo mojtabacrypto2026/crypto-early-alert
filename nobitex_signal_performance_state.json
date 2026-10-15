@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1792014111,
-  "generated_at_iso": "2026-10-14T21:41:51+00:00",
+  "generated_at": 1792023155,
+  "generated_at_iso": "2026-10-15T00:12:35+00:00",
   "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
   "future_leakage_policy": "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
   "signal_types": [
@@ -35,7 +35,7 @@
     "symbols_failed": 1,
     "fallback_used": 13,
     "total_attempts": 58,
-    "total_candles": 12666
+    "total_candles": 12712
   },
   "historical_fetch_diagnostics": {
     "BEAMXUSDT": {
@@ -145,7 +145,7 @@
       "method": "from_to",
       "attempts": 2,
       "fallback_used": true,
-      "returned_candles": 474,
+      "returned_candles": 497,
       "coverage_complete": false,
       "status": "ok",
       "errors": []
@@ -516,7 +516,7 @@
       "method": "from_to",
       "attempts": 2,
       "fallback_used": true,
-      "returned_candles": 474,
+      "returned_candles": 497,
       "coverage_complete": false,
       "status": "ok",
       "errors": []
@@ -8499,15 +8499,14 @@
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1792015610,
             "target_timestamp_iso": "2026-10-14T22:06:50+00:00",
-            "actual_timestamp": 1792014180,
-            "actual_timestamp_iso": "2026-10-14T21:43:00+00:00",
-            "price": 0.1068,
-            "change_pct": -0.8356545961002659,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "actual_timestamp": 1792015560,
+            "actual_timestamp_iso": "2026-10-14T22:06:00+00:00",
+            "price": 0.1054,
+            "change_pct": -2.135561745589598,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           }
         },
         "mfe_pct": 1.1142061281337101,
@@ -8626,23 +8625,22 @@
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1792015611,
             "target_timestamp_iso": "2026-10-14T22:06:51+00:00",
-            "actual_timestamp": 1792014180,
-            "actual_timestamp_iso": "2026-10-14T21:43:00+00:00",
-            "price": 0.33216,
-            "change_pct": -1.1457992321657118,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "actual_timestamp": 1792015560,
+            "actual_timestamp_iso": "2026-10-14T22:06:00+00:00",
+            "price": 0.33208,
+            "change_pct": -1.1696080473795556,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           }
         },
         "mfe_pct": 0.2797535787625316,
         "mfe_timestamp": 1792012080,
         "mfe_timestamp_iso": "2026-10-14T21:08:00+00:00",
-        "mae_pct": -1.1457992321657118,
-        "mae_timestamp": 1792014120,
-        "mae_timestamp_iso": "2026-10-14T21:42:00+00:00",
+        "mae_pct": -1.1696080473795556,
+        "mae_timestamp": 1792014720,
+        "mae_timestamp_iso": "2026-10-14T21:52:00+00:00",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
       },
       "threshold_hits": {
@@ -8727,7 +8725,7 @@
         "30m": 25,
         "1h": 26,
         "2h": 27,
-        "4h": 26
+        "4h": 28
       },
       "avg_change_pct": {
         "5m": -0.020230846602467878,
@@ -8735,7 +8733,7 @@
         "30m": -0.15625526412344515,
         "1h": -0.1507316906308291,
         "2h": 0.4764622406870116,
-        "4h": 0.6486484345489198
+        "4h": 0.48427462518938436
       },
       "median_change_pct": {
         "5m": 0.0,
@@ -8743,7 +8741,7 @@
         "30m": -0.15769317413831807,
         "1h": -0.1818854377474144,
         "2h": 0.09285051067782213,
-        "4h": 0.1590604908124682
+        "4h": 0.15041147256534826
       },
       "positive_rate_pct": {
         "5m": 48.0,
@@ -8751,10 +8749,10 @@
         "30m": 36.0,
         "1h": 42.30769230769231,
         "2h": 59.25925925925925,
-        "4h": 65.38461538461539
+        "4h": 60.71428571428571
       },
       "mfe_avg_pct": 1.5653761114990505,
-      "mae_avg_pct": -0.9133140607657575,
+      "mae_avg_pct": -0.9141643755948233,
       "threshold_hits": {
         "+1%": 11,
         "+2%": 6,
