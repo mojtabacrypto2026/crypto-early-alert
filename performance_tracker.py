@@ -343,20 +343,36 @@ def get_historical_closes(symbol, start_ts, end_ts):
     return prices, diagnostics
 
 
-def price_at_or_before(prices, target_ts):
+
+def price_at_or_before(prices, target_ts, max_staleness_seconds=180):
+    """Return the latest valid price only if it is not too old."""
+    if not prices:
+        return None
+
     best = None
-    for ts, price in prices:
-        if ts <= target_ts:
+
+    for item in prices:
+        try:
+            ts, price = item
+            ts = int(ts)
+            price = float(price)
+        except (TypeError, ValueError, IndexError):
+            continue
+
+        if ts > target_ts or price <= 0:
+            continue
+
+        if best is None or ts > best[0]:
             best = (ts, price)
-        else:
-            break
+
+    if best is None:
+        return None
+
+    if target_ts - best[0] > max_staleness_seconds:
+        return None
+
     return best
 
-
-def pct(entry, price):
-    if entry <= 0 or price is None:
-        return None
-    return (price / entry - 1.0) * 100.0
 
 
 def outcome(event, prices):
