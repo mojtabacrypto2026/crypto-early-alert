@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 5,
   "tracking_schema_version": 2,
-  "generated_at": 1792100911,
-  "generated_at_iso": "2026-10-15T21:48:31+00:00",
+  "generated_at": 1792108936,
+  "generated_at_iso": "2026-10-16T00:02:16+00:00",
   "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
   "future_leakage_policy": "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
   "signal_types": [
@@ -35,7 +35,7 @@
     "symbols_failed": 1,
     "fallback_used": 15,
     "total_attempts": 60,
-    "total_candles": 13135
+    "total_candles": 13226
   },
   "historical_fetch_diagnostics": {
     "BEAMXUSDT": {
@@ -313,7 +313,7 @@
       "method": "from_to",
       "attempts": 2,
       "fallback_used": true,
-      "returned_candles": 451,
+      "returned_candles": 497,
       "coverage_complete": false,
       "status": "ok",
       "errors": []
@@ -586,7 +586,7 @@
       "method": "from_to",
       "attempts": 2,
       "fallback_used": true,
-      "returned_candles": 452,
+      "returned_candles": 497,
       "coverage_complete": false,
       "status": "ok",
       "errors": []
@@ -8699,15 +8699,14 @@
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1792103727,
             "target_timestamp_iso": "2026-10-15T22:35:27+00:00",
-            "actual_timestamp": 1792100940,
-            "actual_timestamp_iso": "2026-10-15T21:49:00+00:00",
-            "price": 9.999,
-            "change_pct": 0.17030655179324228,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "actual_timestamp": 1792103700,
+            "actual_timestamp_iso": "2026-10-15T22:35:00+00:00",
+            "price": 10.014,
+            "change_pct": 0.3205770386696116,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           }
         },
         "mfe_pct": 1.132037667802055,
@@ -8826,15 +8825,14 @@
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           },
           "4h": {
-            "available": false,
+            "available": true,
             "target_timestamp": 1792103728,
             "target_timestamp_iso": "2026-10-15T22:35:28+00:00",
-            "actual_timestamp": 1792101000,
-            "actual_timestamp_iso": "2026-10-15T21:50:00+00:00",
-            "price": 278.12,
-            "change_pct": -0.1436162573603239,
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "censored": true
+            "actual_timestamp": 1792103700,
+            "actual_timestamp_iso": "2026-10-15T22:35:00+00:00",
+            "price": 278.76,
+            "change_pct": 0.08616975441619878,
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
           }
         },
         "mfe_pct": 0.5852362487433593,
@@ -8927,7 +8925,7 @@
         "30m": 25,
         "1h": 26,
         "2h": 27,
-        "4h": 26
+        "4h": 28
       },
       "avg_change_pct": {
         "5m": 0.0342590111619967,
@@ -8935,7 +8933,7 @@
         "30m": -0.15954824165258952,
         "1h": -0.13013611460258248,
         "2h": 0.5083731127714172,
-        "4h": 0.5050973178233916
+        "4h": 0.4835456091604997
       },
       "median_change_pct": {
         "5m": 0.04140163348260728,
@@ -8951,7 +8949,7 @@
         "30m": 36.0,
         "1h": 42.30769230769231,
         "2h": 62.96296296296296,
-        "4h": 61.53846153846154
+        "4h": 64.28571428571429
       },
       "mfe_avg_pct": 1.5812595048687934,
       "mae_avg_pct": -0.9154672429080992,
