@@ -373,7 +373,15 @@ def price_at_or_before(prices, target_ts, max_staleness_seconds=180):
 
     return best
 
+def pct(entry_price, current_price):
+    """Calculate percentage change from entry price."""
+    entry = safe_float(entry_price)
+    current = safe_float(current_price)
 
+    if entry is None or current is None or entry <= 0:
+        return None
+
+    return ((current - entry) / entry) * 100.0
 
 def outcome(event, prices):
     start = event["timestamp"]
