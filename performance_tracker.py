@@ -251,6 +251,61 @@ def _parse_udf_closes(data, start_ts, end_ts):
 
     return sorted(set(result)), status
 
+def analyze_price_gaps(prices, start_ts, end_ts):
+    """Measure missing intervals in 1-minute close-price history."""
+    start_ts = int(start_ts)
+    end_ts = int(end_ts)
+
+    times = sorted({
+        int(ts)
+        for ts, price in prices
+        if start_ts <= int(ts) <= end_ts
+        and safe_float(price) is not None
+        and safe_float(price) > 0
+    })
+
+    expected_candles = max(
+        1, int(math.ceil((end_ts - start_ts) / 60.0))
+    )
+
+    gaps = []
+    estimated_missing_minutes = 0
+    max_gap_seconds = 0
+
+    for previous_ts, current_ts in zip(times, times[1:]):
+        delta = current_ts - previous_ts
+        max_gap_seconds = max(max_gap_seconds, delta)
+
+        # A gap greater than 90 seconds indicates a possible
+        # missing 1-minute candle. This is a diagnostic threshold.
+        if delta > 90:
+            missing = max(1, int(round(delta / 60.0)) - 1)
+            gaps.append({
+                "from_timestamp": previous_ts,
+                "to_timestamp": current_ts,
+                "gap_seconds": delta,
+                "estimated_missing_minutes": missing,
+            })
+            estimated_missing_minutes += missing
+
+    coverage_pct = min(
+        100.0,
+        len(times) / expected_candles * 100.0
+    )
+
+    return {
+        "observed_candles": len(times),
+        "estimated_expected_candles": expected_candles,
+        "candle_count_coverage_pct": round(coverage_pct, 2),
+        "internal_gap_count": len(gaps),
+        "estimated_missing_minutes": estimated_missing_minutes,
+        "max_gap_seconds": max_gap_seconds,
+        "largest_gaps": sorted(
+            gaps,
+            key=lambda item: item["gap_seconds"],
+            reverse=True,
+        )[:10],
+    }
 
 def get_historical_closes(symbol, start_ts, end_ts):
     """Fetch 1-minute UDF candles using explicit pagination."""
