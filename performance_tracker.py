@@ -251,96 +251,202 @@ def _parse_udf_closes(data, start_ts, end_ts):
 
     return sorted(set(result)), status
 
+
 def get_historical_closes(symbol, start_ts, end_ts):
+    """Fetch 1-minute UDF candles using explicit pagination."""
     start_ts = int(start_ts)
     end_ts = int(end_ts)
-    expected_candles = max(1, int(math.ceil((end_ts - start_ts) / 60.0)) + 10)
+
+    if end_ts <= start_ts:
+        return [], {
+            "symbol": symbol,
+            "requested_start": start_ts,
+            "requested_end": end_ts,
+            "requested_minutes": 0,
+            "expected_candles": 0,
+            "method": "paged_from_to",
+            "attempts": 0,
+            "fallback_used": False,
+            "returned_candles": 0,
+            "coverage_complete": False,
+            "status": "invalid_range",
+            "errors": [],
+            "pages_used": 0,
+        }
+
+    requested_minutes = int(
+        math.ceil((end_ts - start_ts) / 60.0)
+    )
+    expected_candles = requested_minutes
+
+    # Keep requests bounded; never claim complete coverage
+    # if the pagination limit is reached before the start.
+    max_pages = min(
+        120,
+        max(1, int(math.ceil(requested_minutes / 450.0)) + 3)
+    )
 
     diagnostics = {
         "symbol": symbol,
         "requested_start": start_ts,
         "requested_end": end_ts,
-        "requested_minutes": max(1, int(math.ceil((end_ts - start_ts) / 60.0))),
+        "requested_minutes": requested_minutes,
         "expected_candles": expected_candles,
-        "method": None,
+        "method": "paged_from_to",
         "attempts": 0,
         "fallback_used": False,
         "returned_candles": 0,
         "coverage_complete": False,
-        "status": None,
+        "status": "not_started",
         "errors": [],
+        "pages_used": 0,
+        "pagination_limit_reached": False,
     }
 
-    # Nobitex UDF countback is the primary method. It has proved more
-    # reliable than relying only on from/to for this project.
-    countback_params = {
-        "symbol": symbol,
-        "resolution": "1",
-        "to": end_ts + 120,
-        "countback": expected_candles,
-    }
-    countback_url = (
-        BASE_URL + "/market/udf/history?"
-        + urllib.parse.urlencode(countback_params)
-    )
+    all_prices = {}
+    seen_page_signatures = set()
+    reached_start = False
 
-    data, meta = _fetch_json_with_retry(countback_url)
-    diagnostics["attempts"] += meta.get("attempts", 0)
-    diagnostics["errors"].extend(meta.get("errors", []))
+    for page in range(1, max_pages + 1):
+        params = {
+            "symbol": symbol,
+            "resolution": "1",
+            "from": max(0, start_ts - 120),
+            "to": end_ts + 120,
+            "page": page,
+        }
 
-    if data is not None:
-        prices, status = _parse_udf_closes(data, start_ts, end_ts)
-        diagnostics["method"] = "countback"
-        diagnostics["status"] = status
-        diagnostics["returned_candles"] = len(prices)
+        url = (
+            BASE_URL + "/market/udf/history?"
+            + urllib.parse.urlencode(params)
+        )
 
-        if prices:
-            first_ts = prices[0][0]
-            last_ts = prices[-1][0]
-            diagnostics["coverage_complete"] = (
-                first_ts <= start_ts + 60 and last_ts >= end_ts - 60
+        data, meta = _fetch_json_with_retry(url)
+        diagnostics["attempts"] += meta.get("attempts", 0)
+        diagnostics["pages_used"] = page
+        diagnostics["errors"].extend(meta.get("errors", []))
+
+        if data is None:
+            diagnostics["status"] = "request_failed"
+            diagnostics["errors"].append(
+                f"page {page}: request failed"
             )
-            if diagnostics["coverage_complete"]:
-                return prices, diagnostics
+            break
 
-    # Fallback to the explicit from/to range if countback failed, returned
-    # no usable data, or did not cover the requested interval.
-    diagnostics["fallback_used"] = True
-    fallback_params = {
-        "symbol": symbol,
-        "resolution": "1",
-        "from": max(0, start_ts - 120),
-        "to": end_ts + 120,
-    }
-    fallback_url = (
-        BASE_URL + "/market/udf/history?"
-        + urllib.parse.urlencode(fallback_params)
-    )
+        if not isinstance(data, dict):
+            diagnostics["status"] = "invalid_response"
+            diagnostics["errors"].append(
+                f"page {page}: response is not an object"
+            )
+            break
 
-    data, meta = _fetch_json_with_retry(fallback_url)
-    diagnostics["attempts"] += meta.get("attempts", 0)
-    diagnostics["errors"].extend(meta.get("errors", []))
+        status = str(data.get("s", "")).lower()
+        diagnostics["status"] = status or "missing_status"
 
-    if data is None:
-        diagnostics["method"] = "from_to"
-        diagnostics["status"] = "request_failed"
-        diagnostics["returned_candles"] = 0
-        diagnostics["coverage_complete"] = False
-        return [], diagnostics
+        if status == "no_data":
+            if page == 1:
+                diagnostics["status"] = "no_data"
+            break
 
-    prices, status = _parse_udf_closes(data, start_ts, end_ts)
-    diagnostics["method"] = "from_to"
-    diagnostics["status"] = status
+        if status != "ok":
+            diagnostics["errors"].append(
+                f"page {page}: API status={status or 'missing'}"
+            )
+            break
+
+        times = data.get("t") or []
+        closes = data.get("c") or []
+
+        if not times or not closes:
+            diagnostics["errors"].append(
+                f"page {page}: empty candle arrays"
+            )
+            break
+
+        page_prices = []
+        raw_close_times = []
+
+        for raw_ts, raw_price in zip(times, closes):
+            candle_start = parse_ts(raw_ts)
+            price = safe_float(raw_price)
+
+            if candle_start is None or price is None or price <= 0:
+                continue
+
+            close_ts = int(candle_start) + 60
+            raw_close_times.append(close_ts)
+
+            if start_ts <= close_ts <= end_ts:
+                page_prices.append((close_ts, price))
+
+        if not raw_close_times:
+            diagnostics["errors"].append(
+                f"page {page}: no valid timestamps or prices"
+            )
+            break
+
+        signature = tuple(sorted(set(raw_close_times)))
+
+        # Stop if the API repeats a page instead of advancing.
+        if signature in seen_page_signatures:
+            diagnostics["errors"].append(
+                f"page {page}: repeated page; pagination stopped"
+            )
+            break
+
+        seen_page_signatures.add(signature)
+
+        for ts, price in page_prices:
+            all_prices[ts] = price
+
+        # UDF page numbers are documented, but response behavior
+        # must be verified from actual API results.
+        oldest_close_ts = min(raw_close_times)
+        if oldest_close_ts <= start_ts + 60:
+            reached_start = True
+            break
+
+        # Avoid hammering the public API between page requests.
+        time.sleep(1.05)
+
+    prices = sorted(all_prices.items())
     diagnostics["returned_candles"] = len(prices)
 
     if prices:
         first_ts = prices[0][0]
         last_ts = prices[-1][0]
-        diagnostics["coverage_complete"] = (
-            first_ts <= start_ts + 60 and last_ts >= end_ts - 60
+
+        # This checks only the endpoints. Internal gaps are
+        # deliberately handled by a separate validation step.
+        endpoint_coverage = (
+            first_ts <= start_ts + 60
+            and last_ts >= end_ts - 60
         )
+    else:
+        endpoint_coverage = False
+
+    diagnostics["coverage_complete"] = (
+        endpoint_coverage and reached_start
+    )
+
+    if diagnostics["coverage_complete"]:
+        diagnostics["status"] = "ok"
+    elif diagnostics["status"] == "ok":
+        diagnostics["status"] = "incomplete_coverage"
+
+    if (
+        not reached_start
+        and diagnostics["pages_used"] >= max_pages
+    ):
+        diagnostics["pagination_limit_reached"] = True
+        diagnostics["errors"].append(
+            "pagination limit reached before requested start"
+        )
+        diagnostics["coverage_complete"] = False
+        diagnostics["status"] = "pagination_limit_reached"
 
     return prices, diagnostics
+
 
 
 
