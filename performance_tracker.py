@@ -835,6 +835,24 @@ def main():
     print("Symbols with data:", fetch_summary["symbols_with_data"])
     print("Historical fetch failures:", fetch_summary["symbols_failed"])
     print("Fallback fetches:", fetch_summary["fallback_used"])
+    
+    print(
+        "Symbols with internal gaps:",
+        fetch_summary["symbols_with_internal_gaps"],
+    )
+    print(
+        "Total internal gaps:",
+        fetch_summary["total_internal_gaps"],
+    )
+    print(
+        "Estimated missing minutes:",
+        fetch_summary["estimated_missing_minutes"],
+    )
+    print(
+        "Maximum gap seconds:",
+        fetch_summary["max_gap_seconds"],
+    )
+ 
     print("4h reliable TREND_EARLY samples:", reliable_4h)
     return 0
 
