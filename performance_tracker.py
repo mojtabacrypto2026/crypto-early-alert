@@ -486,7 +486,9 @@ def get_historical_closes(symbol, start_ts, end_ts):
         endpoint_coverage = False
 
     diagnostics["coverage_complete"] = (
-        endpoint_coverage and reached_start
+    endpoint_coverage
+    and reached_start
+    and diagnostics["internal_gap_count"] == 0
     )
 
     if diagnostics["coverage_complete"]:
