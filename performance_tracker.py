@@ -467,6 +467,11 @@ def get_historical_closes(symbol, start_ts, end_ts):
     prices = sorted(all_prices.items())
     diagnostics["returned_candles"] = len(prices)
 
+    gap_stats = analyze_price_gaps(
+    prices, start_ts, end_ts
+    )
+    diagnostics.update(gap_stats)
+
     if prices:
         first_ts = prices[0][0]
         last_ts = prices[-1][0]
