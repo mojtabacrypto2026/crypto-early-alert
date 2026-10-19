@@ -764,6 +764,26 @@ def main():
             for d in historical_fetch_diagnostics.values()
         ),
     }
+        
+        "symbols_with_internal_gaps": sum(
+            d.get("internal_gap_count", 0) > 0
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "total_internal_gaps": sum(
+            int(d.get("internal_gap_count", 0))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "estimated_missing_minutes": sum(
+            int(d.get("estimated_missing_minutes", 0))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "max_gap_seconds": max(
+            (
+                int(d.get("max_gap_seconds", 0))
+                for d in historical_fetch_diagnostics.values()
+            ),
+            default=0,
+        ),
 
     measured = []
     for event in events:
