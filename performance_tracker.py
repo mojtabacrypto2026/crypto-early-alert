@@ -551,46 +551,139 @@ def pct(entry_price, current_price):
 
     return ((current - entry) / entry) * 100.0
 
-def outcome(event, prices):
-    start = event["timestamp"]
+def assess_four_hour_window(prices, start_ts, end_ts, current_ts):
+    """Return whether the full four-hour close-price window is reliable."""
+    start_ts = int(start_ts)
+    end_ts = int(end_ts)
+    current_ts = int(current_ts)
+
+    if end_ts > current_ts:
+        return False, {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0,
+        }
+
+    window = []
+    for item in prices:
+        try:
+            ts = int(item[0])
+            price = safe_float(item[1])
+        except (TypeError, ValueError, IndexError):
+            continue
+
+        if (
+            start_ts <= ts <= end_ts
+            and price is not None
+            and price > 0
+        ):
+            window.append((ts, price))
+
+    window.sort(key=lambda item: item[0])
+
+    expected = max(1, int(math.ceil((end_ts - start_ts) / 60.0)))
+
+    if not window:
+        return False, {
+            "reason": "no_candles",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0,
+        }
+
+    times = [ts for ts, _ in window]
+    gaps = [
+        current - previous
+        for previous, current in zip(times, times[1:])
+        if current - previous > 90
+    ]
+
+    reasons = []
+
+    if times[0] > start_ts + 90:
+        reasons.append("start_missing")
+
+    if times[-1] < end_ts - 90:
+        reasons.append("end_missing")
+
+    if gaps:
+        reasons.append("internal_gaps")
+
+    coverage_pct = min(100.0, len(window) / expected * 100.0)
+
+    return not reasons, {
+        "reason": "complete" if not reasons else ",".join(reasons),
+        "observed_candles": len(window),
+        "expected_candles": expected,
+        "internal_gap_count": len(gaps),
+        "max_gap_seconds": max(gaps, default=0),
+        "coverage_pct": round(coverage_pct, 2),
+    }
+
+
+def outcome(event, prices, current_ts=None):
+    """Measure checkpoint outcomes; only report MFE/MAE for a reliable 4h window."""
+    if current_ts is None:
+        current_ts = now_ts()
+
+    current_ts = int(current_ts)
+    start = int(event["timestamp"])
+    end = start + CHECKPOINTS["4h"]
     entry = event["price"]
+
     checkpoints = {}
 
     for label, seconds in CHECKPOINTS.items():
         target = start + seconds
+        base = {
+            "available": False,
+            "target_timestamp": target,
+            "target_timestamp_iso": iso(target),
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+        }
+
+        if target > current_ts:
+            base["censored"] = True
+            base["censor_reason"] = "target_in_future"
+            checkpoints[label] = base
+            continue
+
         hit = price_at_or_before(prices, target)
+
         if hit is None:
-            checkpoints[label] = {
-                "available": False,
-                "target_timestamp": target,
-                "target_timestamp_iso": iso(target),
-                "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            }
-        else:
-            ts, price = hit
-            checkpoints[label] = {
-                "available": True,
-                "target_timestamp": target,
-                "target_timestamp_iso": iso(target),
-                "actual_timestamp": ts,
-                "actual_timestamp_iso": iso(ts),
-                "price": price,
-                "change_pct": pct(entry, price),
-                "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            }
+            base["censored"] = True
+            base["censor_reason"] = "no_fresh_close_near_target"
+            checkpoints[label] = base
+            continue
 
-    window = [(ts, p) for ts, p in prices
-              if start <= ts <= start + CHECKPOINTS["4h"]]
-    changes = [pct(entry, p) for _, p in window if pct(entry, p) is not None]
-    mfe = max(changes) if changes else None
-    mae = min(changes) if changes else None
+        ts, price = hit
+        base.update({
+            "available": True,
+            "actual_timestamp": ts,
+            "actual_timestamp_iso": iso(ts),
+            "price": price,
+            "change_pct": pct(entry, price),
+        })
+        checkpoints[label] = base
 
-    mfe_ts = next(
-        (ts for ts, p in window if pct(entry, p) == mfe), None
-    ) if mfe is not None else None
-    mae_ts = next(
-        (ts for ts, p in window if pct(entry, p) == mae), None
-    ) if mae is not None else None
+    reliable, window_info = assess_four_hour_window(
+        prices, start, end, current_ts
+    )
+
+    mfe = mae = None
+    mfe_ts = mae_ts = None
+
+    if reliable:
+        changes = [
+            (ts, pct(entry, price))
+            for ts, price in prices
+            if start <= ts <= end and pct(entry, price) is not None
+        ]
+
+        if changes:
+            mfe_ts, mfe = max(changes, key=lambda item: item[1])
+            mae_ts, mae = min(changes, key=lambda item: item[1])
 
     return {
         "checkpoints": checkpoints,
@@ -600,14 +693,43 @@ def outcome(event, prices):
         "mae_pct": mae,
         "mae_timestamp": mae_ts,
         "mae_timestamp_iso": iso(mae_ts),
+        "four_hour_window_reliable": reliable,
+        "four_hour_window_diagnostics": window_info,
+        "excursion_basis": "1m_closes_only",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
     }
 
 
-def threshold_hit(event, prices, threshold):
-    """Count threshold hits only inside the event's own 4-hour window."""
+def threshold_hit(event, prices, threshold, current_ts=None):
+    """Do not label a threshold as missed when its four-hour window is incomplete."""
+    if current_ts is None:
+        current_ts = now_ts()
+
+    current_ts = int(current_ts)
     start_ts = int(event["timestamp"])
     end_ts = start_ts + CHECKPOINTS["4h"]
+
+    reliable, window_info = assess_four_hour_window(
+        prices, start_ts, end_ts, current_ts
+    )
+
+    base = {
+        "threshold_pct": threshold,
+        "window_start_timestamp": start_ts,
+        "window_start_timestamp_iso": iso(start_ts),
+        "window_end_timestamp": end_ts,
+        "window_end_timestamp_iso": iso(end_ts),
+        "available": reliable,
+        "censored": not reliable,
+        "window_reliable": reliable,
+        "window_diagnostics": window_info,
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+    }
+
+    if not reliable:
+        base["hit"] = None
+        base["censor_reason"] = window_info.get("reason")
+        return base
 
     for ts, price in prices:
         if ts < start_ts:
@@ -616,30 +738,19 @@ def threshold_hit(event, prices, threshold):
             break
 
         change = pct(event["price"], price)
+
         if change is not None and change >= threshold:
-            return {
+            base.update({
                 "hit": True,
-                "threshold_pct": threshold,
-                "window_start_timestamp": start_ts,
-                "window_start_timestamp_iso": iso(start_ts),
-                "window_end_timestamp": end_ts,
-                "window_end_timestamp_iso": iso(end_ts),
                 "timestamp": ts,
                 "timestamp_iso": iso(ts),
                 "price": price,
                 "lead_time_seconds": ts - start_ts,
-                "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            }
+            })
+            return base
 
-    return {
-        "hit": False,
-        "threshold_pct": threshold,
-        "window_start_timestamp": start_ts,
-        "window_start_timestamp_iso": iso(start_ts),
-        "window_end_timestamp": end_ts,
-        "window_end_timestamp_iso": iso(end_ts),
-        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-    }
+    base["hit"] = False
+    return base
 
 def tracking_start(events):
     old = load_json(START_PATH, {})
