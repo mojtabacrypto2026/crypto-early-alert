@@ -975,6 +975,10 @@ def main():
     print("Events:", len(measured))
     print("Historical symbols:", fetch_summary["symbols_requested"])
     print("Symbols with data:", fetch_summary["symbols_with_data"])
+    print(
+    "Symbols without historical data:",
+    fetch_summary["symbols_without_data"],
+    )
     print("Historical fetch failures:", fetch_summary["symbols_failed"])
     print("Fallback fetches:", fetch_summary["fallback_used"])
     
