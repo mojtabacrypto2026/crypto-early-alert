@@ -822,16 +822,35 @@ def summarize(events):
         stats["mfe_avg_pct"] = sum(mfes) / len(mfes) if mfes else None
         stats["mae_avg_pct"] = sum(maes) / len(maes) if maes else None
 
+        
         for threshold in (1, 2, 5):
             key = f"+{threshold}%"
-            stats["threshold_hits"][key] = sum(
-                e.get("threshold_hits", {}).get(key, {}).get("hit", False)
+
+            candidates = [
+                e.get("threshold_hits", {}).get(key, {})
                 for e in rows
+            ]
+
+            valid = [
+                item for item in candidates
+                if (
+                    isinstance(item, dict)
+                    and item.get("available") is True
+                    and isinstance(item.get("hit"), bool)
+                )
+            ]
+
+            hit_count = sum(
+                item["hit"] is True
+                for item in valid
             )
 
-        result[kind] = stats
-    return result
-
+            stats["threshold_hits"][key] = hit_count
+            stats["threshold_samples"][key] = len(valid)
+            stats["threshold_hit_rate_pct"][key] = (
+                hit_count / len(valid) * 100.0
+                if valid else None
+            )
 
 def main():
     events = load_events()
