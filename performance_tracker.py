@@ -979,7 +979,7 @@ def main():
     "Symbols without historical data:",
     fetch_summary["symbols_without_data"],
     )
-    print("Historical fetch failures:", fetch_summary["symbols_failed"])
+    print("Historical network request failures:", fetch_summary["symbols_failed"])
     print("Fallback fetches:", fetch_summary["fallback_used"])
     
     print(
