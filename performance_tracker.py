@@ -927,11 +927,10 @@ def main():
         row = dict(event)
         row["outcome"] = outcome(event, prices, current_ts=current)
         row["threshold_hits"] = {
-            row["threshold_hits"] = {
-    "+1%": threshold_hit(event, prices, 1.0, current_ts=current),
-    "+2%": threshold_hit(event, prices, 2.0, current_ts=current),
-    "+5%": threshold_hit(event, prices, 5.0, current_ts=current),
-}
+        "+1%": threshold_hit(event, prices, 1.0, current_ts=current),
+        "+2%": threshold_hit(event, prices, 2.0, current_ts=current),
+        "+5%": threshold_hit(event, prices, 5.0, current_ts=current),
+        }
 
         for label, seconds in CHECKPOINTS.items():
             cp = row["outcome"]["checkpoints"].get(label)
