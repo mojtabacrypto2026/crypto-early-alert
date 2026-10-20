@@ -3090,15 +3090,17 @@ def run_scan():
         now,
     )
 
+    
     try:
-    books = get_market_snapshot()
+        books = get_market_snapshot()
 
-    if not books:
-        raise RuntimeError("MARKET_SNAPSHOT_EMPTY")
+        if not books:
+            raise RuntimeError("MARKET_SNAPSHOT_EMPTY")
 
-except Exception as exc:
-    print("MARKET SNAPSHOT FAILED:", exc)
-    raise RuntimeError("MARKET_SNAPSHOT_FAILED") from exc
+    except Exception as exc:
+        print("MARKET SNAPSHOT FAILED:", exc)
+        raise RuntimeError("MARKET_SNAPSHOT_FAILED") from exc
+
 
     symbols = sorted(
         books.keys()
