@@ -951,7 +951,7 @@ def main():
 )
 
     state = {
-        "performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
+        "performance_schema_version": PERFORMANCE_SCHEMA_VERSION=6
         "tracking_schema_version": TRACKING_SCHEMA_VERSION,
         "generated_at": current,
         "generated_at_iso": iso(current),
