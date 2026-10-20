@@ -786,7 +786,8 @@ def summarize(events):
             "positive_rate_pct": {},
             "mfe_avg_pct": None,
             "mae_avg_pct": None,
-            "threshold_hits": {"+1%": 0, "+2%": 0, "+5%": 0},
+            "threshold_hits":"threshold_samples": {"+1%": 0, "+2%": 0, "+5%": 0},
+"threshold_hit_rate_pct": {"+1%": None, "+2%": None, "+5%": None},
         }
 
         for label in CHECKPOINTS:
