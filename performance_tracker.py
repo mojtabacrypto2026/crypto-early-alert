@@ -922,7 +922,7 @@ def main():
     for event in events:
         prices = prices_by_symbol.get(event["symbol"], [])
         row = dict(event)
-        row["outcome"] = outcome(event, prices)
+        row["outcome"] = outcome(event, prices, current_ts=current)
         row["threshold_hits"] = {
             "+1%": threshold_hit(event, prices, 1.0),
             "+2%": threshold_hit(event, prices, 2.0),
