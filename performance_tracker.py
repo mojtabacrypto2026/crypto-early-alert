@@ -851,7 +851,9 @@ def summarize(events):
                 hit_count / len(valid) * 100.0
                 if valid else None
             )
+        result[kind] = stats
 
+    return result
 def main():
     events = load_events()
     start = tracking_start(events)
