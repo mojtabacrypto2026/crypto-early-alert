@@ -741,6 +741,7 @@ def main():
         historical_fetch_diagnostics[symbol] = diagnostics
         time.sleep(REQUEST_DELAY)
 
+    
     fetch_summary = {
         "symbols_requested": len(historical_fetch_diagnostics),
         "symbols_with_data": sum(
@@ -763,8 +764,6 @@ def main():
             int(d.get("returned_candles", 0))
             for d in historical_fetch_diagnostics.values()
         ),
-    }
-        
         "symbols_with_internal_gaps": sum(
             d.get("internal_gap_count", 0) > 0
             for d in historical_fetch_diagnostics.values()
@@ -784,6 +783,10 @@ def main():
             ),
             default=0,
         ),
+    }
+
+    measured = []
+
 
     measured = []
     for event in events:
