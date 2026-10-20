@@ -938,7 +938,15 @@ def main():
         measured.append(row)
 
     summary = summarize(measured)
-    reliable_4h = summary["TREND_EARLY"]["available"].get("4h", 0)
+    reliable_4h = sum(
+    1
+    for event in measured
+    if (
+        event.get("signal_type") == "TREND_EARLY"
+        and event.get("outcome", {}).get("four_hour_window_reliable")
+        is True
+    )
+)
 
     state = {
         "performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
