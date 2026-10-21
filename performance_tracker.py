@@ -30,7 +30,7 @@ CHECKPOINTS = {
 }
 
 TRACKING_SCHEMA_VERSION = 2
-PERFORMANCE_SCHEMA_VERSION = 5
+PERFORMANCE_SCHEMA_VERSION = 6
 MIN_RELIABLE_4H_SAMPLES = 100
 MAX_EVENTS = 1500
 REQUEST_TIMEOUT = 15
@@ -401,6 +401,8 @@ def get_historical_closes(symbol, start_ts, end_ts):
         if status == "no_data":
             if page == 1:
                 diagnostics["status"] = "no_data"
+            else:
+                diagnostics["status"] = "pagination_end_no_data"
             break
 
         if status != "ok":
@@ -493,7 +495,7 @@ def get_historical_closes(symbol, start_ts, end_ts):
 
     if diagnostics["coverage_complete"]:
         diagnostics["status"] = "ok"
-    elif diagnostics["status"] == "ok":
+    elif diagnostics["status"] in ("ok", "pagination_end_no_data"):
         diagnostics["status"] = "incomplete_coverage"
 
     if (
@@ -786,8 +788,9 @@ def summarize(events):
             "positive_rate_pct": {},
             "mfe_avg_pct": None,
             "mae_avg_pct": None,
-            "threshold_hits":"threshold_samples": {"+1%": 0, "+2%": 0, "+5%": 0},
-"threshold_hit_rate_pct": {"+1%": None, "+2%": None, "+5%": None},
+            "threshold_hits": {"+1%": 0, "+2%": 0, "+5%": 0},
+            "threshold_samples": {"+1%": 0, "+2%": 0, "+5%": 0},
+            "threshold_hit_rate_pct": {"+1%": None, "+2%": None, "+5%": None},
         }
 
         for label in CHECKPOINTS:
@@ -823,7 +826,7 @@ def summarize(events):
         stats["mfe_avg_pct"] = sum(mfes) / len(mfes) if mfes else None
         stats["mae_avg_pct"] = sum(maes) / len(maes) if maes else None
 
-        
+
         for threshold in (1, 2, 5):
             key = f"+{threshold}%"
 
@@ -874,11 +877,24 @@ def main():
         historical_fetch_diagnostics[symbol] = diagnostics
         time.sleep(REQUEST_DELAY)
 
-    
+
     fetch_summary = {
         "symbols_requested": len(historical_fetch_diagnostics),
         "symbols_with_data": sum(
             bool(d.get("returned_candles"))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "symbols_without_data": sum(
+            not bool(d.get("returned_candles"))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "symbols_with_complete_coverage": sum(
+            bool(d.get("coverage_complete"))
+            for d in historical_fetch_diagnostics.values()
+        ),
+        "symbols_with_incomplete_coverage": sum(
+            bool(d.get("returned_candles"))
+            and not bool(d.get("coverage_complete"))
             for d in historical_fetch_diagnostics.values()
         ),
         "symbols_failed": sum(
@@ -919,17 +935,14 @@ def main():
     }
 
     measured = []
-
-
-    measured = []
     for event in events:
         prices = prices_by_symbol.get(event["symbol"], [])
         row = dict(event)
         row["outcome"] = outcome(event, prices, current_ts=current)
         row["threshold_hits"] = {
-        "+1%": threshold_hit(event, prices, 1.0, current_ts=current),
-        "+2%": threshold_hit(event, prices, 2.0, current_ts=current),
-        "+5%": threshold_hit(event, prices, 5.0, current_ts=current),
+            "+1%": threshold_hit(event, prices, 1.0, current_ts=current),
+            "+2%": threshold_hit(event, prices, 2.0, current_ts=current),
+            "+5%": threshold_hit(event, prices, 5.0, current_ts=current),
         }
 
         for label, seconds in CHECKPOINTS.items():
@@ -941,17 +954,16 @@ def main():
 
     summary = summarize(measured)
     reliable_4h = sum(
-    1
-    for event in measured
-    if (
-        event.get("signal_type") == "TREND_EARLY"
-        and event.get("outcome", {}).get("four_hour_window_reliable")
-        is True
+        1
+        for event in measured
+        if (
+            event.get("signal_type") == "TREND_EARLY"
+            and event.get("outcome", {}).get("four_hour_window_reliable") is True
+        )
     )
-)
 
     state = {
-        ""performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
+        "performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
         "tracking_schema_version": TRACKING_SCHEMA_VERSION,
         "generated_at": current,
         "generated_at_iso": iso(current),
@@ -977,13 +989,15 @@ def main():
     print("Events:", len(measured))
     print("Historical symbols:", fetch_summary["symbols_requested"])
     print("Symbols with data:", fetch_summary["symbols_with_data"])
+    print("Symbols with complete coverage:", fetch_summary["symbols_with_complete_coverage"])
+    print("Symbols with incomplete coverage:", fetch_summary["symbols_with_incomplete_coverage"])
     print(
-    "Symbols without historical data:",
-    fetch_summary["symbols_without_data"],
+        "Symbols without historical data:",
+        fetch_summary["symbols_without_data"],
     )
-    print("Historical network request failures:", fetch_summary["symbols_failed"])
+    print("Historical fetch request failures:", fetch_summary["symbols_failed"])
     print("Fallback fetches:", fetch_summary["fallback_used"])
-    
+
     print(
         "Symbols with internal gaps:",
         fetch_summary["symbols_with_internal_gaps"],
@@ -1000,7 +1014,7 @@ def main():
         "Maximum gap seconds:",
         fetch_summary["max_gap_seconds"],
     )
- 
+
     print("4h reliable TREND_EARLY samples:", reliable_4h)
     return 0
 
