@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 6,
   "tracking_schema_version": 2,
-  "generated_at": 1792605875,
-  "generated_at_iso": "2026-10-21T18:04:35+00:00",
+  "generated_at": 1792609594,
+  "generated_at_iso": "2026-10-21T19:06:34+00:00",
   "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
   "future_leakage_policy": "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
   "signal_types": [
@@ -28,7 +28,7 @@
     "started_at": 1790524995,
     "created_at": 1790524995
   },
-  "event_count": 83,
+  "event_count": 85,
   "historical_fetch_summary": {
     "symbols_requested": 48,
     "symbols_with_data": 14,
@@ -37,8 +37,8 @@
     "symbols_with_incomplete_coverage": 7,
     "symbols_failed": 1,
     "fallback_used": 0,
-    "total_attempts": 104,
-    "total_candles": 26370,
+    "total_attempts": 128,
+    "total_candles": 38276,
     "symbols_with_internal_gaps": 0,
     "total_internal_gaps": 0,
     "estimated_missing_minutes": 0,
@@ -485,21 +485,21 @@
     "AVAXUSDT": {
       "symbol": "AVAXUSDT",
       "requested_start": 1791621774,
-      "requested_end": 1792401469,
-      "requested_minutes": 12995,
-      "expected_candles": 12995,
+      "requested_end": 1792623994,
+      "requested_minutes": 16704,
+      "expected_candles": 16704,
       "method": "paged_from_to",
-      "attempts": 15,
+      "attempts": 22,
       "fallback_used": false,
-      "returned_candles": 6557,
+      "returned_candles": 10028,
       "coverage_complete": false,
       "status": "incomplete_coverage",
       "errors": [],
-      "pages_used": 15,
+      "pages_used": 22,
       "pagination_limit_reached": false,
-      "observed_candles": 6557,
-      "estimated_expected_candles": 12995,
-      "candle_count_coverage_pct": 50.46,
+      "observed_candles": 10028,
+      "estimated_expected_candles": 16704,
+      "candle_count_coverage_pct": 60.03,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -927,21 +927,21 @@
     "BCHUSDT": {
       "symbol": "BCHUSDT",
       "requested_start": 1791745806,
-      "requested_end": 1792103728,
-      "requested_minutes": 5966,
-      "expected_candles": 5966,
+      "requested_end": 1792623994,
+      "requested_minutes": 14637,
+      "expected_candles": 14637,
       "method": "paged_from_to",
-      "attempts": 5,
+      "attempts": 22,
       "fallback_used": false,
-      "returned_candles": 1595,
+      "returned_candles": 10030,
       "coverage_complete": false,
       "status": "incomplete_coverage",
       "errors": [],
-      "pages_used": 5,
+      "pages_used": 22,
       "pagination_limit_reached": false,
-      "observed_candles": 1595,
-      "estimated_expected_candles": 5966,
-      "candle_count_coverage_pct": 26.73,
+      "observed_candles": 10030,
+      "estimated_expected_candles": 14637,
+      "candle_count_coverage_pct": 68.52,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -13750,6 +13750,302 @@
           "hit": false
         }
       }
+    },
+    {
+      "id": "AVAXUSDT:FAST:1792609594:9.844",
+      "symbol": "AVAXUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1792609594,
+      "timestamp_iso": "2026-10-21T19:06:34+00:00",
+      "price": 9.844,
+      "source": "EVENT_LOG",
+      "score": 97.0,
+      "score_delta_1": 1.0,
+      "score_acceleration": -67.0,
+      "positive_score_steps": 1.0,
+      "order_flow": 1.6219291459874356,
+      "rsi": 58.292736517075674,
+      "structure": 8.0,
+      "volume_ratio": 1.7994132074607125,
+      "momentum_15m": -1.3775204631662996,
+      "momentum_1h": -0.503524672708952,
+      "momentum_4h": 0.5905110975361598,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1792609894,
+            "target_timestamp_iso": "2026-10-21T19:11:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1792610494,
+            "target_timestamp_iso": "2026-10-21T19:21:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1792611394,
+            "target_timestamp_iso": "2026-10-21T19:36:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1792613194,
+            "target_timestamp_iso": "2026-10-21T20:06:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1792616794,
+            "target_timestamp_iso": "2026-10-21T21:06:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1792623994,
+            "target_timestamp_iso": "2026-10-21T23:06:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
+        "four_hour_window_diagnostics": {
+          "reason": "window_not_mature",
+          "observed_candles": 0,
+          "internal_gap_count": 0,
+          "coverage_pct": 0.0
+        },
+        "excursion_basis": "1m_closes_only",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1792609594,
+          "window_start_timestamp_iso": "2026-10-21T19:06:34+00:00",
+          "window_end_timestamp": 1792623994,
+          "window_end_timestamp_iso": "2026-10-21T23:06:34+00:00",
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
+          "window_diagnostics": {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0
+          },
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+          "hit": null,
+          "censor_reason": "window_not_mature"
+        },
+        "+2%": {
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1792609594,
+          "window_start_timestamp_iso": "2026-10-21T19:06:34+00:00",
+          "window_end_timestamp": 1792623994,
+          "window_end_timestamp_iso": "2026-10-21T23:06:34+00:00",
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
+          "window_diagnostics": {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0
+          },
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+          "hit": null,
+          "censor_reason": "window_not_mature"
+        },
+        "+5%": {
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1792609594,
+          "window_start_timestamp_iso": "2026-10-21T19:06:34+00:00",
+          "window_end_timestamp": 1792623994,
+          "window_end_timestamp_iso": "2026-10-21T23:06:34+00:00",
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
+          "window_diagnostics": {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0
+          },
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+          "hit": null,
+          "censor_reason": "window_not_mature"
+        }
+      }
+    },
+    {
+      "id": "BCHUSDT:FAST:1792609594:285.475",
+      "symbol": "BCHUSDT",
+      "signal_type": "FAST",
+      "timestamp": 1792609594,
+      "timestamp_iso": "2026-10-21T19:06:34+00:00",
+      "price": 285.475,
+      "source": "EVENT_LOG",
+      "score": 80.0,
+      "score_delta_1": 9.0,
+      "score_acceleration": -15.0,
+      "positive_score_steps": 2.0,
+      "order_flow": 1.4939849220116928,
+      "rsi": 54.66099339983261,
+      "structure": 6.0,
+      "volume_ratio": 3.2582655733844805,
+      "momentum_15m": -0.28251543371350923,
+      "momentum_1h": -0.2581635500976867,
+      "momentum_4h": -0.5565217391304427,
+      "high_risk_jump": false,
+      "history_depth": 6.0,
+      "outcome": {
+        "checkpoints": {
+          "5m": {
+            "available": false,
+            "target_timestamp": 1792609894,
+            "target_timestamp_iso": "2026-10-21T19:11:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "15m": {
+            "available": false,
+            "target_timestamp": 1792610494,
+            "target_timestamp_iso": "2026-10-21T19:21:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "30m": {
+            "available": false,
+            "target_timestamp": 1792611394,
+            "target_timestamp_iso": "2026-10-21T19:36:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "1h": {
+            "available": false,
+            "target_timestamp": 1792613194,
+            "target_timestamp_iso": "2026-10-21T20:06:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "2h": {
+            "available": false,
+            "target_timestamp": 1792616794,
+            "target_timestamp_iso": "2026-10-21T21:06:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          },
+          "4h": {
+            "available": false,
+            "target_timestamp": 1792623994,
+            "target_timestamp_iso": "2026-10-21T23:06:34+00:00",
+            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+            "censored": true,
+            "censor_reason": "target_in_future"
+          }
+        },
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
+        "four_hour_window_diagnostics": {
+          "reason": "window_not_mature",
+          "observed_candles": 0,
+          "internal_gap_count": 0,
+          "coverage_pct": 0.0
+        },
+        "excursion_basis": "1m_closes_only",
+        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
+      },
+      "threshold_hits": {
+        "+1%": {
+          "threshold_pct": 1.0,
+          "window_start_timestamp": 1792609594,
+          "window_start_timestamp_iso": "2026-10-21T19:06:34+00:00",
+          "window_end_timestamp": 1792623994,
+          "window_end_timestamp_iso": "2026-10-21T23:06:34+00:00",
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
+          "window_diagnostics": {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0
+          },
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+          "hit": null,
+          "censor_reason": "window_not_mature"
+        },
+        "+2%": {
+          "threshold_pct": 2.0,
+          "window_start_timestamp": 1792609594,
+          "window_start_timestamp_iso": "2026-10-21T19:06:34+00:00",
+          "window_end_timestamp": 1792623994,
+          "window_end_timestamp_iso": "2026-10-21T23:06:34+00:00",
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
+          "window_diagnostics": {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0
+          },
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+          "hit": null,
+          "censor_reason": "window_not_mature"
+        },
+        "+5%": {
+          "threshold_pct": 5.0,
+          "window_start_timestamp": 1792609594,
+          "window_start_timestamp_iso": "2026-10-21T19:06:34+00:00",
+          "window_end_timestamp": 1792623994,
+          "window_end_timestamp_iso": "2026-10-21T23:06:34+00:00",
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
+          "window_diagnostics": {
+            "reason": "window_not_mature",
+            "observed_candles": 0,
+            "internal_gap_count": 0,
+            "coverage_pct": 0.0
+          },
+          "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
+          "hit": null,
+          "censor_reason": "window_not_mature"
+        }
+      }
     }
   ],
   "summary": {
@@ -13806,7 +14102,7 @@
       }
     },
     "FAST": {
-      "signals": 48,
+      "signals": 50,
       "available": {
         "5m": 15,
         "15m": 15,
