@@ -1,39 +1,65 @@
+
 name: Telegram Delivery Smoke Test
 
-on: workflow_dispatch:
+on:
+  workflow_dispatch:
 
-permissions: contents: read
+permissions:
+  contents: read
 
-jobs: telegram-test: runs-on: ubuntu-latest timeout-minutes: 2 steps: - name: Send one test message to Telegram env: TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }} TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }} run: | python - <<'PY' import json import os import sys import urllib.parse import urllib.request import urllib.error
+jobs:
+  telegram-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
 
- 
-      token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
-      chat_id = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+    steps:
+      - name: Send one test message to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+          import urllib.parse
+          import urllib.request
+          import urllib.error
 
-      if not token or not chat_id:
-          print("TELEGRAM_TEST=FAIL: required GitHub Secrets are missing")
-          sys.exit(1)
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+          chat_id = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
 
-      url = "https://api.telegram.org/bot" + token + "/sendMessage"
-      payload = urllib.parse.urlencode({
-          "chat_id": chat_id,
-          "text": "آزمایش تلگرام پروژه هشدار نوبیتکس: اتصال برقرار است."
-      }).encode("utf-8")
-
-      request = urllib.request.Request(url, data=payload, method="POST")
-      try:
-          with urllib.request.urlopen(request, timeout=20) as response:
-              result = json.loads(response.read().decode("utf-8"))
-          if result.get("ok") is True:
-              print("TELEGRAM_TEST=PASS: Telegram accepted the test message")
-          else:
-              print("TELEGRAM_TEST=FAIL: Telegram API returned ok=false")
+          if not token or not chat_id:
+              print("TELEGRAM_TEST=FAIL: GitHub Secrets are missing")
               sys.exit(1)
-      except urllib.error.HTTPError as exc:
-          print(f"TELEGRAM_TEST=FAIL: Telegram HTTP status {exc.code}")
-          sys.exit(1)
-      except Exception as exc:
-          print(f"TELEGRAM_TEST=FAIL: network or parsing error ({type(exc).__name__})")
-          sys.exit(1)
-      PY
- 
+
+          url = "https://api.telegram.org/bot" + token + "/sendMessage"
+          payload = urllib.parse.urlencode({
+              "chat_id": chat_id,
+              "text": "آزمایش تلگرام پروژه هشدار نوبیتکس: اتصال برقرار است."
+          }).encode("utf-8")
+
+          request = urllib.request.Request(
+              url,
+              data=payload,
+              method="POST"
+          )
+
+          try:
+              with urllib.request.urlopen(request, timeout=20) as response:
+                  result = json.loads(response.read().decode("utf-8"))
+
+              if result.get("ok") is True:
+                  print("TELEGRAM_TEST=PASS")
+              else:
+                  print("TELEGRAM_TEST=FAIL: Telegram returned ok=false")
+                  sys.exit(1)
+
+          except urllib.error.HTTPError as exc:
+              print(f"TELEGRAM_TEST=FAIL: HTTP status {exc.code}")
+              sys.exit(1)
+
+          except Exception as exc:
+              print(f"TELEGRAM_TEST=FAIL: {type(exc).__name__}")
+              sys.exit(1)
+          PY
