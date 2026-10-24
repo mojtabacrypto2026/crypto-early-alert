@@ -406,6 +406,109 @@ def get_historical_closes(symbol, start_ts, end_ts):
             break
 
         if status != "ok":
+
+def get_historical_closes(symbol, start_ts, end_ts):
+    """Fetch 1-minute candles; try countback if the normal request has no data."""
+    start_ts = int(start_ts)
+    end_ts = int(end_ts)
+
+    diagnostics = {
+        "symbol": symbol,
+        "requested_start": start_ts,
+        "requested_end": end_ts,
+        "requested_minutes": 0,
+        "expected_candles": 0,
+        "method": "paged_from_to",
+        "attempts": 0,
+        "fallback_used": False,
+        "returned_candles": 0,
+        "coverage_complete": False,
+        "status": "not_started",
+        "errors": [],
+        "pages_used": 0,
+        "pagination_limit_reached": False,
+    }
+
+    if end_ts <= start_ts:
+        diagnostics["status"] = "invalid_range"
+        return [], diagnostics
+
+    requested_minutes = int(math.ceil((end_ts - start_ts) / 60.0))
+    diagnostics["requested_minutes"] = requested_minutes
+    diagnostics["expected_candles"] = requested_minutes
+
+    max_pages = min(
+        120,
+        max(1, int(math.ceil(requested_minutes / 450.0)) + 3)
+    )
+
+    all_prices = {}
+    seen_signatures = set()
+    reached_start = False
+    fallback_mode = False
+
+    for page in range(1, max_pages + 1):
+        params = {
+            "symbol": symbol,
+            "resolution": "1",
+            "to": end_ts + 120,
+            "page": page,
+        }
+
+        if fallback_mode:
+            # Alternative request: ask UDF for recent candles by countback.
+            params["countback"] = min(500, requested_minutes + 3)
+            diagnostics["method"] = "paged_countback"
+            diagnostics["fallback_used"] = True
+        else:
+            params["from"] = max(0, start_ts - 120)
+
+        url = (
+            BASE_URL + "/market/udf/history?"
+            + urllib.parse.urlencode(params)
+        )
+
+        data, meta = _fetch_json_with_retry(url)
+        diagnostics["attempts"] += meta.get("attempts", 0)
+        diagnostics["pages_used"] = page
+        diagnostics["errors"].extend(meta.get("errors", []))
+
+        if data is None:
+            diagnostics["status"] = "request_failed"
+            diagnostics["errors"].append(
+                f"page {page}: request failed"
+            )
+            break
+
+        if not isinstance(data, dict):
+            diagnostics["status"] = "invalid_response"
+            diagnostics["errors"].append(
+                f"page {page}: response is not an object"
+            )
+            break
+
+        status = str(data.get("s", "")).lower()
+
+        if status == "no_data":
+            if page == 1 and not fallback_mode:
+                # Retry once using countback instead of from.
+                fallback_mode = True
+                diagnostics["fallback_used"] = True
+                diagnostics["method"] = "paged_countback"
+                diagnostics["pages_used"] = 0
+                diagnostics["errors"].append(
+                    "Normal request returned no_data; trying countback"
+                )
+                continue
+
+            diagnostics["status"] = (
+                "no_data" if not all_prices
+                else "pagination_end_no_data"
+            )
+            break
+
+        if status != "ok":
+            diagnostics["status"] = "api_error"
             diagnostics["errors"].append(
                 f"page {page}: API status={status or 'missing'}"
             )
@@ -415,13 +518,14 @@ def get_historical_closes(symbol, start_ts, end_ts):
         closes = data.get("c") or []
 
         if not times or not closes:
+            diagnostics["status"] = "empty_response"
             diagnostics["errors"].append(
                 f"page {page}: empty candle arrays"
             )
             break
 
-        page_prices = []
         raw_close_times = []
+        page_prices = []
 
         for raw_ts, raw_price in zip(times, closes):
             candle_start = parse_ts(raw_ts)
@@ -437,6 +541,7 @@ def get_historical_closes(symbol, start_ts, end_ts):
                 page_prices.append((close_ts, price))
 
         if not raw_close_times:
+            diagnostics["status"] = "invalid_candles"
             diagnostics["errors"].append(
                 f"page {page}: no valid timestamps or prices"
             )
@@ -444,42 +549,40 @@ def get_historical_closes(symbol, start_ts, end_ts):
 
         signature = tuple(sorted(set(raw_close_times)))
 
-        # Stop if the API repeats a page instead of advancing.
-        if signature in seen_page_signatures:
+        if signature in seen_signatures:
             diagnostics["errors"].append(
                 f"page {page}: repeated page; pagination stopped"
             )
             break
 
-        seen_page_signatures.add(signature)
+        seen_signatures.add(signature)
 
         for ts, price in page_prices:
             all_prices[ts] = price
 
-        # UDF page numbers are documented, but response behavior
-        # must be verified from actual API results.
         oldest_close_ts = min(raw_close_times)
+
         if oldest_close_ts <= start_ts + 60:
             reached_start = True
+            diagnostics["status"] = "ok"
             break
 
-        # Avoid hammering the public API between page requests.
+        # A short page may indicate the end of available history.
+        if len(times) < 450:
+            diagnostics["status"] = "history_exhausted"
+            break
+
         time.sleep(1.05)
 
     prices = sorted(all_prices.items())
     diagnostics["returned_candles"] = len(prices)
 
-    gap_stats = analyze_price_gaps(
-    prices, start_ts, end_ts
-    )
+    gap_stats = analyze_price_gaps(prices, start_ts, end_ts)
     diagnostics.update(gap_stats)
 
     if prices:
         first_ts = prices[0][0]
         last_ts = prices[-1][0]
-
-        # This checks only the endpoints. Internal gaps are
-        # deliberately handled by a separate validation step.
         endpoint_coverage = (
             first_ts <= start_ts + 60
             and last_ts >= end_ts - 60
@@ -487,29 +590,38 @@ def get_historical_closes(symbol, start_ts, end_ts):
     else:
         endpoint_coverage = False
 
-    diagnostics["coverage_complete"] = (
-    endpoint_coverage
-    and reached_start
-    and diagnostics["internal_gap_count"] == 0
+    diagnostics["coverage_complete"] = bool(
+        endpoint_coverage
+        and reached_start
+        and diagnostics.get("internal_gap_count", 0) == 0
+        and diagnostics["returned_candles"] >= max(
+            1, requested_minutes - 2
+        )
     )
 
     if diagnostics["coverage_complete"]:
         diagnostics["status"] = "ok"
-    elif diagnostics["status"] in ("ok", "pagination_end_no_data"):
+    elif diagnostics["returned_candles"] > 0:
         diagnostics["status"] = "incomplete_coverage"
+    elif diagnostics["status"] not in (
+        "request_failed", "api_error", "invalid_response",
+        "invalid_candles", "empty_response"
+    ):
+        diagnostics["status"] = "no_data"
 
     if (
         not reached_start
         and diagnostics["pages_used"] >= max_pages
     ):
         diagnostics["pagination_limit_reached"] = True
-        diagnostics["errors"].append(
-            "pagination limit reached before requested start"
-        )
         diagnostics["coverage_complete"] = False
         diagnostics["status"] = "pagination_limit_reached"
+        diagnostics["errors"].append(
+            "Pagination limit reached before requested start"
+        )
 
     return prices, diagnostics
+
 
 
 
