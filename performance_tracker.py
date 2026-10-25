@@ -474,7 +474,8 @@ while page <= max_pages:
             diagnostics["status"] = "history_exhausted"
             break
 
-        time.sleep(1.05)
+        page += 1
+time.sleep(1.05)
 
     prices = sorted(all_prices.items())
     diagnostics["returned_candles"] = len(prices)
