@@ -349,7 +349,7 @@ def get_historical_closes(symbol, start_ts, end_ts):
     fallback_mode = False
 
     page = 1
-while page <= max_pages:
+    while page <= max_pages:
         params = {
             "symbol": symbol,
             "resolution": "1",
@@ -475,7 +475,7 @@ while page <= max_pages:
             break
 
         page += 1
-time.sleep(1.05)
+        time.sleep(1.05)
 
     prices = sorted(all_prices.items())
     diagnostics["returned_candles"] = len(prices)
