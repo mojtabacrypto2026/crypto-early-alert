@@ -348,7 +348,8 @@ def get_historical_closes(symbol, start_ts, end_ts):
     reached_start = False
     fallback_mode = False
 
-    for page in range(1, max_pages + 1):
+    page = 1
+while page <= max_pages:
         params = {
             "symbol": symbol,
             "resolution": "1",
