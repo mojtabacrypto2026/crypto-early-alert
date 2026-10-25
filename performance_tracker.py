@@ -469,10 +469,13 @@ def get_historical_closes(symbol, start_ts, end_ts):
             diagnostics["status"] = "ok"
             break
 
-        # A short page may indicate the end of available history.
+                # A short page does not prove that all older history is unavailable.
+        # Continue pagination; repeated-page and max-page guards still apply.
         if len(times) < 450:
-            diagnostics["status"] = "history_exhausted"
-            break
+            diagnostics["errors"].append(
+                f"page {page}: short page ({len(times)} candles); "
+                "continuing to verify historical coverage"
+            )
 
         page += 1
         time.sleep(1.05)
