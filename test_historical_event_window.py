@@ -1,11 +1,18 @@
 
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Diagnostic only: compare historical and recent Nobitex UDF data."""
+
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
 BASE = "https://apiv2.nobitex.ir/market/udf/history"
+TIMEOUT = 20
+PAUSE = 0.25
 
 CASES = [
     ("BTCUSDT", 1791645830, 1791660230),
@@ -15,56 +22,150 @@ CASES = [
     ("LTCUSDT", 1792387070, 1792421968),
 ]
 
-def fmt(ts):
-    return datetime.fromtimestamp(
-        ts, timezone.utc
-    ).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-def fetch(symbol, start, end, page, mode):
+def fmt(ts):
+    try:
+        return datetime.fromtimestamp(
+            int(ts), timezone.utc
+        ).strftime("%Y-%m-%d %H:%M:%S UTC")
+    except (TypeError, ValueError, OverflowError, OSError):
+        return None
+
+
+def fetch(symbol, start, end, mode):
     params = {
         "symbol": symbol,
         "resolution": "1",
-        "to": end + 120,
-        "page": page,
+        "to": int(end) + 120,
     }
 
     if mode == "from_to":
-        params["from"] = max(0, start - 120)
-    else:
+        params["from"] = max(0, int(start) - 120)
+    elif mode == "countback":
         params["countback"] = 500
+    else:
+        raise ValueError(f"Unknown mode: {mode}")
 
     url = BASE + "?" + urllib.parse.urlencode(params)
-    req = urllib.request.Request(
-        url, headers={"User-Agent": "HistoryDiagnostic/1.0"}
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "NobitexHistoricalDiagnostic/2.0",
+            "Accept": "application/json",
+        },
     )
 
     try:
-        with urllib.request.urlopen(req, timeout=20) as response:
-            data = json.loads(response.read().decode("utf-8"))
+        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+            raw = response.read().decode("utf-8", errors="replace")
+            http_status = response.status
+
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            return {
+                "http_status": http_status,
+                "params": params,
+                "json_error": True,
+                "body_preview": raw[:700],
+            }
+
+        if not isinstance(data, dict):
+            return {
+                "http_status": http_status,
+                "params": params,
+                "response_type": type(data).__name__,
+                "body_preview": repr(data)[:500],
+            }
 
         times = data.get("t") or []
-        return {
+        closes = data.get("c") or []
+
+        try:
+            timestamps = [int(t) for t in times]
+        except (TypeError, ValueError):
+            timestamps = []
+
+        result = {
+            "http_status": http_status,
+            "params": params,
             "status": data.get("s"),
+            "errmsg": data.get("errmsg"),
+            "error": data.get("error"),
             "candles": len(times),
-            "oldest": fmt(int(min(times))) if times else None,
-            "newest": fmt(int(max(times))) if times else None,
+            "close_values": len(closes),
+            "oldest": fmt(min(timestamps)) if timestamps else None,
+            "newest": fmt(max(timestamps)) if timestamps else None,
+            "response_keys": sorted(data.keys()),
         }
+
+        # Keep unexpected API metadata, but not the large candle arrays.
+        for key, value in data.items():
+            if key not in {"t", "o", "h", "l", "c", "v"}:
+                if key not in result:
+                    result[key] = value
+
+        return result
+
+    except urllib.error.HTTPError as exc:
+        try:
+            body = exc.read().decode("utf-8", errors="replace")
+        except Exception:
+            body = ""
+
+        return {
+            "http_status": exc.code,
+            "params": params,
+            "http_error": str(exc),
+            "body_preview": body[:700],
+        }
+
     except Exception as exc:
-        return {"error": f"{type(exc).__name__}: {exc}"}
+        return {
+            "params": params,
+            "exception": f"{type(exc).__name__}: {exc}",
+        }
+
+
+def run_test(symbol, label, start, end):
+    print(f"\n=== {symbol} | {label} ===", flush=True)
+    print(
+        f"requested: {fmt(start)} -> {fmt(end)}",
+        flush=True,
+    )
+
+    for mode in ("from_to", "countback"):
+        result = fetch(symbol, start, end, mode)
+        print(
+            f"{mode}: "
+            + json.dumps(result, ensure_ascii=False, sort_keys=True),
+            flush=True,
+        )
+        time.sleep(PAUSE)
+
 
 def main():
-    for symbol, start, end in CASES:
-        print(f"\n=== {symbol}: {fmt(start)} to {fmt(end)} ===")
+    now = int(datetime.now(timezone.utc).timestamp())
+    recent_start = now - 4 * 60 * 60
 
-        for mode in ("from_to", "countback"):
-            for page in (1, 2):
-                result = fetch(symbol, start, end, page, mode)
-                print(
-                    f"{mode} page={page}: "
-                    + json.dumps(result, ensure_ascii=False)
-                )
-                time.sleep(0.25)
+    print("Nobitex UDF historical diagnostic v2", flush=True)
+    print(f"diagnostic_time_utc: {fmt(now)}", flush=True)
+    print("Diagnostic only; production files are not modified.", flush=True)
+
+    for symbol, start, end in CASES:
+        run_test(
+            symbol,
+            "historical event window",
+            start,
+            end,
+        )
+        run_test(
+            symbol,
+            "recent control window (last 4 hours)",
+            recent_start,
+            now,
+        )
+
 
 if __name__ == "__main__":
     main()
-
