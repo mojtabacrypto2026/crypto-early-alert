@@ -1,0 +1,28 @@
+
+name: Nobitex UDF History Diagnostic
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check diagnostic script syntax
+        run: python -m py_compile diagnostics/nobitex_udf_history_probe.py
+
+      - name: Run read-only Nobitex API diagnostic
+        run: python -u diagnostics/nobitex_udf_history_probe.py
