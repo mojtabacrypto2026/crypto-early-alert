@@ -877,165 +877,145 @@ def summarize(events):
 
     return result
 def main():
-    events = load_events()
-    start = tracking_start(events)
-    current = now_ts()
-
-    grouped = defaultdict(list)
-    for e in events:
-        grouped[e["symbol"]].append(e)
+        grouped = defaultdict(list)
+    for event in events:
+        grouped[event["symbol"]].append(event)
 
     prices_by_symbol = {}
     historical_fetch_diagnostics = {}
+
+    # Fetch separate historical windows so one failed old window
+    # does not prevent other windows for the same symbol being fetched.
+    WINDOW_SECONDS = 6 * 60 * 60
+    OVERLAP_SECONDS = CHECKPOINTS["4h"]
+
     for symbol, rows in grouped.items():
-        a = min(e["timestamp"] for e in rows)
-        b = max(e["timestamp"] for e in rows) + CHECKPOINTS["4h"]
-        prices, diagnostics = get_historical_closes(symbol, a, b)
-        prices_by_symbol[symbol] = prices
-        historical_fetch_diagnostics[symbol] = diagnostics
-        time.sleep(REQUEST_DELAY)
+        rows = sorted(rows, key=lambda item: int(item["timestamp"]))
+        chunks = []
+        current_chunk = []
+        chunk_start = None
 
+        for event in rows:
+            event_ts = int(event["timestamp"])
 
-    fetch_summary = {
-        "symbols_requested": len(historical_fetch_diagnostics),
-        "symbols_with_data": sum(
-            bool(d.get("returned_candles"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_without_data": sum(
-            not bool(d.get("returned_candles"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_complete_coverage": sum(
-            bool(d.get("coverage_complete"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_incomplete_coverage": sum(
-            bool(d.get("returned_candles"))
-            and not bool(d.get("coverage_complete"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_failed": sum(
-            d.get("status") == "request_failed"
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "fallback_used": sum(
-            bool(d.get("fallback_used"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_attempts": sum(
-            int(d.get("attempts", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_candles": sum(
-            int(d.get("returned_candles", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_internal_gaps": sum(
-            d.get("internal_gap_count", 0) > 0
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_internal_gaps": sum(
-            int(d.get("internal_gap_count", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "estimated_missing_minutes": sum(
-            int(d.get("estimated_missing_minutes", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "max_gap_seconds": max(
-            (
-                int(d.get("max_gap_seconds", 0))
-                for d in historical_fetch_diagnostics.values()
-            ),
-            default=0,
-        ),
-    }
+            if (
+                current_chunk
+                and event_ts > chunk_start + WINDOW_SECONDS
+            ):
+                chunks.append(current_chunk)
+                current_chunk = []
+                chunk_start = None
 
-    measured = []
-    for event in events:
-        prices = prices_by_symbol.get(event["symbol"], [])
-        row = dict(event)
-        row["outcome"] = outcome(event, prices, current_ts=current)
-        row["threshold_hits"] = {
-            "+1%": threshold_hit(event, prices, 1.0, current_ts=current),
-            "+2%": threshold_hit(event, prices, 2.0, current_ts=current),
-            "+5%": threshold_hit(event, prices, 5.0, current_ts=current),
-        }
+            if not current_chunk:
+                chunk_start = event_ts
 
-        for label, seconds in CHECKPOINTS.items():
-            cp = row["outcome"]["checkpoints"].get(label)
-            if cp and event["timestamp"] + seconds > current:
-                cp["available"] = False
-                cp["censored"] = True
-        measured.append(row)
+            current_chunk.append(event)
 
-    summary = summarize(measured)
-    reliable_4h = sum(
-        1
-        for event in measured
-        if (
-            event.get("signal_type") == "TREND_EARLY"
-            and event.get("outcome", {}).get("four_hour_window_reliable") is True
+        if current_chunk:
+            chunks.append(current_chunk)
+
+        combined_prices = {}
+        chunk_diagnostics = []
+
+        for chunk in chunks:
+            window_start = min(
+                int(event["timestamp"]) for event in chunk
+            )
+            window_end = (
+                max(int(event["timestamp"]) for event in chunk)
+                + OVERLAP_SECONDS
+            )
+
+            try:
+                prices, diagnostics = get_historical_closes(
+                    symbol,
+                    window_start,
+                    window_end,
+                )
+            except Exception as exc:
+                prices = []
+                diagnostics = {
+                    "symbol": symbol,
+                    "requested_start": window_start,
+                    "requested_end": window_end,
+                    "returned_candles": 0,
+                    "coverage_complete": False,
+                    "status": "exception",
+                    "errors": [str(exc)[:500]],
+                    "attempts": 0,
+                    "fallback_used": False,
+                    "internal_gap_count": 0,
+                    "estimated_missing_minutes": 0,
+                    "max_gap_seconds": 0,
+                }
+
+            chunk_diagnostics.append(diagnostics)
+
+            for ts, price in prices:
+                combined_prices[int(ts)] = float(price)
+
+            # Keep a small delay between independent API requests.
+            time.sleep(REQUEST_DELAY)
+
+        prices_by_symbol[symbol] = sorted(combined_prices.items())
+
+        all_chunks_complete = bool(chunk_diagnostics) and all(
+            item.get("coverage_complete") is True
+            for item in chunk_diagnostics
         )
-    )
 
-    state = {
-        "performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
-        "tracking_schema_version": TRACKING_SCHEMA_VERSION,
-        "generated_at": current,
-        "generated_at_iso": iso(current),
-        "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-        "future_leakage_policy":
-            "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
-        "signal_types": list(SIGNAL_TYPES),
-        "checkpoints": CHECKPOINTS,
-        "min_reliable_4h_samples": MIN_RELIABLE_4H_SAMPLES,
-        "reliable_4h_samples_trend_early": reliable_4h,
-        "measurement_ready_for_4h_optimization":
-            reliable_4h >= MIN_RELIABLE_4H_SAMPLES,
-        "tracking_start": start,
-        "event_count": len(measured),
-        "historical_fetch_summary": fetch_summary,
-        "historical_fetch_diagnostics": historical_fetch_diagnostics,
-        "events": measured[-MAX_EVENTS:],
-        "summary": summary,
-    }
-    save_json(OUTPUT_PATH, state)
-
-    print("Performance Tracker V5 EXACT")
-    print("Events:", len(measured))
-    print("Historical symbols:", fetch_summary["symbols_requested"])
-    print("Symbols with data:", fetch_summary["symbols_with_data"])
-    print("Symbols with complete coverage:", fetch_summary["symbols_with_complete_coverage"])
-    print("Symbols with incomplete coverage:", fetch_summary["symbols_with_incomplete_coverage"])
-    print(
-        "Symbols without historical data:",
-        fetch_summary["symbols_without_data"],
-    )
-    print("Historical fetch request failures:", fetch_summary["symbols_failed"])
-    print("Fallback fetches:", fetch_summary["fallback_used"])
-
-    print(
-        "Symbols with internal gaps:",
-        fetch_summary["symbols_with_internal_gaps"],
-    )
-    print(
-        "Total internal gaps:",
-        fetch_summary["total_internal_gaps"],
-    )
-    print(
-        "Estimated missing minutes:",
-        fetch_summary["estimated_missing_minutes"],
-    )
-    print(
-        "Maximum gap seconds:",
-        fetch_summary["max_gap_seconds"],
-    )
-
-    print("4h reliable TREND_EARLY samples:", reliable_4h)
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+        historical_fetch_diagnostics[symbol] = {
+            "symbol": symbol,
+            "requested_start": min(
+                int(event["timestamp"]) for event in rows
+            ),
+            "requested_end": (
+                max(int(event["timestamp"]) for event in rows)
+                + OVERLAP_SECONDS
+            ),
+            "chunks_requested": len(chunk_diagnostics),
+            "chunks_with_data": sum(
+                int(item.get("returned_candles", 0)) > 0
+                for item in chunk_diagnostics
+            ),
+            "chunks_without_data": sum(
+                int(item.get("returned_candles", 0)) == 0
+                for item in chunk_diagnostics
+            ),
+            "chunks_with_complete_coverage": sum(
+                item.get("coverage_complete") is True
+                for item in chunk_diagnostics
+            ),
+            "returned_candles": len(combined_prices),
+            "coverage_complete": all_chunks_complete,
+            "status": (
+                "ok" if all_chunks_complete
+                else "partial_chunks" if combined_prices
+                else "no_data"
+            ),
+            "attempts": sum(
+                int(item.get("attempts", 0))
+                for item in chunk_diagnostics
+            ),
+            "fallback_used": any(
+                item.get("fallback_used") is True
+                for item in chunk_diagnostics
+            ),
+            "internal_gap_count": sum(
+                int(item.get("internal_gap_count", 0))
+                for item in chunk_diagnostics
+            ),
+            "estimated_missing_minutes": sum(
+                int(item.get("estimated_missing_minutes", 0))
+                for item in chunk_diagnostics
+            ),
+            "max_gap_seconds": max(
+                (
+                    int(item.get("max_gap_seconds", 0))
+                    for item in chunk_diagnostics
+                ),
+                default=0,
+            ),
+            # Retain each window's diagnostics for auditability.
+            "chunk_diagnostics": chunk_diagnostics,
+        }
