@@ -1,1041 +1,1301 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""NOBITEX SIGNAL PERFORMANCE TRACKER - V5 EXACT OUTCOMES."""
+"""
+NOBITEX EARLY MOVE RADAR - FINAL
 
-import json
-import math
+هدف:
+- اسکن کل بازار USDT نوبیتکس
+- حفظ الگوریتم امتیازدهی PRE-MOVE فعلی
+- FAST PRE-MOVE جداگانه
+- قیمت دقیق از orderbook در لحظه هشدار
+- فقط یک درخواست 15m برای هر بازار و ساخت 1H به صورت محلی
+- Rate limit سراسری برای UDF
+- جلوگیری از ادامه streak قدیمی
+- کنترل پوشش بازار قبل از ارسال هشدار
+- Telegram
+
+این فایل با Python 3.10+ و کتابخانه استاندارد پایتون نوشته شده است.
+"""
+
 import os
-import time
-import urllib.parse
 import urllib.request
-from collections import defaultdict
-from datetime import datetime, timezone
+import urllib.parse
+import urllib.error
+import json
+import time
+import math
+import statistics
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+
+# ============================================================
+# CONFIG
+# ============================================================
 
 BASE_URL = "https://apiv2.nobitex.ir"
-WORKSPACE = os.path.dirname(os.path.abspath(__file__))
 
-EVENT_LOG_PATH = os.path.join(WORKSPACE, "nobitex_alert_events.jsonl")
-LEGACY_STATE_PATH = os.path.join(WORKSPACE, "nobitex_telegram_alert_state.json")
-OUTPUT_PATH = os.path.join(WORKSPACE, "nobitex_signal_performance_state.json")
-START_PATH = os.path.join(WORKSPACE, "nobitex_performance_tracking_start.json")
+MAX_WORKERS = 4
 
-SIGNAL_TYPES = ("MICRO", "FAST", "CONFIRMED", "NEWS", "TREND_EARLY")
-CHECKPOINTS = {
-    "5m": 5 * 60,
-    "15m": 15 * 60,
-    "30m": 30 * 60,
-    "1h": 60 * 60,
-    "2h": 2 * 60 * 60,
-    "4h": 4 * 60 * 60,
+# 380 x 15m ~= 95 hours. Enough for 90 closed 1H candles.
+COUNTBACK_15M = 380
+
+TOP_N = 5
+
+HTTP_TIMEOUT = 20
+HTTP_RETRIES = 3
+
+# Nobitex UDF safety: keep average request rate under ~60/min.
+UDF_MIN_INTERVAL = 1.05
+_udf_rate_lock = threading.Lock()
+_udf_next_request_at = 0.0
+
+# A streak cannot continue if the previous scan is older than this.
+MAX_STREAK_GAP_SECONDS = 25 * 60
+
+# Do not send alerts when market coverage becomes too poor.
+MIN_COVERAGE_FOR_ALERTS = 0.80
+
+# Performance tracker clean-start schema.
+TRACKING_SCHEMA_VERSION = 1
+TRACKING_START_PATH = "nobitex_performance_tracking_start.json"
+
+TELEGRAM_BOT_TOKEN = os.environ.get(
+    "TELEGRAM_BOT_TOKEN",
+    ""
+).strip()
+
+TELEGRAM_CHAT_ID = os.environ.get(
+    "TELEGRAM_CHAT_ID",
+    ""
+).strip()
+
+WORKSPACE = os.environ.get(
+    "GITHUB_WORKSPACE",
+    "."
+)
+
+STATE_PATH = os.path.join(
+    WORKSPACE,
+    "nobitex_early_radar_state.json"
+)
+
+ALERT_STATE_PATH = os.path.join(
+    WORKSPACE,
+    "nobitex_telegram_alert_state.json"
+)
+
+TRACKING_START_FULL_PATH = os.path.join(
+    WORKSPACE,
+    TRACKING_START_PATH
+)
+
+TELEGRAM_TEST_ON_START = False
+
+EXCLUDED_SYMBOLS = {
+    "USDCUSDT",
+    "USDEUSDT",
+    "DAIUSDT",
+    "XAUTUSDT",
+    "PAXGUSDT",
+    "WBTCUSDT",
 }
 
-TRACKING_SCHEMA_VERSION = 2
-PERFORMANCE_SCHEMA_VERSION = 6
-MIN_RELIABLE_4H_SAMPLES = 100
-MAX_EVENTS = 1500
-REQUEST_TIMEOUT = 15
-REQUEST_DELAY = 0.03
-HISTORICAL_FETCH_RETRIES = 3
-HISTORICAL_FETCH_BACKOFF_SECONDS = 1.0
+
+# ============================================================
+# HTTP HELPERS
+# ============================================================
+
+def _rate_limit_udf():
+    global _udf_next_request_at
+
+    with _udf_rate_lock:
+        now = time.monotonic()
+        wait = _udf_next_request_at - now
+        if wait > 0:
+            time.sleep(wait)
+        _udf_next_request_at = time.monotonic() + UDF_MIN_INTERVAL
 
 
-def now_ts():
-    return int(time.time())
+def http_get_json(url, params=None, udf=False):
+    if params:
+        url = url + "?" + urllib.parse.urlencode(params)
+
+    headers = {
+        "User-Agent": "Nobitex-Early-Radar/3.0",
+        "Accept": "application/json",
+    }
+
+    last_error = None
+
+    for attempt in range(HTTP_RETRIES):
+        try:
+            if udf:
+                _rate_limit_udf()
+
+            req = urllib.request.Request(
+                url,
+                headers=headers,
+                method="GET",
+            )
+
+            with urllib.request.urlopen(
+                req,
+                timeout=HTTP_TIMEOUT,
+            ) as response:
+                raw = response.read().decode("utf-8")
+
+            return json.loads(raw)
+
+        except Exception as exc:
+            last_error = exc
+            if attempt < HTTP_RETRIES - 1:
+                time.sleep(1.2 * (attempt + 1))
+
+    raise last_error
 
 
-def iso(ts):
+def http_post_json(url, data):
+    payload = json.dumps(data).encode("utf-8")
+
+    headers = {
+        "User-Agent": "Nobitex-Early-Radar/3.0",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+
+    last_error = None
+
+    for attempt in range(HTTP_RETRIES):
+        try:
+            req = urllib.request.Request(
+                url,
+                data=payload,
+                headers=headers,
+                method="POST",
+            )
+
+            with urllib.request.urlopen(
+                req,
+                timeout=HTTP_TIMEOUT,
+            ) as response:
+                raw = response.read().decode("utf-8")
+
+            return json.loads(raw)
+
+        except Exception as exc:
+            last_error = exc
+            if attempt < HTTP_RETRIES - 1:
+                time.sleep(1.2 * (attempt + 1))
+
+    raise last_error
+
+
+# ============================================================
+# TELEGRAM
+# ============================================================
+
+def telegram_send(message):
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("Telegram disabled: secrets are not configured.")
+        return False
+
+    url = (
+        "https://api.telegram.org/bot"
+        + TELEGRAM_BOT_TOKEN
+        + "/sendMessage"
+    )
+
+    data = {
+        "chat_id": TELEGRAM_CHAT_ID,
+        "text": message,
+        "disable_web_page_preview": True,
+    }
+
     try:
-        return datetime.fromtimestamp(float(ts), tz=timezone.utc).isoformat()
-    except Exception:
-        return None
+        result = http_post_json(url, data)
+        if result.get("ok"):
+            print("Telegram message sent.")
+            return True
 
+        print("Telegram error:", result)
+        return False
+
+    except Exception as exc:
+        print("Telegram exception:", exc)
+        return False
+
+
+def telegram_test():
+    return telegram_send(
+        "✅ اتصال رادار Early Move به تلگرام برقرار شد.\n"
+        "Nobitex Early Move Radar فعال است."
+    )
+
+
+# ============================================================
+# HELPERS
+# ============================================================
+
+def safe_float(value, default=0.0):
+    try:
+        result = float(value)
+        if math.isfinite(result):
+            return result
+    except Exception:
+        pass
+    return default
+
+
+def clamp(value, low, high):
+    return max(low, min(high, value))
+
+
+def median(values):
+    clean = [
+        safe_float(x)
+        for x in values
+        if safe_float(x) > 0
+    ]
+    if not clean:
+        return 0.0
+    return statistics.median(clean)
+
+
+def average(values):
+    # Preserves the original algorithm behavior: zero values are ignored.
+    clean = [
+        safe_float(x)
+        for x in values
+        if safe_float(x) > 0
+    ]
+    if not clean:
+        return 0.0
+    return sum(clean) / len(clean)
+
+
+# ============================================================
+# JSON STATE
+# ============================================================
 
 def load_json(path, default):
     try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
+        if not os.path.exists(path):
+            return default
+        with open(path, "r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except Exception as exc:
+        print("State load error:", path, exc)
         return default
 
 
 def save_json(path, data):
-    tmp = path + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-    os.replace(tmp, path)
-
-
-def parse_ts(value):
-    if value is None:
-        return None
-    if isinstance(value, (int, float)):
-        return int(value / 1000) if value > 10_000_000_000 else int(value)
-    s = str(value).strip()
-    if not s:
-        return None
     try:
-        return parse_ts(float(s))
-    except Exception:
-        pass
-    try:
-        return int(datetime.fromisoformat(s.replace("Z", "+00:00")).timestamp())
-    except Exception:
-        return None
-
-
-def safe_float(value):
-    try:
-        x = float(value)
-        return x if math.isfinite(x) else None
-    except Exception:
-        return None
-
-
-def normalize_symbol(value):
-    if not value:
-        return None
-    return str(value).upper().strip().replace("/", "").replace("_", "")
-
-
-def normalize_signal_type(value):
-    if not value:
-        return None
-    s = str(value).upper().strip()
-    return {
-        "TREND": "TREND_EARLY",
-        "TREND-EARLY": "TREND_EARLY",
-        "MICRO_EARLY": "MICRO",
-        "FAST_EARLY": "FAST",
-    }.get(s, s)
-
-
-def read_event_log():
-    out = []
-    if not os.path.exists(EVENT_LOG_PATH):
-        return out
-    try:
-        with open(EVENT_LOG_PATH, "r", encoding="utf-8") as f:
-            for line in f:
-                if not line.strip():
-                    continue
-                try:
-                    x = json.loads(line)
-                    if isinstance(x, dict):
-                        out.append(x)
-                except Exception:
-                    pass
-    except Exception:
-        pass
-    return out
-
-
-def extract_event(raw):
-    if not isinstance(raw, dict):
-        return None
-
-    symbol = normalize_symbol(
-        raw.get("symbol") or raw.get("market") or raw.get("pair")
-        or raw.get("ticker")
-    )
-    kind = normalize_signal_type(
-        raw.get("alert_type") or raw.get("signal_type")
-        or raw.get("type") or raw.get("event_type")
-    )
-    ts = parse_ts(
-        raw.get("timestamp") or raw.get("ts") or raw.get("created_at")
-        or raw.get("time") or raw.get("alert_timestamp")
-    )
-    price = safe_float(
-        raw.get("price") or raw.get("entry_price")
-        or raw.get("alert_price")
-    )
-
-    if not symbol or kind not in SIGNAL_TYPES or not ts:
-        return None
-    if price is None or price <= 0:
-        return None
-
-    event = {
-        "id": str(raw.get("id") or f"{symbol}:{kind}:{ts}:{price}"),
-        "symbol": symbol,
-        "signal_type": kind,
-        "timestamp": int(ts),
-        "timestamp_iso": iso(ts),
-        "price": price,
-        "source": "EVENT_LOG",
-    }
-
-    for key in (
-        "score", "trend_score", "score_delta_1", "score_acceleration",
-        "positive_score_steps", "order_flow", "rsi", "structure",
-        "volume_ratio", "momentum_15m", "momentum_1h", "momentum_4h",
-        "resistance", "high_risk_jump", "history_depth",
-    ):
-        if key in raw:
-            event[key] = raw[key]
-    return event
-
-
-def load_events():
-    events = [e for r in read_event_log() if (e := extract_event(r))]
-
-    if not events:
-        legacy = load_json(LEGACY_STATE_PATH, {})
-        if isinstance(legacy, dict):
-            candidates = legacy.get("alerts") or legacy.get("events") or []
-            if isinstance(candidates, dict):
-                candidates = list(candidates.values())
-            if isinstance(candidates, list):
-                for raw in candidates:
-                    e = extract_event(raw)
-                    if e:
-                        e["source"] = "LEGACY_STATE"
-                        events.append(e)
-
-    unique = {e["id"]: e for e in events}
-    return sorted(unique.values(), key=lambda x: x["timestamp"])[-MAX_EVENTS:]
-
-
-def http_json(url):
-    req = urllib.request.Request(
-        url,
-        headers={"User-Agent": "NobitexSignalPerformanceTracker/5.0"},
-    )
-    with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as r:
-        return json.loads(r.read().decode("utf-8"))
-
-
-def _fetch_json_with_retry(url):
-    errors = []
-    attempts = 0
-
-    for attempt in range(1, HISTORICAL_FETCH_RETRIES + 1):
-        attempts = attempt
-        try:
-            return http_json(url), {
-                "success": True,
-                "attempts": attempt,
-                "errors": errors,
-            }
-        except Exception as exc:
-            errors.append(f"{type(exc).__name__}: {exc}")
-            if attempt < HISTORICAL_FETCH_RETRIES:
-                time.sleep(HISTORICAL_FETCH_BACKOFF_SECONDS * attempt)
-
-    return None, {
-        "success": False,
-        "attempts": attempts,
-        "errors": errors,
-    }
-
-
-def _parse_udf_closes(data, start_ts, end_ts):
-    """Treat UDF timestamps as candle starts; close is available at start + 60s."""
-    if not isinstance(data, dict):
-        return [], "invalid_response"
-
-    status = str(data.get("s", "")).lower()
-    if status not in ("ok", "no_data"):
-        return [], f"api_status:{status or 'missing'}"
-
-    result = []
-    for t, c in zip(data.get("t") or [], data.get("c") or []):
-        candle_start = parse_ts(t)
-        price = safe_float(c)
-        if candle_start is None or price is None or price <= 0:
-            continue
-
-        close_ts = int(candle_start) + 60
-        if int(start_ts) <= close_ts <= int(end_ts):
-            result.append((close_ts, price))
-
-    return sorted(set(result)), status
-
-def analyze_price_gaps(prices, start_ts, end_ts):
-    """Measure missing intervals in 1-minute close-price history."""
-    start_ts = int(start_ts)
-    end_ts = int(end_ts)
-
-    times = sorted({
-        int(ts)
-        for ts, price in prices
-        if start_ts <= int(ts) <= end_ts
-        and safe_float(price) is not None
-        and safe_float(price) > 0
-    })
-
-    expected_candles = max(
-        1, int(math.ceil((end_ts - start_ts) / 60.0))
-    )
-
-    gaps = []
-    estimated_missing_minutes = 0
-    max_gap_seconds = 0
-
-    for previous_ts, current_ts in zip(times, times[1:]):
-        delta = current_ts - previous_ts
-        max_gap_seconds = max(max_gap_seconds, delta)
-
-        # A gap greater than 90 seconds indicates a possible
-        # missing 1-minute candle. This is a diagnostic threshold.
-        if delta > 90:
-            missing = max(1, int(round(delta / 60.0)) - 1)
-            gaps.append({
-                "from_timestamp": previous_ts,
-                "to_timestamp": current_ts,
-                "gap_seconds": delta,
-                "estimated_missing_minutes": missing,
-            })
-            estimated_missing_minutes += missing
-
-    coverage_pct = min(
-        100.0,
-        len(times) / expected_candles * 100.0
-    )
-
-    return {
-        "observed_candles": len(times),
-        "estimated_expected_candles": expected_candles,
-        "candle_count_coverage_pct": round(coverage_pct, 2),
-        "internal_gap_count": len(gaps),
-        "estimated_missing_minutes": estimated_missing_minutes,
-        "max_gap_seconds": max_gap_seconds,
-        "largest_gaps": sorted(
-            gaps,
-            key=lambda item: item["gap_seconds"],
-            reverse=True,
-        )[:10],
-    }
-
-
-def get_historical_closes(symbol, start_ts, end_ts):
-    """Fetch 1-minute candles; try countback if the normal request has no data."""
-    start_ts = int(start_ts)
-    end_ts = int(end_ts)
-
-    diagnostics = {
-        "symbol": symbol,
-        "requested_start": start_ts,
-        "requested_end": end_ts,
-        "requested_minutes": 0,
-        "expected_candles": 0,
-        "method": "paged_from_to",
-        "attempts": 0,
-        "fallback_used": False,
-        "returned_candles": 0,
-        "coverage_complete": False,
-        "status": "not_started",
-        "errors": [],
-        "pages_used": 0,
-        "pagination_limit_reached": False,
-    }
-
-    if end_ts <= start_ts:
-        diagnostics["status"] = "invalid_range"
-        return [], diagnostics
-
-    requested_minutes = int(math.ceil((end_ts - start_ts) / 60.0))
-    diagnostics["requested_minutes"] = requested_minutes
-    diagnostics["expected_candles"] = requested_minutes
-
-    max_pages = min(
-        120,
-        max(1, int(math.ceil(requested_minutes / 450.0)) + 3)
-    )
-
-    all_prices = {}
-    seen_signatures = set()
-    reached_start = False
-    fallback_mode = False
-
-    page = 1
-    while page <= max_pages:
-        params = {
-            "symbol": symbol,
-            "resolution": "1",
-            "to": end_ts + 120,
-            "page": page,
-        }
-
-        if fallback_mode:
-            # Alternative request: ask UDF for recent candles by countback.
-            params["countback"] = min(500, requested_minutes + 3)
-            diagnostics["method"] = "paged_countback"
-            diagnostics["fallback_used"] = True
-        else:
-            params["from"] = max(0, start_ts - 120)
-
-        url = (
-            BASE_URL + "/market/udf/history?"
-            + urllib.parse.urlencode(params)
-        )
-
-        data, meta = _fetch_json_with_retry(url)
-        diagnostics["attempts"] += meta.get("attempts", 0)
-        diagnostics["pages_used"] = page
-        diagnostics["errors"].extend(meta.get("errors", []))
-
-        if data is None:
-            diagnostics["status"] = "request_failed"
-            diagnostics["errors"].append(
-                f"page {page}: request failed"
-            )
-            break
-
-        if not isinstance(data, dict):
-            diagnostics["status"] = "invalid_response"
-            diagnostics["errors"].append(
-                f"page {page}: response is not an object"
-            )
-            break
-
-        status = str(data.get("s", "")).lower()
-
-        if status == "no_data":
-            if page == 1 and not fallback_mode:
-                # Retry once using countback instead of from.
-                fallback_mode = True
-                diagnostics["fallback_used"] = True
-                diagnostics["method"] = "paged_countback"
-                diagnostics["pages_used"] = 0
-                diagnostics["errors"].append(
-                    "Normal request returned no_data; trying countback"
-                )
-                continue
-
-            diagnostics["status"] = (
-                "no_data" if not all_prices
-                else "pagination_end_no_data"
-            )
-            break
-
-        if status != "ok":
-            diagnostics["status"] = "api_error"
-            diagnostics["errors"].append(
-                f"page {page}: API status={status or 'missing'}"
-            )
-            break
-
-        times = data.get("t") or []
-        closes = data.get("c") or []
-
-        if not times or not closes:
-            diagnostics["status"] = "empty_response"
-            diagnostics["errors"].append(
-                f"page {page}: empty candle arrays"
-            )
-            break
-
-        raw_close_times = []
-        page_prices = []
-
-        for raw_ts, raw_price in zip(times, closes):
-            candle_start = parse_ts(raw_ts)
-            price = safe_float(raw_price)
-
-            if candle_start is None or price is None or price <= 0:
-                continue
-
-            close_ts = int(candle_start) + 60
-            raw_close_times.append(close_ts)
-
-            if start_ts <= close_ts <= end_ts:
-                page_prices.append((close_ts, price))
-
-        if not raw_close_times:
-            diagnostics["status"] = "invalid_candles"
-            diagnostics["errors"].append(
-                f"page {page}: no valid timestamps or prices"
-            )
-            break
-
-        signature = tuple(sorted(set(raw_close_times)))
-
-        if signature in seen_signatures:
-            diagnostics["errors"].append(
-                f"page {page}: repeated page; pagination stopped"
-            )
-            break
-
-        seen_signatures.add(signature)
-
-        for ts, price in page_prices:
-            all_prices[ts] = price
-
-        oldest_close_ts = min(raw_close_times)
-
-        if oldest_close_ts <= start_ts + 60:
-            reached_start = True
-            diagnostics["status"] = "ok"
-            break
-
-                # A short page does not prove that all older history is unavailable.
-        # Continue pagination; repeated-page and max-page guards still apply.
-        if len(times) < 450:
-            diagnostics["errors"].append(
-                f"page {page}: short page ({len(times)} candles); "
-                "continuing to verify historical coverage"
-            )
-
-        page += 1
-        time.sleep(1.05)
-
-    prices = sorted(all_prices.items())
-    diagnostics["returned_candles"] = len(prices)
-
-    gap_stats = analyze_price_gaps(prices, start_ts, end_ts)
-    diagnostics.update(gap_stats)
-
-    if prices:
-        first_ts = prices[0][0]
-        last_ts = prices[-1][0]
-        endpoint_coverage = (
-            first_ts <= start_ts + 60
-            and last_ts >= end_ts - 60
-        )
-    else:
-        endpoint_coverage = False
-
-    diagnostics["coverage_complete"] = bool(
-        endpoint_coverage
-        and reached_start
-        and diagnostics.get("internal_gap_count", 0) == 0
-        and diagnostics["returned_candles"] >= max(
-            1, requested_minutes - 2
-        )
-    )
-
-    if diagnostics["coverage_complete"]:
-        diagnostics["status"] = "ok"
-    elif diagnostics["returned_candles"] > 0:
-        diagnostics["status"] = "incomplete_coverage"
-    elif diagnostics["status"] not in (
-        "request_failed", "api_error", "invalid_response",
-        "invalid_candles", "empty_response"
-    ):
-        diagnostics["status"] = "no_data"
+        directory = os.path.dirname(path)
+        if directory:
+            os.makedirs(directory, exist_ok=True)
+
+        temp_path = path + ".tmp"
+        with open(temp_path, "w", encoding="utf-8") as handle:
+            json.dump(data, handle, ensure_ascii=False, indent=2)
+        os.replace(temp_path, path)
+        return True
+    except Exception as exc:
+        print("State save error:", path, exc)
+        return False
+
+
+def ensure_tracking_start():
+    existing = load_json(TRACKING_START_FULL_PATH, {})
 
     if (
-        not reached_start
-        and diagnostics["pages_used"] >= max_pages
+        isinstance(existing, dict)
+        and existing.get("schema_version") == TRACKING_SCHEMA_VERSION
+        and safe_float(existing.get("started_at"), 0) > 0
     ):
-        diagnostics["pagination_limit_reached"] = True
-        diagnostics["coverage_complete"] = False
-        diagnostics["status"] = "pagination_limit_reached"
-        diagnostics["errors"].append(
-            "Pagination limit reached before requested start"
-        )
+        return int(existing["started_at"])
 
-    return prices, diagnostics
-
-
-
-
-
-def price_at_or_before(prices, target_ts, max_staleness_seconds=180):
-    """Return the latest valid price only if it is not too old."""
-    if not prices:
-        return None
-
-    best = None
-
-    for item in prices:
-        try:
-            ts, price = item
-            ts = int(ts)
-            price = float(price)
-        except (TypeError, ValueError, IndexError):
-            continue
-
-        if ts > target_ts or price <= 0:
-            continue
-
-        if best is None or ts > best[0]:
-            best = (ts, price)
-
-    if best is None:
-        return None
-
-    if target_ts - best[0] > max_staleness_seconds:
-        return None
-
-    return best
-
-def pct(entry_price, current_price):
-    """Calculate percentage change from entry price."""
-    entry = safe_float(entry_price)
-    current = safe_float(current_price)
-
-    if entry is None or current is None or entry <= 0:
-        return None
-
-    return ((current - entry) / entry) * 100.0
-
-def assess_four_hour_window(prices, start_ts, end_ts, current_ts):
-    """Return whether the full four-hour close-price window is reliable."""
-    start_ts = int(start_ts)
-    end_ts = int(end_ts)
-    current_ts = int(current_ts)
-
-    if end_ts > current_ts:
-        return False, {
-            "reason": "window_not_mature",
-            "observed_candles": 0,
-            "internal_gap_count": 0,
-            "coverage_pct": 0.0,
-        }
-
-    window = []
-    for item in prices:
-        try:
-            ts = int(item[0])
-            price = safe_float(item[1])
-        except (TypeError, ValueError, IndexError):
-            continue
-
-        if (
-            start_ts <= ts <= end_ts
-            and price is not None
-            and price > 0
-        ):
-            window.append((ts, price))
-
-    window.sort(key=lambda item: item[0])
-
-    expected = max(1, int(math.ceil((end_ts - start_ts) / 60.0)))
-
-    if not window:
-        return False, {
-            "reason": "no_candles",
-            "observed_candles": 0,
-            "internal_gap_count": 0,
-            "coverage_pct": 0.0,
-        }
-
-    times = [ts for ts, _ in window]
-    gaps = [
-        current - previous
-        for previous, current in zip(times, times[1:])
-        if current - previous > 90
-    ]
-
-    reasons = []
-
-    if times[0] > start_ts + 90:
-        reasons.append("start_missing")
-
-    if times[-1] < end_ts - 90:
-        reasons.append("end_missing")
-
-    if gaps:
-        reasons.append("internal_gaps")
-
-    coverage_pct = min(100.0, len(window) / expected * 100.0)
-
-    return not reasons, {
-        "reason": "complete" if not reasons else ",".join(reasons),
-        "observed_candles": len(window),
-        "expected_candles": expected,
-        "internal_gap_count": len(gaps),
-        "max_gap_seconds": max(gaps, default=0),
-        "coverage_pct": round(coverage_pct, 2),
+    started_at = int(time.time())
+    payload = {
+        "schema_version": TRACKING_SCHEMA_VERSION,
+        "started_at": started_at,
+        "created_at": started_at,
     }
+    save_json(TRACKING_START_FULL_PATH, payload)
+    print("Performance tracking start:", started_at)
+    return started_at
 
 
-def outcome(event, prices, current_ts=None):
-    """Measure checkpoint outcomes; only report MFE/MAE for a reliable 4h window."""
-    if current_ts is None:
-        current_ts = now_ts()
+# ============================================================
+# ORDER BOOK SNAPSHOT
+# ============================================================
 
-    current_ts = int(current_ts)
-    start = int(event["timestamp"])
-    end = start + CHECKPOINTS["4h"]
-    entry = event["price"]
-
-    checkpoints = {}
-
-    for label, seconds in CHECKPOINTS.items():
-        target = start + seconds
-        base = {
-            "available": False,
-            "target_timestamp": target,
-            "target_timestamp_iso": iso(target),
-            "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-        }
-
-        if target > current_ts:
-            base["censored"] = True
-            base["censor_reason"] = "target_in_future"
-            checkpoints[label] = base
-            continue
-
-        hit = price_at_or_before(prices, target)
-
-        if hit is None:
-            base["censored"] = True
-            base["censor_reason"] = "no_fresh_close_near_target"
-            checkpoints[label] = base
-            continue
-
-        ts, price = hit
-        base.update({
-            "available": True,
-            "actual_timestamp": ts,
-            "actual_timestamp_iso": iso(ts),
-            "price": price,
-            "change_pct": pct(entry, price),
-        })
-        checkpoints[label] = base
-
-    reliable, window_info = assess_four_hour_window(
-        prices, start, end, current_ts
+def get_market_snapshot():
+    data = http_get_json(
+        BASE_URL + "/v3/orderbook/all"
     )
 
-    mfe = mae = None
-    mfe_ts = mae_ts = None
-
-    if reliable:
-        changes = [
-            (ts, pct(entry, price))
-            for ts, price in prices
-            if start <= ts <= end and pct(entry, price) is not None
-        ]
-
-        if changes:
-            mfe_ts, mfe = max(changes, key=lambda item: item[1])
-            mae_ts, mae = min(changes, key=lambda item: item[1])
-
-    return {
-        "checkpoints": checkpoints,
-        "mfe_pct": mfe,
-        "mfe_timestamp": mfe_ts,
-        "mfe_timestamp_iso": iso(mfe_ts),
-        "mae_pct": mae,
-        "mae_timestamp": mae_ts,
-        "mae_timestamp_iso": iso(mae_ts),
-        "four_hour_window_reliable": reliable,
-        "four_hour_window_diagnostics": window_info,
-        "excursion_basis": "1m_closes_only",
-        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-    }
-
-
-def threshold_hit(event, prices, threshold, current_ts=None):
-    """Do not label a threshold as missed when its four-hour window is incomplete."""
-    if current_ts is None:
-        current_ts = now_ts()
-
-    current_ts = int(current_ts)
-    start_ts = int(event["timestamp"])
-    end_ts = start_ts + CHECKPOINTS["4h"]
-
-    reliable, window_info = assess_four_hour_window(
-        prices, start_ts, end_ts, current_ts
-    )
-
-    base = {
-        "threshold_pct": threshold,
-        "window_start_timestamp": start_ts,
-        "window_start_timestamp_iso": iso(start_ts),
-        "window_end_timestamp": end_ts,
-        "window_end_timestamp_iso": iso(end_ts),
-        "available": reliable,
-        "censored": not reliable,
-        "window_reliable": reliable,
-        "window_diagnostics": window_info,
-        "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-    }
-
-    if not reliable:
-        base["hit"] = None
-        base["censor_reason"] = window_info.get("reason")
-        return base
-
-    for ts, price in prices:
-        if ts < start_ts:
-            continue
-        if ts > end_ts:
-            break
-
-        change = pct(event["price"], price)
-
-        if change is not None and change >= threshold:
-            base.update({
-                "hit": True,
-                "timestamp": ts,
-                "timestamp_iso": iso(ts),
-                "price": price,
-                "lead_time_seconds": ts - start_ts,
-            })
-            return base
-
-    base["hit"] = False
-    return base
-
-def tracking_start(events):
-    old = load_json(START_PATH, {})
-    if isinstance(old, dict) and old.get("started_at"):
-        return old
-
-    ts = min((e["timestamp"] for e in events), default=now_ts())
-    data = {
-        "tracking_schema_version": TRACKING_SCHEMA_VERSION,
-        "started_at": ts,
-        "started_at_iso": iso(ts),
-        "created_at": now_ts(),
-        "created_at_iso": iso(now_ts()),
-        "measurement_reset_reason":
-            "V5 exact outcomes; no later workflow current-price checkpoints.",
-    }
-    try:
-        save_json(START_PATH, data)
-    except Exception:
-        pass
-    return data
-
-
-def summarize(events):
     result = {}
-    for kind in SIGNAL_TYPES:
-        rows = [e for e in events if e["signal_type"] == kind]
-        stats = {
-            "signals": len(rows),
-            "available": {},
-            "avg_change_pct": {},
-            "median_change_pct": {},
-            "positive_rate_pct": {},
-            "mfe_avg_pct": None,
-            "mae_avg_pct": None,
-            "threshold_hits": {"+1%": 0, "+2%": 0, "+5%": 0},
-            "threshold_samples": {"+1%": 0, "+2%": 0, "+5%": 0},
-            "threshold_hit_rate_pct": {"+1%": None, "+2%": None, "+5%": None},
+
+    if not isinstance(data, dict):
+        return result
+
+    for raw_symbol, book in data.items():
+        symbol = str(raw_symbol).upper()
+
+        if not symbol.endswith("USDT"):
+            continue
+        if symbol in EXCLUDED_SYMBOLS:
+            continue
+        if not isinstance(book, dict):
+            continue
+
+        bids = book.get("bids", [])
+        asks = book.get("asks", [])
+
+        bid_value = 0.0
+        ask_value = 0.0
+        best_bid = 0.0
+        best_ask = 0.0
+
+        try:
+            if bids:
+                best_bid = safe_float(bids[0][0])
+            if asks:
+                best_ask = safe_float(asks[0][0])
+
+            for row in bids[:20]:
+                if len(row) >= 2:
+                    bid_value += safe_float(row[0]) * safe_float(row[1])
+
+            for row in asks[:20]:
+                if len(row) >= 2:
+                    ask_value += safe_float(row[0]) * safe_float(row[1])
+        except Exception:
+            pass
+
+        flow = bid_value / ask_value if ask_value > 0 else 0.0
+
+        if best_bid > 0 and best_ask > 0:
+            live_price = (best_bid + best_ask) / 2.0
+        elif best_bid > 0:
+            live_price = best_bid
+        else:
+            live_price = best_ask
+
+        result[symbol] = {
+            "bid_value": bid_value,
+            "ask_value": ask_value,
+            "flow": flow,
+            "price": live_price,
         }
-
-        for label in CHECKPOINTS:
-            values = [
-                e["outcome"]["checkpoints"][label]["change_pct"]
-                for e in rows
-                if e.get("outcome", {}).get("checkpoints", {}).get(label, {})
-                .get("available")
-                and e["outcome"]["checkpoints"][label].get("change_pct")
-                is not None
-            ]
-            stats["available"][label] = len(values)
-            if values:
-                ordered = sorted(values)
-                mid = len(ordered) // 2
-                stats["avg_change_pct"][label] = sum(values) / len(values)
-                stats["median_change_pct"][label] = (
-                    ordered[mid] if len(ordered) % 2
-                    else (ordered[mid - 1] + ordered[mid]) / 2
-                )
-                stats["positive_rate_pct"][label] = (
-                    sum(x > 0 for x in values) / len(values) * 100
-                )
-            else:
-                stats["avg_change_pct"][label] = None
-                stats["median_change_pct"][label] = None
-                stats["positive_rate_pct"][label] = None
-
-        mfes = [e["outcome"]["mfe_pct"] for e in rows
-                if e.get("outcome", {}).get("mfe_pct") is not None]
-        maes = [e["outcome"]["mae_pct"] for e in rows
-                if e.get("outcome", {}).get("mae_pct") is not None]
-        stats["mfe_avg_pct"] = sum(mfes) / len(mfes) if mfes else None
-        stats["mae_avg_pct"] = sum(maes) / len(maes) if maes else None
-
-
-        for threshold in (1, 2, 5):
-            key = f"+{threshold}%"
-
-            candidates = [
-                e.get("threshold_hits", {}).get(key, {})
-                for e in rows
-            ]
-
-            valid = [
-                item for item in candidates
-                if (
-                    isinstance(item, dict)
-                    and item.get("available") is True
-                    and isinstance(item.get("hit"), bool)
-                )
-            ]
-
-            hit_count = sum(
-                item["hit"] is True
-                for item in valid
-            )
-
-            stats["threshold_hits"][key] = hit_count
-            stats["threshold_samples"][key] = len(valid)
-            stats["threshold_hit_rate_pct"][key] = (
-                hit_count / len(valid) * 100.0
-                if valid else None
-            )
-        result[kind] = stats
 
     return result
-def main():
-    events = load_events()
-    start = tracking_start(events)
-    current = now_ts()
-
-    grouped = defaultdict(list)
-    for e in events:
-        grouped[e["symbol"]].append(e)
-
-    prices_by_symbol = {}
-    historical_fetch_diagnostics = {}
-    for symbol, rows in grouped.items():
-        a = min(e["timestamp"] for e in rows)
-        b = max(e["timestamp"] for e in rows) + CHECKPOINTS["4h"]
-        prices, diagnostics = get_historical_closes(symbol, a, b)
-        prices_by_symbol[symbol] = prices
-        historical_fetch_diagnostics[symbol] = diagnostics
-        time.sleep(REQUEST_DELAY)
 
 
-    fetch_summary = {
-        "symbols_requested": len(historical_fetch_diagnostics),
-        "symbols_with_data": sum(
-            bool(d.get("returned_candles"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_without_data": sum(
-            not bool(d.get("returned_candles"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_complete_coverage": sum(
-            bool(d.get("coverage_complete"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_incomplete_coverage": sum(
-            bool(d.get("returned_candles"))
-            and not bool(d.get("coverage_complete"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_failed": sum(
-            d.get("status") == "request_failed"
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "fallback_used": sum(
-            bool(d.get("fallback_used"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_attempts": sum(
-            int(d.get("attempts", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_candles": sum(
-            int(d.get("returned_candles", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_internal_gaps": sum(
-            d.get("internal_gap_count", 0) > 0
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_internal_gaps": sum(
-            int(d.get("internal_gap_count", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "estimated_missing_minutes": sum(
-            int(d.get("estimated_missing_minutes", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "max_gap_seconds": max(
-            (
-                int(d.get("max_gap_seconds", 0))
-                for d in historical_fetch_diagnostics.values()
-            ),
-            default=0,
-        ),
+# ============================================================
+# 15M CANDLES
+# ============================================================
+
+def get_15m_candles(symbol):
+    params = {
+        "symbol": symbol,
+        "resolution": "15",
+        "countback": COUNTBACK_15M,
+        "to": int(time.time()),
     }
 
-    measured = []
-    for event in events:
-        prices = prices_by_symbol.get(event["symbol"], [])
-        row = dict(event)
-        row["outcome"] = outcome(event, prices, current_ts=current)
-        row["threshold_hits"] = {
-            "+1%": threshold_hit(event, prices, 1.0, current_ts=current),
-            "+2%": threshold_hit(event, prices, 2.0, current_ts=current),
-            "+5%": threshold_hit(event, prices, 5.0, current_ts=current),
-        }
+    data = http_get_json(
+        BASE_URL + "/market/udf/history",
+        params=params,
+        udf=True,
+    )
 
-        for label, seconds in CHECKPOINTS.items():
-            cp = row["outcome"]["checkpoints"].get(label)
-            if cp and event["timestamp"] + seconds > current:
-                cp["available"] = False
-                cp["censored"] = True
-        measured.append(row)
+    if not isinstance(data, dict):
+        raise ValueError("INVALID_CANDLE_RESPONSE")
 
-    summary = summarize(measured)
-    reliable_4h = sum(
-        1
-        for event in measured
-        if (
-            event.get("signal_type") == "TREND_EARLY"
-            and event.get("outcome", {}).get("four_hour_window_reliable") is True
+    if data.get("s") not in ("ok", "no_data"):
+        raise ValueError("CANDLE_STATUS_" + str(data.get("s")))
+
+    timestamps = [int(safe_float(x)) for x in data.get("t", [])]
+    closes = [safe_float(x) for x in data.get("c", [])]
+    volumes = [safe_float(x) for x in data.get("v", [])]
+
+    n = min(len(timestamps), len(closes), len(volumes))
+    timestamps = timestamps[:n]
+    closes = closes[:n]
+    volumes = volumes[:n]
+
+    if len(closes) < 25:
+        raise ValueError("CANDLES_TOO_SHORT")
+
+    # Remove the current open 15m candle.
+    now = int(time.time())
+    if timestamps:
+        if now - timestamps[-1] < 900:
+            timestamps = timestamps[:-1]
+            closes = closes[:-1]
+            volumes = volumes[:-1]
+
+    if len(closes) < 25:
+        raise ValueError("CANDLES_TOO_SHORT_AFTER_REMOVE")
+
+    return timestamps, closes, volumes
+
+
+# ============================================================
+# 15M -> 1H AGGREGATION
+# ============================================================
+
+def aggregate_15m_to_1h(timestamps, closes, volumes):
+    buckets = {}
+
+    for ts, close, volume in zip(timestamps, closes, volumes):
+        hour_start = (int(ts) // 3600) * 3600
+        buckets.setdefault(hour_start, []).append((int(ts), close, volume))
+
+    hour_timestamps = []
+    hour_closes = []
+    hour_volumes = []
+
+    now = int(time.time())
+
+    for hour_start in sorted(buckets):
+        rows = sorted(buckets[hour_start], key=lambda row: row[0])
+
+        # We only use fully closed hours with four 15m candles.
+        if len(rows) < 4:
+            continue
+
+        if now < hour_start + 3600:
+            continue
+
+        hour_timestamps.append(hour_start)
+        hour_closes.append(rows[-1][1])
+        hour_volumes.append(sum(row[2] for row in rows))
+
+    if len(hour_closes) < 25:
+        raise ValueError("HOURLY_AGGREGATION_TOO_SHORT")
+
+    return hour_timestamps, hour_closes, hour_volumes
+
+
+# ============================================================
+# INDICATORS
+# ============================================================
+
+def ema(values, period):
+    clean = [safe_float(x) for x in values]
+    if not clean:
+        return []
+    if len(clean) < period:
+        return [clean[-1]] * len(clean)
+
+    alpha = 2.0 / (period + 1.0)
+    result = [clean[0]]
+
+    for value in clean[1:]:
+        result.append(
+            alpha * value
+            + (1.0 - alpha) * result[-1]
         )
-    )
 
-    state = {
-        "performance_schema_version": PERFORMANCE_SCHEMA_VERSION,
-        "tracking_schema_version": TRACKING_SCHEMA_VERSION,
-        "generated_at": current,
-        "generated_at_iso": iso(current),
-        "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-        "future_leakage_policy":
-            "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
-        "signal_types": list(SIGNAL_TYPES),
-        "checkpoints": CHECKPOINTS,
-        "min_reliable_4h_samples": MIN_RELIABLE_4H_SAMPLES,
-        "reliable_4h_samples_trend_early": reliable_4h,
-        "measurement_ready_for_4h_optimization":
-            reliable_4h >= MIN_RELIABLE_4H_SAMPLES,
-        "tracking_start": start,
-        "event_count": len(measured),
-        "historical_fetch_summary": fetch_summary,
-        "historical_fetch_diagnostics": historical_fetch_diagnostics,
-        "events": measured[-MAX_EVENTS:],
-        "summary": summary,
-    }
-    save_json(OUTPUT_PATH, state)
+    return result
 
-    print("Performance Tracker V5 EXACT")
-    print("Events:", len(measured))
-    print("Historical symbols:", fetch_summary["symbols_requested"])
-    print("Symbols with data:", fetch_summary["symbols_with_data"])
-    print("Symbols with complete coverage:", fetch_summary["symbols_with_complete_coverage"])
-    print("Symbols with incomplete coverage:", fetch_summary["symbols_with_incomplete_coverage"])
-    print(
-        "Symbols without historical data:",
-        fetch_summary["symbols_without_data"],
-    )
-    print("Historical fetch request failures:", fetch_summary["symbols_failed"])
-    print("Fallback fetches:", fetch_summary["fallback_used"])
 
-    print(
-        "Symbols with internal gaps:",
-        fetch_summary["symbols_with_internal_gaps"],
-    )
-    print(
-        "Total internal gaps:",
-        fetch_summary["total_internal_gaps"],
-    )
-    print(
-        "Estimated missing minutes:",
-        fetch_summary["estimated_missing_minutes"],
-    )
-    print(
-        "Maximum gap seconds:",
-        fetch_summary["max_gap_seconds"],
-    )
+def rsi(values, period=14):
+    values = [safe_float(x) for x in values]
 
-    print("4h reliable TREND_EARLY samples:", reliable_4h)
+    if len(values) <= period:
+        return 50.0
+
+    gains = []
+    losses = []
+
+    for i in range(1, len(values)):
+        diff = values[i] - values[i - 1]
+        if diff >= 0:
+            gains.append(diff)
+            losses.append(0.0)
+        else:
+            gains.append(0.0)
+            losses.append(abs(diff))
+
+    # IMPORTANT: zero gains/losses MUST remain in RSI calculation.
+    avg_gain = sum(gains[:period]) / period
+    avg_loss = sum(losses[:period]) / period
+
+    for i in range(period, len(gains)):
+        avg_gain = (
+            avg_gain * (period - 1) + gains[i]
+        ) / period
+        avg_loss = (
+            avg_loss * (period - 1) + losses[i]
+        ) / period
+
+    if avg_loss == 0:
+        if avg_gain == 0:
+            return 50.0
+        return 100.0
+
+    rs = avg_gain / avg_loss
+    return 100.0 - (100.0 / (1.0 + rs))
+
+
+def macd(values):
+    fast = ema(values, 12)
+    slow = ema(values, 26)
+
+    n = min(len(fast), len(slow))
+    if n == 0:
+        return 0.0, 0.0
+
+    line = [fast[i] - slow[i] for i in range(n)]
+    signal = ema(line, 9)
+
+    return line[-1], signal[-1]
+
+
+def structure_score(closes):
+    if len(closes) < 30:
+        return 0
+
+    e9 = ema(closes, 9)[-1]
+    e21 = ema(closes, 21)[-1]
+    e50 = ema(closes, 50)[-1]
+    price = closes[-1]
+
+    score = 0
+
+    if price > e9:
+        score += 2
+    if e9 > e21:
+        score += 2
+    if e21 > e50:
+        score += 2
+
+    recent = closes[-12:]
+    if len(recent) >= 8:
+        if average(recent[:6]) < average(recent[-6:]):
+            score += 2
+
+    return clamp(score, 0, 8)
+
+
+def resistance_distance(closes):
+    if len(closes) < 20:
+        return 99.0
+
+    price = closes[-1]
+    lookback = closes[-25:-1]
+
+    if not lookback or price <= 0:
+        return 99.0
+
+    resistance = max(lookback)
+    if resistance <= 0:
+        return 99.0
+
+    distance = ((resistance - price) / price) * 100.0
+    return max(0.0, distance)
+
+
+def calm_score(closes):
+    if len(closes) < 20:
+        return 0
+
+    recent = closes[-20:]
+    returns = []
+
+    for i in range(1, len(recent)):
+        if recent[i - 1] != 0:
+            returns.append(
+                abs(
+                    (recent[i] - recent[i - 1])
+                    / recent[i - 1]
+                ) * 100.0
+            )
+
+    if not returns:
+        return 0
+
+    avg_move = average(returns)
+
+    if avg_move <= 0.35:
+        return 10
+    if avg_move <= 0.60:
+        return 8
+    if avg_move <= 0.90:
+        return 5
+    if avg_move <= 1.30:
+        return 2
     return 0
 
 
+def momentum_percent(closes, candles_back):
+    if len(closes) <= candles_back:
+        return 0.0
+
+    old = closes[-1 - candles_back]
+    new = closes[-1]
+
+    if old == 0:
+        return 0.0
+
+    return ((new - old) / old) * 100.0
+
+
+# ============================================================
+# SCORE
+# ============================================================
+
+def calculate_score(
+    volume_ratio,
+    volume_acceleration,
+    rsi_value,
+    structure,
+    resistance,
+    calm,
+    m1h,
+    m4h,
+    m8h,
+    m15,
+    macd_positive,
+    flow,
+):
+    score = 0
+
+    # Volume ratio
+    if 1.25 <= volume_ratio <= 4.0:
+        score += 18
+    elif 1.05 <= volume_ratio < 1.25:
+        score += 10
+    elif 4.0 < volume_ratio <= 6.0:
+        score += 8
+    elif 6.0 < volume_ratio <= 10.0:
+        score += 2
+    elif volume_ratio > 10.0:
+        score -= 8
+
+    # Volume acceleration
+    if volume_acceleration >= 1.20:
+        score += 10
+    elif volume_acceleration >= 1.05:
+        score += 7
+    elif volume_acceleration >= 1.00:
+        score += 3
+
+    # RSI
+    if 45 <= rsi_value <= 60:
+        score += 15
+    elif 60 < rsi_value <= 68:
+        score += 10
+    elif 40 <= rsi_value < 45:
+        score += 7
+    elif 35 <= rsi_value < 40:
+        score += 3
+    elif rsi_value > 72:
+        score -= 10
+
+    # Structure
+    score += int(round(structure * 2.5))
+    score = min(score, 100)
+
+    # Resistance
+    if 0 <= resistance <= 1:
+        score += 15
+    elif 1 < resistance <= 2:
+        score += 12
+    elif 2 < resistance <= 3:
+        score += 8
+    elif 3 < resistance <= 5:
+        score += 4
+
+    # Calm
+    score += calm
+
+    # Moderate momentum adds; large movement subtracts.
+    if 0 <= m1h <= 2.5:
+        score += 4
+
+    if 0 <= m4h <= 6:
+        score += 4
+
+    if m1h > 4:
+        score -= 8
+
+    if m4h > 10:
+        score -= 10
+
+    if m8h > 15:
+        score -= 8
+
+    if m15 > 2:
+        score -= 5
+
+    # MACD
+    if macd_positive:
+        score += 2
+
+    # Order flow
+    if flow >= 1.20:
+        score += 5
+    elif flow >= 1.05:
+        score += 3
+    elif flow >= 0.95:
+        score += 1
+    elif 0 < flow < 0.80:
+        score -= 5
+
+    return int(clamp(round(score), 0, 100))
+
+
+# ============================================================
+# ANALYSIS
+# ============================================================
+
+def analyze_symbol(symbol, book):
+    try:
+        timestamps_15m, closes_15m, volumes_15m = get_15m_candles(symbol)
+        _, closes_1h, volumes_1h = aggregate_15m_to_1h(
+            timestamps_15m,
+            closes_15m,
+            volumes_15m,
+        )
+
+        book_price = safe_float(book.get("price"), 0.0)
+        price = book_price if book_price > 0 else closes_15m[-1]
+
+        # Momentum
+        m15 = momentum_percent(closes_15m, 1)
+        m1h = momentum_percent(closes_1h, 1)
+        m4h = momentum_percent(closes_1h, 4)
+        m8h = momentum_percent(closes_1h, 8)
+
+        # 1H volume
+        current_volume = volumes_1h[-1]
+        previous_volumes = volumes_1h[-11:-1]
+        med_volume = median(previous_volumes)
+        volume_ratio = (
+            current_volume / med_volume
+            if med_volume > 0 else 0.0
+        )
+
+        avg_last3 = average(volumes_1h[-3:])
+        avg_prev8 = average(volumes_1h[-11:-3])
+        volume_acceleration = (
+            avg_last3 / avg_prev8
+            if avg_prev8 > 0 else 0.0
+        )
+
+        # FAST 15M volume
+        current_volume_15m = volumes_15m[-1]
+        previous_volumes_15m = volumes_15m[-13:-1]
+        med_volume_15m = median(previous_volumes_15m)
+        volume_ratio_15m = (
+            current_volume_15m / med_volume_15m
+            if med_volume_15m > 0 else 0.0
+        )
+
+        avg_last3_15m = average(volumes_15m[-3:])
+        avg_prev8_15m = average(volumes_15m[-11:-3])
+        volume_acceleration_15m = (
+            avg_last3_15m / avg_prev8_15m
+            if avg_prev8_15m > 0 else 0.0
+        )
+
+        # Indicators
+        rsi_value = rsi(closes_1h)
+        macd_line, macd_signal = macd(closes_1h)
+        macd_positive = macd_line >= macd_signal
+
+        structure = structure_score(closes_1h)
+        resistance = resistance_distance(closes_1h)
+        calm = calm_score(closes_1h)
+
+        flow = safe_float(book.get("flow"), 0.0)
+
+        score = calculate_score(
+            volume_ratio,
+            volume_acceleration,
+            rsi_value,
+            structure,
+            resistance,
+            calm,
+            m1h,
+            m4h,
+            m8h,
+            m15,
+            macd_positive,
+            flow,
+        )
+
+        # Original PRE-MOVE gate.
+        pre_move_gate = (
+            1.15 <= volume_ratio <= 6
+            and structure >= 5
+            and 45 <= rsi_value <= 68
+            and 0 <= resistance <= 3.5
+            and m1h <= 2.8
+            and m4h <= 7
+            and m15 <= 2
+        )
+
+        # Original FAST logic.
+        fast_pre_move = (
+            volume_ratio_15m >= 1.80
+            and volume_acceleration_15m >= 1.25
+            and structure >= 5
+            and 45 <= rsi_value <= 68
+            and 0 <= resistance <= 3.5
+            and m1h <= 2.8
+            and m4h <= 7
+            and m15 <= 2
+            and flow >= 0.95
+            and score >= 55
+        )
+
+        high_risk_jump = (
+            m15 > 3
+            or m1h > 4
+            or rsi_value > 72
+            or volume_ratio_15m > 6
+            or volume_acceleration_15m > 3
+        )
+
+        quality = True
+        if rsi_value > 72:
+            quality = False
+        if m1h > 4:
+            quality = False
+        if m4h > 10:
+            quality = False
+        if volume_ratio > 10:
+            quality = False
+
+        if pre_move_gate and score >= 75:
+            label = "PRE-MOVE"
+        elif pre_move_gate and score >= 65:
+            label = "EARLY RADAR"
+        elif quality and score >= 55:
+            label = "WATCH"
+        elif m1h > 4 or m4h > 10:
+            label = "ALREADY MOVING"
+        else:
+            label = "LOW"
+
+        return {
+            "symbol": symbol,
+            "price": price,
+            "score": score,
+            "label": label,
+            "pre_move_gate": pre_move_gate,
+            "quality": quality,
+            "volume_ratio": volume_ratio,
+            "volume_acceleration": volume_acceleration,
+            "volume_ratio_15m": volume_ratio_15m,
+            "volume_acceleration_15m": volume_acceleration_15m,
+            "fast_pre_move": fast_pre_move,
+            "high_risk_jump": high_risk_jump,
+            "rsi": rsi_value,
+            "structure": structure,
+            "resistance": resistance,
+            "calm": calm,
+            "momentum_15m": m15,
+            "momentum_1h": m1h,
+            "momentum_4h": m4h,
+            "momentum_8h": m8h,
+            "order_flow": flow,
+            "macd_positive": macd_positive,
+        }
+
+    except Exception as exc:
+        return {
+            "symbol": symbol,
+            "error": str(exc),
+        }
+
+
+# ============================================================
+# PERSISTENCE
+# ============================================================
+
+def apply_persistence(result, previous_state, now):
+    symbol = result["symbol"]
+    previous = previous_state.get(symbol, {})
+
+    old_score = safe_float(previous.get("score"), 0.0)
+    current_score = safe_float(result.get("score"), 0.0)
+    old_streak = int(safe_float(previous.get("streak"), 0.0))
+    old_timestamp = int(safe_float(previous.get("timestamp"), 0.0))
+
+    state_is_fresh = (
+        old_timestamp > 0
+        and now - old_timestamp <= MAX_STREAK_GAP_SECONDS
+    )
+
+    if current_score >= 65 and old_score >= 65 and state_is_fresh:
+        streak = old_streak + 1
+    elif current_score >= 65:
+        streak = 1
+    else:
+        streak = 0
+
+    strengthening = current_score >= old_score + 5
+
+    confirmed = (
+        bool(result.get("pre_move_gate"))
+        and current_score >= 75
+        and streak >= 2
+    )
+
+    result["previous_score"] = old_score
+    result["streak"] = streak
+    result["strengthening"] = strengthening
+    result["confirmed"] = confirmed
+    result["state_fresh"] = state_is_fresh
+
+    return result
+
+
+# ============================================================
+# ALERT MESSAGES
+# ============================================================
+
+def build_confirmed_alert(result):
+    return (
+        "🚨 CONFIRMED PRE-MOVE\n\n"
+        f"🪙 {result['symbol']}\n"
+        f"💰 Price: {result['price']:.8g}\n"
+        f"⭐ Score: {result['score']}/100\n"
+        f"🔥 Streak: {result['streak']}\n\n"
+        f"📊 Volume: {result['volume_ratio']:.2f}x\n"
+        f"⚡ Volume acceleration: {result['volume_acceleration']:.2f}x\n"
+        f"📈 RSI: {result['rsi']:.1f}\n"
+        f"🏗 Structure: {result['structure']}/8\n"
+        f"🎯 Resistance: {result['resistance']:.2f}%\n"
+        f"🌊 Order flow: {result['order_flow']:.2f}\n\n"
+        f"15m: {result['momentum_15m']:+.2f}%\n"
+        f"1H: {result['momentum_1h']:+.2f}%\n"
+        f"4H: {result['momentum_4h']:+.2f}%\n"
+        f"8H: {result['momentum_8h']:+.2f}%\n\n"
+        "🟢 شرایط قبل از حرکت صعودی تأیید شده."
+    )
+
+
+def build_fast_alert(result):
+    return (
+        "⚡ FAST PRE-MOVE\n\n"
+        f"🪙 {result['symbol']}\n"
+        f"💰 Price: {result['price']:.8g}\n"
+        f"⭐ Score: {result['score']}/100\n"
+        f"⚡ 15m Volume: {result['volume_ratio_15m']:.2f}x\n"
+        f"🚀 15m Volume acceleration: {result['volume_acceleration_15m']:.2f}x\n"
+        f"📈 RSI: {result['rsi']:.1f}\n"
+        f"🏗 Structure: {result['structure']}/8\n"
+        f"🎯 Resistance: {result['resistance']:.2f}%\n"
+        f"🌊 Order flow: {result['order_flow']:.2f}\n\n"
+        f"15m: {result['momentum_15m']:+.2f}%\n"
+        f"1H: {result['momentum_1h']:+.2f}%\n"
+        f"4H: {result['momentum_4h']:+.2f}%\n\n"
+        "🟡 هشدار زودهنگام است؛ هنوز تأیید کامل PRE-MOVE نیست."
+    )
+
+
+# ============================================================
+# ALERT STATE
+# ============================================================
+
+def smart_alert(result, alert_state, alerts_enabled):
+    if not alerts_enabled:
+        return False
+
+    if not result.get("confirmed"):
+        return False
+    if result.get("score", 0) < 80:
+        return False
+    if result.get("streak", 0) < 2:
+        return False
+    if result.get("order_flow", 0) < 1.05:
+        return False
+
+    symbol = result["symbol"]
+    old = alert_state.get(symbol, {})
+
+    old_score = safe_float(old.get("score"), 0.0)
+    old_streak = int(safe_float(old.get("streak"), 0.0))
+
+    # Same confirmed signal is not repeated unless score strengthens >= 5.
+    if (
+        old_score >= 80
+        and old_streak >= 2
+        and result["score"] <= old_score + 2
+    ):
+        return False
+
+    now = int(time.time())
+    message = build_confirmed_alert(result)
+
+    if not telegram_send(message):
+        return False
+
+    entry = {
+        "score": result["score"],
+        "streak": result["streak"],
+        "timestamp": now,
+        "price": safe_float(result.get("price"), 0.0),
+        "alert_type": "CONFIRMED",
+    }
+
+    # Preserve FAST information for performance tracking.
+    for key in (
+        "fast_score",
+        "fast_timestamp",
+        "fast_price",
+        "fast_alert_type",
+    ):
+        if key in old:
+            entry[key] = old[key]
+
+    alert_state[symbol] = entry
+    return True
+
+
+def fast_alert(result, alert_state, alerts_enabled):
+    if not alerts_enabled:
+        return False
+
+    if not result.get("fast_pre_move"):
+        return False
+    if result.get("high_risk_jump"):
+        return False
+
+    symbol = result["symbol"]
+    old = alert_state.get(symbol, {})
+
+    old_fast_score = safe_float(old.get("fast_score"), 0.0)
+    old_fast_timestamp = int(
+        safe_float(old.get("fast_timestamp"), 0.0)
+    )
+    now = int(time.time())
+
+    if (
+        old_fast_timestamp > 0
+        and now - old_fast_timestamp < 7200
+        and result["score"] < old_fast_score + 5
+    ):
+        return False
+
+    message = build_fast_alert(result)
+
+    if not telegram_send(message):
+        return False
+
+    current = alert_state.get(symbol, {})
+    current["fast_score"] = result["score"]
+    current["fast_timestamp"] = now
+    current["fast_price"] = safe_float(result.get("price"), 0.0)
+    current["fast_alert_type"] = "FAST"
+    alert_state[symbol] = current
+
+    return True
+
+
+# ============================================================
+# MAIN SCAN
+# ============================================================
+
+def run_scan():
+    print("=" * 70)
+    print("NOBITEX EARLY MOVE RADAR - FINAL")
+    print(time.strftime("%Y-%m-%d %H:%M:%S"))
+    print("=" * 70)
+
+    now = int(time.time())
+
+    # Create a clean performance-tracking start marker once.
+    ensure_tracking_start()
+
+    previous_state = load_json(STATE_PATH, {})
+    alert_state = load_json(ALERT_STATE_PATH, {})
+
+    try:
+        books = get_market_snapshot()
+    except Exception as exc:
+        print("MARKET SNAPSHOT FAILED:", exc)
+        return
+
+    symbols = sorted(books.keys())
+
+    print("USDT markets:", len(symbols))
+
+    results = []
+    failed = 0
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {
+            executor.submit(
+                analyze_symbol,
+                symbol,
+                books[symbol],
+            ): symbol
+            for symbol in symbols
+        }
+
+        for future in as_completed(futures):
+            symbol = futures[future]
+
+            try:
+                result = future.result()
+
+                if "error" in result:
+                    failed += 1
+                    print(symbol, "FAILED:", result["error"])
+                    continue
+
+                result = apply_persistence(
+                    result,
+                    previous_state,
+                    now,
+                )
+                results.append(result)
+
+            except Exception as exc:
+                failed += 1
+                print(symbol, "FAILED:", exc)
+
+    coverage = (
+        len(results) / len(symbols)
+        if symbols else 0.0
+    )
+    coverage_ok = coverage >= MIN_COVERAGE_FOR_ALERTS
+
+    # Save successful state. Failed markets keep previous state so a temporary
+    # API failure does not erase history; stale timestamps prevent old streaks.
+    new_state = {}
+    for result in results:
+        new_state[result["symbol"]] = {
+            "score": result["score"],
+            "streak": result["streak"],
+            "timestamp": now,
+        }
+
+    for symbol, old in previous_state.items():
+        if symbol not in new_state and isinstance(old, dict):
+            new_state[symbol] = old
+
+    save_json(STATE_PATH, new_state)
+
+    # Candidates
+    candidates = [
+        result
+        for result in results
+        if (
+            result.get("pre_move_gate")
+            and result.get("quality")
+            and result.get("score", 0) >= 65
+        )
+    ]
+
+    candidates.sort(
+        key=lambda result: (
+            result.get("score", 0),
+            1 if result.get("strengthening") else 0,
+            result.get("streak", 0),
+            result.get("order_flow", 0),
+            result.get("structure", 0),
+            result.get("volume_ratio", 0),
+        ),
+        reverse=True,
+    )
+
+    print()
+    print(
+        f"Valid: {len(results)} | Failed: {failed} | "
+        f"Coverage: {coverage * 100:.1f}% | "
+        f"Alerts enabled: {coverage_ok}"
+    )
+    if not coverage_ok:
+        print(
+            f"ALERTS SUPPRESSED: coverage below "
+            f"{MIN_COVERAGE_FOR_ALERTS * 100:.0f}%"
+        )
+
+    print()
+    print("TOP PRE-MOVE CANDIDATES")
+    print("-" * 70)
+
+    if not candidates:
+        print("No valid pre-move candidates.")
+
+    for index, result in enumerate(candidates[:TOP_N], 1):
+        print(
+            f"{index}. {result['symbol']} | "
+            f"{result['label']} | "
+            f"Score {result['score']} | "
+            f"Streak {result['streak']} | "
+            f"Vol {result['volume_ratio']:.2f}x | "
+            f"Flow {result['order_flow']:.2f} | "
+            f"RSI {result['rsi']:.1f} | "
+            f"Res {result['resistance']:.2f}%"
+        )
+
+    confirmed_alert_count = 0
+    fast_alert_count = 0
+
+    # FAST first, then confirmed.
+    for result in results:
+        if fast_alert(result, alert_state, coverage_ok):
+            fast_alert_count += 1
+
+        if smart_alert(result, alert_state, coverage_ok):
+            confirmed_alert_count += 1
+
+    save_json(ALERT_STATE_PATH, alert_state)
+
+    watchlist = [
+        result
+        for result in results
+        if result.get("score", 0) >= 55
+    ]
+    watchlist.sort(
+        key=lambda result: result.get("score", 0),
+        reverse=True,
+    )
+
+    print()
+    print("WATCHLIST")
+    print("-" * 70)
+
+    for result in watchlist[:15]:
+        fast_mark = ""
+        if (
+            result.get("fast_pre_move")
+            and not result.get("high_risk_jump")
+        ):
+            fast_mark = " ⚡FAST"
+
+        print(
+            f"{result['symbol']:12} "
+            f"{result['label']:15} "
+            f"{result['score']:3}/100 "
+            f"streak={result['streak']} "
+            f"vol={result['volume_ratio']:.2f}x "
+            f"15mVol={result['volume_ratio_15m']:.2f}x "
+            f"flow={result['order_flow']:.2f}"
+            f"{fast_mark}"
+        )
+
+    print()
+    print("Confirmed Telegram alerts sent:", confirmed_alert_count)
+    print("FAST Telegram alerts sent:", fast_alert_count)
+    print("SCAN FINISHED.")
+
+
+def main():
+    if TELEGRAM_TEST_ON_START:
+        telegram_test()
+    run_scan()
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
