@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""NOBITEX SIGNAL PERFORMANCE TRACKER - V5 EXACT OUTCOMES."""
+"""NOBITEX SIGNAL PERFORMANCE TRACKER - V5 EXACT OUTCOMES.
+
+Maintenance patch: preserve ticker underscores and historical-fetch terminal
+diagnostics. Scanner signal generation and V5.1 thresholds are unchanged.
+"""
 
 import json
 import math
@@ -92,9 +96,11 @@ def safe_float(value):
 
 
 def normalize_symbol(value):
-    if not value:
+    """Normalize separators without deleting meaningful Nobitex ticker underscores."""
+    if value is None:
         return None
-    return str(value).upper().strip().replace("/", "").replace("_", "")
+    symbol = str(value).strip().upper().replace("/", "")
+    return symbol or None
 
 
 def normalize_signal_type(value):
@@ -308,11 +314,46 @@ def analyze_price_gaps(prices, start_ts, end_ts):
     }
 
 
+
+
+FETCH_FAILURE_STATUSES = frozenset({
+    "request_failed",
+    "api_error",
+    "invalid_response",
+    "invalid_candles",
+    "empty_response",
+})
+
+
+def is_fetch_failure(status):
+    return str(status or "").strip().lower() in FETCH_FAILURE_STATUSES
+
+
+def finalize_history_status(diagnostics, reached_start, terminal_status,
+                            max_pages, page):
+    """Preserve the actual stop reason; infer generic incomplete coverage last."""
+    if diagnostics.get("coverage_complete"):
+        diagnostics["status"] = "ok"
+    elif terminal_status:
+        diagnostics["status"] = terminal_status
+    elif not reached_start and page > max_pages:
+        diagnostics["pagination_limit_reached"] = True
+        diagnostics["coverage_complete"] = False
+        diagnostics["status"] = "pagination_limit_reached"
+        diagnostics.setdefault("errors", []).append(
+            "Pagination limit reached before requested start"
+        )
+    elif diagnostics.get("returned_candles", 0) > 0:
+        diagnostics["status"] = "incomplete_coverage"
+    else:
+        diagnostics["status"] = "no_data"
+    return diagnostics
+
+
 def get_historical_closes(symbol, start_ts, end_ts):
-    """Fetch 1-minute candles; try countback if the normal request has no data."""
+    """Fetch paginated 1m candles and retain the true API/pagination stop reason."""
     start_ts = int(start_ts)
     end_ts = int(end_ts)
-
     diagnostics = {
         "symbol": symbol,
         "requested_start": start_ts,
@@ -329,7 +370,6 @@ def get_historical_closes(symbol, start_ts, end_ts):
         "pages_used": 0,
         "pagination_limit_reached": False,
     }
-
     if end_ts <= start_ts:
         diagnostics["status"] = "invalid_range"
         return [], diagnostics
@@ -337,18 +377,15 @@ def get_historical_closes(symbol, start_ts, end_ts):
     requested_minutes = int(math.ceil((end_ts - start_ts) / 60.0))
     diagnostics["requested_minutes"] = requested_minutes
     diagnostics["expected_candles"] = requested_minutes
-
-    max_pages = min(
-        120,
-        max(1, int(math.ceil(requested_minutes / 450.0)) + 3)
-    )
+    max_pages = min(120, max(1, int(math.ceil(requested_minutes / 450.0)) + 3))
 
     all_prices = {}
     seen_signatures = set()
     reached_start = False
     fallback_mode = False
-
+    terminal_status = None
     page = 1
+
     while page <= max_pages:
         params = {
             "symbol": symbol,
@@ -356,44 +393,30 @@ def get_historical_closes(symbol, start_ts, end_ts):
             "to": end_ts + 120,
             "page": page,
         }
-
         if fallback_mode:
-            # Alternative request: ask UDF for recent candles by countback.
             params["countback"] = min(500, requested_minutes + 3)
             diagnostics["method"] = "paged_countback"
             diagnostics["fallback_used"] = True
         else:
             params["from"] = max(0, start_ts - 120)
-
-        url = (
-            BASE_URL + "/market/udf/history?"
-            + urllib.parse.urlencode(params)
-        )
-
+        url = BASE_URL + "/market/udf/history?" + urllib.parse.urlencode(params)
         data, meta = _fetch_json_with_retry(url)
         diagnostics["attempts"] += meta.get("attempts", 0)
         diagnostics["pages_used"] = page
         diagnostics["errors"].extend(meta.get("errors", []))
 
         if data is None:
-            diagnostics["status"] = "request_failed"
-            diagnostics["errors"].append(
-                f"page {page}: request failed"
-            )
+            terminal_status = "request_failed"
+            diagnostics["errors"].append(f"page {page}: request failed")
             break
-
         if not isinstance(data, dict):
-            diagnostics["status"] = "invalid_response"
-            diagnostics["errors"].append(
-                f"page {page}: response is not an object"
-            )
+            terminal_status = "invalid_response"
+            diagnostics["errors"].append(f"page {page}: response is not an object")
             break
 
         status = str(data.get("s", "")).lower()
-
         if status == "no_data":
             if page == 1 and not fallback_mode:
-                # Retry once using countback instead of from.
                 fallback_mode = True
                 diagnostics["fallback_used"] = True
                 diagnostics["method"] = "paged_countback"
@@ -402,15 +425,10 @@ def get_historical_closes(symbol, start_ts, end_ts):
                     "Normal request returned no_data; trying countback"
                 )
                 continue
-
-            diagnostics["status"] = (
-                "no_data" if not all_prices
-                else "pagination_end_no_data"
-            )
+            terminal_status = "no_data" if not all_prices else "pagination_end_no_data"
             break
-
         if status != "ok":
-            diagnostics["status"] = "api_error"
+            terminal_status = "api_error"
             diagnostics["errors"].append(
                 f"page {page}: API status={status or 'missing'}"
             )
@@ -418,118 +436,122 @@ def get_historical_closes(symbol, start_ts, end_ts):
 
         times = data.get("t") or []
         closes = data.get("c") or []
-
         if not times or not closes:
-            diagnostics["status"] = "empty_response"
-            diagnostics["errors"].append(
-                f"page {page}: empty candle arrays"
-            )
+            terminal_status = "empty_response"
+            diagnostics["errors"].append(f"page {page}: empty candle arrays")
             break
 
         raw_close_times = []
         page_prices = []
-
         for raw_ts, raw_price in zip(times, closes):
             candle_start = parse_ts(raw_ts)
             price = safe_float(raw_price)
-
             if candle_start is None or price is None or price <= 0:
                 continue
-
             close_ts = int(candle_start) + 60
             raw_close_times.append(close_ts)
-
             if start_ts <= close_ts <= end_ts:
                 page_prices.append((close_ts, price))
 
         if not raw_close_times:
-            diagnostics["status"] = "invalid_candles"
+            terminal_status = "invalid_candles"
             diagnostics["errors"].append(
                 f"page {page}: no valid timestamps or prices"
             )
             break
 
         signature = tuple(sorted(set(raw_close_times)))
-
         if signature in seen_signatures:
+            terminal_status = "repeated_page"
             diagnostics["errors"].append(
                 f"page {page}: repeated page; pagination stopped"
             )
             break
-
         seen_signatures.add(signature)
-
         for ts, price in page_prices:
             all_prices[ts] = price
 
         oldest_close_ts = min(raw_close_times)
-
         if oldest_close_ts <= start_ts + 60:
             reached_start = True
-            diagnostics["status"] = "ok"
             break
-
-                # A short page does not prove that all older history is unavailable.
-        # Continue pagination; repeated-page and max-page guards still apply.
         if len(times) < 450:
             diagnostics["errors"].append(
                 f"page {page}: short page ({len(times)} candles); "
                 "continuing to verify historical coverage"
             )
-
         page += 1
         time.sleep(1.05)
 
     prices = sorted(all_prices.items())
     diagnostics["returned_candles"] = len(prices)
-
-    gap_stats = analyze_price_gaps(prices, start_ts, end_ts)
-    diagnostics.update(gap_stats)
+    diagnostics.update(analyze_price_gaps(prices, start_ts, end_ts))
 
     if prices:
         first_ts = prices[0][0]
         last_ts = prices[-1][0]
-        endpoint_coverage = (
-            first_ts <= start_ts + 60
-            and last_ts >= end_ts - 60
-        )
+        endpoint_coverage = first_ts <= start_ts + 60 and last_ts >= end_ts - 60
     else:
         endpoint_coverage = False
-
     diagnostics["coverage_complete"] = bool(
         endpoint_coverage
         and reached_start
         and diagnostics.get("internal_gap_count", 0) == 0
-        and diagnostics["returned_candles"] >= max(
-            1, requested_minutes - 2
-        )
+        and diagnostics["returned_candles"] >= max(1, requested_minutes - 2)
     )
-
-    if diagnostics["coverage_complete"]:
-        diagnostics["status"] = "ok"
-    elif diagnostics["returned_candles"] > 0:
-        diagnostics["status"] = "incomplete_coverage"
-    elif diagnostics["status"] not in (
-        "request_failed", "api_error", "invalid_response",
-        "invalid_candles", "empty_response"
-    ):
-        diagnostics["status"] = "no_data"
-
-    if (
-        not reached_start
-        and diagnostics["pages_used"] >= max_pages
-    ):
-        diagnostics["pagination_limit_reached"] = True
-        diagnostics["coverage_complete"] = False
-        diagnostics["status"] = "pagination_limit_reached"
-        diagnostics["errors"].append(
-            "Pagination limit reached before requested start"
-        )
-
+    diagnostics = finalize_history_status(
+        diagnostics, reached_start, terminal_status, max_pages, page
+    )
     return prices, diagnostics
 
 
 
+
+
+def summarize_fetch_diagnostics(historical_fetch_diagnostics):
+    """Build an explicit, status-aware summary of historical fetch results."""
+    rows = list(historical_fetch_diagnostics.values())
+    status_counts = defaultdict(int)
+    hard_failure_statuses = {
+        "request_failed", "api_error", "invalid_response",
+        "invalid_candles", "empty_response", "invalid_range",
+    }
+    pagination_incomplete_statuses = {
+        "repeated_page", "pagination_limit_reached",
+    }
+
+    for diagnostics in rows:
+        status = str(diagnostics.get("status") or "unknown")
+        status_counts[status] += 1
+
+    return {
+        "symbols_requested": len(rows),
+        "symbols_with_data": sum(bool(d.get("returned_candles")) for d in rows),
+        "symbols_without_data": sum(not bool(d.get("returned_candles")) for d in rows),
+        "symbols_with_complete_coverage": sum(bool(d.get("coverage_complete")) for d in rows),
+        "symbols_with_incomplete_coverage": sum(
+            bool(d.get("returned_candles")) and not bool(d.get("coverage_complete"))
+            for d in rows
+        ),
+        # no_data can indicate historical-retention limits, so it is separate.
+        "symbols_failed": sum(d.get("status") in hard_failure_statuses for d in rows),
+        "symbols_pagination_incomplete": sum(
+            d.get("status") in pagination_incomplete_statuses for d in rows
+        ),
+        "status_counts": dict(sorted(status_counts.items())),
+        "fallback_used": sum(bool(d.get("fallback_used")) for d in rows),
+        "total_attempts": sum(int(d.get("attempts", 0)) for d in rows),
+        "total_candles": sum(int(d.get("returned_candles", 0)) for d in rows),
+        "symbols_with_internal_gaps": sum(d.get("internal_gap_count", 0) > 0 for d in rows),
+        "total_internal_gaps": sum(int(d.get("internal_gap_count", 0)) for d in rows),
+        "estimated_missing_minutes": sum(
+            int(d.get("estimated_missing_minutes", 0)) for d in rows
+        ),
+        "max_gap_seconds": max(
+            (int(d.get("max_gap_seconds", 0)) for d in rows),
+            default=0,
+        ),
+    }
 
 
 def price_at_or_before(prices, target_ts, max_staleness_seconds=180):
@@ -876,6 +898,7 @@ def summarize(events):
         result[kind] = stats
 
     return result
+
 def main():
     events = load_events()
     start = tracking_start(events)
@@ -896,61 +919,9 @@ def main():
         time.sleep(REQUEST_DELAY)
 
 
-    fetch_summary = {
-        "symbols_requested": len(historical_fetch_diagnostics),
-        "symbols_with_data": sum(
-            bool(d.get("returned_candles"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_without_data": sum(
-            not bool(d.get("returned_candles"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_complete_coverage": sum(
-            bool(d.get("coverage_complete"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_incomplete_coverage": sum(
-            bool(d.get("returned_candles"))
-            and not bool(d.get("coverage_complete"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_failed": sum(
-            d.get("status") == "request_failed"
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "fallback_used": sum(
-            bool(d.get("fallback_used"))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_attempts": sum(
-            int(d.get("attempts", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_candles": sum(
-            int(d.get("returned_candles", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "symbols_with_internal_gaps": sum(
-            d.get("internal_gap_count", 0) > 0
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "total_internal_gaps": sum(
-            int(d.get("internal_gap_count", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "estimated_missing_minutes": sum(
-            int(d.get("estimated_missing_minutes", 0))
-            for d in historical_fetch_diagnostics.values()
-        ),
-        "max_gap_seconds": max(
-            (
-                int(d.get("max_gap_seconds", 0))
-                for d in historical_fetch_diagnostics.values()
-            ),
-            default=0,
-        ),
-    }
+    fetch_summary = summarize_fetch_diagnostics(
+        historical_fetch_diagnostics
+    )
 
     measured = []
     for event in events:
@@ -1013,7 +984,15 @@ def main():
         "Symbols without historical data:",
         fetch_summary["symbols_without_data"],
     )
-    print("Historical fetch request failures:", fetch_summary["symbols_failed"])
+    print("Historical fetch failures:", fetch_summary["symbols_failed"])
+    print(
+        "Historical pagination incomplete:",
+        fetch_summary["symbols_pagination_incomplete"],
+    )
+    print(
+        "Historical fetch status counts:",
+        fetch_summary["status_counts"],
+    )
     print("Fallback fetches:", fetch_summary["fallback_used"])
 
     print(
