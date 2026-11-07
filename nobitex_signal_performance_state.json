@@ -1,8 +1,8 @@
 {
   "performance_schema_version": 6,
   "tracking_schema_version": 2,
-  "generated_at": 1794060163,
-  "generated_at_iso": "2026-11-07T14:02:43+00:00",
+  "generated_at": 1794076909,
+  "generated_at_iso": "2026-11-07T18:41:49+00:00",
   "measurement_source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
   "future_leakage_policy": "Use only 1m candle closes whose close timestamp is at or before each target; never use a future candle close.",
   "signal_types": [
@@ -31,20 +31,20 @@
   "event_count": 143,
   "historical_fetch_summary": {
     "symbols_requested": 71,
-    "symbols_with_data": 19,
-    "symbols_without_data": 52,
-    "symbols_with_complete_coverage": 10,
-    "symbols_with_incomplete_coverage": 9,
+    "symbols_with_data": 17,
+    "symbols_without_data": 54,
+    "symbols_with_complete_coverage": 9,
+    "symbols_with_incomplete_coverage": 8,
     "symbols_failed": 0,
     "symbols_pagination_incomplete": 0,
     "status_counts": {
-      "no_data": 52,
-      "ok": 10,
-      "pagination_end_no_data": 9
+      "no_data": 54,
+      "ok": 9,
+      "pagination_end_no_data": 8
     },
-    "fallback_used": 52,
-    "total_attempts": 192,
-    "total_candles": 34901,
+    "fallback_used": 54,
+    "total_attempts": 187,
+    "total_candles": 31085,
     "symbols_with_internal_gaps": 0,
     "total_internal_gaps": 0,
     "estimated_missing_minutes": 0,
@@ -308,19 +308,19 @@
       "requested_minutes": 33466,
       "expected_candles": 33466,
       "method": "paged_from_to",
-      "attempts": 6,
+      "attempts": 5,
       "fallback_used": false,
-      "returned_candles": 2010,
+      "returned_candles": 1610,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
       "errors": [
-        "page 5: short page (13 candles); continuing to verify historical coverage"
+        "page 4: short page (113 candles); continuing to verify historical coverage"
       ],
-      "pages_used": 6,
+      "pages_used": 5,
       "pagination_limit_reached": false,
-      "observed_candles": 2010,
+      "observed_candles": 1610,
       "estimated_expected_candles": 33466,
-      "candle_count_coverage_pct": 6.01,
+      "candle_count_coverage_pct": 4.81,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -532,23 +532,23 @@
       "requested_end": 1793482612,
       "requested_minutes": 31014,
       "expected_candles": 31014,
-      "method": "paged_from_to",
+      "method": "paged_countback",
       "attempts": 2,
-      "fallback_used": false,
-      "returned_candles": 376,
+      "fallback_used": true,
+      "returned_candles": 0,
       "coverage_complete": false,
-      "status": "pagination_end_no_data",
+      "status": "no_data",
       "errors": [
-        "page 1: short page (379 candles); continuing to verify historical coverage"
+        "Normal request returned no_data; trying countback"
       ],
-      "pages_used": 2,
+      "pages_used": 1,
       "pagination_limit_reached": false,
-      "observed_candles": 376,
+      "observed_candles": 0,
       "estimated_expected_candles": 31014,
-      "candle_count_coverage_pct": 1.21,
+      "candle_count_coverage_pct": 0.0,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
-      "max_gap_seconds": 60,
+      "max_gap_seconds": 0,
       "largest_gaps": []
     },
     "COTIUSDT": {
@@ -608,19 +608,19 @@
       "requested_minutes": 32005,
       "expected_candles": 32005,
       "method": "paged_from_to",
-      "attempts": 5,
+      "attempts": 4,
       "fallback_used": false,
-      "returned_candles": 1754,
+      "returned_candles": 1354,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
       "errors": [
-        "page 4: short page (257 candles); continuing to verify historical coverage"
+        "page 3: short page (357 candles); continuing to verify historical coverage"
       ],
-      "pages_used": 5,
+      "pages_used": 4,
       "pagination_limit_reached": false,
-      "observed_candles": 1754,
+      "observed_candles": 1354,
       "estimated_expected_candles": 32005,
-      "candle_count_coverage_pct": 5.48,
+      "candle_count_coverage_pct": 4.23,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -683,19 +683,19 @@
       "requested_minutes": 34996,
       "expected_candles": 34996,
       "method": "paged_from_to",
-      "attempts": 11,
+      "attempts": 10,
       "fallback_used": false,
-      "returned_candles": 4759,
+      "returned_candles": 4359,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
       "errors": [
-        "page 10: short page (262 candles); continuing to verify historical coverage"
+        "page 9: short page (362 candles); continuing to verify historical coverage"
       ],
-      "pages_used": 11,
+      "pages_used": 10,
       "pagination_limit_reached": false,
-      "observed_candles": 4759,
+      "observed_candles": 4359,
       "estimated_expected_candles": 34996,
-      "candle_count_coverage_pct": 13.6,
+      "candle_count_coverage_pct": 12.46,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -758,19 +758,17 @@
       "requested_minutes": 37128,
       "expected_candles": 37128,
       "method": "paged_from_to",
-      "attempts": 15,
+      "attempts": 14,
       "fallback_used": false,
-      "returned_candles": 6891,
+      "returned_candles": 6491,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
-      "errors": [
-        "page 14: short page (394 candles); continuing to verify historical coverage"
-      ],
-      "pages_used": 15,
+      "errors": [],
+      "pages_used": 14,
       "pagination_limit_reached": false,
-      "observed_candles": 6891,
+      "observed_candles": 6491,
       "estimated_expected_candles": 37128,
-      "candle_count_coverage_pct": 18.56,
+      "candle_count_coverage_pct": 17.48,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -783,19 +781,17 @@
       "requested_minutes": 31586,
       "expected_candles": 31586,
       "method": "paged_from_to",
-      "attempts": 4,
+      "attempts": 3,
       "fallback_used": false,
-      "returned_candles": 1349,
+      "returned_candles": 949,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
-      "errors": [
-        "page 3: short page (352 candles); continuing to verify historical coverage"
-      ],
-      "pages_used": 4,
+      "errors": [],
+      "pages_used": 3,
       "pagination_limit_reached": false,
-      "observed_candles": 1349,
+      "observed_candles": 949,
       "estimated_expected_candles": 31586,
-      "candle_count_coverage_pct": 4.27,
+      "candle_count_coverage_pct": 3.0,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -883,19 +879,21 @@
       "requested_minutes": 39492,
       "expected_candles": 39492,
       "method": "paged_from_to",
-      "attempts": 20,
+      "attempts": 21,
       "fallback_used": false,
-      "returned_candles": 9254,
+      "returned_candles": 8854,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
       "errors": [
-        "page 19: short page (257 candles); continuing to verify historical coverage"
+        "URLError: <urlopen error timed out>",
+        "TimeoutError: The read operation timed out",
+        "page 18: short page (357 candles); continuing to verify historical coverage"
       ],
-      "pages_used": 20,
+      "pages_used": 19,
       "pagination_limit_reached": false,
-      "observed_candles": 9254,
+      "observed_candles": 8854,
       "estimated_expected_candles": 39492,
-      "candle_count_coverage_pct": 23.43,
+      "candle_count_coverage_pct": 22.42,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -1032,23 +1030,23 @@
       "requested_end": 1793482613,
       "requested_minutes": 28947,
       "expected_candles": 28947,
-      "method": "paged_from_to",
+      "method": "paged_countback",
       "attempts": 2,
-      "fallback_used": false,
-      "returned_candles": 376,
+      "fallback_used": true,
+      "returned_candles": 0,
       "coverage_complete": false,
-      "status": "pagination_end_no_data",
+      "status": "no_data",
       "errors": [
-        "page 1: short page (379 candles); continuing to verify historical coverage"
+        "Normal request returned no_data; trying countback"
       ],
-      "pages_used": 2,
+      "pages_used": 1,
       "pagination_limit_reached": false,
-      "observed_candles": 376,
+      "observed_candles": 0,
       "estimated_expected_candles": 28947,
-      "candle_count_coverage_pct": 1.3,
+      "candle_count_coverage_pct": 0.0,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
-      "max_gap_seconds": 60,
+      "max_gap_seconds": 0,
       "largest_gaps": []
     },
     "ZROUSDT": {
@@ -1333,19 +1331,17 @@
       "requested_minutes": 7002,
       "expected_candles": 7002,
       "method": "paged_from_to",
-      "attempts": 4,
+      "attempts": 3,
       "fallback_used": false,
-      "returned_candles": 1349,
+      "returned_candles": 949,
       "coverage_complete": false,
       "status": "pagination_end_no_data",
-      "errors": [
-        "page 3: short page (352 candles); continuing to verify historical coverage"
-      ],
-      "pages_used": 4,
+      "errors": [],
+      "pages_used": 3,
       "pagination_limit_reached": false,
-      "observed_candles": 1349,
+      "observed_candles": 949,
       "estimated_expected_candles": 7002,
-      "candle_count_coverage_pct": 19.27,
+      "candle_count_coverage_pct": 13.55,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -1585,15 +1581,17 @@
       "method": "paged_from_to",
       "attempts": 10,
       "fallback_used": false,
-      "returned_candles": 4623,
-      "coverage_complete": true,
-      "status": "ok",
-      "errors": [],
+      "returned_candles": 4359,
+      "coverage_complete": false,
+      "status": "pagination_end_no_data",
+      "errors": [
+        "page 9: short page (362 candles); continuing to verify historical coverage"
+      ],
       "pages_used": 10,
       "pagination_limit_reached": false,
-      "observed_candles": 4623,
+      "observed_candles": 4359,
       "estimated_expected_candles": 4623,
-      "candle_count_coverage_pct": 100.0,
+      "candle_count_coverage_pct": 94.29,
       "internal_gap_count": 0,
       "estimated_missing_minutes": 0,
       "max_gap_seconds": 60,
@@ -19444,80 +19442,66 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793468512,
             "target_timestamp_iso": "2026-10-31T17:41:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793468460,
-            "actual_timestamp_iso": "2026-10-31T17:41:00+00:00",
-            "price": 8.57,
-            "change_pct": 0.20461853259280993
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793469112,
             "target_timestamp_iso": "2026-10-31T17:51:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469060,
-            "actual_timestamp_iso": "2026-10-31T17:51:00+00:00",
-            "price": 8.57,
-            "change_pct": 0.20461853259280993
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793470012,
             "target_timestamp_iso": "2026-10-31T18:06:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469960,
-            "actual_timestamp_iso": "2026-10-31T18:06:00+00:00",
-            "price": 8.57,
-            "change_pct": 0.20461853259280993
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793471812,
             "target_timestamp_iso": "2026-10-31T18:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793471760,
-            "actual_timestamp_iso": "2026-10-31T18:36:00+00:00",
-            "price": 8.57,
-            "change_pct": 0.20461853259280993
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793475412,
             "target_timestamp_iso": "2026-10-31T19:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793475360,
-            "actual_timestamp_iso": "2026-10-31T19:36:00+00:00",
-            "price": 8.62,
-            "change_pct": 0.7892429114293948
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "4h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793482612,
             "target_timestamp_iso": "2026-10-31T21:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793482560,
-            "actual_timestamp_iso": "2026-10-31T21:36:00+00:00",
-            "price": 8.589,
-            "change_pct": 0.4267757965507185
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           }
         },
-        "mfe_pct": 0.7892429114293948,
-        "mfe_timestamp": 1793475300,
-        "mfe_timestamp_iso": "2026-10-31T19:35:00+00:00",
-        "mae_pct": -0.14615609470916183,
-        "mae_timestamp": 1793468220,
-        "mae_timestamp_iso": "2026-10-31T17:37:00+00:00",
-        "four_hour_window_reliable": true,
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
         "four_hour_window_diagnostics": {
-          "reason": "complete",
-          "observed_candles": 240,
-          "expected_candles": 240,
+          "reason": "no_candles",
+          "observed_candles": 0,
           "internal_gap_count": 0,
-          "max_gap_seconds": 0,
-          "coverage_pct": 100.0
+          "coverage_pct": 0.0
         },
         "excursion_basis": "1m_closes_only",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
@@ -19529,19 +19513,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+2%": {
           "threshold_pct": 2.0,
@@ -19549,19 +19532,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+5%": {
           "threshold_pct": 5.0,
@@ -19569,19 +19551,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         }
       }
     },
@@ -19609,80 +19590,66 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793468512,
             "target_timestamp_iso": "2026-10-31T17:41:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793468460,
-            "actual_timestamp_iso": "2026-10-31T17:41:00+00:00",
-            "price": 77370.11,
-            "change_pct": -0.13922665510898694
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793469112,
             "target_timestamp_iso": "2026-10-31T17:51:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469060,
-            "actual_timestamp_iso": "2026-10-31T17:51:00+00:00",
-            "price": 77499.0,
-            "change_pct": 0.027130289147948253
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793470012,
             "target_timestamp_iso": "2026-10-31T18:06:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469960,
-            "actual_timestamp_iso": "2026-10-31T18:06:00+00:00",
-            "price": 77588.0,
-            "change_pct": 0.14200163711029834
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793471812,
             "target_timestamp_iso": "2026-10-31T18:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793471760,
-            "actual_timestamp_iso": "2026-10-31T18:36:00+00:00",
-            "price": 77589.97,
-            "change_pct": 0.1445442950371069
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793475412,
             "target_timestamp_iso": "2026-10-31T19:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793475360,
-            "actual_timestamp_iso": "2026-10-31T19:36:00+00:00",
-            "price": 77501.0,
-            "change_pct": 0.029711667753843762
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "4h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793482612,
             "target_timestamp_iso": "2026-10-31T21:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793482560,
-            "actual_timestamp_iso": "2026-10-31T21:36:00+00:00",
-            "price": 77399.96,
-            "change_pct": -0.10069957941598899
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           }
         },
-        "mfe_pct": 0.2671984994962304,
-        "mfe_timestamp": 1793474280,
-        "mfe_timestamp_iso": "2026-10-31T19:18:00+00:00",
-        "mae_pct": -0.22971688213865468,
-        "mae_timestamp": 1793482440,
-        "mae_timestamp_iso": "2026-10-31T21:34:00+00:00",
-        "four_hour_window_reliable": true,
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
         "four_hour_window_diagnostics": {
-          "reason": "complete",
-          "observed_candles": 240,
-          "expected_candles": 240,
+          "reason": "no_candles",
+          "observed_candles": 0,
           "internal_gap_count": 0,
-          "max_gap_seconds": 0,
-          "coverage_pct": 100.0
+          "coverage_pct": 0.0
         },
         "excursion_basis": "1m_closes_only",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
@@ -19694,19 +19661,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+2%": {
           "threshold_pct": 2.0,
@@ -19714,19 +19680,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+5%": {
           "threshold_pct": 5.0,
@@ -19734,19 +19699,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         }
       }
     },
@@ -19774,80 +19738,66 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793468512,
             "target_timestamp_iso": "2026-10-31T17:41:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793468460,
-            "actual_timestamp_iso": "2026-10-31T17:41:00+00:00",
-            "price": 2249.44,
-            "change_pct": -0.044435754785710595
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793469112,
             "target_timestamp_iso": "2026-10-31T17:51:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469060,
-            "actual_timestamp_iso": "2026-10-31T17:51:00+00:00",
-            "price": 2255.0,
-            "change_pct": 0.20262704182295024
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793470012,
             "target_timestamp_iso": "2026-10-31T18:06:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469960,
-            "actual_timestamp_iso": "2026-10-31T18:06:00+00:00",
-            "price": 2253.41,
-            "change_pct": 0.13197419171363178
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793471812,
             "target_timestamp_iso": "2026-10-31T18:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793471760,
-            "actual_timestamp_iso": "2026-10-31T18:36:00+00:00",
-            "price": 2256.96,
-            "change_pct": 0.2897211212029842
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793475412,
             "target_timestamp_iso": "2026-10-31T19:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793475360,
-            "actual_timestamp_iso": "2026-10-31T19:36:00+00:00",
-            "price": 2250.28,
-            "change_pct": -0.007109720765690254
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "4h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793482612,
             "target_timestamp_iso": "2026-10-31T21:36:52+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793482560,
-            "actual_timestamp_iso": "2026-10-31T21:36:00+00:00",
-            "price": 2251.09,
-            "change_pct": 0.028883240610749268
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           }
         },
-        "mfe_pct": 0.3799257034180064,
-        "mfe_timestamp": 1793474340,
-        "mfe_timestamp_iso": "2026-10-31T19:19:00+00:00",
-        "mae_pct": -0.044435754785710595,
-        "mae_timestamp": 1793468460,
-        "mae_timestamp_iso": "2026-10-31T17:41:00+00:00",
-        "four_hour_window_reliable": true,
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
         "four_hour_window_diagnostics": {
-          "reason": "complete",
-          "observed_candles": 240,
-          "expected_candles": 240,
+          "reason": "no_candles",
+          "observed_candles": 0,
           "internal_gap_count": 0,
-          "max_gap_seconds": 0,
-          "coverage_pct": 100.0
+          "coverage_pct": 0.0
         },
         "excursion_basis": "1m_closes_only",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
@@ -19859,19 +19809,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+2%": {
           "threshold_pct": 2.0,
@@ -19879,19 +19828,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+5%": {
           "threshold_pct": 5.0,
@@ -19899,19 +19847,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:52+00:00",
           "window_end_timestamp": 1793482612,
           "window_end_timestamp_iso": "2026-10-31T21:36:52+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         }
       }
     },
@@ -19939,80 +19886,66 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793468513,
             "target_timestamp_iso": "2026-10-31T17:41:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793468460,
-            "actual_timestamp_iso": "2026-10-31T17:41:00+00:00",
-            "price": 1.212,
-            "change_pct": -0.04123711340205732
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793469113,
             "target_timestamp_iso": "2026-10-31T17:51:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469060,
-            "actual_timestamp_iso": "2026-10-31T17:51:00+00:00",
-            "price": 1.213,
-            "change_pct": 0.041237113402075636
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793470013,
             "target_timestamp_iso": "2026-10-31T18:06:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469960,
-            "actual_timestamp_iso": "2026-10-31T18:06:00+00:00",
-            "price": 1.21,
-            "change_pct": -0.2061855670103049
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793471813,
             "target_timestamp_iso": "2026-10-31T18:36:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793471760,
-            "actual_timestamp_iso": "2026-10-31T18:36:00+00:00",
-            "price": 1.214,
-            "change_pct": 0.12371134020619026
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793475413,
             "target_timestamp_iso": "2026-10-31T19:36:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793475360,
-            "actual_timestamp_iso": "2026-10-31T19:36:00+00:00",
-            "price": 1.214,
-            "change_pct": 0.12371134020619026
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "4h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793482613,
             "target_timestamp_iso": "2026-10-31T21:36:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793482560,
-            "actual_timestamp_iso": "2026-10-31T21:36:00+00:00",
-            "price": 1.21,
-            "change_pct": -0.2061855670103049
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           }
         },
-        "mfe_pct": 0.3711340206185708,
-        "mfe_timestamp": 1793468220,
-        "mfe_timestamp_iso": "2026-10-31T17:37:00+00:00",
-        "mae_pct": -0.8659793814432952,
-        "mae_timestamp": 1793480640,
-        "mae_timestamp_iso": "2026-10-31T21:04:00+00:00",
-        "four_hour_window_reliable": true,
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
         "four_hour_window_diagnostics": {
-          "reason": "complete",
-          "observed_candles": 240,
-          "expected_candles": 240,
+          "reason": "no_candles",
+          "observed_candles": 0,
           "internal_gap_count": 0,
-          "max_gap_seconds": 0,
-          "coverage_pct": 100.0
+          "coverage_pct": 0.0
         },
         "excursion_basis": "1m_closes_only",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
@@ -20024,19 +19957,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:53+00:00",
           "window_end_timestamp": 1793482613,
           "window_end_timestamp_iso": "2026-10-31T21:36:53+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+2%": {
           "threshold_pct": 2.0,
@@ -20044,19 +19976,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:53+00:00",
           "window_end_timestamp": 1793482613,
           "window_end_timestamp_iso": "2026-10-31T21:36:53+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+5%": {
           "threshold_pct": 5.0,
@@ -20064,19 +19995,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:53+00:00",
           "window_end_timestamp": 1793482613,
           "window_end_timestamp_iso": "2026-10-31T21:36:53+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         }
       }
     },
@@ -20104,80 +20034,66 @@
       "outcome": {
         "checkpoints": {
           "5m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793468513,
             "target_timestamp_iso": "2026-10-31T17:41:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793468460,
-            "actual_timestamp_iso": "2026-10-31T17:41:00+00:00",
-            "price": 11.677,
-            "change_pct": 0.13291600565964415
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "15m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793469113,
             "target_timestamp_iso": "2026-10-31T17:51:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469060,
-            "actual_timestamp_iso": "2026-10-31T17:51:00+00:00",
-            "price": 11.7,
-            "change_pct": 0.3301462076062178
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "30m": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793470013,
             "target_timestamp_iso": "2026-10-31T18:06:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793469960,
-            "actual_timestamp_iso": "2026-10-31T18:06:00+00:00",
-            "price": 11.699,
-            "change_pct": 0.32157098143463225
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "1h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793471813,
             "target_timestamp_iso": "2026-10-31T18:36:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793471760,
-            "actual_timestamp_iso": "2026-10-31T18:36:00+00:00",
-            "price": 11.72,
-            "change_pct": 0.5016507310380349
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "2h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793475413,
             "target_timestamp_iso": "2026-10-31T19:36:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793475360,
-            "actual_timestamp_iso": "2026-10-31T19:36:00+00:00",
-            "price": 11.824,
-            "change_pct": 1.3934742528834168
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           },
           "4h": {
-            "available": true,
+            "available": false,
             "target_timestamp": 1793482613,
             "target_timestamp_iso": "2026-10-31T21:36:53+00:00",
             "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-            "actual_timestamp": 1793482560,
-            "actual_timestamp_iso": "2026-10-31T21:36:00+00:00",
-            "price": 11.755,
-            "change_pct": 0.8017836470436958
+            "censored": true,
+            "censor_reason": "no_fresh_close_near_target"
           }
         },
-        "mfe_pct": 2.045191441924282,
-        "mfe_timestamp": 1793476920,
-        "mfe_timestamp_iso": "2026-10-31T20:02:00+00:00",
-        "mae_pct": -0.004287613085800377,
-        "mae_timestamp": 1793469720,
-        "mae_timestamp_iso": "2026-10-31T18:02:00+00:00",
-        "four_hour_window_reliable": true,
+        "mfe_pct": null,
+        "mfe_timestamp": null,
+        "mfe_timestamp_iso": null,
+        "mae_pct": null,
+        "mae_timestamp": null,
+        "mae_timestamp_iso": null,
+        "four_hour_window_reliable": false,
         "four_hour_window_diagnostics": {
-          "reason": "complete",
-          "observed_candles": 240,
-          "expected_candles": 240,
+          "reason": "no_candles",
+          "observed_candles": 0,
           "internal_gap_count": 0,
-          "max_gap_seconds": 0,
-          "coverage_pct": 100.0
+          "coverage_pct": 0.0
         },
         "excursion_basis": "1m_closes_only",
         "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED"
@@ -20189,23 +20105,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:53+00:00",
           "window_end_timestamp": 1793482613,
           "window_end_timestamp_iso": "2026-10-31T21:36:53+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": true,
-          "timestamp": 1793473920,
-          "timestamp_iso": "2026-10-31T19:12:00+00:00",
-          "price": 11.799,
-          "lead_time_seconds": 5707
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+2%": {
           "threshold_pct": 2.0,
@@ -20213,23 +20124,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:53+00:00",
           "window_end_timestamp": 1793482613,
           "window_end_timestamp_iso": "2026-10-31T21:36:53+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": true,
-          "timestamp": 1793476920,
-          "timestamp_iso": "2026-10-31T20:02:00+00:00",
-          "price": 11.9,
-          "lead_time_seconds": 8707
+          "hit": null,
+          "censor_reason": "no_candles"
         },
         "+5%": {
           "threshold_pct": 5.0,
@@ -20237,19 +20143,18 @@
           "window_start_timestamp_iso": "2026-10-31T17:36:53+00:00",
           "window_end_timestamp": 1793482613,
           "window_end_timestamp_iso": "2026-10-31T21:36:53+00:00",
-          "available": true,
-          "censored": false,
-          "window_reliable": true,
+          "available": false,
+          "censored": true,
+          "window_reliable": false,
           "window_diagnostics": {
-            "reason": "complete",
-            "observed_candles": 240,
-            "expected_candles": 240,
+            "reason": "no_candles",
+            "observed_candles": 0,
             "internal_gap_count": 0,
-            "max_gap_seconds": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "source": "NOBITEX_UDF_1M_CLOSE_ALIGNED",
-          "hit": false
+          "hit": null,
+          "censor_reason": "no_candles"
         }
       }
     },
@@ -23501,53 +23406,53 @@
     "FAST": {
       "signals": 99,
       "available": {
-        "5m": 24,
-        "15m": 24,
-        "30m": 24,
-        "1h": 24,
-        "2h": 24,
-        "4h": 24
+        "5m": 19,
+        "15m": 19,
+        "30m": 19,
+        "1h": 19,
+        "2h": 19,
+        "4h": 19
       },
       "avg_change_pct": {
-        "5m": -0.06937550296511993,
-        "15m": -0.01864852884572166,
-        "30m": -0.0025740969059584655,
-        "1h": 0.011299919806426077,
-        "2h": 0.10550656197128483,
-        "4h": 0.9860544943745372
+        "5m": -0.09356037295360936,
+        "15m": -0.06596441457206957,
+        "30m": -0.03451358429389845,
+        "1h": -0.052265681301205284,
+        "2h": 0.010690896621246355,
+        "4h": 1.1955131751163173
       },
       "median_change_pct": {
-        "5m": -0.041812293951671894,
-        "15m": 0.03180666226824428,
-        "30m": 0.04422224164902204,
-        "1h": 0.046304620176064334,
-        "2h": 0.026023848066372215,
-        "4h": 0.3167545050489199
+        "5m": -0.04238747450128647,
+        "15m": -0.10583657587550582,
+        "30m": 0.03648303538854031,
+        "1h": -0.07987410257155661,
+        "2h": 0.0,
+        "4h": 0.686498855835241
       },
       "positive_rate_pct": {
-        "5m": 45.83333333333333,
-        "15m": 54.166666666666664,
-        "30m": 58.333333333333336,
-        "1h": 54.166666666666664,
-        "2h": 54.166666666666664,
-        "4h": 70.83333333333334
+        "5m": 47.368421052631575,
+        "15m": 42.10526315789473,
+        "30m": 52.63157894736842,
+        "1h": 42.10526315789473,
+        "2h": 47.368421052631575,
+        "4h": 73.68421052631578
       },
-      "mfe_avg_pct": 1.476447580226804,
-      "mae_avg_pct": -0.5082602768570048,
+      "mfe_avg_pct": 1.6622131236082534,
+      "mae_avg_pct": -0.5740879430739733,
       "threshold_hits": {
-        "+1%": 9,
-        "+2%": 6,
+        "+1%": 8,
+        "+2%": 5,
         "+5%": 1
       },
       "threshold_samples": {
-        "+1%": 24,
-        "+2%": 24,
-        "+5%": 24
+        "+1%": 19,
+        "+2%": 19,
+        "+5%": 19
       },
       "threshold_hit_rate_pct": {
-        "+1%": 37.5,
-        "+2%": 25.0,
-        "+5%": 4.166666666666666
+        "+1%": 42.10526315789473,
+        "+2%": 26.31578947368421,
+        "+5%": 5.263157894736842
       }
     },
     "CONFIRMED": {
