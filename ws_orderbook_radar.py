@@ -8,12 +8,12 @@ Adds:
 - Public Nobitex WebSocket orderbook stream.
 - Multi-level order-book imbalance at 1/3/5/10/20 levels.
 - Distance-weighted imbalance, microprice gap and spread.
-- 60-second pressure-change detection.
+- Valid 60-second pressure-change detection (no fabricated fallback).
 - Separate Telegram WS OBI early warning.
-- Bounded JSONL raw samples for later labeling/model training.
+- Time-sampled, threshold-independent JSONL raw samples for later labeling/model training.
 - REST seed before WebSocket subscription.
 
-The existing scanner.py scoring is intentionally untouched.
+The existing scanner.py scoring and all alert thresholds are intentionally untouched.
 """
 
 import argparse
@@ -21,7 +21,6 @@ import json
 import math
 import os
 import signal
-import statistics
 import threading
 import time
 import urllib.parse
@@ -51,7 +50,7 @@ WS_SIGNAL_STATE_PATH = os.path.join(WORKSPACE, "nobitex_ws_orderbook_signal.json
 WS_ALERT_STATE_PATH = os.path.join(WORKSPACE, "nobitex_ws_obi_alert_state.json")
 WS_RAW_PATH = os.path.join(WORKSPACE, "nobitex_ws_raw_samples.jsonl")
 
-# New signal thresholds. These do not alter the main scanner score.
+# Alert thresholds: deliberately unchanged from the source file.
 OBI_ALERT_WEIGHTED_MIN = 0.24
 OBI_ALERT_LEVEL5_MIN = 0.20
 OBI_ALERT_DELTA_MIN = 0.10
@@ -66,14 +65,18 @@ OBI_STRONG_LEVEL5_MIN = 0.35
 
 ALERT_COOLDOWN_SECONDS = 2 * 60 * 60
 ALERT_IMPROVEMENT_DELTA = 0.10
+
+# A 60s comparison is valid only when its reference is 45-75s old.
 BASELINE_SECONDS = 60
-MAX_HISTORY_PER_SYMBOL = 120
+BASELINE_TOLERANCE_SECONDS = 15
+HISTORY_RETENTION_SECONDS = 180
+HISTORY_SAMPLE_INTERVAL_SECONDS = 1.0
+MAX_HISTORY_PER_SYMBOL = 240
 
 RAW_MAX_LINES = 3000
 RAW_MAX_BYTES = 5 * 1024 * 1024
-RAW_SAMPLE_INTERVAL_SECONDS = 5
-RAW_CAPTURE_WEIGHTED_MIN = 0.15
-RAW_CAPTURE_DELTA_MIN = 0.07
+# Sampling cadence is for data collection only; it is not an alert threshold.
+RAW_SAMPLE_INTERVAL_SECONDS = 30
 
 EXCLUDED_SYMBOLS = {
     "USDCUSDT",
@@ -313,6 +316,27 @@ def compute_features(book):
     return features
 
 
+def select_60s_baseline(history, now):
+    """Return the sample closest to 60s old, but only inside the 45-75s window."""
+    lower_age = BASELINE_SECONDS - BASELINE_TOLERANCE_SECONDS
+    upper_age = BASELINE_SECONDS + BASELINE_TOLERANCE_SECONDS
+    candidates = []
+
+    for item in history:
+        timestamp = safe_float(item.get("ts"), -1.0)
+        if timestamp <= 0:
+            continue
+        age = now - timestamp
+        if lower_age <= age <= upper_age:
+            candidates.append((abs(age - BASELINE_SECONDS), item, age))
+
+    if not candidates:
+        return None, None
+
+    _, sample, age = min(candidates, key=lambda row: row[0])
+    return sample, age
+
+
 def load_prior_scores():
     state = load_json(RADAR_STATE_PATH, {})
     if not isinstance(state, dict):
@@ -401,6 +425,12 @@ def build_alert(symbol, features, info, prior_score):
 
 
 def should_alert(symbol, features, info, prior_score, alert_state):
+    # Do not evaluate alert thresholds until both 60s metrics have a real baseline.
+    if not info.get("baseline_valid", False):
+        return False
+    if info.get("obi_delta") is None or info.get("price_change_60s") is None:
+        return False
+
     if info["updates"] < OBI_ALERT_MIN_UPDATES:
         return False
     if features["spread_bps"] > OBI_ALERT_MAX_SPREAD_BPS:
@@ -450,6 +480,8 @@ class NobitexOBIRadar:
         self.duration_seconds = max(30, int(duration_seconds))
         self.books = {}
         self.history = {}
+        self.updates_by_symbol = {}
+        self.last_history_sample_at = {}
         self.last_raw_sample_at = {}
         self.alert_state = load_alert_state()
         self.prior_scores = load_prior_scores()
@@ -469,16 +501,21 @@ class NobitexOBIRadar:
 
         for symbol, book in self.books.items():
             features = compute_features(book)
+            seed_timestamp = safe_float(book.get("seeded_at"), time.time())
             self.history[symbol] = deque(
-                [{"ts": time.time(), **features}],
+                [{"ts": seed_timestamp, "source": "rest_seed", **features}],
                 maxlen=MAX_HISTORY_PER_SYMBOL,
             )
+            self.updates_by_symbol[symbol] = 0
+            self.last_history_sample_at[symbol] = seed_timestamp
             self.latest_signals[symbol] = {
                 "symbol": symbol,
                 "seeded": True,
                 **features,
-                "obi_delta_60s": 0.0,
-                "price_change_60s": 0.0,
+                "obi_delta_60s": None,
+                "price_change_60s": None,
+                "baseline_valid": False,
+                "baseline_age_seconds": None,
                 "updates": 0,
                 "prior_score": self.prior_scores.get(symbol, 0.0),
             }
@@ -581,58 +618,46 @@ class NobitexOBIRadar:
             self.books[symbol] = book
             if symbol not in self.history:
                 self.history[symbol] = deque(maxlen=MAX_HISTORY_PER_SYMBOL)
+            if symbol not in self.updates_by_symbol:
+                self.updates_by_symbol[symbol] = 0
 
             history = self.history[symbol]
-            recent = [
-                item for item in history
-                if now - safe_float(item.get("ts"), now) <= BASELINE_SECONDS
-            ]
 
-            previous_obi = (
-                statistics.median(
-                    [safe_float(item.get("obi_weighted")) for item in recent]
-                )
-                if recent else features["obi_weighted"]
-            )
+            # Keep a rolling time window. Samples are stored at most once per second,
+            # so a bursty websocket cannot evict the 60s reference merely by count.
+            while history:
+                oldest_ts = safe_float(history[0].get("ts"), now)
+                if now - oldest_ts <= HISTORY_RETENTION_SECONDS:
+                    break
+                history.popleft()
 
-            price_reference = features["mid"]
-            old_price_candidates = [
-                safe_float(item.get("mid"))
-                for item in recent
-                if safe_float(item.get("mid")) > 0
-            ]
-            if old_price_candidates:
-                price_reference = old_price_candidates[0]
-
-            history.append({"ts": now, **features})
-            self.update_count += 1
-            updates = len(history)
-
-            one_minute_candidates = [
-                item for item in history
-                if now - safe_float(item.get("ts"), now) >= BASELINE_SECONDS
-            ]
-
-            if one_minute_candidates:
-                reference = one_minute_candidates[-1]
-                reference_obi = safe_float(reference.get("obi_weighted"), previous_obi)
-                reference_price = safe_float(reference.get("mid"), price_reference)
+            baseline, baseline_age = select_60s_baseline(history, now)
+            baseline_valid = baseline is not None
+            if baseline_valid:
+                reference_obi = safe_float(baseline.get("obi_weighted"), 0.0)
+                reference_price = safe_float(baseline.get("mid"), 0.0)
+                if reference_price > 0 and features["mid"] > 0:
+                    obi_delta = features["obi_weighted"] - reference_obi
+                    price_change_60s = (
+                        (features["mid"] - reference_price) / reference_price * 100.0
+                    )
+                else:
+                    baseline_valid = False
+                    obi_delta = None
+                    price_change_60s = None
             else:
-                reference_obi = previous_obi
-                reference_price = price_reference
+                obi_delta = None
+                price_change_60s = None
 
-            price_change_60s = 0.0
-            if reference_price > 0:
-                price_change_60s = (
-                    (features["mid"] - reference_price) / reference_price * 100.0
-                )
+            # Count accepted websocket publications, not seed rows or history length.
+            self.updates_by_symbol[symbol] += 1
+            self.update_count += 1
+            updates = self.updates_by_symbol[symbol]
 
-            obi_delta = features["obi_weighted"] - reference_obi
-            info = {
-                "obi_delta": obi_delta,
-                "price_change_60s": price_change_60s,
-                "updates": updates,
-            }
+            last_history_at = safe_float(self.last_history_sample_at.get(symbol, 0.0))
+            if now - last_history_at >= HISTORY_SAMPLE_INTERVAL_SECONDS:
+                history.append({"ts": now, "source": "websocket", **features})
+                self.last_history_sample_at[symbol] = now
 
             prior_score = self.prior_scores.get(symbol, 0.0)
             self.latest_signals[symbol] = {
@@ -642,21 +667,20 @@ class NobitexOBIRadar:
                 **features,
                 "obi_delta_60s": obi_delta,
                 "price_change_60s": price_change_60s,
+                "baseline_valid": baseline_valid,
+                "baseline_age_seconds": round(baseline_age, 2) if baseline_valid else None,
                 "updates": updates,
                 "prior_score": prior_score,
             }
 
+            # Unbiased sample selection: capture positive, neutral and negative OBI
+            # observations alike. The only filter is a fixed per-symbol time cadence.
             raw_due = (
                 now - safe_float(self.last_raw_sample_at.get(symbol, 0.0))
                 >= RAW_SAMPLE_INTERVAL_SECONDS
             )
-            interesting = (
-                features["obi_weighted"] >= RAW_CAPTURE_WEIGHTED_MIN
-                or obi_delta >= RAW_CAPTURE_DELTA_MIN
-                or prior_score >= 65
-            )
 
-            if raw_due and interesting:
+            if raw_due:
                 self.last_raw_sample_at[symbol] = now
                 self.new_raw_rows.append({
                     "captured_at": int(now),
@@ -679,12 +703,24 @@ class NobitexOBIRadar:
                     "obi_weighted": features["obi_weighted"],
                     "obi_delta_60s": obi_delta,
                     "price_change_60s": price_change_60s,
+                    "baseline_valid": baseline_valid,
+                    "baseline_age_seconds": (
+                        round(baseline_age, 2) if baseline_valid else None
+                    ),
                     "updates": updates,
                     "raw_bids": raw_bids[:20],
                     "raw_asks": raw_asks[:20],
                     "raw_last_trade_price": data.get("lastTradePrice"),
                     "raw_last_update": data.get("lastUpdate"),
                 })
+
+            info = {
+                "obi_delta": obi_delta,
+                "price_change_60s": price_change_60s,
+                "baseline_valid": baseline_valid,
+                "baseline_age_seconds": baseline_age,
+                "updates": updates,
+            }
 
             if should_alert(symbol, features, info, prior_score, self.alert_state):
                 message = build_alert(symbol, features, info, prior_score)
