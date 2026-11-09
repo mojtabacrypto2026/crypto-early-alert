@@ -1,0 +1,28 @@
+name: External Scheduler Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: external-scheduler-test
+  cancel-in-progress: false
+
+jobs:
+  scheduler-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Record trigger timestamps
+        run: |
+          echo "EXTERNAL_SCHEDULER_TEST"
+          echo "UTC time:"
+          date -u +"%Y-%m-%dT%H:%M:%SZ"
+          echo "Run ID: $GITHUB_RUN_ID"
+          echo "Run number: $GITHUB_RUN_NUMBER"
+          echo "Event: $GITHUB_EVENT_NAME"
+          echo "Ref: $GITHUB_REF"
+          echo "Commit: $GITHUB_SHA"
