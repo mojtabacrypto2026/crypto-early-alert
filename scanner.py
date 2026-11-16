@@ -70,7 +70,7 @@ TRACKING_START_PATH = "nobitex_performance_tracking_start.json"
 NEWS_ENABLED = True
 NEWS_FEEDS = [
     ("CoinDesk", "https://www.coindesk.com/arc/outboundfeeds/rss/"),
-    ("Cointelegraph", "https://cointelegraph.com/?format=rss"),
+    ("Cointelegraph", "https://cointelegraph.com/rss"),
 ]
 NEWS_LOOKBACK_SECONDS = 6 * 60 * 60
 NEWS_FRESH_SECONDS = 90 * 60
